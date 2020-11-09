@@ -1,1 +1,30 @@
+# import pyspark.sql.functions to use SQL commands to manipulate datasets (e.g. parquet files)
+import pyspark.sql.functions as F # 
+#
+dynamicparts=spark.read.parquet('/mnt/margin_management/daily/DynamicPrices_'+today+'.parquet') # read the .parquet file from Azure Blob
+display(dynamicparts.filter(F.col('IPD_Dynamically_Priced')=='Y')) # filter the data table with certain criteria
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
