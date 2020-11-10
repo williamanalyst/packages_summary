@@ -1,0 +1,33 @@
+# 
+# 
+from datetime import datetime
+now = datetime.utenow() # get the current time in UTC timezone
+#
+import pytz
+local = now.astimezone(pytz.timezone('Australia/Sydney'))
+today = local.strftime('%Y-%m-%d')
+#
+yesterday = (local - timedelta(days = 1)).strftime('%Y-%m-%d') # get yesterday's date string by deducting a timestamp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
