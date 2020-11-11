@@ -1,0 +1,6 @@
+# k-means clustering
+from sklearn.preprocessing import StandardScaler
+
+#
+ss = StandardScaler()
+df_standardised = ss.fit_transform(df_selected.astype(float)) # standardise the input variables
