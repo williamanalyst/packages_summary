@@ -6,5 +6,8 @@ ss = StandardScaler()
 df_scaled = ss.fit_transform(df_selected.astype(float)) # standardise the input variables
 
 #
-kmeans = KMeans(n_clusters = 3, random_state = 42).fit(df_scaled)
+kmeans = KMeans(n_clusters = 3, random_state = 42).fit(df_scaled) # use k-means method to classify the items/observations 
 labels = kmeans.labels_
+
+#
+
