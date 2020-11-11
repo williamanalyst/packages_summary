@@ -50,12 +50,14 @@ END CATCH
 
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
--- (level: error 0-10 are informational messages, 1-16 are errors that can be corrected by the user, such as constraint violation, 
+-- (level: error 0-10 are informational messages, 11-16 are errors that can be corrected by the user, such as constraint violation, 
     -- 17-24 are other errors such as software problems)
 -- (state: 1 if SQL Server displays error, 0-25 to rasie own errors)
 -- (line: indicates in which line did the error occur)
 
-
+# raise own error
+IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
+    RAISEERROR('Insert your own error message here', )
 
 
 
