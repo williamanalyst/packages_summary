@@ -3,4 +3,8 @@ from sklearn.preprocessing import StandardScaler
 
 #
 ss = StandardScaler()
-df_standardised = ss.fit_transform(df_selected.astype(float)) # standardise the input variables
+df_scaled = ss.fit_transform(df_selected.astype(float)) # standardise the input variables
+
+#
+kmeans = KMeans(n_clusters = 3, random_state = 42).fit(df_scaled)
+labels = kmeans.labels_
