@@ -23,12 +23,24 @@ WHERE CAST([date_string] AS date) = DATEADD(d, -1, GETDATE())
 -- date that match yesterday
 
 # user defined function (reduce execution time/ network traffic, allow modular programming)
-CREATE FUNCTION udf()
-  RETURNS date AS BEGIN
+CREATE FUNCTION udf(@var1 date, @var2 numeric)
+    RETURNS numeric AS -- set data type that will be returned
+BEGIN -- begin function
+RETURN (
+SELECT SUM(DATEDIFF(second, [col1], [col2]))/ 3600 
+FROM [dbname].[dbo].[tbname]
+WHERE CONVERT(date, [date1]) = @var1
+AND [col3] = @var2
+) -- actual function
+END; -- end function
+-- 
 
-
-
-
+#
+BEGIN TRY
+END TRY
+--
+BEGIN CATCH
+END CATCH
 
 
 
