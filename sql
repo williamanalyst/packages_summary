@@ -65,8 +65,13 @@ IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
     RAISEERROR('Insert your own error message here', )
 
 
-
-
+# check datatype of a column
+USE [dbname]
+SELECT data_type
+FROM information_schema.columns
+WHERE table_name = ''
+    AND column_name = ''
+-- returns data type
 
 # SQL formatting
 -- Use UPPER CASE for all SQL syntax 
