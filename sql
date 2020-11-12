@@ -63,4 +63,11 @@ IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
 
 
 
-
+# SQL formatting
+-- Use UPPER CASE for all SQL syntax 
+-- create a new line for each Major processing syntax such as SELECT, FROM, WHERE
+-- indent for sub-queries, ON, AND/OR conditions
+-- avoid long single lines of code such as multiple column names
+-- complete the query with simi-colon (;)
+-- alias with AS
+-- use commenting blocks /* you can insert multiple lines here  */ for multiple lines or -- for single line
