@@ -12,8 +12,13 @@
 -- every object has a class (int, str, DataFrame, function, etc.)
     -- e.g. type(object) = class name
 
-# 
+# define classes (it is preferred to include all the attributes in the constructor __init__)
 class ClassName:
+    """ 
+    """
+    def __init__(self, var00, var01 = 0): # __init__ is a constructor # var01 = 0 to set the default value of var01 (so that no input is mandatory)
+        self.attribute00 = var00
+        self.attribute01 = var01
     # pass (for empty class)
     def func1(self, var1, var2): # every method (function) under the class must have a self as the first argument
         self.attribute1 = var1
@@ -28,7 +33,10 @@ obj2 = ClassName() #
 obj3 = ClassName()
 obj3.func1(var1) # this is actually equal to: ClassName.func1(Classname, var1)
 obj3.func2()
-
+#
+obj4 = ClassName(var00, var01)
+obj4.attribute00
+obj4.attribute01 # 
 
 
 
