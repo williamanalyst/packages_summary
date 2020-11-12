@@ -85,3 +85,4 @@ WHERE table_name = ''
 # SSMS shortcut
 -- Ctrl + K & Ctrl + C (make a line to be a comment)
 -- Ctrl + K & Ctrl + U (make a line to be a command)
+-- Ctrl + E (execute only sections selected)
