@@ -1,0 +1,24 @@
+# Procedural Programming -- code as a sequence of steps, great for data analysis and scripts
+# Object-oriented programming (bundle data with code operating the data) 
+-- code as interactions of objects, great for building frameworks and tools, miantainable and reusable code
+-- Object = State (= features/ attributes) + Behaviour ( = actions/ methods)
+    -- e.g. array1 = np.array([1, 2, 3, 4, 5])
+        -- array1.shape = attribute e.g. object.attribute
+        -- array1.reshape(5, 1) = method e.g. object.method()
+    -- e.g. dir(object) returns all the attributes and methods on an object
+-- Class: blueprint for objects outlining possible states and behaviours
+
+# everything in Python is an object 
+-- every object has a class (int, str, DataFrame, function, etc.)
+    -- e.g. type(object) = class name
+
+
+
+
+
+
+
+
+
+
+
