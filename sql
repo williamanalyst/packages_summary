@@ -43,10 +43,15 @@ BEGIN CATCH
 END CATCH
 
 
-
-
-
-
+# triggers in SQL (Data Manipulatio: INSERT/UPDATE/DELETE, Data Definition: CREATE/ALTER/DROP, Logon: LOGON events)
+# trigger is a SQL Server Object
+-- AFTER trigger
+-- INSTEAD OF trigger (prevent from execution)
+CREATE TRIGGER
+ON [prod_table] -- link to a table
+AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
+AS -- the beginning of the trigger workflow
+PRINT('');
 
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
