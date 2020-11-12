@@ -12,10 +12,22 @@
 -- every object has a class (int, str, DataFrame, function, etc.)
     -- e.g. type(object) = class name
 
-
-
-
-
+# 
+class ClassName:
+    # pass (for empty class)
+    def func1(self, var1, var2): # every method (function) under the class must have a self as the first argument
+        self.attribute1 = var1
+        self.attribute2 = var2
+        print('', var1)
+    def func2(self):
+        print('', self.attribute1)
+#
+obj1 = ClassName()
+obj2 = ClassName() # 
+#
+obj3 = ClassName()
+obj3.func1(var1) # this is actually equal to: ClassName.func1(Classname, var1)
+obj3.func2()
 
 
 
