@@ -1,5 +1,5 @@
 # Procedural Programming -- code as a sequence of steps, great for data analysis and scripts
-# Object-oriented programming (bundle data with code operating the data) 
+# Object-oriented programming (bundle data with code operating the data) (OOP is fundamentally about re-using code)
 -- code as interactions of objects, great for building frameworks and tools, miantainable and reusable code
 -- Object = State (= features/ attributes) + Behaviour ( = actions/ methods)
     -- e.g. array1 = np.array([1, 2, 3, 4, 5])
@@ -16,6 +16,9 @@
 class ClassName:
     """ 
     """
+    global_var1 = 1
+    global_var2 = 'example'
+    #
     def __init__(self, var00, var01 = 0): # __init__ is a constructor # var01 = 0 to set the default value of var01 (so that no input is mandatory)
         self.attribute00 = var00
         self.attribute01 = var01
@@ -26,6 +29,12 @@ class ClassName:
         print('', var1)
     def func2(self):
         print('', self.attribute1)
+    #
+    @classmethod
+    def func3(cls, var3): # note there is "cls", which represent the class rather than "self", the "cls" is actually equal to "__init__"
+        with open(var3, 'r') as file:
+            name = f.readline()
+        return cls(name)
 #
 obj1 = ClassName()
 obj2 = ClassName() # 
@@ -39,6 +48,7 @@ obj4.attribute00
 obj4.attribute01 # 
 
 
-
-
+# inheritance from class
+# new class functionality = old class funcationality + extra functions newly defined
+class ChildClass(ParentClass): # child class will contain all functions from parent class
 
