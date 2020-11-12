@@ -76,3 +76,7 @@ IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
 -- complete the query with simi-colon (;)
 -- alias with AS
 -- use commenting blocks /* you can insert multiple lines here  */ for multiple lines or -- for single line
+
+# SSMS shortcut
+-- Ctrl + K & Ctrl + C (make a line to be a comment)
+-- Ctrl + K & Ctrl + U (make a line to be a command)
