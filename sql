@@ -56,6 +56,22 @@ GROUP BY colname1
 # drop function
 DROP FUNCTION dbo.FunctionName
 
+# stored procedures (reduce execution time, network traffic, allow modular programming, improve security)
+-- 
+CREATE PROCEDURE dbo.UniqueProcedureName(
+    @var1 date,
+    @var2 numeric(18, 0),
+    @var3 numeric OUTPUT ) -- can be any data type (except table), can have multiple outputs per stored procedure
+        -- output parameters should not be used to communicate errors
+AS 
+-- SET NOCOUNT ON
+BEGIN
+INSERT INTO dbo.TableName() -- UPDATE dbo.TableName SET ColName = @var1
+VALUES (@var1, @var2)
+--
+-- RETURN -- return values can only return integer data types, only 1 return value is allowed
+END;
+
 #
 BEGIN TRY
 END TRY
