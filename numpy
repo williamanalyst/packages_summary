@@ -6,3 +6,4 @@ random_points = np.random.rand(3, 2) # random values from uniform distribution i
 random_point2 = np.random.randint(10, 15, size= (4, 3)) # random int from uniform distribution in [10, 15]
 
 #
+
