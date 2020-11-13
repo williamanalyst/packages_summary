@@ -22,7 +22,7 @@ SELECT DATEDIFF(day, '2020-11-12', '2012-12-24')
 WHERE CAST([date_string] AS date) = DATEADD(d, -1, GETDATE())
 -- date that match yesterday
 
-# user defined function (reduce execution time/ network traffic, allow modular programming)
+# user-defined function (reduce execution time/ network traffic, allow modular programming)
 CREATE FUNCTION udf(@var1 date, @var2 numeric)
     RETURNS numeric AS -- set data type that will be returned
 BEGIN -- begin function
@@ -34,6 +34,27 @@ AND [col3] = @var2
 ) -- actual function
 END; -- end function
 -- 
+
+# execute user-defined function
+EXEC @variablename = dbo.FunctionName @param = ''
+SELECT
+    '',
+    @variablename
+
+# alter function
+ALTER FUNCTION FunctionName (@VariableName AS datetime = '1/01/2017')
+-- CREATE OR ALTER FUNCTION FunctionName (@VariableName AS datetime = '1/01/2017')
+RETURN TABLE AS RETURN
+SELECT
+    colname1 as col1
+    , measurement2 as col2
+    , measurement3 as col3
+FROM tablename
+WHERE CAST(colname4 AS date) = @VariableName
+GROUP BY colname1
+
+# drop function
+DROP FUNCTION dbo.FunctionName
 
 #
 BEGIN TRY
