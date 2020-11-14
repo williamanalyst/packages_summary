@@ -6,6 +6,28 @@ SELECT LEN(column1) AS len_of_string_in_a_column
 SELECT CHARNDEX('string to find', 'The whole sentence or column', [start index of in the whole sentence that you want to search])
 SELECT CHARINDEX('apple', 'There are 2 apples on the apple tree', 20) -- returns the index of the 2nd apple
 
+# PATINDEX() funtion 
+-- deals with pattern, similar to regular expression
+SELECT PATINDEX('%pattern%', expression, [location])
+-- % = match any string of any length
+-- _ = match a single character
+-- [] = match on any character in the [] bracket, e.g. [abc] means match with either a or b or c
+-- Example: PATINDEX('%chocolate%', column1) PATINDEX('%ch_c%', column1)
+
+# LOWER() and UPPER() function
+
+# LEFT() and RIGHT() function
+SELECT LEFT(column1, 3) FROM table1
+
+# LTRIM() and RTRIM() function
+-- removes the leading blanks in the string
+
+# REPLACE() function
+SELECT REPLACE('This is a sample stirng to replace', 'replace', 'be replaced.') AS replace_example
+
+# SUBSTRING() function
+SELECT SUBSTRING('1234567', 5, 3) -- returns '567'
+
 # Get the current datetime from SQL Server
 SELECT GETDATE() 
 -- return current datetime
