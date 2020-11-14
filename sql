@@ -1,3 +1,11 @@
+# LEN() function
+SELECT LEN(column1) AS len_of_string_in_a_column
+-- returns the length of the string
+
+# CHARINDEX() function
+SELECT CHARNDEX('string to find', 'The whole sentence or column', [start index of in the whole sentence that you want to search])
+SELECT CHARINDEX('apple', 'There are 2 apples on the apple tree', 20) -- returns the index of the 2nd apple
+
 # Get the current datetime from SQL Server
 SELECT GETDATE() 
 -- return current datetime
@@ -26,6 +34,21 @@ SWITCHOFFSET(@var, '-03:00') AS new_colume
 SELECT
 TODATETIMEOFFSET(@datetime, '-07:00') AS new_col 
 -- nominate new timezone, for datetime object without timezone
+
+# DATENAME function
+SELECT 
+DATENAME(month, @datevar) AS month_name;
+-- month, weekday, etc.
+
+# ISDATE function
+SELECT
+ISDATE(@datevar1) AS valid_date;
+-- return 1 if @datevar = date, time, datetime, return 0 if datetime2 or other non-datetime format
+
+# SET DATEFORMAT function
+SET DATEFORMAT {dmy} -- can also use SET LANGUAGE {Engligh/ French} (which implies datet format)
+-- valid formats include: mdy, dmy, ymd, ydm, myd, dym
+SELECT ISDATE(@datevar2) AS evaluate_valid;
 
 # TRY_CONVERT funtion
 SELECT
