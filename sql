@@ -18,9 +18,27 @@ SELECT DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0) -- get the date of the f
 # DATEDIFF function
 SELECT DATEDIFF(day, '2020-11-12', '2012-12-24')
 
+# SWITCHOFFSET function
+SELECT
+SWITCHOFFSET(@var, '-03:00') AS new_colume
+
+# TODATETIMEOFFSET function
+SELECT
+TODATETIMEOFFSET(@datetime, '-07:00') AS new_col 
+-- nominate new timezone, for datetime object without timezone
+
+# TRY_CONVERT funtion
+SELECT
+TRY_CONVERT(datetime2(3), @var) AS new_col
+
 # CAST function
 WHERE CAST([date_string] AS date) = DATEADD(d, -1, GETDATE())
 -- date that match yesterday
+
+# TRY_PARSE function
+SELECT
+TRY_PARSE(@var AS date USING 'fr-fr')
+--
 
 # user-defined function (reduce execution time/ network traffic, allow modular programming)
 CREATE FUNCTION udf(@var1 date, @var2 numeric)
