@@ -12,3 +12,21 @@ labels = kmeans.labels_
 
 #
 
+# K-NN (K-nearest neighbors, to predict, choose the closest K points of the item to be predicted, 
+    # check to which group do they belong to, and classify it to the group with highest frequency.)
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborClassifier(n_neighbors = 6)
+knn.fit(df['input'], df['target'])
+#
+preditopm = knn.predict(X_new)
+
+
+
+
+
+
+
+
+
+
+# 
