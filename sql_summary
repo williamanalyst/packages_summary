@@ -5,6 +5,22 @@
 SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- 
 
+# WITH ROLLUP (works with hierarchical data)
+-- comes after GROUP BY
+
+# WITH CUBE (works with non-hierarchical data)
+-- creates a cross-aggregation of all combinations (could therefore result in huge number of rows)
+
+# GROUPING SETS (allows user to define specific aggregation levels)
+GROUP BY GROUPING SETS
+(
+(col_not_aggregated1, col_not_aggregated2) -- 
+(col_to_aggregate1) -- 
+(col_to_aggregate2) 
+() -- remains blank to give grand total
+)
+-- 
+
 # ABS() function
 ABS(column_name1 - column_name2) 
 -- return the absolute value of a variable or calculation
@@ -22,10 +38,24 @@ SELECT FLOOR(15.47) -- returns 15 (integer)
 
 # LEAD(column_name1) OVER (ORDER BY column_name2) function
 SELECT LEAD(column_name1) OVER (ORDER BY column2) AS column_next_row
+SELECT LAG(column_name2) OVER (ORDER BY column3) AS column_prior_row
 -- 
 
 # OVER (PARTITION BY) function - split the results into different partitions
 SELECT FIRST_VALUE(column_name) OVER (PARTITION BY column_name1 ORDER BY column_name2)
+--
+SELECT AVG(column_name) OVER (
+PARTITION BY column_name2
+ORDER BY column_name3
+ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)
+FROM ... --
+--
+
+# ROW_NUMBER(), RANK(), DENSE_RANK() (ranking functions)
+-- 
+ROW_NUMBER() -- generate unique, ascending integer value starting from 1
+RANK() -- create ascending integer value starting from 1, can have ties, can skip numbers
+DENSE_RANK() -- can have ties, whereas does not skip numbers
 
 # CAST() function
 CAST(column_content AS date) AS new_column_name
