@@ -1,4 +1,5 @@
 # TOP (5)/ TOP 5 PERCENT
+SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- 
 
 # ABS() function
