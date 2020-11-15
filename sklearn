@@ -26,6 +26,28 @@ linearreg.score(X_test, y_test)
 linearreg.score(X_test, y_test)
 rmse = np.sqrt(mean_squared_error(y_pred, y_test)) # calculate the error/loss function value 
 
+# K-fold cross-validation (resolve the problem that your model selection depends on the train-test split, which may accidentally form unwanted pattern)
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LinearRegression
+#
+reg = LinearRegression()
+cv_score = cross_val_score(reg, X, y, cv = 5) # returns 5 results in 5 folds
+
+# Regularization 
+from sklearn.linear_model import Ridge
+ridge = Ridge(alpha = 0.1, normalize = True)
+ridge.fit(X, y)
+#
+print(righe.alpha) #
+
+from sklearn.linear_model import Lasso # can be used to select important features of a dataset
+lasso = Lasso(alpha = 0.4, normalize = True)
+lasso.fit(X, y)
+#
+lasso_coef = lasso.coef_ # 
+#
+
+
 # k-means clustering
 # 
 from sklearn.preprocessing import StandardScaler
