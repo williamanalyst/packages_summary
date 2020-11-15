@@ -1,3 +1,6 @@
+# UNION / UNION ALL
+-- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
+
 # TOP (5)/ TOP 5 PERCENT
 SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- 
@@ -207,7 +210,6 @@ SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severit
 # raise own error
 IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
     RAISEERROR('Insert your own error message here', )
-
 
 # check datatype of a column
 USE [dbname]
