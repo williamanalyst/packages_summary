@@ -1,4 +1,27 @@
-# OVER (PARTITION BY)
+# TOP (5)/ TOP 5 PERCENT
+-- 
+
+# ABS() function
+ABS(column_name1 - column_name2) 
+-- return the absolute value of a variable or calculation
+
+# SIGN() function
+SIGN(column1 - column2) 
+-- return -1, 0, +1 to represent whether the result is positive or negative
+
+# AVG(), SUM(), COUNT(), STDEV(), STDEVP(), VAR(), POWER(@variable, 2), SQUARE(), SQRT() functions
+-- the input must be float 
+
+# CEILING(), FLOOR(), ROUND(@variable, 2) function
+SELECT CEILING(-50.49) -- returns -50
+SELECT FLOOR(15.47) -- returns 15 (integer)
+
+# LEAD(column_name1) OVER (ORDER BY column_name2) function
+SELECT LEAD(column_name1) OVER (ORDER BY column2) AS column_next_row
+-- 
+
+# OVER (PARTITION BY) function - split the results into different partitions
+SELECT FIRST_VALUE(column_name) OVER (PARTITION BY column_name1 ORDER BY column_name2)
 
 # CAST() function
 CAST(column_content AS date) AS new_column_name
@@ -201,6 +224,12 @@ WHERE table_name = ''
 -- complete the query with simi-colon (;)
 -- alias with AS
 -- use commenting blocks /* you can insert multiple lines here  */ for multiple lines or -- for single line
+
+# SQL Processing Order
+-- FROM > ( ON > JOIN ) > WHERE > ( GROUP BY > HAVING ) > SELECT > ( DISTINCT ) > ORDER > ( TOP )
+-- 
+-- HAVING (use for already grouped results)
+--
 
 # SSMS shortcut
 -- Ctrl + K & Ctrl + C (make a line to be a comment)
