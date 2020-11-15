@@ -1,3 +1,12 @@
+# OVER (PARTITION BY)
+
+# CAST() function
+CAST(column_content AS date) AS new_column_name
+
+# DECLARE() function
+
+# PARSE() function
+
 # LEN() function
 SELECT LEN(column1) AS len_of_string_in_a_column
 -- returns the length of the string
@@ -28,6 +37,14 @@ SELECT REPLACE('This is a sample stirng to replace', 'replace', 'be replaced.') 
 # SUBSTRING() function
 SELECT SUBSTRING('1234567', 5, 3) -- returns '567'
 
+# STRING_AGG() function
+SELECT STRING_AGG(column_name, ',') AS new_column_name FROM table_name
+SELECT STRING_AGG(column_name, ',') WITHIN GROUP (ORDER BY column_name) AS new_column_name
+-- create a string (similar to a list, whereas not a list) e.g. new_string = 'item1, item2, item3, ..., itemn'
+
+# STRING_SPLIT(@variable, ',') function
+SELECT value FROM STRING_SPLIT(@variable, ' ')
+
 # Get the current datetime from SQL Server
 SELECT GETDATE() 
 -- return current datetime
@@ -47,6 +64,9 @@ SELECT DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0) -- get the date of the f
 
 # DATEDIFF function
 SELECT DATEDIFF(day, '2020-11-12', '2012-12-24')
+
+# DATEPART() function
+DATEPART(week, column_name)
 
 # SWITCHOFFSET function
 SELECT
