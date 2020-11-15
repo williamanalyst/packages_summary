@@ -1,3 +1,24 @@
+# split train and test dataset
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 21, stratify = y) #
+
+# K-NN (K-nearest neighbors, to predict, choose the closest K points of the item to be predicted, 
+    # check to which group do they belong to, and classify it to the group with highest frequency.)
+        # large K = smoother decision boundary = less complex model
+        # small K = more complex model = risk of over-fitting
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborClassifier(n_neighbors = 6)
+knn.fit(X_train, y_train)
+#
+prediction = knn.predict(X_test)
+knn.score(X_train, y_train) # accuracy on the training dataset
+knn.score(X_test, y_test) # accuracy on the test dataset
+
+# linear regression
+
+
+
+
 # k-means clustering
 # 
 from sklearn.preprocessing import StandardScaler
@@ -9,24 +30,6 @@ df_scaled = ss.fit_transform(df_selected.astype(float)) # standardise the input 
 #
 kmeans = KMeans(n_clusters = 3, random_state = 42).fit(df_scaled) # use k-means method to classify the items/observations 
 labels = kmeans.labels_
-
-#
-
-# K-NN (K-nearest neighbors, to predict, choose the closest K points of the item to be predicted, 
-    # check to which group do they belong to, and classify it to the group with highest frequency.)
-from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborClassifier(n_neighbors = 6)
-knn.fit(df['input'], df['target'])
-#
-preditopm = knn.predict(X_new)
-
-
-
-
-
-
-
-
 
 
 # 
