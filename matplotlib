@@ -3,26 +3,18 @@ plt.figure(figsize = (15, 6)
 #
 plt.hist(x = df['column1'], bins = [i/ 10 - 1 for i in range (20)], color = 'red', alpha = 0.5) #
 #
+plt.bar(x = df['column1'], height = df['column2'])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# add text label on the chart
+plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7)
 
 #
-
-
-
+plt.xlabel('')
+plt.ylabel('')
+plt.title('')
+#
+plt.legend()
+plt.show()
 
 
 
