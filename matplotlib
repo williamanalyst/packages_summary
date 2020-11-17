@@ -1,3 +1,28 @@
 #
 plt.figure(figsize = (15, 6)
 #
+plt.hist(x = df['column1'], bins = [i/ 10 - 1 for i in range (20)], color = 'red', alpha = 0.5) #
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+
+
+
+
+
