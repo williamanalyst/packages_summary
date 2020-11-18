@@ -4,7 +4,6 @@ plt.figure(figsize = (15, 6)
 plt.hist(x = df['column1'], bins = [i/ 10 - 1 for i in range (20)], color = 'red', alpha = 0.5) #
 #
 plt.bar(x = df['column1'], height = df['column2'])
-
 # add text label on the chart
 plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7)
 
@@ -17,4 +16,21 @@ plt.legend()
 plt.show()
 
 
-
+# 
+fig, ax = plt.subplots(figsize = (15, 6))
+p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
+#
+ax2 = ax1.twinx()
+p2 = ax2.plot(list3, list4, label = '')
+#
+ax.set_xlabel('', fontsize = 14)
+ax.set_ylabel('', fontsize = 16)
+#
+ax.text(x, y, '')
+#
+plt.xlim([x1, x2])
+plt.ylim([])
+#
+ax.legend(loc = 'upper left')
+ax2.legend(loc = 'upper right')
+plt.title('')
