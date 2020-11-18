@@ -16,7 +16,7 @@ plt.legend()
 plt.show()
 
 
-# <b> Test </b>
+<b> Test </b>
 fig, ax = plt.subplots(figsize = (15, 6))
 p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
 #
