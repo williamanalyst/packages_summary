@@ -24,7 +24,7 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 
 
-
+# .shift() to apply either lag or 
 
 
 
