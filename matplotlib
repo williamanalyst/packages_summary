@@ -2,10 +2,12 @@
 plt.figure(figsize = (15, 6)
 #
 plt.hist(x = df['column1'], bins = [i/ 10 - 1 for i in range (20)], color = 'red', alpha = 0.5) #
-#
-plt.bar(x = df['column1'], height = df['column2'])
+###################################################################################################
+plt.bar(df['column1'], height = df['column2'], width = 0.25, alpha = 0.5, color = 'red', label = '')
 # add text label on the chart
-plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7)
+plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7) #
+#
+plt.xticks(np.arange(len(df['column1'])), df[column1]) # set label for each category, especially when the labels are string
 #
 plt.xlabel('')
 plt.ylabel('')
@@ -15,11 +17,12 @@ plt.legend()
 plt.show()
 
 
-# 
+
+###################################################################################################
 fig, ax = plt.subplots(figsize = (15, 6))
 p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
 #
-ax2 = ax1.twinx()
+ax2 = ax1.twinx() # set-up twin axis for the y axis (using same x-axis)
 p2 = ax2.plot(list3, list4, label = '')
 #
 ax.set_xlabel('', fontsize = 14)
