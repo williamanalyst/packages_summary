@@ -197,6 +197,7 @@ GROUP BY colname1
 DROP FUNCTION dbo.FunctionName
 
 # stored procedures (reduce execution time, network traffic, allow modular programming, improve security)
+-- input --> actions (EXECUTE/ SELECT/ INSERT/ UPDATE/ DELETE) --> return (success/ failure) --> return output
 -- 
 CREATE PROCEDURE dbo.UniqueProcedureName(
     @var1 date,
@@ -263,13 +264,6 @@ WHERE table_name = ''
 -- 
 -- HAVING (use for already grouped results)
 --
-
-# stored procedures: input --> actions (EXECUTE/ SELECT/ INSERT/ UPDATE/ DELETE) --> return (success/ failure) --> return output
-CREATE PROCEDURE dbo.procedurename
-    @var1 date,
-    @var2 OUTPUT
-AS 
-SET 
 
 # SSMS shortcut
 -- Ctrl + K & Ctrl + C (make a line to be a comment)
