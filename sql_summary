@@ -231,6 +231,16 @@ AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
 AS -- the beginning of the trigger workflow
 PRINT('');
 
+# recursion
+WITH cte AS (
+SELECT 
+1 AS column1,
+1 AS column2
+UNION ALL
+SELECT 
+
+)
+
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
 -- (level: error 0-10 are informational messages, 11-16 are errors that can be corrected by the user, such as constraint violation, 
