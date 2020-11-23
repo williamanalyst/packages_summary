@@ -1,0 +1,10 @@
+#
+# HTTP: HyperText Tranfer Protocol (designed to enable communications between clients and servers)
+    # HTTP works as a request-response protocal between a client and server
+        # for example, when a user is browsing a webpage, he is actually sending an HTTP request to the server, then the server returns a response to the client
+            # The response contains status information about the request and may also contains the requested contant.
+    # HTTP methods include GET, POST, PUT, HEAD, DELETE, PATCH, OPTIONS
+
+
+
+# 
