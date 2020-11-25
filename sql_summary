@@ -231,15 +231,19 @@ AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
 AS -- the beginning of the trigger workflow
 PRINT('');
 
-# recursion
-WITH cte AS (
-SELECT 
-1 AS column1,
-1 AS column2
-UNION ALL
-SELECT 
-
-)
+# recursion/ recursive query
+WITH cte1 AS (
+  SELECT 
+    1 AS column_count,
+    1 AS column_factorial
+  UNION ALL
+  SELECT
+    column_count + 1
+    , column_factorial * (column_count + 1)
+  FROM cte1
+  WHERE column_count < 10)
+SELECT column_factorial
+FROM cte1
 
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
