@@ -31,5 +31,20 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 
 # pivot_table
-df_pivot = pd.pivot_table(df, index = [''], columns = [''], values = [''], aggfunc = ['', ''])
+df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
+  values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
 
