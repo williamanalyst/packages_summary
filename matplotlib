@@ -25,6 +25,8 @@ p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
 ax2 = ax1.twinx() # set-up twin axis for the y axis (using same x-axis)
 p2 = ax2.plot(list3, list4, label = '')
 #
+
+#
 ax.set_xlabel('', fontsize = 14)
 ax.set_ylabel('', fontsize = 16)
 #
@@ -36,3 +38,24 @@ plt.ylim([])
 ax.legend(loc = 'upper left')
 ax2.legend(loc = 'upper right')
 plt.title('')
+
+###################################################################################################
+# heatmap 
+p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
