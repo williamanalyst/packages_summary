@@ -38,8 +38,11 @@ df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'],
 
 
 
-
-
+# subtract 1 dataframe from another dataframe
+df1 = pd.DataFrame({'col1': [10, 100, 1000], 'col2': [1, 2, 3]})
+df2 = pd.DataFrame({'col1': [10, 100, 1000], 'col2': [100, 10, 1]})
+df3 = df1.subtract(df2)
+display(df3)
 
 
 
