@@ -12,7 +12,8 @@ print(count)
 
 
 
-
+#
+setA.intersection(SetB) # returns the elements that exist in both Sets
 
 
 
