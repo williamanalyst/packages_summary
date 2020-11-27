@@ -5,8 +5,20 @@ plt.figure(figsize = (15, 6)
 #
 plt.plot(array1, array2, linewidth = 0.7) 
 #
+###################################################################################################
+# histogram
 #
 plt.hist(x = df['column1'], bins = [i/ 10 - 1 for i in range (20)], color = 'red', alpha = 0.5) #
+#
+df['col1'].plot.hist()
+df['col1'].hist()
+#
+###################################################################################################
+# distplot
+#
+sns.distplot(df['col2', hist = False, rug = True, kde_kws = {'shade': True}, bins = 20)
+
+#
 ###################################################################################################
 # barplot
 plt.bar(df['column1'], height = df['column2'], width = 0.25, alpha = 0.5, color = 'red', label = '')
@@ -45,13 +57,20 @@ ax2.set_ylim([c, d]) # set ylim for the 2nd axis
 ax.legend(loc = 'upper left')
 ax2.legend(loc = 'upper right')
 plt.title('')
-
+#
 ###################################################################################################
 # heatmap 
 p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False)
 
 
 
+#
+###################################################################################################
+# Regression plot
+sns.regplot(x = 'col1', y = 'col2', data = df )
+#
+# 
+sns.lmplot(x = 'col1', y = 'col2', data = df, hue = 'col3', col = 'col4')
 
 
 
@@ -63,6 +82,5 @@ p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {
 
 
 
-
-
-
+# clear the plot 
+plt.clf()
