@@ -32,7 +32,7 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 # pivot_table
 df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
-  values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
+    values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
 
 #
 
@@ -45,7 +45,8 @@ df3 = df1.subtract(df2)
 display(df3)
 
 
-
+# change integer to string with zero at the beginning (different length)
+df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 
 
 
