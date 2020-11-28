@@ -18,7 +18,11 @@ setA.intersection(SetB) # returns the elements that exist in both Sets
 
 
 
-
+# List comprehension
+df['col1'] = ['result1' if i in list1
+    'result2' if i in list2
+    'result3' if i in list3
+    'result4' for i in base_list]
 
 
 
