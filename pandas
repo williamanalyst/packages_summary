@@ -11,7 +11,6 @@ df.dtypes
 
 
 
-
 # filter dataframe with .loc
 df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
 
@@ -50,5 +49,5 @@ df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 
 
 
-
-
+# cut function to divide a dataframe into several groups
+df['col1'] = pd.cut(df['col_to_be_divided'], [0, 2, 4, 6, 8]) # based on the list, the array is divided into (a, b], (b, c], etc.
