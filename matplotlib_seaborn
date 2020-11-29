@@ -5,6 +5,16 @@ plt.figure(figsize = (15, 6)
 #
 plt.plot(array1, array2, linewidth = 0.7) 
 #
+
+#
+###################################################################################################
+# scatterplot
+#
+#
+#
+#
+
+
 ###################################################################################################
 # histogram
 #
@@ -34,8 +44,6 @@ plt.title('')
 plt.legend()
 plt.show()
 
-
-
 ###################################################################################################
 fig, ax = plt.subplots(figsize = (15, 6))
 p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
@@ -55,7 +63,7 @@ ax.set_ylim([a, b])
 ax2.set_ylim([c, d]) # set ylim for the 2nd axis
 #
 ax.legend(loc = 'upper left')
-ax2.legend(loc = 'upper right')
+ax2.legend(loc = 'upper right') # ax2.legend( loc = [0.9, 0.8])
 plt.title('')
 #
 ###################################################################################################
