@@ -47,7 +47,8 @@ display(df3)
 # change integer to string with zero at the beginning (different length)
 df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 
-
+# calculate the number of days between 2 timedelta objects
+df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, unit = 'd')
 
 # cut function to divide a dataframe into several groups
 df['col1'] = pd.cut(df['col_to_be_divided'], [0, 2, 4, 6, 8]) # based on the list, the array is divided into (a, b], (b, c], etc.
