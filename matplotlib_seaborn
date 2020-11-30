@@ -8,15 +8,19 @@ plt.figure(figsize = (15, 6)
 #
 plt.plot(array1, array2, linewidth = 0.7) 
 #
+###################################################################################################
+# vertical line
+ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2, label = 'Median')
 
 #
 ###################################################################################################
 # scatterplot
 #
+plt.scatter(df['col1'], df['col2'], s = 50, color = 'red', alpha = 0.5)
 #
 #
 #
-
+plt.show()
 
 ###################################################################################################
 # histogram
@@ -38,7 +42,7 @@ plt.bar(df['column1'], height = df['column2'], width = 0.25, alpha = 0.5, color 
 # add text label on the chart
 plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7) #
 #
-plt.xticks(np.arange(len(df['column1'])), df[column1]) # set label for each category, especially when the labels are string
+plt.xticks(np.arange(len(df['column1'])), df[column1], rotation = 90) # set label for each category, especially when the labels are string
 #
 plt.xlabel('')
 plt.ylabel('')
@@ -46,6 +50,9 @@ plt.title('')
 #
 plt.legend()
 plt.show()
+#
+sns.barplot(data = df, x = 'col1', y = 'col2', hue = 'col3') # 
+sns.barplot(data = df, x = 'col1', y = 'col2', row = 'col3') # 
 
 ###################################################################################################
 fig, ax = plt.subplots(figsize = (15, 6))
@@ -72,21 +79,38 @@ plt.title('')
 #
 ###################################################################################################
 # heatmap 
-p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False)
-
+p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False, cmap = 'YlGnBu', cbar = False) # fmt = 'd' for integers
+#
+sns.heatmap(df.corr()) # the correlation matrix visualisation
 
 
 #
 ###################################################################################################
 # Regression plot
-sns.regplot(x = 'col1', y = 'col2', data = df )
+sns.regplot(x = 'col1', y = 'col2', data = df, marker = '+', x_bins = 4, fit_reg = False) # 
+sns.regplot(x = 'col1', y = 'col2', data = df, marker = '+', order = 2) # changed into polynomial regression with an order of 2 
+sns.regplot(x = 'col_category', y = 'col2', data = df, marker = '+', x_jitter = 0.1,  order = 2) # also works for categorical variable
+sns.regplot(x = 'col_category', y = 'col2', data = df, marker = '+', x_estimator = np.mean, order = 2) # also works for categorical variable
 #
 sns.lmplot(x = 'col1', y = 'col2', data = df, hue = 'col3' ) # 
 sns.lmplot(x = 'col1', y = 'col2', data = df, row = 'col3' ) # create multiple columns on the same x-axis
-#
-# 
 sns.lmplot(x = 'col1', y = 'col2', data = df, hue = 'col3', col = 'col4')
-
+#
+# residplot
+sns.residplot(data = df, x = 'col1', y = 'col2') # residual plot
+sns.residplot(data = df, x = 'col1', y = 'col2', order = 2) # residual plot
+#
+###################################################################################################
+# boxplot
+sns.boxplot(data = df, x = 'col1', y = 'col2', palette = 'husl', hue = 'col3')
+#
+###################################################################################################
+# countplot
+sns.countplot(data = df, y = 'col2', palette = 'husl', hue = 'col3')
+#
+###################################################################################################
+# pointplot
+sns.pointplot(data = df, x = 'col1', y = 'col2', palette = 'husl', capsize = 0.1)
 
 ###################################################################################################
 # use different color palettes
@@ -103,6 +127,22 @@ sns.palplot(sns.color_palette('Paired', 12)) #
 sns.palplot(sns.color_palette('Blues', 12)) # 'Purples', 'husl', 'coolwarm'
 sns.palplot(sns.color_palette('BrBG', 12))
 
+#
+sns.violinplot(data = df, x = 'col1', y = 'col2')
+sns.lvplot(data = df, x = 'col1', y = 'col2') # similar to violin plot, easier to interpret, quicker to run
+#
+###################################################################################################
+# create multiple subplots
+fig, (ax0, ax1) = plt.subplots(nrows = 1, ncols = 2, sharey = True)
+#
+sns.distplot(df['col1'], ax = ax0)
+sns.distplot(df['col2'], ax = ax1)
+#
+plt.show()
+
+
+#
+###################################################################################################
 # remove axis from the chart
 
 
