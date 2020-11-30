@@ -55,10 +55,11 @@ ax2 = ax1.twinx() # set-up twin axis for the y axis (using same x-axis)
 p2 = ax2.plot(list3, list4, label = '')
 #
 sns.distplot(df['col1'], ax = ax2) # use "ax = " to specify the axis of the subplot
+ax2.set(xlabel = 'Label Name', ylabel = 'Label Name', xlim = ([a, b]), title = 'Title')
+#
 #
 ax.set_xlabel('', fontsize = 14)
-ax.set_ylabel('', fontsize = 16) # ax.set(xlabel = 'Label Name')
-#
+ax.set_ylabel('', fontsize = 16) # 
 ax.text(x, y, '')
 #
 plt.xlim([x1, x2])
