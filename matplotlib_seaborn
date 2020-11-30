@@ -1,4 +1,7 @@
 #
+sns.set(color_codes = True)
+sns.set_style('whitegrid')
+#
 ###################################################################################################
 # line chart
 plt.figure(figsize = (15, 6)
@@ -26,7 +29,7 @@ df['col1'].hist()
 ###################################################################################################
 # distplot
 #
-sns.distplot(df['col2', hist = False, rug = True, kde_kws = {'shade': True}, bins = 20)
+sns.distplot(df['col2'], hist = False, rug = True, kde_kws = {'shade': True}, bins = 20, color = 'g')
 
 #
 ###################################################################################################
@@ -51,10 +54,10 @@ p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
 ax2 = ax1.twinx() # set-up twin axis for the y axis (using same x-axis)
 p2 = ax2.plot(list3, list4, label = '')
 #
-
+sns.distplot(df['col1'], ax = ax2) # use "ax = " to specify the axis of the subplot
 #
 ax.set_xlabel('', fontsize = 14)
-ax.set_ylabel('', fontsize = 16)
+ax.set_ylabel('', fontsize = 16) # ax.set(xlabel = 'Label Name')
 #
 ax.text(x, y, '')
 #
@@ -77,18 +80,33 @@ p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {
 # Regression plot
 sns.regplot(x = 'col1', y = 'col2', data = df )
 #
+sns.lmplot(x = 'col1', y = 'col2', data = df, hue = 'col3' ) # 
+sns.lmplot(x = 'col1', y = 'col2', data = df, row = 'col3' ) # create multiple columns on the same x-axis
+#
 # 
 sns.lmplot(x = 'col1', y = 'col2', data = df, hue = 'col3', col = 'col4')
 
 
+###################################################################################################
+# use different color palettes
+for palette in sns.palettes.SEABORN_PALETTES:
+    sns.set_palette(palette)
+    sns.displot(df['col']) # 
+# display the color palettes
+for p in sns.palettes.SEABORN_PALETTES:
+    sns.set_palette(p)
+    sns.palplot(sns.color_palette())
+    plt.show()
+#
+sns.palplot(sns.color_palette('Paired', 12)) # 
+sns.palplot(sns.color_palette('Blues', 12)) # 'Purples', 'husl', 'coolwarm'
+sns.palplot(sns.color_palette('BrBG', 12))
+
+# remove axis from the chart
 
 
+# remove the right spine
+sns.despine() 
 
-
-
-
-
-
-
-# clear the plot 
+# clear the plot (end up showing black image)
 plt.clf()
