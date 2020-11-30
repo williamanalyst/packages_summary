@@ -24,7 +24,8 @@ df['col1'] = ['result1' if i in list1
     'result3' if i in list3
     'result4' for i in base_list]
 
-# 
+# check whether an item exist in a list
+'Example' in list([1, 2, 'String', 'Example'])
 
 
 
