@@ -58,8 +58,8 @@ df['sum_all_columns'] = df.apply(sum, axis = 1) #
 df['max_column'] = np.maximum(df['col1'] * 2, df['col2'] + df['col3']) # array conversion
 
 
-
-
+# crosstab function (similar to pivot_table function) 
+pd.crosstab(df['col1'], df['col2'], values = df['col2'], aggfunc = 'mean').round()
 
 
 
