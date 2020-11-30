@@ -25,7 +25,7 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 
 
-# .shift() to apply either lag or 
+# .shift() to apply either lag or ahead
 
 
 
@@ -52,3 +52,27 @@ df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, uni
 
 # cut function to divide a dataframe into several groups
 df['col1'] = pd.cut(df['col_to_be_divided'], [0, 2, 4, 6, 8]) # based on the list, the array is divided into (a, b], (b, c], etc.
+
+# 
+df['sum_all_columns'] = df.apply(sum, axis = 1) # 
+df['max_column'] = np.maximum(df['col1'] * 2, df['col2'] + df['col3']) # array conversion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
