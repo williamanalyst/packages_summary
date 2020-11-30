@@ -111,7 +111,21 @@ sns.countplot(data = df, y = 'col2', palette = 'husl', hue = 'col3')
 ###################################################################################################
 # pointplot
 sns.pointplot(data = df, x = 'col1', y = 'col2', palette = 'husl', capsize = 0.1)
-
+#
+###################################################################################################
+# FacetGrid
+g = sns.FacetGrid(df, col = 'col1')
+g.map(sns.boxplot, 'Col2', prder = ['1', '2', '3', '4'])
+#
+g = sns.FacetGrid(df, col = 'col1')
+g.map(plt.scatter, 'col2', 'col3')
+#
+# factorplot() # factorplot is a shortcut for creating FacetGrid()
+sns.factorplot(data =df, x = 'col1', col = 'col2', kind = 'box')
+#
+sns.lmplot(data = df, x = 'col1', y = 'col2', row = 'col3', col = 'col4')
+sns.lmplot(data = df, x = 'col1', y = 'col2', col = 'col3', fig_reg = False) # use fig_reg to control regression line
+#
 ###################################################################################################
 # use different color palettes
 for palette in sns.palettes.SEABORN_PALETTES:
