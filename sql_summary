@@ -60,8 +60,6 @@ DENSE_RANK() -- can have ties, whereas does not skip numbers
 # CAST() function
 CAST(column_content AS date) AS new_column_name
 
-# DECLARE() function
-
 # PARSE() function
 
 # LEN() function
@@ -108,6 +106,7 @@ SELECT GETDATE()
 
 # Declare variables in SQL Server
 DECLARE @currentdatetime AS datetime
+DECLARE @var_int INT = 5 -- 
 -- set datatype (can be either single value or table) when declare variable
 SET @currentdatetime = GETDATE()
 -- assign value to variable
@@ -231,6 +230,7 @@ AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
 AS -- the beginning of the trigger workflow
 PRINT('');
 
+#####################################################################################################
 # recursion/ recursive query
 WITH cte1 AS (
   SELECT 
@@ -244,6 +244,20 @@ WITH cte1 AS (
   WHERE column_count < 10)
 SELECT column_factorial
 FROM cte1
+#
+WITH time_series AS 
+    (SELECT
+        GETDATE() AS date
+    UNION ALL
+    SELECT
+        DATEADD(day, 1, date)
+    FROM time_series
+    WHERE date < GETDATE() + 364)
+SELECT date
+FROM time_series
+OPTION(MAXRECURSION 365)
+
+
 
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
@@ -253,8 +267,24 @@ SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severit
 -- (line: indicates in which line did the error occur)
 
 # raise own error
-IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
-    RAISEERROR('Insert your own error message here', )
+BEGIN TRY
+    IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
+        RAISEERROR('Insert your own error message here', )
+END TRY
+--
+BEGIN CATCH
+    SELECT 'This is just an error message.';
+END CATCH
+-- Microsoft recommend THROW command over RAISERROR function
+-- THROW [error_number, message, state][;]
+BEGIN TRY
+    SELECT number/ 0 FROM data;
+END TRY
+BEGIN CATCH
+    THROW; -- as the "THROW" command is before the next select, the next select is not executed
+    -- THROW 52000, 'This is an example for throw', 1 ; -- the  ";" must be added
+    SELECT 'This line is executed' AS message;
+END CATCH
 
 # check datatype of a column
 USE [dbname]
