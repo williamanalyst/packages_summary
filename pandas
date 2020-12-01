@@ -48,6 +48,9 @@ display(df3)
 df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 
 # calculate the number of days between 2 timedelta objects
+df['year'] = df['col1'].dt.year
+df['month'] = df['col2'].dt.month # 
+df['weekday'] = df['col3'].dt.dayofweek # obtain the weekday of the date column
 df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, unit = 'd')
 
 # cut function to divide a dataframe into several groups
@@ -67,10 +70,26 @@ pd.crosstab(df['col1'], df['col2'], values = df['col2'], aggfunc = 'mean').round
 
 
 
-
-
-
-
+############################################################################################
+# Integration with Plotly
+import pandas as pd
+pd.options.plotting.backend = 'plotly'
+#
+df = pd.DataFrame(dict(a = [1, 2, 3], b = [3, 2, 1]))
+fig = df.plot()
+fig.show()
+#
+############################################################################################
+# Read extremely large files:
+records = []
+for chunk in pd.read_csv('bigfile.csv', chunksize = 1000):
+    result.append(sum(chunk['column_to_be_sumed']))
+result = sum(records)
+#
+############################################################################################
+# rolling mean/ average (window function)
+df['7_day_rolling'] = df['column1'].rolling(window = 7, center = False).mean()
+df['7_day_rolling'] = df['column1'].rolling(window = 7, center = False).sum()
 
 
 
