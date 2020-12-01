@@ -1,6 +1,6 @@
 # 
 # 
-from datetime import datetime
+from datetime import datetime, timedelta
 now = datetime.utenow() # get the current time in UTC timezone
 #
 import pytz
@@ -11,7 +11,16 @@ yesterday = (local - timedelta(days = 1)).strftime('%Y-%m-%d') # get yesterday's
 
 
 
-
+#
+today_local = datetime.utenow().astimezone(pytz.timezone('Australia/Sydney'))
+yesterday_local = (datetime.utcnow() - timedelta(days = 1))
+yesterday_weekday = (datetime.utcnow() - timedelta(days = 1)).weekday()
+#
+if today_local.weekday() in [5, 6]:
+    print('Today is a wekend!')
+    sys.exit() # note: this is a "hard" exit, and will yield error message
+else:
+    print('The script is still running.')
 
 
 
