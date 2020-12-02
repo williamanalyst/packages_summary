@@ -6,11 +6,10 @@ sns.set_style('whitegrid')
 # line chart
 plt.figure(figsize = (15, 6)
 #
-plt.plot(array1, array2, linewidth = 0.7) 
+plt.plot(array1, array2, linewidth = 0.7, color = 'red', linestyle = '--', alpha = 0.5, label = 'This line chart is about...') 
 #
-###################################################################################################
 # vertical line
-ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2, label = 'Median')
+ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2, label = 'Median') # 
 
 #
 ###################################################################################################
@@ -39,6 +38,7 @@ sns.distplot(df['col2'], hist = False, rug = True, kde_kws = {'shade': True}, bi
 ###################################################################################################
 # barplot
 plt.bar(df['column1'], height = df['column2'], width = 0.25, alpha = 0.5, color = 'red', label = '')
+#
 # add text label on the chart
 plt.text(x, y, 'text to be plotted', fontsize = 12, color = 'grey', ha = 'right', 'va' = 'bottom', alpha = 0.7) #
 #
@@ -53,7 +53,7 @@ plt.show()
 #
 sns.barplot(data = df, x = 'col1', y = 'col2', hue = 'col3') # 
 sns.barplot(data = df, x = 'col1', y = 'col2', row = 'col3') # 
-
+#
 ###################################################################################################
 fig, ax = plt.subplots(figsize = (15, 6))
 p1 = ax.bar(list1, list2, width = 0.25, label = '', color = '')
@@ -67,13 +67,13 @@ ax2.set(xlabel = 'Label Name', ylabel = 'Label Name', xlim = ([a, b]), title = '
 #
 ax.set_xlabel('', fontsize = 14)
 ax.set_ylabel('', fontsize = 16) # 
-ax.text(x, y, '')
+ax.text(x, y, 'This is a note on the chart at a given location...')
 #
 plt.xlim([x1, x2])
 ax.set_ylim([a, b])
 ax2.set_ylim([c, d]) # set ylim for the 2nd axis
 #
-ax.legend(loc = 'upper left')
+ax.legend(loc = 'upper left', fontsize = 14)
 ax2.legend(loc = 'upper right') # ax2.legend( loc = [0.9, 0.8])
 plt.title('')
 #
@@ -158,7 +158,7 @@ plt.show()
 #
 ###################################################################################################
 # remove axis from the chart
-
+#
 
 # remove the right spine
 sns.despine() 
