@@ -5,9 +5,11 @@ from IPython.display import display # for better formatted tables to be displaye
 df.describe()
 df.shape
 df.dtypes
-
-
-
+#
+############################################################################################
+# loading data
+df = pd.read_csv('sample_file.csv')
+df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', dtype = {'column_name1': 'str', 'column_name2': 'float'})
 
 
 
