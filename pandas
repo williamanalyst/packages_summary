@@ -9,7 +9,8 @@ df.dtypes
 ############################################################################################
 # loading data
 df = pd.read_csv('sample_file.csv')
-df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', dtype = {'column_name1': 'str', 'column_name2': 'float'})
+df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
+  dtype = {'column_name1': 'str', 'column_name2': 'float'})
 
 
 
