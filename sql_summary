@@ -152,6 +152,15 @@ SELECT ISDATE(@datevar2) AS evaluate_valid;
 SELECT
 TRY_CONVERT(datetime2(3), @var) AS new_col
 
+#
+#####################################################################################################
+# obtain the interesction between 2 columns/ sets
+SELECT col1 FROM table1
+INTERSECT/ EXCEPT -- 
+SELECT col2 FROM tbale2
+
+
+#####################################################################################################
 # CAST function
 WHERE CAST([date_string] AS date) = DATEADD(d, -1, GETDATE())
 -- date that match yesterday
@@ -180,6 +189,7 @@ SELECT
     '',
     @variablename
 
+#####################################################################################################
 # alter function
 ALTER FUNCTION FunctionName (@VariableName AS datetime = '1/01/2017')
 -- CREATE OR ALTER FUNCTION FunctionName (@VariableName AS datetime = '1/01/2017')
@@ -195,6 +205,7 @@ GROUP BY colname1
 # drop function
 DROP FUNCTION dbo.FunctionName
 
+#####################################################################################################
 # stored procedures (reduce execution time, network traffic, allow modular programming, improve security)
 -- input --> actions (EXECUTE/ SELECT/ INSERT/ UPDATE/ DELETE) --> return (success/ failure) --> return output
 -- 
@@ -218,8 +229,33 @@ END TRY
 --
 BEGIN CATCH
 END CATCH
+#
+EXEC Procedure_Name 
+#
+#####################################################################################################
+# Transactions 
+BEGIN { TRAN | TRANSACTION }
+    [ { transaction_name | @tran_name_variable } 
+    [ WITH MARK ['description'] ]
+    ]
+[ ; ]
+-- Example:
+BEGIN TRY
+    BEGIN TRAN;
+        UPDATE accounts SET account_balance = current_balance - 100 WHERE account_id = 1;
+        INSERT INTO transactions VALUES(1, -100, GETDATE());
+        --
+        UPDATE accounts SET account_balance = currentbalance + 100 WHERE account_id = 5;
+        INSERT INTO transactions VALUES(5, +100, GETDATE());
+    COMMIT TRAN;
+END TRY
+--
+BEGIN CATCH
+    ROLLBACK TRAN;
+END CATCH
+--
 
-
+#####################################################################################################
 # triggers in SQL (Data Manipulatio: INSERT/UPDATE/DELETE, Data Definition: CREATE/ALTER/DROP, Logon: LOGON events)
 # trigger is a SQL Server Object
 -- AFTER trigger
@@ -258,7 +294,7 @@ FROM time_series
 OPTION(MAXRECURSION 365)
 
 
-
+#####################################################################################################
 # system error message
 SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severity level, etc.
 -- (level: error 0-10 are informational messages, 11-16 are errors that can be corrected by the user, such as constraint violation, 
