@@ -8,10 +8,12 @@ df.dtypes
 #
 ############################################################################################
 # loading data
-df = pd.read_csv('sample_file.csv')
+df = pd.read_csv('sample_file.csv') # comma separated file
+df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
+#
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
   dtype = {'column_name1': 'str', 'column_name2': 'float'})
-
+# 
 
 
 # filter dataframe with .loc
@@ -25,6 +27,7 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 
 
+#
 
 
 
@@ -55,6 +58,12 @@ df['year'] = df['col1'].dt.year
 df['month'] = df['col2'].dt.month # 
 df['weekday'] = df['col3'].dt.dayofweek # obtain the weekday of the date column
 df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, unit = 'd')
+#
+############################################################################################
+# create a date list (list of dates)
+date_list = pd.date_range(start = '2020-01-01', end = '2020-12-31')
+#
+
 
 # cut function to divide a dataframe into several groups
 df['col1'] = pd.cut(df['col_to_be_divided'], [0, 2, 4, 6, 8]) # based on the list, the array is divided into (a, b], (b, c], etc.
