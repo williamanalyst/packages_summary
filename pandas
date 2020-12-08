@@ -56,8 +56,11 @@ df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 # calculate the number of days between 2 timedelta objects
 df['year'] = df['col1'].dt.year
 df['month'] = df['col2'].dt.month # 
+
+#
 df['weekday'] = df['col3'].dt.dayofweek # obtain the weekday of the date column
 df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, unit = 'd')
+df['months_in_between'] = df['date_column'].dt.to_period('M') - certain_date.to_period('M') # returns the number of months from the starting month/ date
 #
 ############################################################################################
 # create a date list (list of dates)
@@ -103,8 +106,9 @@ result = sum(records)
 # rolling mean/ average (window function)
 df['7_day_rolling'] = df['column1'].rolling(window = 7, center = False).mean()
 df['7_day_rolling'] = df['column1'].rolling(window = 7, center = False).sum()
-
-
-
-
-
+#
+df['cumulative_sum'] = df['col1'].cumsum() # 
+#
+# Calculate the difference with the next (time) period
+df['next_minus_current'] = df['col'].diff(1) # equal to t(n) - t(n-1)
+df['current_minus_next'] = df['col'].diff(-1)
