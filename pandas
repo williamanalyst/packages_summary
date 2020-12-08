@@ -62,6 +62,7 @@ df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, uni
 ############################################################################################
 # create a date list (list of dates)
 date_list = pd.date_range(start = '2020-01-01', end = '2020-12-31')
+date_list2 = pd.date_range(start = '2020-01-01', end = '2020-12-31', freq = 'MS') # this creates a Pandas DatetimeIndex object
 #
 
 
