@@ -104,17 +104,20 @@ SELECT value FROM STRING_SPLIT(@variable, ' ')
 SELECT GETDATE() 
 -- return current datetime
 
+#####################################################################################################
 # Declare variables in SQL Server
 DECLARE @currentdatetime AS datetime
-DECLARE @var_int INT = 5 -- 
+DECLARE @var_int INT = 5 -- can either directly set the variable value or use SET @var = __ later
 -- set datatype (can be either single value or table) when declare variable
 SET @currentdatetime = GETDATE()
 -- assign value to variable
 SELECT @currentdatetime
 
+#####################################################################################################
 # DATEADD function
 SELECT DATEADD(day, 1, '2020-11-12') -- can use day/week/month,etc.
-SELECT DATEADD(d, -1, GETDATE())
+SELECT DATEADD(d, -1, GETDATE()) -- retrieve yesterday's datetime
+SELECT CAST(DATEADD(d, -1, GETDATE())) AS yesterday -- retrieve yesterday's date (not including hour)
 -- choose unit of days, number of units and the starting date
 SELECT DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0) -- get the date of the first day in the current month
 
