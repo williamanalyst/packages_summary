@@ -30,4 +30,9 @@ df['col1'] = ['result1' if i in list1
 
 
 
+#######################################################################################
+# Check package version
+sklearn.__version__ # return the version of the package
+
+
 
