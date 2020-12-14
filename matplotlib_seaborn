@@ -20,7 +20,10 @@ plt.scatter(df['col1'], df['col2'], s = 50, color = 'red', alpha = 0.5)
 #
 #
 plt.show()
-
+#
+#
+sns.scatterplot(data = df, x = 'value_col1', y = 'value_col2', hue = 'category_col')
+#
 ###################################################################################################
 # histogram
 #
