@@ -2,23 +2,37 @@
 import pyspark.sql.functions as F # 
 #
 dynamicparts=spark.read.parquet('/mnt/margin_management/daily/DynamicPrices_'+today+'.parquet') # read the .parquet file from Azure Blob
+#
 display(dynamicparts.filter(F.col('IPD_Dynamically_Priced')=='Y')) # filter the data table with certain criteria
+df2 = df.filter(F.col('date_col') == '2020-12-12')
+
+
+############################################################################################
+# Check general features of a pysparl.sql.dataframe
+# 
+df = pyspark.read.parquet('/folder/filename.parquet')
+print('Shape of the pyspark dataframe = ({}, {})'.format(p2s_daily.count(), len(p2s_daily.columns))) # returns the shape of the pyspark dataframe
+#
+df.printSchema(0 # print out the datatypes of a pyspark dataframe
+#
+# Unique values
+df.select('col1').distinct().count()
+
+
+
+############################################################################################
+# groupBy function
+df_grouped = df.groupBy(['col1', 'col2']).count().orderBy(['col1', 'col2'], ascending = [1, 1])
+df_grouped.show()
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+############################################################################################
+# Date manipulation
+# from pyspark.sql.functions import col, unix_timestamp, to_date
+#
+df = df.withColumn('new_col', to_date(unix_timestamp(col('date_string'), 'yyyy-MM-dd' HH:MM),cast('timestamp'))) # must nominate the format of the original date_string
 
 
 
