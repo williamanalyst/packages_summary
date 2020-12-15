@@ -8,12 +8,13 @@ for i in list1:
     if i in list2:
         count += 1
 print(count)
-
-
-
-
 #
-setA.intersection(SetB) # returns the elements that exist in both Sets
+print(len(setA.intersection(SetB)) # returns the elements that exist in both Sets
+
+
+#######################################################################################
+# 
+
 
 
 
