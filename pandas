@@ -27,7 +27,8 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 
 
-#
+# .pct_change()
+
 
 
 
@@ -112,3 +113,5 @@ df['cumulative_sum'] = df['col1'].cumsum() #
 # Calculate the difference with the next (time) period
 df['next_minus_current'] = df['col'].diff(1) # equal to t(n) - t(n-1)
 df['current_minus_next'] = df['col'].diff(-1)
+#
+
