@@ -18,6 +18,7 @@ ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2
 plt.scatter(df['col1'], df['col2'], s = 50, color = 'red', alpha = 0.5)
 #
 #
+
 #
 plt.show()
 #
@@ -54,8 +55,8 @@ plt.title('')
 plt.legend()
 plt.show()
 #
-sns.barplot(data = df, x = 'col1', y = 'col2', hue = 'col3') # 
-sns.barplot(data = df, x = 'col1', y = 'col2', row = 'col3') # 
+sns.barplot(data = df, x = df.index, y = 'col2', hue = 'col3') # use index as the category variable, and 'hue' to further classify the data
+sns.barplot(data = df, x = 'col1', y = 'col2', row = 'col3') # use col3, which is a category to create a few charts with the same 
 #
 ###################################################################################################
 fig, ax = plt.subplots(figsize = (15, 6))
@@ -85,7 +86,7 @@ plt.title('')
 p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False, cmap = 'YlGnBu', cbar = False) # fmt = 'd' for integers
 #
 sns.heatmap(df.corr()) # the correlation matrix visualisation
-
+#
 
 #
 ###################################################################################################
