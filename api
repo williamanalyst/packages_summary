@@ -11,11 +11,21 @@
 ####################################################################################################
 # PHP: (Hypertext Preprocessing) is a general-purpose programming language developed by Rasmus Lerdorf in 1994 for web development.
 
-
-
+#
+####################################################################################################
 # 
-
-
+import requests
+import base64
+#
+API_URL = ''
+API_KEY = ''
+#
+def decodeAPIKey(key):
+    api_key_bytes = key.encode()
+    encoded = base64.b64encode(api_key_bytes)
+    return(encoded.decode('utf-8'))
+#
+headers = {'': '', '': '', '': '' + }
 
 
 #
