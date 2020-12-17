@@ -5,6 +5,10 @@
 SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- 
 
+#####################################################################################################
+# format selected columns
+SELECT FORMAT([numeric_col], 'P') FROM table1 -- convert numeric into percentage
+
 # WITH ROLLUP (works with hierarchical data)
 -- comes after GROUP BY
 
