@@ -357,3 +357,10 @@ WHERE table_name = ''
 -- Ctrl + K & Ctrl + U (make a line to be a command)
 -- Ctrl + E (execute only sections selected)
 
+# schema
+.[dbo].[table_name] -- [dbo] = 'Database Owner', which is the defaule schema created in every database
+	-- .dbo is the default schema, and each user in a database could have a different schema
+	
+# view
+-- In SQL, a view is a virtual table based on the result-set of an SQL statement.
+	-- A view contains rows and columns, just like a real table, the fields in a view are fields from one or mode real tables in the database
