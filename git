@@ -1,0 +1,45 @@
+# Version control system: a tool that manages changes made to the files and directories in a project.
+	# Nothing that is saved to Git is ever lost, so use can always go back to see which results were generated
+	# Git automatically notifies you when your work conflicts with someone else's, so it's harder (but not impossible) to accidentally overweite work
+	# Git can synchronize work done by different people on different machines, so it scales as your team does
+# Version control isn't just for softwares: books, papers, parameter sets, 
+	# and anything that changes over time or needs to be shared should be stored and shared using something like Git.
+#
+# Repository: Each of your Git projects has 2 parts (files + directories) that youcreate and edit directly,
+	# and the extra information that Git records about the project's history. The combination of these 2 things is called a repository.
+		# Git stores all of its extra information in a directory called .git located in the root directory of the repository.
+		# Git expects this information to be laid out in a very precise way, so you never edit or delete anything in .git.
+#
+#########################################################################################################
+# 
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
