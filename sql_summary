@@ -4,7 +4,22 @@
 # TOP (5)/ TOP 5 PERCENT
 SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- 
-
+# EXISTS/ NOT EXIST or IN/ NOT IN (results are identical, efficiency )
+-- EXISTS will stop searching the subquery when the condition is TRUE
+-- IN will collect all results from the subquery before passing to the outer query
+SELECT 
+	col1
+    , col2
+FROM table1 AS t1
+WHERE EXISTS (
+	SELECT 1
+	FROM table2 AS t2
+	WHERE t1.col1 = t2.col1)
+--
+WHERE col1
+IN (SELECT col1 FROM table2)
+-- NOT IN (SELECT col1 FROM table2 WHERE col1 IS NOT NULL) -- Need to filter out NULL value when using NOT IN
+--
 #####################################################################################################
 # format selected columns
 SELECT FORMAT([numeric_col], 'P') FROM table1 -- convert numeric into percentage
@@ -364,3 +379,11 @@ WHERE table_name = ''
 # view
 -- In SQL, a view is a virtual table based on the result-set of an SQL statement.
 	-- A view contains rows and columns, just like a real table, the fields in a view are fields from one or mode real tables in the database
+
+# CPU time: time taken by sql server processor to process the query
+# Elapsed time: total duration to run the query
+SET STATISTICS TIME ON
+SET STATISTICS TIME OFF
+--
+SET STATISTICS IO ON
+SET STATISTICS IO OFF
