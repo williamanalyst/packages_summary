@@ -11,10 +11,14 @@
 		# Git expects this information to be laid out in a very precise way, so you never edit or delete anything in .git.
 #
 #########################################################################################################
-# 
 #
-
-
+git status # check the status of the repository
+# 
+git add sample_file.txt # add the sample file to the staging area
+#
+git diff folder/sample_file.csv # check the change history of certain file within the folder
+git diff -r HEAD data/northern.csv
+#
 
 
 
