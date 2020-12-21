@@ -173,7 +173,7 @@ SELECT
 DATENAME(month, @datevar) AS month_name;
 -- month, weekday, etc.
 
-# ISDATE function
+# ISDATE() function
 SELECT
 ISDATE(@datevar1) AS valid_date;
 -- return 1 if @datevar = date, time, datetime, return 0 if datetime2 or other non-datetime format
