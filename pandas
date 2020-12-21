@@ -12,7 +12,7 @@ df = pd.read_csv('sample_file.csv') # comma separated file
 df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
 #
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
-  dtype = {'column_name1': 'str', 'column_name2': 'float'})
+	dtype = {'column_name1': 'str', 'column_name2': 'float'})
 # 
 
 
@@ -56,6 +56,7 @@ df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
 
 # calculate the number of days between 2 timedelta objects
 df['year'] = df['col1'].dt.year
+df['date'] = df['col1'].dt.date # this create a string column that keeps only the %Y-%m-%d section of the date column
 df['month'] = df['col2'].dt.month # 
 
 #
