@@ -10,10 +10,11 @@ df2 = df.filter(F.col('date_col') == '2020-12-12')
 ############################################################################################
 # Check general features of a pysparl.sql.dataframe
 # 
-df = pyspark.read.parquet('/folder/filename.parquet')
+df = spark.read.parquet('/folder/filename.parquet') # read .parquet files as dataframes in pyspark
 print('Shape of the pyspark dataframe = ({}, {})'.format(p2s_daily.count(), len(p2s_daily.columns))) # returns the shape of the pyspark dataframe
 #
-df.printSchema(0 # print out the datatypes of a pyspark dataframe
+df.schema
+df.printSchema() # print out the datatypes of a pyspark dataframe
 #
 # Unique values
 df.select('col1').distinct().count()
@@ -35,7 +36,9 @@ df_grouped.show()
 df = df.withColumn('new_col', to_date(unix_timestamp(col('date_string'), 'yyyy-MM-dd' HH:MM),cast('timestamp'))) # must nominate the format of the original date_string
 
 
-
+############################################################################################
+# combine/ concat 2 dataframes
+df = df1.union(df2)
 
 
 
