@@ -1,4 +1,4 @@
-# UNION / UNION ALL
+# UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
 -- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
 
 # TOP (5)/ TOP 5 PERCENT
@@ -85,8 +85,21 @@ CAST(column_content AS date) AS new_column_name
 SELECT LEN(column1) AS len_of_string_in_a_column
 -- returns the length of the string
 
+#
+#####################################################################################################
+# indexes (typically done by a DBA)
+-- structure to improve speed of accessing data from a table
+-- used to locate data quickly without having to scan the entire table
+-- useful for improving performance of queries with filter conditions
+-- applied to table columns
+# clustered (analogy: dictionary) indexes
+-- table data pages are ordered by the columns with the index
+-- only 1 allowed per table
+# non-clustered (analogy: text book with an index at the back) index
+-- a table can contain more than 1 non-clustered index
+
 # CHARINDEX() function
-SELECT CHARNDEX('string to find', 'The whole sentence or column', [start index of in the whole sentence that you want to search])
+SELECT CHARINDEX('string to find', 'The whole sentence or column', [start index of in the whole sentence that you want to search])
 SELECT CHARINDEX('apple', 'There are 2 apples on the apple tree', 20) -- returns the index of the 2nd apple
 
 # PATINDEX() funtion 
@@ -385,5 +398,5 @@ WHERE table_name = ''
 SET STATISTICS TIME ON
 SET STATISTICS TIME OFF
 --
-SET STATISTICS IO ON
+SET STATISTICS IO ON -- shows the 
 SET STATISTICS IO OFF
