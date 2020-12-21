@@ -113,7 +113,7 @@ SELECT PATINDEX('%pattern%', expression, [location])
 # LOWER() and UPPER() function
 
 # LEFT() and RIGHT() function
-SELECT LEFT(column1, 3) FROM table1
+SELECT LEFT(column1, 3) FROM table1 
 
 # LTRIM() and RTRIM() function
 -- removes the leading blanks in the string
