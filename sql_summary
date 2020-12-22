@@ -355,14 +355,15 @@ SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severit
 # raise own error
 BEGIN TRY
     IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
-RAISEERROR('Insert your own error message here', )
+RAISEERROR('Insert your own error message here', ) -- RAISEERROR generate a new error and cannot access details of original error
+	-- statement forllowing raiseerror can still be executed
 END TRY
 --
 BEGIN CATCH
     SELECT 'This is just an error message.';
 END CATCH
 -- Microsoft recommend THROW command over RAISERROR function
--- THROW [error_number, message, state][;]
+-- THROW [error_number, message, state][;] -- statement following THROW will not be executed
 BEGIN TRY
     SELECT number/ 0 FROM data;
 END TRY
