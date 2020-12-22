@@ -292,6 +292,8 @@ END CATCH
 
 #####################################################################################################
 # triggers in SQL (Data Manipulatio: INSERT/UPDATE/DELETE, Data Definition: CREATE/ALTER/DROP, Logon: LOGON events)
+-- DML Trigger: events associated with DML, such as INSERT, UPDATE, DELETE (ACCEPT AFTER/ INSTEAD OF, attached to tables/ views, has special tables, inserted/ deleted)
+-- DDL Trigger: events associated with DDL, such as CREATE, ALTER, DROP (ONLY accept AFTER, attached to Database/ Server, no special tables)
 # trigger is a SQL Server Object
 -- AFTER trigger
 -- INSTEAD OF trigger (prevent from execution)
