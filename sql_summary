@@ -295,7 +295,7 @@ END CATCH
 -- DML Trigger: events associated with DML, such as INSERT, UPDATE, DELETE (ACCEPT AFTER/ INSTEAD OF, attached to tables/ views, has special tables, inserted/ deleted)
 -- DDL Trigger: events associated with DDL, such as CREATE, ALTER, DROP (ONLY accept AFTER, attached to Database/ Server, no special tables)
 # trigger is a SQL Server Object
--- AFTER trigger
+-- AFTER trigger (FOR AND AFTER has the same result)
 -- INSTEAD OF trigger (prevent from execution)
 CREATE TRIGGER
 ON [prod_table] -- link to a table
@@ -309,7 +309,13 @@ PRINT('');
 	-- when a new row is inserted, it is automatically stored in 'inserted' table, and not in the 'deleted' table
 	-- when multiple rows are updated, new rows will be included in 'inserted' table, and updated rows will be stored in 'deleted' table
 	-- when a row is deleted, it will not be stored in 'inserted' table, but it will be stored in 'deleted' table
-
+--
+CREATE TRIGGER PreventDropTable
+ON DATABASE
+FOR DROP_TABLE
+AS
+	RAISEERROR('You are not allowed to remove tables from this database.', 16, 1)
+	ROLLBACK;
 #####################################################################################################
 # recursion/ recursive query
 WITH cte1 AS (
