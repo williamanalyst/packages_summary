@@ -8,13 +8,13 @@ SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 -- EXISTS will stop searching the subquery when the condition is TRUE
 -- IN will collect all results from the subquery before passing to the outer query 
 SELECT 
-	col1
-	, col2
+col1
+, col2
 FROM table1 AS t1 
 WHERE EXISTS (
-	SELECT 1	
-	FROM table2 AS t2
-	WHERE t1.col1 = t2.col1)
+SELECT 1	
+FROM table2 AS t2
+WHERE t1.col1 = t2.col1)
 --
 WHERE col1
 IN (SELECT col1 FROM table2)
