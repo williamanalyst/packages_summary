@@ -158,7 +158,7 @@ SELECT DATEDIFF(day, '2020-11-12', '2012-12-24')
 
 # DATEPART() function
 DATEPART(week, column_name)
-
+ 
 # SWITCHOFFSET function
 SELECT
 SWITCHOFFSET(@var, '-03:00') AS new_colume
