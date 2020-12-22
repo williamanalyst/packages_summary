@@ -396,7 +396,7 @@ WHERE table_name = ''
 
 # schema
 .[dbo].[table_name] -- [dbo] = 'Database Owner', which is the defaule schema created in every database
-	-- .dbo is the default schema, and each user in a database could have a different schema
+-- .dbo is the default schema, and each user in a database could have a different schema
 	
 # view
 -- In SQL, a view is a virtual table based on the result-set of an SQL statement.
