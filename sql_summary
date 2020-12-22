@@ -277,11 +277,11 @@ BEGIN { TRAN | TRANSACTION }
 -- Example:
 BEGIN TRY
     BEGIN TRAN;
-        UPDATE accounts SET account_balance = current_balance - 100 WHERE account_id = 1;
-        INSERT INTO transactions VALUES(1, -100, GETDATE());
-        --
-        UPDATE accounts SET account_balance = currentbalance + 100 WHERE account_id = 5;
-        INSERT INTO transactions VALUES(5, +100, GETDATE());
+UPDATE accounts SET account_balance = current_balance - 100 WHERE account_id = 1;
+INSERT INTO transactions VALUES(1, -100, GETDATE());
+--
+UPDATE accounts SET account_balance = currentbalance + 100 WHERE account_id = 5;
+INSERT INTO transactions VALUES(5, +100, GETDATE());
     COMMIT TRAN;
 END TRY
 --
@@ -333,10 +333,10 @@ FROM cte1
 #
 WITH time_series AS 
     (SELECT
-        GETDATE() AS date
+GETDATE() AS date
     UNION ALL
     SELECT
-        DATEADD(day, 1, date)
+DATEADD(day, 1, date)
     FROM time_series
     WHERE date < GETDATE() + 364)
 SELECT date
@@ -355,7 +355,7 @@ SELECT TOP(10) * FROM sys.messages -- shows message id, message content, severit
 # raise own error
 BEGIN TRY
     IF NOT EXIST (SELECT * FROM table1 WHERE id = 11)
-        RAISEERROR('Insert your own error message here', )
+RAISEERROR('Insert your own error message here', )
 END TRY
 --
 BEGIN CATCH
