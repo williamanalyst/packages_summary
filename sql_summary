@@ -301,14 +301,14 @@ CREATE TRIGGER
 ON [prod_table] -- link to a table
 AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
 AS -- the beginning of the trigger workflow
-	INSERT INTO table1 (col1, col2)
-	SELECT col1, col2
-	FROM deleted -- the automatically created table that collects deleted rows
+INSERT INTO table1 (col1, col2)
+SELECT col1, col2
+FROM deleted -- the automatically created table that collects deleted rows
 PRINT('');
 -- DML triggers use 2 special tables, 'inserted' and 'deleted' (automatically created by SQL Server)
-	-- when a new row is inserted, it is automatically stored in 'inserted' table, and not in the 'deleted' table
-	-- when multiple rows are updated, new rows will be included in 'inserted' table, and updated rows will be stored in 'deleted' table
-	-- when a row is deleted, it will not be stored in 'inserted' table, but it will be stored in 'deleted' table
+-- when a new row is inserted, it is automatically stored in 'inserted' table, and not in the 'deleted' table
+-- when multiple rows are updated, new rows will be included in 'inserted' table, and updated rows will be stored in 'deleted' table
+-- when a row is deleted, it will not be stored in 'inserted' table, but it will be stored in 'deleted' table
 --
 CREATE TRIGGER PreventDropTable
 ON DATABASE
@@ -406,7 +406,7 @@ WHERE table_name = ''
 	
 # view
 -- In SQL, a view is a virtual table based on the result-set of an SQL statement.
-	-- A view contains rows and columns, just like a real table, the fields in a view are fields from one or mode real tables in the database
+-- A view contains rows and columns, just like a real table, the fields in a view are fields from one or mode real tables in the database
 
 # CPU time: time taken by sql server processor to process the query
 # Elapsed time: total duration to run the query
