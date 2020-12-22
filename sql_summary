@@ -248,7 +248,7 @@ CREATE PROCEDURE dbo.UniqueProcedureName(
     @var1 date,
     @var2 numeric(18, 0),
     @var3 numeric OUTPUT ) -- can be any data type (except table), can have multiple outputs per stored procedure
-        -- output parameters should not be used to communicate errors
+-- output parameters should not be used to communicate errors
 AS 
 -- SET NOCOUNT ON
 BEGIN
