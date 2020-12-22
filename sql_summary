@@ -314,8 +314,8 @@ CREATE TRIGGER PreventDropTable
 ON DATABASE
 FOR DROP_TABLE
 AS
-	RAISEERROR('You are not allowed to remove tables from this database.', 16, 1)
-	ROLLBACK;
+RAISEERROR('You are not allowed to remove tables from this database.', 16, 1)
+ROLLBACK;
 #####################################################################################################
 # recursion/ recursive query
 WITH cte1 AS (
