@@ -10,7 +10,7 @@ SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
 SELECT 
 	col1
     , col2
-FROM table1 AS t1
+FROM table1 AS t1 
 WHERE EXISTS (
 	SELECT 1	
 	FROM table2 AS t2
