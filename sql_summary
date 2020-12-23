@@ -297,7 +297,7 @@ END CATCH
 # trigger is a SQL Server Object
 -- AFTER trigger (FOR AND AFTER has the same result)
 -- INSTEAD OF trigger (prevent from execution)
-CREATE TRIGGER
+CREATE TRIGGER trigger_name
 ON [prod_table] -- link to a table
 AFTER INSERT -- or INSTEAD OF INSERT (INSTEAD OF an action)
 AS -- the beginning of the trigger workflow
@@ -316,6 +316,19 @@ FOR DROP_TABLE
 AS
 RAISEERROR('You are not allowed to remove tables from this database.', 16, 1)
 ROLLBACK;
+--
+DROP TRIGGER trigger_name -- delete certain trigger by its trigger_name
+ON DATABASE -- At database level
+-- ON ALL SERVER
+-- Disabling Trigger
+DISABLE TRIGGER trigger_name
+-- ENABLE TRIGGER trigger_name
+ON table_name; -- if disabling a table-level trigger
+--
+ALTER TRIGGER trigger_name
+ON table_name
+AS
+	PRINT 'You are not allowed to perform this action.'
 #####################################################################################################
 # recursion/ recursive query
 WITH cte1 AS (
