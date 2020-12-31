@@ -3,7 +3,7 @@
 # Decision Tree
 #########################################################################################################
 # Individual decision tree is commonly low bias and high variance (because actual scenario would quite often result in different decisions) 
-
+    # Which means generally over-fitting.
 
 
 
