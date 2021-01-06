@@ -265,7 +265,9 @@ END TRY
 BEGIN CATCH
 END CATCH
 #
-EXEC Procedure_Name 
+EXEC Procedure_Name
+#
+SELECT * FROM sys.procedures -- check procedures stored in SQL Server
 #
 #####################################################################################################
 # Transactions 
