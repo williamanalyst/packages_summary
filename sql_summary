@@ -57,7 +57,7 @@ SELECT FLOOR(15.47) -- returns 15 (integer)
 
 # LEAD(column_name1) OVER (ORDER BY column_name2) function
 SELECT LEAD(column_name1) OVER (ORDER BY column2) AS column_next_row
-SELECT LAG(column_name2) OVER (ORDER BY column3) AS column_prior_row
+SELECT LAG(column_name, 2) OVER (ORDER BY column3) AS column_prior_row
 -- 
 
 # OVER (PARTITION BY) function - split the results into different partitions
