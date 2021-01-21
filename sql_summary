@@ -187,13 +187,18 @@ SELECT ISDATE(@datevar2) AS evaluate_valid;
 SELECT
 TRY_CONVERT(datetime2(3), @var) AS new_col
 
-#
+# Extract Year/ Month/ Day elements from Timestamp
+SELECT
+  YEAR([Timestamp]) AS [Year]
+, MONTH([Timestamp]) AS [Month]
+, DAY([Timestamp]) AS [Day]
+FROM table
+
 #####################################################################################################
 # obtain the interesction between 2 columns/ sets
 SELECT col1 FROM table1
 INTERSECT/ EXCEPT -- 
 SELECT col2 FROM tbale2
-
 
 #####################################################################################################
 # CAST function
