@@ -29,7 +29,10 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 
 # .pct_change()
 
-
+############################################################################################
+# append data to existing dataframe
+#
+df = df.append({'col1': value1, 'col2': 'str2'}, ignore_index = True)
 
 
 # .shift() to apply either lag or ahead
