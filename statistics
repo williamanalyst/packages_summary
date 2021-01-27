@@ -22,7 +22,11 @@
 
 
 
-
+################################################################################
+# correlation
+from scipy.stats import preasonr
+corr, _ = pearsonr(df['col1'], df['col2'])
+print(corr)
 
 
 
