@@ -90,8 +90,22 @@ print(confusion_matrix(y_test, y_pred)) # true label as 1st argument, predicted 
 #######################################################################################
 # Decision Tree Model
 #
-
-
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import cross_val_score
+#
+dtc = DecisionTreeClassifier(criterion = 'entropy', max_depth = 5, max_leaf_nodes = 5)
+#
+dtc.fit(X_train, y_train)
+dtc_pred = dtc.predict(X_test)
+#
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+#
+print('The Accuracy in the training set = {:.2%}'.format(dtc.score(X_train, y_train)))
+print('The Accuracy in the test set = {:.2%}'.format(dtc.score(X_test, y_test)))
+#
+accuracies = cross_val_score(estimator = dtc, X = X_train, y = y_train, cv = 5)
+print('Average Accuracy with CV5 = {:.2%}'.format(accuracies.mean()))
+print('Standard Deviation with CV5 = {:.2f}'.format(accuracies.std()))
 
 
 
