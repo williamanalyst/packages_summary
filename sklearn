@@ -75,11 +75,13 @@ df_scaled = ss.fit_transform(df_selected.astype(float)) # standardise the input 
 kmeans = KMeans(n_clusters = 3, random_state = 42).fit(df_scaled) # use k-means method to classify the items/observations 
 labels = kmeans.labels_
 
-
+#######################################################################################
 # confusion matrix
-from sklearn.metrics import confusion_matrics
+from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
-print(confution_matrix(y_test, y_pred)) # true label as 1st argument, predicted label as 2nd argument
+#
+y_pred = logreg.predict(X_test)
+print(confusion_matrix(y_test, y_pred)) # true label as 1st argument, predicted label as 2nd argument
 
 
 
