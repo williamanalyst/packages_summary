@@ -15,7 +15,7 @@ df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missi
 	dtype = {'column_name1': 'str', 'column_name2': 'float'})
 # 
 
-
+############################################################################################
 # filter dataframe with .loc
 df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
 
@@ -26,7 +26,7 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
   'column14': 'mean', 'column15': 'min', 'column16': 'max'})
 
 
-
+############################################################################################
 # .pct_change()
 
 ############################################################################################
@@ -34,17 +34,19 @@ df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', '
 #
 df = df.append({'col1': value1, 'col2': 'str2'}, ignore_index = True)
 
-
+############################################################################################
 # .shift() to apply either lag or ahead
 
 
-
+############################################################################################
 # pivot_table
 df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
     values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
 
 #
-
+############################################################################################
+# Calculation based on columns
+df['cal_col'] = df.apply(lambda x: x['col1'] if x['col1'] > x['col2'] else x['col2'], axis = 1)
 
 
 # subtract 1 dataframe from another dataframe
