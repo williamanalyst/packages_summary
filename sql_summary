@@ -63,6 +63,9 @@ SELECT LAG(column_name, 2) OVER (ORDER BY column3) AS column_prior_row
 # OVER (PARTITION BY) function - split the results into different partitions
 SELECT FIRST_VALUE(column_name) OVER (PARTITION BY column_name1 ORDER BY column_name2)
 --
+SELECT AVG([Col1]) OVER (ORDER BY [Col2] ROWS BETWEEN 30 PRECEDING AND 30 FOLLOWING) AS [Rolling_Average_60] 
+FROM [dbo].[Table1]
+--
 SELECT AVG(column_name) OVER (
 PARTITION BY column_name2
 ORDER BY column_name3
