@@ -15,12 +15,12 @@ print(len(setA.intersection(SetB)) # returns the elements that exist in both Set
 #
 
 #######################################################################################
-# 
+# Basic math calculation
+13 // 5 # == 2
+13 % 5 # == 3
 
 
-
-
-
+#######################################################################################
 # List comprehension
 df['col1'] = ['result1' if i in list1
     'result2' if i in list2
