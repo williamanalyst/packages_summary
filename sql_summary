@@ -77,7 +77,7 @@ FROM ... --
 -- 
 ROW_NUMBER() -- generate unique, ascending integer value starting from 1
 RANK() -- create ascending integer value starting from 1, can have ties, can skip numbers
-DENSE_RANK() -- can have ties, whereas does not skip numbers
+DENSE_RANK() OVER (ORDER BY [Col1] DESC) AS [Rank] -- can have ties, whereas does not skip numbers
 
 # CAST() function
 CAST(column_content AS date) AS new_column_name
