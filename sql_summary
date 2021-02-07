@@ -1,5 +1,9 @@
 # UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
 -- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
+#####################################################################################################
+# Drop duplicates from table
+
+
 
 # TOP (5)/ TOP 5 PERCENT
 SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
@@ -40,6 +44,7 @@ GROUP BY GROUPING SETS
 )
 -- 
 
+#####################################################################################################
 # ABS() function
 ABS(column_name1 - column_name2) 
 -- return the absolute value of a variable or calculation
