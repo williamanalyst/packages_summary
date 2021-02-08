@@ -35,7 +35,9 @@ headers = {'': '', '': '', '': '' + }
 # REST (Representational State Transfer) refers to a group of "software architecture design constraints" that bring about efficient, reliable and scalable systems.
 # API (Application Programming Interface) refers to a set of rules that exist inside a software program establishing interaction between the software and other items,
     # such as other software or hardware.
-
+# URI (Universal Resource Identifier)
+# URL (Universal Resource Locator) is a subset of URI
+    # URL = URI + nominated access method
 
 
 
