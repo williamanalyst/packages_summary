@@ -1,7 +1,11 @@
-# cmd
-    # cd desktop 
-        # dir 
-# mkdir # make directory
+#
+cmd # start command line
+    cd desktop # change the current directory into desktop
+        dir # show files under the current directory
+
+mkdir test_folder # make a new directory and name it as "test_folder"
+cd .. # go to the previous folder
+#
 ################################################################################################
 #
 #
