@@ -43,8 +43,9 @@ headers = {'': '', '': '', '': '' + }
 
 
 
-
-
+#
+####################################################################################################
+https://api.openweathermap.org/data/2.5/weather?q=California&units=imperial&appid=9ca779fbd79333ac1533df76e776f056
 
 
 
