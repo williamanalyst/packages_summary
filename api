@@ -47,7 +47,8 @@ headers = {'': '', '': '', '': '' + }
 ####################################################################################################
 https://api.openweathermap.org/data/2.5/weather?q=California&units=imperial&appid=9ca779fbd79333ac1533df76e776f056
 
-
+https://api.foursquare.com/v2/venues/explore?&client_id=FU54GNAQI55REZXFB04YPT14WHILCMUSEJHRDEJCZ5V3G4OY&
+    client_secret=V1YTDUDWUYELBBFR25TGMJ4K52TKLLEC34XM0CTV3QK3GDHY&v=20180605&ll=43.7532586,-79.3296565&radius=50000&limit=100
 
 
 
