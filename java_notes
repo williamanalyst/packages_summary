@@ -1,7 +1,11 @@
 #
+# Note: all java program has to have a class (actually all jave code must be inside a class in order to be run properly)
+
+#
 cmd # start command line
-    cd desktop # change the current directory into desktop
+    cd C:\Users\WXX40\notebook # change the current directory into certain location
         dir # show files under the current directory
+            javac test1.java # to compile the code
 
 mkdir test_folder # make a new directory and name it as "test_folder"
 cd .. # go to the previous folder
