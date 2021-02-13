@@ -10,3 +10,10 @@
 # AR(n) Model (auto-regressive) Y(t) = alpha + beta1 * Y(t-1) + beta2 * Y(t-2) + theta 
 # VAR Model
 # Y1,t and Y2,t are related (in each time period, our 2+ variables are correlated)
+
+
+
+############################################################################################
+# ANOVA (Analysis Of Varience) Model 
+
+
