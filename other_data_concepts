@@ -5,25 +5,43 @@
     
 
 
-#
+# 
+###############################################################################################################
+# Structured Data (typically stored in relational database, such as SQL Server or Azure SQL Database)
+# Semi-Structured Data (e.g. documtents, could be in JSON format, similar to key-value store, typically stored in Azure Cosmos DB)
+# Unstructured Data (e.g. video or audio, stored in Azure Blob)
+
+# Blob = Binary Large Objects
+
+# 
+###############################################################################################################
+# Transactional System
+    # The work performed by transactional system is often referred as Online Transactional Processing (OLAP)
+    # To support fast-processing, transactional system is often divided into small pieces.
+
+# Analytical System
+    # Analytics system is designed to support business users who need to query data and gain a big-picture view of the business data.
+
+
+# 
+###############################################################################################################
+# Data Ingestion 
+    # Data ingestion is the process of capturing the raw data.
+# Data Transformation/ Processing 
+    #
+# Data Querying
+# Data Visualisation
+
+
+# Data Normalization = the process of orgainizing data in a database (creating tables and establishing relationship)
+    # First Norm Form: 
+    # Second Norm Form:
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Relational Database
+# Non-relational Database # 
 
 
 
