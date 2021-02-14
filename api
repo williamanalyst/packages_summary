@@ -33,6 +33,12 @@ headers = {'': '', '': '', '': '' + }
 #
 ####################################################################################################
 # REST (Representational State Transfer) refers to a group of "software architecture design constraints" that bring about efficient, reliable and scalable systems.
+    # Use web protocol (HTTP) to access resource (document, picture, video, etc.)
+    # Allow multiple data format, such as XML, JSON, etc.(json is usually processed faster)
+    # Start small and could be gradually added with more functions.
+# SOAP (Simple Object Access Protocol) 
+    # Sends message using XML, and Only allows XML format
+    # 
 # API (Application Programming Interface) refers to a set of rules that exist inside a software program establishing interaction between the software and other items,
     # such as other software or hardware.
 # URI (Universal Resource Identifier)
@@ -41,7 +47,8 @@ headers = {'': '', '': '', '': '' + }
 
 
 
-
+# Authentitation = 
+# Authorization = determine user's access level, 
 
 #
 ####################################################################################################
