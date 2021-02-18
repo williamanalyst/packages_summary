@@ -3,6 +3,12 @@
 #####################################################################################################
 # Drop duplicates from table
 
+#
+#####################################################################################################
+# obtain the number of rows and columns in a table
+SELECT COUNT(col1) FROM table1
+SELECT COUNT(*) FROM information_schema.columns 
+WHERE table_name = 'table1'
 
 
 # TOP (5)/ TOP 5 PERCENT
