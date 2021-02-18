@@ -434,7 +434,13 @@ WHERE table_name = ''
 -- .dbo is the default schema, and each user in a database could have a different schema
 	
 # view
+CREATE OR REPLACE VIEW [view_name1] AS 
+SELECT col1, col2
+FROM table1
+-- DROP VIEW [view_name1]
 -- In SQL, a view is a virtual table based on the result-set of an SQL statement.
+	-- A view always show up-to-date data (because every time a user query a view, the database engine recreates that view with SQL statement)
+
 -- A view contains rows and columns, just like a real table, the fields in a view are fields from one or mode real tables in the database
 
 # CPU time: time taken by sql server processor to process the query
