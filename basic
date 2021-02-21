@@ -33,9 +33,17 @@ df['col1'] = ['result1' if i in list1
 
 
 
+#
+#######################################################################################
+# Annotation
+def func1(x, y) -> int: # the "->" here is just an annotation/ comment
+    return int(x + y)
+func(1.5, 2.1)
+
 #######################################################################################
 # Check package version
 sklearn.__version__ # return the version of the package
 
 
+#
 
