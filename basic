@@ -1,5 +1,13 @@
 # Basic functions in Python (default packages)
 #
+
+#######################################################################################
+# os package
+import os
+os.chdir()
+os.getcwd() # get the current working directory
+
+
 #######################################################################################
 # list
 list1 = ['a', 'b', 'c', 1, 2, 3]
