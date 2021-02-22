@@ -1,5 +1,5 @@
 import pandas as pd
-pd.set_options('display.max_columns', 100, 'display.max_rows', 200)
+pd.set_option('display.max_columns', 100, 'display.max_rows', 200)
 from IPython.display import display # for better formatted tables to be displayed
 # 
 df.describe()
