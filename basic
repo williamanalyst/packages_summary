@@ -25,7 +25,9 @@ print(len(setA.intersection(SetB)) # returns the elements that exist in both Set
 #######################################################################################
 # convert binary to int
 int1 = int('1011', 2) # convert binary value into int
-
+binary1 = bin(4) # convert an int into a string with "0b" at the beginning and the binary value following
+#
+format(14, 'b') # format an int as binary value
 #
 #######################################################################################
 # Reverse String
