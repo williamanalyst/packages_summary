@@ -12,6 +12,7 @@ os.getcwd() # get the current working directory
 # list
 list1 = ['a', 'b', 'c', 1, 2, 3]
 list2 = ['c', 'd', 'e', 2, 4, 6]
+list3 = list1 + list2
 #
 count = 0
 for i in list1:
@@ -21,12 +22,21 @@ print(count)
 #
 print(len(setA.intersection(SetB)) # returns the elements that exist in both Sets
 #
+#######################################################################################
+# convert binary to int
+int1 = int('1011', 2) # convert binary value into int
 
 #
 #######################################################################################
 # Reverse String
 str1 = 'this'
 str2 = str1[::-1] # str2 = 'siht' (in which case the list was reversed)
+
+
+#######################################################################################
+# index in list/ string
+string1 = 'This is a test string.'
+index1 = string1.index('test')
 
 
 #######################################################################################
