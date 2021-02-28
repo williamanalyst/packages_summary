@@ -1,22 +1,31 @@
 #
 #
 ################################################################################################
-# 
+# Binary Tree (root node - parent node - left/ right child node - - leaf node)
+    # each parent node has maximum 2 direct child nodes
+
+# Min Heap
+# Max Heap
+    # Heaps: great for priority queues
+        # Pro: takes constant time to find/ search for min or max = O(1)
+        # Pro: takes O(log(N)) to insert (as swaps may be needed)
+            # Con: takes O(N) time to search or delele as it has to search in all elements and there is no guarantee for specific order.
+
+# Complete Binary Tree: each level is filled except the last level, and all nodes in the last level are as far left as possible.
+# Full Binary Tree: each node has either 0 or 2 child nodes
 
 
+################################################################################################
+# Binary Search Tree
+    # left child node < parent node
+    # right child node > parent node (for all levels)
+        # Benefit: maintain sorted order while staying fast for insertion, deletion and accessing
+        
+    # If a binary search tree is balanced, then the time to go through the tree = O(log(N)) as with each node, we are discarding half of the child nodes
+    # If a binary search tree is unbalanced, then it could take O(N) time as we might need to go through all nodes.
 
-
-
-
-
-
-
-
-
-
-
-
-
+# When there are mode node on one side of the tree than the other, we call is a "unbalanced tree".
+    # "height balanced": left and right subtree of every node differ in height by no more than 1
 
 
 
