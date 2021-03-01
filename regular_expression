@@ -5,10 +5,15 @@
 
 
 
-
-
-
-
+#############################################################################
+#
+string1 = "This is a test String."
+string_lower = string1.lower()
+print(string_lower)
+#
+import re
+march1 = bool( re.match('.*[Mm]anual'.*.txt, string1.lower()) )
+#
 
 
 
