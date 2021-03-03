@@ -13,6 +13,7 @@ os.getcwd() # get the current working directory
 list1 = ['a', 'b', 'c', 1, 2, 3]
 list2 = ['c', 'd', 'e', 2, 4, 6]
 list3 = list1 + list2
+list1.remove('a') # directly remove 1 element from the list, and does not create a new list
 #
 count = 0
 for i in list1:
@@ -64,9 +65,10 @@ df['col1'] = ['result1' if i in list1
 #
 #######################################################################################
 # Sets
-set1.intersection(set2)
+set1.intersection(set2) # return elements in both set1 and set2
 set1.difference(set2) # 
-
+#
+set1 - set2 # return elements in set1 whereas not in set2
 
 #
 #######################################################################################
