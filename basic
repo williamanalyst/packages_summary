@@ -14,6 +14,10 @@ list1 = ['a', 'b', 'c', 1, 2, 3]
 list2 = ['c', 'd', 'e', 2, 4, 6]
 list3 = list1 + list2
 list1.remove('a') # directly remove 1 element from the list, and does not create a new list
+
+#
+if 'a' in list1: # check whether the element is in a list
+    print('Element is in the list')
 #
 count = 0
 for i in list1:
