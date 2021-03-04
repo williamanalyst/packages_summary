@@ -4,8 +4,8 @@
 #######################################################################################
 # os package
 import os
-os.chdir()
-os.getcwd() # get the current working directory
+os.chdir() 
+os.getcwd() # get the current working directory (similar as %pwd command, which also returns the current working directory)
 
 
 #######################################################################################
