@@ -43,7 +43,7 @@ str2 = str1[::-1] # str2 = 'siht' (in which case the list was reversed)
 #######################################################################################
 # index in list/ string
 string1 = 'This is a test string.'
-index1 = string1.index('test')
+index1 = string1.index('test') # returns an error if the index() function cannot find an exact match
 
 
 #######################################################################################
@@ -72,6 +72,7 @@ df['col1'] = ['result1' if i in list1
 set1.intersection(set2) # return elements in both set1 and set2
 set1.difference(set2) # 
 #
+set1 == set2 # the sequence does not matter
 set1 - set2 # return elements in set1 whereas not in set2
 
 #
