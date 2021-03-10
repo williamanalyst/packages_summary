@@ -14,6 +14,17 @@
 # Complete Binary Tree: each level is filled except the last level, and all nodes in the last level are as far left as possible.
 # Full Binary Tree: each node has either 0 or 2 child nodes
 
+# Big-O complexity (the number of time needed to run an algorithm on the worst scenario compared to the length of the input)
+#
+    # O(1)
+        # e.g. 
+    # O(n) 
+        # e.g. for loops always of O(n) as it has to go through all the items in the list
+    # O(log(n))
+        # e.g. binary search tree
+    # O(n^2)
+        # e.g. nested for loop
+
 
 ################################################################################################
 # Binary Search Tree
