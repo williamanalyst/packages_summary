@@ -36,6 +36,7 @@ SELECT FORMAT([numeric_col], 'P') FROM table1 -- convert numeric into percentage
 
 # WITH ROLLUP (works with hierarchical data)
 -- comes after GROUP BY 
+-- ROLLUP(col1) -- instead of just GROUP BY (col1) to provide subtotal for that group
 
 # WITH CUBE (works with non-hierarchical data)
 -- creates a cross-aggregation of all combinations (could therefore result in huge number of rows)
