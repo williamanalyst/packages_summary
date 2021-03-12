@@ -13,23 +13,31 @@
 
 
 
-
-
-
-
-
-
-
-#
 ######################################################################################################
+# Azure Identity Servive
+    # Authentication (credentials, such as username + password) = prove who you are
+    # Authorization (grant access based on permission) = what you are allowed to do based on who you are
+#
 # Azure Active Directory (ID as a service/ IDaaS)
-
+    # 
     
 #
-######################################################################################################
+    # Single Sign on (SSO) = same access for multiple apps
+    # Role-based access 
+#
+# Azure Resource Lock (Cannot delete or read only) = 
+    # Locks are interited from the parent group/ resource
 #
 
 
 
 
+
+######################################################################################################
+# Azure Policy 
+
+
+# Azure Blueprint 
+
+######################################################################################################
 
