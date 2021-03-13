@@ -1,3 +1,10 @@
+# 
+# Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs
+    # and can be tracked in the Azure ML workspace
+
+
+
+
 #
 ######################################################################################################
 # Introduce Docker for Windows to attendee 
