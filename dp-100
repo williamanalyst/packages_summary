@@ -49,9 +49,13 @@
 ######################################################################################################
 
 
-
-
-
+#               Predicted(True)     Predicted(False)
+# Actual(True)  True Positive       False Negative
+# Actual(False) False Positive      True Negative
+#
+# Matrix: [[TP, FN], [FP, TN]]
+#
+# Recall = TP/ (TP + FN) = True Positive
 
 
 
