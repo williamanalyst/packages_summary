@@ -1,8 +1,24 @@
-# 
+# DP100 Exam Curriculum
+    # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
+    # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process)
+    # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
+    # 4. Deploy and Consume Models (create compute production targer, deploy model as a service, create pipeline, publish pipeline as a web service)
+#
+######################################################################################################
+# Azure ML Workspace (Architecture/ Structure)
+    # Managed Resources (compute instance/ cluster)
+    # Linked Service (data storage, compute target)
+    # Assets (environments, experiments, pipelines, datasets, models, endpoints)
+    # Dependencies (Azure Storage Account, Azure container registry, Aziue Key Vault, Azure Application Insights)
+
+
+
 # Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs
     # and can be tracked in the Azure ML workspace
 
-
+#
+######################################################################################################
+# 
 
 
 #
