@@ -56,21 +56,31 @@
 # Matrix: [[TP, FN], [FP, TN]]
 #
 # Recall = TP/ (TP + FN) = True Positive
+#
+# Accuracy = (TP + TN)/ (TP + TN + FP + FN)
+# Precision = TP/ (TP + FP) = (Among those classified as True, % accurate)
+# Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True)
+#
+# F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP)
+
+
+ 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+######################################################################################################
+# Supervised Learning: 
+# Unsupervised Learning: does not use previously known label values to train the model
+    # K-means Clustering: nominate the number of clusters (K)
+        # Centroid: center point of each cluster (each point is assigned to the nearest centroid)
+            # Each centriod is moved to the center of the data points based on the mean distance of all points within that cluster
+            # After moving the centroid, some data points may be closer to a differetn centriod (therefore the cluster will be re-assigned for that data point)
+            # The centroid movements stop until the clustering is stable or the maximum steps allowed is reached
+#
+# Reinforcement Learning:
 
 
 
