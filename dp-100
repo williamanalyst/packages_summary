@@ -1,9 +1,11 @@
 # DP100 Exam Curriculum
     # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
+        # Datastore: 
+        # Dataset: 
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process)
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
     # 4. Deploy and Consume Models (create compute production targer, deploy model as a service, create pipeline, publish pipeline as a web service)
-#
+# 
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
     # Managed Resources (compute instance/ cluster)
@@ -16,7 +18,7 @@
  
  
 # 
-# Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest.
+# Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
  
 # 
@@ -24,80 +26,75 @@
  
  
  
-# Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs
+# Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs.
     # and can be tracked in the Azure ML workspace
  
 # 
 ######################################################################################################
 # 
 # 
-
+ 
 # 
 ######################################################################################################
 # Introduce Docker for Windows to attendee 
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 # 
 ######################################################################################################
 # Azure Identity Servive
     # Authentication (credentials, such as username + password) = prove who you are
     # Authorization (grant access based on permission) = what you are allowed to do based on who you are
-#
+# 
 # Azure Active Directory (ID as a service/ IDaaS)
     # 
     
-#
+# 
     # Single Sign on (SSO) = same access for multiple apps
     # Role-based access 
-#
+# 
 # Azure Resource Lock (Cannot delete or read only) = 
     # Locks are interited from the parent group/ resource
 # 
-
-
-
-
-
+ 
+ 
 ######################################################################################################
 # Azure Policy 
-
-
+ 
+ 
 # Azure Blueprint 
 
 ######################################################################################################
-
-
+ 
+ 
 #               Predicted(True)     Predicted(False)
 # Actual(True)  True Positive       False Negative
 # Actual(False) False Positive      True Negative
-#
+# 
 # Matrix: [[TP, FN], [FP, TN]]
-#
+# 
 # Recall = TP/ (TP + FN) = True Positive 
-#
+# 
 # Accuracy = (TP + TN)/ (TP + TN + FP + FN) 
 # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
 # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
-#
+# 
 # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP) 
-
-
  
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
 ######################################################################################################
 # Supervised Learning: 
 # Unsupervised Learning: does not use previously known label values to train the model 
@@ -106,9 +103,10 @@
             # Each centriod is moved to the center of the data points based on the mean distance of all points within that cluster
             # After moving the centroid, some data points may be closer to a differetn centriod (therefore the cluster will be re-assigned for that data point)
             # The centroid movements stop until the clustering is stable or the maximum steps allowed is reached 
-#
+# 
 # Reinforcement Learning: 
-
-
-
-
+ 
+ 
+ 
+ 
+ 
