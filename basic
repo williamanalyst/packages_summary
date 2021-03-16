@@ -1,5 +1,7 @@
 # Basic functions in Python (default packages)
 #
+import builtins
+dir(builtins) # return the built-in functions in Python
 
 #######################################################################################
 # os package
