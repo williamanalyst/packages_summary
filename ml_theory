@@ -1,6 +1,40 @@
 # Machine Learning Concepts
 
-
+########################################################################################
+# Linear Regression 
+    # SST = "Sum of Squares Total"
+    # SSR = "Sum of Squares Regression"
+    # SSE = "Sum of Squares Error" = RSS = "Residual/Remaining/Unexplained Sum of Squares"
+    # SST = SSR + SSE
+    # OLS = "Ordinary Least Squares" = "Lowest error"
+    # R-squared = SSR/SST = 1-SSE/SST = "Goodness of Fit"
+    # 5 tests must be done before doing an OLS Estimation:
+        # 1. Linearity (can check visually)
+        # 2. No Multicollinearity in independent variables (need to test correlation, can use correlation-matrix)
+            # Use Correlationship Matrix, to test whether corr < 0.6 or < 0.8
+                # Can also use pair plot (relationship between variables)
+        # 3. Normality (of the residual/ error term)
+            # Can use Q-Q plot to test whether the residuals are normally distributed
+                # Normality is assumed for large sample size, based on the Central Limit Theroem
+        # 4. Residuals should have Homoscedasticity (Constant Variance)
+            # the 'spread' of the residual value does not increase with x (the independent variable)
+        # 5. No Autocorrelation between the residuals
+            # Linear regression requires that the residuals have very little or no auto-correlation in the data.
+                # e.g. error(i+1) is not independent from error(i)
+                # Can Use ACF Plot/ Durbin-Watson(DW) Test (Rule of Thumb:  1.5 < d < 2.5 )
+        # 6. No Endogeneity(omitted variable resulting in the error term/ error is also related to independent variable)
+            # x(i) is not affecting error (e)
+                # Can use Hauseman Test
+                    Note: Hausman Test is valid only whtn 'Homoscedasticity' criteria is met.
+#
+########################################################################################
+# Logistic Regression
+    # Probablity(x) = e^(a0 + a1*x1 + a2*x2 + a3*x3 + ...) / (1 + e^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...) )
+    # or Odds =  Probablity(x)/ (1 - Probablity(x)) = e ^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...)
+    # or Log (Odds) = a0 + a1*x1 + a2*x2 + a3*x3 + ... (Preferred Form)
+    # Assumption for Logistic Regression is very similar to Linear Regression:
+        # 1. 
+        # 2. 
 
 ########################################################################################
 # How to reduce/ aviod over-fitting?
@@ -12,11 +46,18 @@
 ########################################################################################
 # K-Nearest Neighbors (KNN)
     # Based on the K neighbors that are closest to the new data point, find the class that has most existing points in K, and assign new point to that class.
+        # Step 1: choose the number of K of neighbors (default = 5)
+        # Step 2: take the K nearest neighbors of the new (target) data point, according to the Euclidean distance
+        # Step 3: Among the K nearest neighbors, count the number of data-points in each catagory
+        # Step 4: Assign the new (target) data point to the category/class that you found the most data-points
 
 ########################################################################################
 # Support Vector Machine
-    # 1. Accurately distinguish the different classes
-    # 2. Maximize the sum of all distances between each data point and the hyperplane
+    # SVM is a bit different from other ML algorithm: it uses the "least typical" (rather than most typical) elements in each category, and find a line between the 2
+        # When determining the best hyperplane, it has to:
+            # 1. Accurately distinguish the different classes
+            # 2. Maximize the sum of all distances between each data point and the hyperplane
+
     
 ########################################################################################
 # K-Means Clustering
@@ -55,8 +96,13 @@
 # Decision Tree
 
 
-
-
+########################################################################################
+# Naive Bayes
+    # Why "Naive"? = because it is based on the assumption that P(event|X) is independent from each other (which is often untrue)
+        # Step 1: P(class-A |X) = P(X | Class-A) * P(Class-A) / P(X)
+        # Step 2: P(class-B |X) = P(X | Class-B) * P(Class-B) / P(X)
+        # Step 3: Compare P(class-A | X) and P(class-B | X)
+    # Multi-class classification: (same logic, calculate P(class-N |X) for each class)
 
 
 
@@ -73,6 +119,82 @@
         # 2. Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
         # 3. Sort Eigenvalues and choose the most important variables (but still explains much of the variance, e.g. 90%)
     # 
+
+
+########################################################################################
+# Decision Tree
+    # 1.Find the root-node + internal-node + leaf with lowest impurity score (Gini Index)
+    # 2. For numeric variables, rank them and calculate the (weighted) impurity score for each mean
+    # 3. For categorical variables, calculate the impurity score for each combination and choose the node with minimum impurity
+#
+# Random Forest
+    # 1. Base logic is same as Decision Tree, whereas when determining each node, only part of fields/columns/measurements are selected (making it random)
+    # 2. Every time a new tree is generated in a Random Forest, it generates a "Complete Tree".
+#
+# Ada Boost
+    # Unlike Random Forest, in Ada Boost model, trees usually contains only 1 node + 2 leaves (called as a stump)
+    # Unlike Random Forest where each tree has the same weighting, the "stumps" in Ada Boost are allocated with different weights
+        #
+    # Unlike Radnom Forest, the order/sequence of stumps matters, as each stump is made by taking the mistake from previous stump into account
+#
+# Gradient Boost - Regression (simply for numeric results, different from linear regression)
+    # Start with a "guess" for a leaf, normally using average of value of y_train
+    # Similar to Ada Boost, Gradient boost build "fixed sized trees" based on the previous tree's errors, whereas larger than a stump.
+    # Unlike Ada Boost, even though Gradient Boost also scale the trees, it scales all trees with the same %
+    # The trees is added until the limit is reached or the prediction is not improving fit % anymore
+#
+# XGBoost
+#
+import pandas as pd
+#
+data = pd.read_csv('D:/Collection_Dataset/data/Data.csv')
+#
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+#
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+#
+#
+from xgboost import XGBClassifier # XGBRegresser for regression analysis
+classifier = XGBClassifier()
+classifier.fit(X_train, y_train) # train the classifier
+#
+from sklearn.metrics import confusion_matrix, accuracy_score
+#
+y_pred = classifier.predict(X_test)
+#
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+print(accuracy_score(y_test, y_pred))
+#
+from sklearn.model_selection import cross_val_score
+#
+accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
+#
+print('Average Accuracy for the 10 fold cross_validation = {:.2%}'.format(accuracies.mean()))
+print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()))
+
+
+
+
+########################################################################################
+# Gradient Descent (applies to linear, logestic, clustering problem, etc.)
+#
+    #
+    # 1. Gradient Descent is most useful when it is very hard/ impossible to solve for the parameters where the derivative = 0
+    # 2. When you have 2 or more derivatives of the same function, they are called a Gradient.
+        # And we will use this Gradient to descend to the lowest point in the Loss Function, therefore called Gradient Descent.
+    # 3. 
+    #
+    # For Linear Model: 
+    # 1. Estimate Function: y = wx + b
+    # 2. Loss Function = sum( ( y - y-pred )**2 )
+    # 3. Select random x0 and learning rate, then x1 = x0 - derivative_of_Loss_function * Learning_Rate
+        # x2 = x1 - derivatite_of_Loss_Function * Learning Rate ... till Loss Function is close to Zero
+    # 
+
+
 
 
 
