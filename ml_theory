@@ -1,9 +1,78 @@
+# Machine Learning Concepts
+
+
+
+########################################################################################
 # How to reduce/ aviod over-fitting?
     # either increase the training set (if available) or 
 
 
 
-# What is the logic for K-means algorithm?
+
+########################################################################################
+# K-Nearest Neighbors (KNN)
+    # Based on the K neighbors that are closest to the new data point, find the class that has most existing points in K, and assign new point to that class.
+
+########################################################################################
+# Support Vector Machine
+    # 1. Accurately distinguish the different classes
+    # 2. Maximize the sum of all distances between each data point and the hyperplane
+    
+########################################################################################
+# K-Means Clustering
+    # Assign N clusters, 
+        # 1. choose the number of clusters, K
+        # 2. select random K points, which are temporary centroids
+        # 3. assign each data point to the nearest centroid, therefore forms K number of temporary clusters
+        # 4. calculate the centroid of each cluster
+        # 5. re-assign the data points based on distence, and recalculate centroid, until the clusters are stable
+
+
+
+########################################################################################
+# Recommender System
+    # 1. User-Based Collaborative (combination of behaviour) Filtering
+        # Similarity in user-perference/ user behaviour in the past towards different items.
+            # 1. Build a matrix of things that each user had purchases/ viewed
+            # 2. Compute the similarity between the users
+            # 3. Find users that are similar to you
+            # 4. Recommend stuff to you that other people had bought whereas you haven't
+                # e.g. people bought this also bought that
+            # Problem 1: people's taste changes over time
+            # Problem 2: high complexity in calculation, e.g. there are more people than movies
+    # 2. Content/Item-based Collaborative Filtering
+        # Based on the features of the items themselves (e.g. movie type, movie actor, movie year, etc.) amd actions from users.
+            # 1. Find each pair of item that were bought/viewed by the same person
+            # 2. Measure the similarity of rating/ review from that person who bought/ viewed the 2 items
+            # 3. For each item with good feedback/ review, rank the other paired-items by the similarity in (good/ positive) review 
+    # 3. Hybrid Filtering
+        # Based on existing user preference, recommend items that are similar in features.
+    # 4. Popularity Based Filtering
+
+
+
+########################################################################################
+# Decision Tree
+
+
+
+
+
+
+
+
+
+
+
+
+########################################################################################
+# Principal Component Analysis (PCA) (dimensionality reduction)
+    # Find the correlation between variables (variables with high correlation could largely be represented by another variable)
+    # PCA is actually tring to learn about the relationship between X and Y, and choose the most influential X variables
+        # 1. Standardize the data
+        # 2. Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
+        # 3. Sort Eigenvalues and choose the most important variables (but still explains much of the variance, e.g. 90%)
     # 
+
 
 
