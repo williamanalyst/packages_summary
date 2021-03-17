@@ -38,8 +38,12 @@
 
 ########################################################################################
 # How to reduce/ aviod over-fitting?
-    # either increase the training set (if available) or 
-
+    # Increase the training set size
+        # (could check with cross-validation score)
+    # Remove irrelevant variables
+    # Early Stopping/ Dropouts
+    # Data Augmentation
+    # Activity Regularrization (need investigation)
 
 
 
