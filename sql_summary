@@ -1,7 +1,38 @@
+# SQL Summary
+
+#####################################################################################################
 # UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
 -- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
 #####################################################################################################
 # Drop duplicates from table
+
+
+
+#
+#####################################################################################################
+# Pivot Table in SQL
+SELECT
+  [DEPARTMENT_NAME] -- each row name in pivot_table
+  --'Test' AS [Col1]
+, [31501] AS [Group1] -- select the name of what is grouped by
+, [31502] AS [Group2]
+--
+FROM (
+	SELECT
+		[DEPARTMENT_NAME]
+	, [SALES]
+	, INVOICE_DATE_SK
+	--
+	FROM [WIS_PRE].[common].[ExternalSales]
+	WHERE [INVOICE_DATE_SK] >= 31500) AS source2
+	--
+PIVOT 
+( 
+	SUM(SALES) 
+	FOR [INVOICE_DATE_SK] IN ([31501], [31502], [31503]) -- aggregation for each group
+) AS pivot_table1
+;
+--
 
 #
 #####################################################################################################
@@ -12,7 +43,7 @@ WHERE table_name = 'table1'
 
 
 # TOP (5)/ TOP 5 PERCENT
-SELECT TOP 25 PERCENT FROM table (select the 1st quantile)
+SELECT TOP 25 PERCENT FROM table (select the 1st quantile) -- 
 -- 
 # EXISTS/ NOT EXIST or IN/ NOT IN (results are identical, efficiency )
 -- EXISTS will stop searching the subquery when the condition is TRUE
