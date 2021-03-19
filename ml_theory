@@ -200,5 +200,31 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
+########################################################################################
+# ANOVA (Analysis Of Varience) Model 
+
+
+########################################################################################
+# AR(n) Model (auto-regressive) Y(t) = alpha + beta1 * Y(t-1) + beta2 * Y(t-2) + theta 
+# VAR Model
+# Y1,t and Y2,t are related (in each time period, our 2+ variables are correlated)
+
+
+########################################################################################
+# Monte Carlo Simulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
