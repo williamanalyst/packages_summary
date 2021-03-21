@@ -105,9 +105,6 @@
 
 
 
-########################################################################################
-# Decision Tree
-
 
 ########################################################################################
 # Naive Bayes
@@ -191,21 +188,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
-########################################################################################
-# Gradient Descent (applies to linear, logestic, clustering problem, etc.)
-#
-    #
-    # 1. Gradient Descent is most useful when it is very hard/ impossible to solve for the parameters where the derivative = 0
-    # 2. When you have 2 or more derivatives of the same function, they are called a Gradient.
-        # And we will use this Gradient to descend to the lowest point in the Loss Function, therefore called Gradient Descent.
-    # 3. 
-    #
-    # For Linear Model: 
-    # 1. Estimate Function: y = wx + b
-    # 2. Loss Function = sum( ( y - y-pred )**2 )
-    # 3. Select random x0 and learning rate, then x1 = x0 - derivative_of_Loss_function * Learning_Rate
-        # x2 = x1 - derivatite_of_Loss_Function * Learning Rate ... till Loss Function is close to Zero
-    # 
+
 
 
 
@@ -230,11 +213,44 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 # Monte Carlo Simulation
 
 
+########################################################################################
+# ANN (Artificial Neural Network)
+    # Key benefit of Neural Network is that they could fit "non-linear, non categorical scenario", e.g. a squiggle such as f(x) = 【sin(x) + 1】/2
+        # e.g. by adding parameters to a Activition Function( Sigmoid, ReLU, softplus, etc.), the Neural Network could simulate non-linear curves
+    # A Neural Network consists Nodes and 
 
 
+# Input Layer
+# Hidden Layer
+    # Nodes
+        # Weights
+        # Bias
+        # Activication Function:
+    # 
+# Output Layer
 
+# Back Propagation (for optimizing weights and bias)
+    # Chain Rule
+
+# Gradient Descent (applies to linear, logestic, clustering problem, etc.)
+#
+    #
+    # 1. Gradient Descent is most useful when it is very hard/ impossible to solve for the parameters where the derivative = 0
+    # 2. When you have 2 or more derivatives of the same function, they are called a Gradient.
+        # And we will use this Gradient to descend to the lowest point in the Loss Function, therefore called Gradient Descent.
+    # 3. 
+    #
+    # For Linear Model: 
+    # 1. Estimate Function: y = wx + b
+    # 2. Loss Function = sum( ( y - y-pred )**2 )
+    # 3. Select random x0 and learning rate, then x1 = x0 - derivative_of_Loss_function * Learning_Rate
+        # x2 = x1 - derivatite_of_Loss_Function * Learning Rate ... till Loss Function is close to Zero
+    # 
+    
+########################################################################################
 # Bagging
 
+########################################################################################
 # Boosting
 
 
