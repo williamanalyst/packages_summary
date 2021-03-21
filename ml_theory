@@ -1,5 +1,7 @@
 # Machine Learning Concepts
-
+#
+# Linear, Logictic, Tree Model, NN
+#
 ########################################################################################
 # Linear Regression 
     # SST = "Sum of Squares Total"
@@ -42,15 +44,20 @@
         # 4. There are at least 50 observations in each category (not necessary)
 
 ########################################################################################
-# How to reduce/ aviod over-fitting?
+# Overfitting = the model has focused too much on a particular dataset that the logic does not apply to the other scenario.
     # Increase the training set size
-        # (could check with cross-validation score)
+        # (could check with N-Fold cross-validation score)
     # Remove irrelevant variables
+        # e.g. using PCA
     # Early Stopping/ Dropouts
+        # 
     # Data Augmentation
     # Activity Regularrization (need investigation)
-
-
+#
+from sklearn.model_selection import cross_val_score
+cross_val_score(DecisionTreeRegressor(), X, y)
+#
+Under-Fitting: the model has not captured the logic within the data
 
 ########################################################################################
 # K-Nearest Neighbors (KNN)
@@ -70,19 +77,25 @@
         # When determining the best hyperplane, it has to:
             # 1. Accurately distinguish the different classes
             # 2. Maximize the sum of all distances between each data point and the hyperplane
+#
 
-    
+########################################################################################
+# Clustering (unsupervised learning)
+    # application of clustering: recommender system, market segmentation, social network analysis, image segmentation, anomaly detection, etc.
+
+
 ########################################################################################
 # K-Means Clustering
+# K-Means++ 
     # Assign N clusters, 
         # 1. choose the number of clusters, K
         # 2. select random K points, which are temporary centroids
         # 3. assign each data point to the nearest centroid, therefore forms K number of temporary clusters
+            # Euclidean Distance: d = 
         # 4. calculate the centroid of each cluster
+            # 
         # 5. re-assign the data points based on distence, and recalculate centroid, until the clusters are stable
-
-
-
+#
 ########################################################################################
 # Recommender System
     # 1. User-Based Collaborative (combination of behaviour) Filtering
@@ -102,10 +115,7 @@
     # 3. Hybrid Filtering
         # Based on existing user preference, recommend items that are similar in features.
     # 4. Popularity Based Filtering
-
-
-
-
+#
 ########################################################################################
 # Naive Bayes
     # Why "Naive"? = because it is based on the assumption that P(event|X) is independent from each other (which is often untrue)
@@ -114,13 +124,7 @@
         # Step 3: Compare P(class-A | X) and P(class-B | X)
     # Multi-class classification: (same logic, calculate P(class-N |X) for each class)
 
-
-
-
-
-
-
-
+#
 ########################################################################################
 # Principal Component Analysis (PCA) (dimensionality reduction)
     # Find the correlation between variables (variables with high correlation could largely be represented by another variable)
@@ -140,6 +144,14 @@
 # Random Forest
     # 1. Base logic is same as Decision Tree, whereas when determining each node, only part of fields/columns/measurements are selected (making it random)
     # 2. Every time a new tree is generated in a Random Forest, it generates a "Complete Tree".
+    #
+#
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor()
+rf.fit(X_train, y_train)
+rf_pred = rf.predict(X_test) # 
+rf_error = mse(y_test, rf_pred)
 #
 # Ada Boost
     # Unlike Random Forest, in Ada Boost model, trees usually contains only 1 node + 2 leaves (called as a stump)
@@ -156,15 +168,13 @@
 # XGBoost
 #
 import pandas as pd
-#
 data = pd.read_csv('D:/Collection_Dataset/data/Data.csv')
 #
 X = data.iloc[:, :-1].values
 y = data.iloc[:, -1].values
 #
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-#
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0, stratify = y)
 #
 from xgboost import XGBClassifier # XGBRegresser for regression analysis
 classifier = XGBClassifier()
@@ -184,14 +194,7 @@ accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, c
 #
 print('Average Accuracy for the 10 fold cross_validation = {:.2%}'.format(accuracies.mean()))
 print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()))
-
-
-
-
-
-
-
-
+#
 ########################################################################################
 # ANOVA (Analysis Of Varience) Model 
 
@@ -226,6 +229,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
         # Weights
         # Bias
         # Activication Function:
+            # ReLU (Rectified Linear Unit: f(x) = max(0, x) )
     # 
 # Output Layer
 
@@ -252,6 +256,44 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 ########################################################################################
 # Boosting
+
+########################################################################################
+# Data Normalization
+    # Z-Score
+        # Z = (X - mean(x))/ stdev(x)
+    # Logistic 
+        # Z = 1/ (1 + exp(-x))
+    # MinMax
+        # Z = (X - min(x))/ (max(x) - min(x))
+#
+
+
+
+########################################################################################
+# Natural Language Processing
+    # Text Classification
+        # Application: spam email filter, customer request classification, sentiment analysis, new document classification, etc.
+    # Automatic Translation
+    # Speech Recognition
+    # Text generator/ response to conversations
+    #
+    # Step 1: Load and pre-process text data
+    # Step 2: Convert text into feature vectors
+    # Step 3: train, score and deploy model
+    # 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
