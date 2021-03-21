@@ -11,11 +11,12 @@
     # 5 tests must be done before doing an OLS Estimation:
         # 1. Linearity (can check visually)
         # 2. No Multicollinearity in independent variables (need to test correlation, can use correlation-matrix)
-            # Use Correlationship Matrix, to test whether corr < 0.6 or < 0.8
+            # Use (Pearson) Correlations Matrix, to test whether corr < 0.6 or < 0.8
                 # Can also use pair plot (relationship between variables)
         # 3. Normality (of the residual/ error term)
             # Can use Q-Q plot to test whether the residuals are normally distributed
                 # Normality is assumed for large sample size, based on the Central Limit Theroem
+            # Can use Levine's Test
         # 4. Residuals should have Homoscedasticity (Constant Variance)
             # the 'spread' of the residual value does not increase with x (the independent variable)
         # 5. No Autocorrelation between the residuals
@@ -26,6 +27,8 @@
             # x(i) is not affecting error (e)
                 # Can use Hauseman Test
                     Note: Hausman Test is valid only whtn 'Homoscedasticity' criteria is met.
+    #
+    # Checking Linearity Assumption: DW-Test (target value = 2)
 #
 ########################################################################################
 # Logistic Regression
@@ -33,8 +36,10 @@
     # or Odds =  Probablity(x)/ (1 - Probablity(x)) = e ^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...)
     # or Log (Odds) = a0 + a1*x1 + a2*x2 + a3*x3 + ... (Preferred Form)
     # Assumption for Logistic Regression is very similar to Linear Regression:
-        # 1. 
-        # 2. 
+        # 1. Data is free from missing values
+        # 2. Target value is either binary or ordinal
+        # 3. All predictors are independent from each other
+        # 4. There are at least 50 observations in each category (not necessary)
 
 ########################################################################################
 # How to reduce/ aviod over-fitting?
@@ -51,7 +56,11 @@
 # K-Nearest Neighbors (KNN)
     # Based on the K neighbors that are closest to the new data point, find the class that has most existing points in K, and assign new point to that class.
         # Step 1: choose the number of K of neighbors (default = 5)
+            # Could use a scatterplot to estimate K
+            # Could use elbow method choose K
+            # Could use 
         # Step 2: take the K nearest neighbors of the new (target) data point, according to the Euclidean distance
+            # Need to scale the variables (normalization)
         # Step 3: Among the K nearest neighbors, count the number of data-points in each catagory
         # Step 4: Assign the new (target) data point to the category/class that you found the most data-points
 
@@ -211,16 +220,22 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 ########################################################################################
+# Bias-Variance Tradeoff
+    # Bias: being unable to find the relationship between dependent and independent variables (unable to fit)
+    # Variance: the change of error in different datasets (e.g. low error in training dataset, high error in test or new datasets.)
+        # Overfit: if error is high when using test dataset (even though the error is low in train dataset)
+
+
+########################################################################################
 # Monte Carlo Simulation
 
 
 
 
 
+# Bagging
 
-
-
-
+# Boosting
 
 
 
