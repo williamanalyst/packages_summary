@@ -29,6 +29,13 @@ print(count)
 #
 print(len(setA.intersection(SetB)) # returns the elements that exist in both Sets
 #
+
+#######################################################################################
+# tuple
+tuple1 = (0, 1, 4, 2)
+print(tuple1[2]) # we could retrieve elements within a tuple by its index
+
+
 #######################################################################################
 # convert binary to int
 int1 = int('1011', 2) # convert binary value into int
