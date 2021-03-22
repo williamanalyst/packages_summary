@@ -53,6 +53,11 @@
         # 
     # Data Augmentation
     # Activity Regularrization (need investigation)
+    #
+    # Reduce Over-fitting in CNN:
+        # Random Flipping:
+        # Mirroring:
+        # Skewing:
 #
 from sklearn.model_selection import cross_val_score
 cross_val_score(DecisionTreeRegressor(), X, y)
@@ -222,6 +227,12 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
         # e.g. by adding parameters to a Activition Function( Sigmoid, ReLU, softplus, etc.), the Neural Network could simulate non-linear curves
     # A Neural Network consists Nodes and 
 
+    # Step 1: Randomly assign initial weights and bias (also choose applicable activation function).
+    # Step 2: Feed input data (in groups/ mini batches) into the model.
+    # Step 3: Pass the result in each layer to calculate result (with initial weights, bias, activation function).
+    # Step 4: Prediction (result) is compared to target value and loss is calculated.
+    # Step 5: Based on the result/ loss, use backpropagation to re-calculate weights and bias.
+    # Step 6: The next epoch (iteration) repeats the process to further adjust the weights and bias (repeat Step 2-5).
 
 # Input Layer
 # Hidden Layer
@@ -232,6 +243,14 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
             # ReLU (Rectified Linear Unit: f(x) = max(0, x) )
     # 
 # Output Layer
+
+# Loss Function
+# Learning Rate: the size of each adjustment in the iteration process
+    # Low Learning Rate = small adjustment in each epoch = more epochs to minimize the loss
+    # High Learning Rate = large adjustment in each epoch = less epochs to minimize the loss
+    
+
+# Epochs: iterations in the training process
 
 # Back Propagation (for optimizing weights and bias)
     # Chain Rule
@@ -250,7 +269,23 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
     # 3. Select random x0 and learning rate, then x1 = x0 - derivative_of_Loss_function * Learning_Rate
         # x2 = x1 - derivatite_of_Loss_Function * Learning Rate ... till Loss Function is close to Zero
     # 
-    
+# CNN (Convolutional Neural Network) = Feature Extraction + Class Prediction (classification)
+    # Step 1: images are fed into convolutional layer, with filters.
+        # Convolutional Layer: extract important features in images (by applying filters to images). 
+    # Step 2: Feature map is passed to pooling layer, which reduce the size.
+        # Pooling Layer: reduce the number of features while retaining the key differentiating features
+            # e.g. a 2*2 pooling filter would reduce the matrix size to 25% of its original size
+            # Max Pooling:
+    # Step 3: A dropping layer randomly drops some features to avoid over-fitting.
+    # Step 4: A flattening layer takes the remaining features and convert them into a vector.
+    # Step 5: The vector elements are fed into a fully connected network, which generates predictions (classification model).
+
+    # 
+
+#
+# Flattening Layer: flattern the feature maps into a vector of values that can be used as input to a fully connected layer.
+# Fully Connected Layer: 
+#
 ########################################################################################
 # Bagging
 
@@ -266,7 +301,8 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
     # MinMax
         # Z = (X - min(x))/ (max(x) - min(x))
 #
-
+########################################################################################
+# Gaussian Distribution (normal distribution)
 
 
 ########################################################################################
@@ -287,7 +323,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
-
+# ROC Curve
 
 
 
