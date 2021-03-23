@@ -1,0 +1,5 @@
+#
+# = VLOOKUP(value, range, column_number/ index, FALSE)
+#
+############################################################################################
+# = COUNTIFS(data1, criteria1, data2, criteria2)) # get the number of rows that meet with multiple criteria
