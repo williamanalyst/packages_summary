@@ -14,8 +14,8 @@
     # Dependencies (Azure Storage Account, Azure container registry, Azure Key Vault, Azure Application Insights)
 # 
 # 
- 
- 
+######################################################################################################
+# AI (Artificial Intelligence) = computer performing tasks without being specifically programmed to.
  
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
