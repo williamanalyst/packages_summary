@@ -6,8 +6,17 @@
 #####################################################################################################
 # Drop duplicates from table
 
-
-
+#####################################################################################################
+# Join Tables (m rows on the lft table, n rows on the right table)
+# LEFT JOIN
+	# if 1 to 1 relationship, return m rows
+	# if 1 to many, return m * n rows
+# INNER JOIN
+	# if 1 to 1, return min(m, n) rows
+	# if 1 to many, 
+# FULL OUTER JOIN
+	# if 1 to 1, return 
+	# if 1 to many, return 
 #
 #####################################################################################################
 # Pivot Table in SQL
