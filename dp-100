@@ -23,12 +23,20 @@
  
 # 
  
+# Azure Container Instance
+
+# Endpoint
+
+# Inference Cluster
  
- 
+# Resource Group
  
 # Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs.
     # and can be tracked in the Azure ML workspace
- 
+# 
+# Azure Cognitive Service
+# Azure Data Lake Analytics
+# Azue HDInsight with Spark Mlib
 # 
 ######################################################################################################
 # 
@@ -36,12 +44,17 @@
  
 # 
 ######################################################################################################
-# Introduce Docker for Windows to attendee 
+# Question: Introduce Docker for Windows to attendee
+    # 
+# Question: Select Data Science Environment
+    # 
  
+# Question: Move large dataset from Azure ML Studio to Weka environment
+    # 
+    
+    
  
- 
- 
- 
+# DSVM (Data Science Virtual Machine)
  
  
  
