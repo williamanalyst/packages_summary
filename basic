@@ -2,13 +2,17 @@
 #
 import builtins
 dir(builtins) # return the built-in functions in Python
-
+#
 #######################################################################################
 # os package
 import os
 os.chdir() 
 os.getcwd() # get the current working directory (similar as %pwd command, which also returns the current working directory)
-
+#
+# open files
+with open('file1.html', 'r') as file1_read:
+    content = file1_read.read()
+    print(content)
 
 #######################################################################################
 # list
