@@ -43,7 +43,10 @@
     # outliers does impact the prediction/ estimation of the sample/ model
     # outliers could result from human input error, malfunction of measurement equipment, data transmission error, system bebaviour eror,
         # feaudulent behaviour, natural outliers, sampling error, etc.
-        # 
+    # boxplot, histogram and scatterplot are recommended to identify outliers visually
+        # as well as percentile analysis (most common method is visualization)
+    #
+    
 # Variables at different scale
     # Normalize the dataset
 # Too many variables or curse of dimensionality
@@ -55,20 +58,7 @@
 # Merge datasets on column values
     # join data
 
-######################################################################################################
-# Question: Introduce Docker for Windows to attendee
-    # 
-# Question: Select Data Science Environment
-    # 
- 
-# Question: Move large dataset from Azure ML Studio to Weka environment
-    # 
-    
-#   
- 
-# DSVM (Data Science Virtual Machine)
- 
-# 
+
  
  
  
@@ -146,24 +136,67 @@
 # 
 # Reinforcement Learning: 
  
- 
+# Hyperparameters Tuning: 
+    # 
+
+
+# Feature Selection
+    # for simplification of models so that they could be interpreted and understood more easily
+    # for shorter training time
+    # for better accuracy
+    # for avoiding the curse of dimensionality
+    # for enhanced generalization that helps reducing over-fitting
+        # Filter-based Method: use the correlation of x1, x2, x3, ... xn to Y, and choose the most relevant/ influential x
+            # e.g. Pearson Correlation, Chi-squared, Mutual Information, Fisher Score, etc.
+        # Wrapper Method: test with different combinations of x1, x2, x3, ... xn, and choose the combination of variables that has the best performance
+            # e.g. accuracy/ precision or RMSE based on different models
+            # Forward Selection: add 1 variable after 1 variable
+            # Backward Elimination: eliminate 1 variable after 1 variable
+            # Recursive Feature Elimination: random select variables in each iteration, keep the most important variables and removes least influential ones.
+        # Embedded Method: 
+
+
+
+
 ######################################################################################################
 # Azure ML Studio - Modules
 #
 # Summarize Data: 
     # gemeral summary of a dataframe (min, max, mean, mode, missing data, etc.)
-# Clip Value: 
+# Clip Values: 
+    # set of threshold
+        # 
+# MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
+    # assuming that the data is missing randomly (not systematically or biased to a reason)
+    # Step 1: calculate the mean value based on available data
+    # Step 2: replace all missing value with mean
+    # Step 3: choose dependent column and restore original (for the 1 column that you would like to fill/ solve)
+    # Step 4: apply transformation and create prediction model
+    # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
+
+
+# Filter Based Feature Selection
+    # corr(x1, y)
+# Fisher Linear Discriminant Analysis
+# Permutation Feature Importance
+
+
+
+
+######################################################################################################
+# Question: Introduce Docker for Windows to attendee
     # 
-
-
-
-
-
-
-
-
-
-
+# Question: Select Data Science Environment
+    # 
+ 
+# Question: Move large dataset from Azure ML Studio to Weka environment
+    # 
+    
+#   
+ 
+# DSVM (Data Science Virtual Machine)
+ 
+# 
 
 
 
