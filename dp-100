@@ -39,10 +39,22 @@
 # Azue HDInsight with Spark Mlib
 # 
 ######################################################################################################
-# 
-# 
- 
-# 
+# Outliers: observations that have much higher distance compared to other observations
+    # outliers does impact the prediction/ estimation of the sample/ model
+    # outliers could result from human input error, malfunction of measurement equipment, data transmission error, system bebaviour eror,
+        # feaudulent behaviour, natural outliers, sampling error, etc.
+        # 
+# Variables at different scale
+    # Normalize the dataset
+# Too many variables or curse of dimensionality
+    # PCA
+# Missing Value in a large dataset
+    # replace with MICE
+# Unbalanced Dataset (e.g. fraud data)
+    # SMOTE
+# Merge datasets on column values
+    # join data
+
 ######################################################################################################
 # Question: Introduce Docker for Windows to attendee
     # 
@@ -52,11 +64,11 @@
 # Question: Move large dataset from Azure ML Studio to Weka environment
     # 
     
-    
+#   
  
 # DSVM (Data Science Virtual Machine)
  
- 
+# 
  
  
  
@@ -104,9 +116,20 @@
  
  
  
- 
- 
- 
+# Mean Deviation (when the number of observations is small)
+# Standard Deviation (when the number of observations is large)
+    # describe how the data is distributed around the mean
+    # std(x) = [ sum_of_squared_distances/ (n-1) ] ^ 0.5
+        # when the mean of 2 datasets are similar, std(x) could be comparable
+# Quartile
+    # 1st quartile, median, 3nd quartile
+    # IQR = Inter Quartile Range = Q3 - Q1
+# Skewness
+    # Skewness the a measure of the asymmetry of the probablity distribution of a real-valued random variable about its mean.
+        # Positive Skewness = Skewed to left, long tail to right = mode < median < mean
+        # Negative Skewness = Skewed to right, long tail to left = mean < median < mode
+# Kurtosis
+    # 
  
 ######################################################################################################
 # Supervised Learning: 
@@ -124,7 +147,26 @@
 # Reinforcement Learning: 
  
  
- 
- 
+######################################################################################################
+# Azure ML Studio - Modules
+#
+# Summarize Data: 
+    # gemeral summary of a dataframe (min, max, mean, mode, missing data, etc.)
+# Clip Value: 
+    # 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
