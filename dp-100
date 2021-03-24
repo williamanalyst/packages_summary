@@ -110,6 +110,10 @@
  
 ######################################################################################################
 # Supervised Learning: 
+    # Classification
+        # 
+    # Regression
+        #
 # Unsupervised Learning: does not use previously known label values to train the model 
     # K-means Clustering: nominate the number of clusters (K) 
         # Centroid: center point of each cluster (each point is assigned to the nearest centroid) 
