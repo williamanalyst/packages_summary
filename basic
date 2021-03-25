@@ -3,6 +3,8 @@
 import builtins
 dir(builtins) # return the built-in functions in Python
 #
+# pip install Scrapy --user admin
+#
 #######################################################################################
 # os package
 import os
