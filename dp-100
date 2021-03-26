@@ -70,7 +70,8 @@
     # Authorization (grant access based on permission) = what you are allowed to do based on who you are
 # 
 # Azure Active Directory (ID as a service/ IDaaS)
-    # 
+    # when the service involve both cloud and on-premise, or through external internet, there is not a central location to authenticate users.
+        # 
     
 # 
     # Single Sign on (SSO) = same access for multiple apps
