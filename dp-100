@@ -91,19 +91,7 @@
 ######################################################################################################
  
  
-#               Predicted(True)     Predicted(False)
-# Actual(True)  True Positive       False Negative
-# Actual(False) False Positive      True Negative
-# 
-# Matrix: [[TP, FN], [FP, TN]]
-# 
-# Recall = TP/ (TP + FN) = True Positive 
-# 
-# Accuracy = (TP + TN)/ (TP + TN + FP + FN) 
-# Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
-# Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
-# 
-# F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP) 
+
  
  
  
@@ -137,7 +125,7 @@
 # 
 # Reinforcement Learning: 
  
-# Hyperparameters Tuning: 
+
     # 
 
 
@@ -182,8 +170,33 @@
 # Permutation Feature Importance
 
 
+# Hyperparameters Tuning: (every module has a set of input parameters, called hyperparameters)
+    # 
+    # Optimization Tolerance: when a new iteration does not decrease the loss function (e.g. delta loss < 10^-5 )
+    # L1 Regularization: (Lasso Regression)
+        # Lasso regression can shrink some coefficients to zero, which means performing variable selection
+    # L2 Regularization: (Ridge Regression)
+        # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
 
 
+# Evaluate Model Module:
+    # Confusion Matrix:
+        #               Predicted(True)     Predicted(False)
+        # Actual(True)  True Positive       False Negative
+        # Actual(False) False Positive      True Negative
+        # 
+        # Matrix: [[TP, FN], [FP, TN]]
+        # 
+        # Recall = TP/ (TP + FN) = True Positive 
+        # 
+        # Accuracy = (TP + TN)/ (TP + TN + FP + FN) 
+        # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
+        # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
+        # 
+        # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP) 
+    #    
+    # 
+    # ROC 
 ######################################################################################################
 # Question: Introduce Docker for Windows to attendee
     # 
