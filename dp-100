@@ -121,8 +121,13 @@
             # Decision Jungle:
         #
     # Regression 
-        #
-        #
+        # Linear Regression
+            # MAE (Mean Absolute Error)
+            # RMSE (Root Mean Squared Error)
+                # punish for large errors
+            # RAE (Relative Absolute Error): sum(actual_y - predicted_y)/ sum(actual_y - actual_average_y)
+            # R-squared: how many % of variation in y is explanined by the variation in x
+        # 
 # Unsupervised Learning: does not use previously known label values to train the model 
     # K-means Clustering: nominate the number of clusters (K) 
         # Centroid: center point of each cluster (each point is assigned to the nearest centroid) 
@@ -163,6 +168,27 @@
 ######################################################################################################
 ######################################################################################################
 # Azure ML Studio - Modules
+#
+# Clean Missing Data:
+    # e.g. mean for numeric, mode for string
+#
+# Edit Metadata:
+    # Make string variable to be categorical
+#
+# Split Data:
+#
+# Linear Regression:
+    # OLS
+    # Online Gradient Descent
+        # L2 Regularization Weight
+    # Random Seed
+#
+# Train Model:
+    # launch column selector: select target variable
+#
+# Score Model:
+#
+# Evaluate Model:
 #
 # Summarize Data: 
     # gemeral summary of a dataframe (min, max, mean, mode, missing data, etc.)
