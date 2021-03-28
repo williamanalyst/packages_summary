@@ -4,8 +4,8 @@
 #
 ########################################################################################
 # Linear Regression 
-    # SST = "Sum of Squares Total"
-    # SSR = "Sum of Squares Regression"
+    # SST = "Sum of Squares Total" = sum(predicted_y - actual_y_mean)^2
+    # SSR = "Sum of Squares Regression" = sum(actual_y - actual_y_mean)^2
     # SSE = "Sum of Squares Error" = RSS = "Residual/Remaining/Unexplained Sum of Squares"
     # SST = SSR + SSE
     # OLS = "Ordinary Least Squares" = "Lowest error"
