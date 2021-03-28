@@ -4,7 +4,7 @@
         # Dataset: 
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process)
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
-    # 4. Deploy and Consume Models (create compute production targer, deploy model as a service, create pipeline, publish pipeline as a web service)
+    # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
 # 
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
@@ -113,7 +113,13 @@
 ######################################################################################################
 # Supervised Learning: 
     # Classification
-        # 
+        # Logistic Regression
+        #
+        # Decision Tree: (could be for both categorical and continuous variables)
+            # Boosted Decision Tree:
+            # Decision Forest:
+            # Decision Jungle:
+        #
     # Regression
         #
 # Unsupervised Learning: does not use previously known label values to train the model 
@@ -144,7 +150,12 @@
             # Recursive Feature Elimination: random select variables in each iteration, keep the most important variables and removes least influential ones.
         # Embedded Method: 
 
-
+# Impact of Split Percentage:
+# Impact of Stratification:
+# Low L1 and High L2:
+# High L1 and Low L2:
+# High L1 and High L2:
+# Low L1 and Low L2: 
 
 
 ######################################################################################################
@@ -189,14 +200,17 @@
         # 
         # Recall = TP/ (TP + FN) = True Positive 
         # 
-        # Accuracy = (TP + TN)/ (TP + TN + FP + FN) 
+        # Accuracy = (TP + TN)/ (TP + TN + FP + FN) = total number of accurate predictions/ total number of observations
         # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
         # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
         # 
-        # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP) 
-    #    
-    # 
-    # ROC 
+        # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP)
+            # F1 Score = Weighted average (Harmonic Mean) of Precision and Recall = 2 * Precision * Recall / (Precision + Recall)
+    # AUC = Area Under Curve (e.g. value = 0.8)
+        # ROC = Receiver Operating Characteristics
+        # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
+            # TPR = True Positive Rate = TP / (TP + FN) = Recall
+            # FPR = False Positive Rate = FP / (FP + TN) = 
 ######################################################################################################
 # Question: Introduce Docker for Windows to attendee
     # 
