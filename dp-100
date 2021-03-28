@@ -120,7 +120,8 @@
             # Decision Forest:
             # Decision Jungle:
         #
-    # Regression
+    # Regression 
+        #
         #
 # Unsupervised Learning: does not use previously known label values to train the model 
     # K-means Clustering: nominate the number of clusters (K) 
@@ -159,7 +160,7 @@
 # High L1 and High L2:
 # Low L1 and Low L2: 
 
-
+######################################################################################################
 ######################################################################################################
 # Azure ML Studio - Modules
 #
@@ -183,7 +184,8 @@
 # Permutation Feature Importance
 
 
-# Hyperparameters Tuning: (every module has a set of input parameters, called hyperparameters)
+# Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
+    # helps in determining the best possible combination of model parameters to achieved a desicred result
     # 
     # Optimization Tolerance: when a new iteration does not decrease the loss function (e.g. delta loss < 10^-5 )
     # L1 Regularization: (Lasso Regression)
@@ -213,6 +215,10 @@
         # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
             # TPR = True Positive Rate = TP / (TP + FN) = Recall
             # FPR = False Positive Rate = FP / (FP + TN) = 
+#            
+#
+# Deploy Web Service: (based on score model)
+    # Could choose either REST API or excel file
 ######################################################################################################
 # Question: Introduce Docker for Windows to attendee
     # 
