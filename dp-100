@@ -2,9 +2,12 @@
     # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
         # Datastore: 
         # Dataset: 
-    # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process)
+    # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
+        #
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
+        #
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
+        # 
 # 
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
@@ -89,7 +92,8 @@
 # Azure Blueprint 
 
 ######################################################################################################
- 
+# Gradient Descent
+    # Cost Function
  
 
  
@@ -116,7 +120,8 @@
         # Logistic Regression
         #
         # Decision Tree: (could be for both categorical and continuous variables)
-            # Boosted Decision Tree:
+            # Boosted Decision Tree: (for classification by regions)
+                # 
             # Decision Forest:
             # Decision Jungle:
         #
@@ -127,22 +132,42 @@
                 # punish for large errors
             # RAE (Relative Absolute Error): sum(actual_y - predicted_y)/ sum(actual_y - actual_average_y)
             # R-squared: how many % of variation in y is explanined by the variation in x
-        # 
+                # r2 = SSR/ SST
+                    # SSR = sum of squared regression = sum(predicted_y - actual_y_mean)^2
+                    # SST = sum of squared total = sum(actual_y - actual_y_mean)^2
+    #
+    # Decision Tree Regression: (divide all the input variables by region, and return: either mean value of that region, or regression line for each region)
+        # Threshold
+    #
+    # 
 # Unsupervised Learning: does not use previously known label values to train the model 
+    # Clustering:
+        # e.g. recommendaiton, market segmentation, social network analysis, image segmentation, detect anomaly, etc.
+        # Euclidean Distance = 
+    #
     # K-means Clustering: nominate the number of clusters (K) 
         # Centroid: center point of each cluster (each point is assigned to the nearest centroid) 
             # Each centriod is moved to the center of the data points based on the mean distance of all points within that cluster
             # After moving the centroid, some data points may be closer to a differetn centriod (therefore the cluster will be re-assigned for that data point)
             # The centroid movements stop until the clustering is stable or the maximum steps allowed is reached 
+    # K-means++ (default in ML studio and an improvement over finding the initial means)
+        # Step 1: the 1st cluster center is chosen uniformly at random from the datapoints
+        # Step 2: each cluster center is chosen from the remaining datapoints with probablity propotional to its squared distance closest to existing cluster centers
+    #
+    # K-means++ Fast: (for faster clustering)
+    # Evenly
+    # 
+    # 
     # SVM 
         # Accuracy is more important than the margins in SVM
+    # 
 # 
 # Reinforcement Learning: 
- 
+    # 
 
     # 
 
-
+#
 # Feature Selection
     # for simplification of models so that they could be interpreted and understood more easily
     # for shorter training time
@@ -164,7 +189,11 @@
 # High L1 and Low L2:
 # High L1 and High L2:
 # Low L1 and Low L2: 
-
+#
+# Recommendation System: predict the rating/ preference that a customer would give to a new item
+    # 
+    # 
+#
 ######################################################################################################
 ######################################################################################################
 # Azure ML Studio - Modules
@@ -180,8 +209,11 @@
 # Linear Regression:
     # OLS
     # Online Gradient Descent
+        # create trainer mode
+        # learning rate
+        # number of training epochs
         # L2 Regularization Weight
-    # Random Seed
+        # Random Seed
 #
 # Train Model:
     # launch column selector: select target variable
@@ -208,8 +240,11 @@
     # corr(x1, y)
 # Fisher Linear Discriminant Analysis
 # Permutation Feature Importance
-
-
+#
+# Boosted Decision Tree Regression:
+    # Parameter Range
+    # 
+#
 # Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
     # helps in determining the best possible combination of model parameters to achieved a desicred result
     # 
@@ -218,8 +253,8 @@
         # Lasso regression can shrink some coefficients to zero, which means performing variable selection
     # L2 Regularization: (Ridge Regression)
         # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
-
-
+#
+#
 # Evaluate Model Module:
     # Confusion Matrix:
         #               Predicted(True)     Predicted(False)
