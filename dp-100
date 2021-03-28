@@ -128,6 +128,8 @@
             # Each centriod is moved to the center of the data points based on the mean distance of all points within that cluster
             # After moving the centroid, some data points may be closer to a differetn centriod (therefore the cluster will be re-assigned for that data point)
             # The centroid movements stop until the clustering is stable or the maximum steps allowed is reached 
+    # SVM 
+        # Accuracy is more important than the margins in SVM
 # 
 # Reinforcement Learning: 
  
