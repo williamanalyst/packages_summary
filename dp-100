@@ -191,8 +191,43 @@
 # Low L1 and Low L2: 
 #
 # Recommendation System: predict the rating/ preference that a customer would give to a new item
+    # Problem: cold start, same scale judgement (users not having same standard)
     # 
-    # 
+    # Collaborative Filering: (need user preference and much user activities data)
+        # Similar action is assumed for people with similar taste/ preference in the past.
+    # Content-base Filering: (need item features + need user to like a few items)
+        # Similar feature within the items.
+    # Popularity Based Filering:
+        # Simply recommend what is generally popular.
+    # Hybrid System:
+        # Matchbox Recommendation System: 
+    #
+    # Recommender Split:
+#
+# Natural Language Processing:
+    # Step 1: Noise Removal:
+        # Stopwords, Stemming (lemma), Upper/Lower case, numbers, special characters (%, $, etc.). duplication, email, url, etc.
+        # Need to consider separation in sentence.
+        # Tokenization (e.g. did not = did't)
+        # Part-of-speech (e.g. build != building)
+    # Step 2: Convert into Feature Vectors: (may encounter Curse of dimensionality)
+        # Feature Engineering: 
+            # Bag of words:
+                # based on the occurrance of words
+            # N-gram model: (instead of a single word, get 2 words, 3 words as basic components in the feature selection)
+                # e.g. Machine ____ (would recommending learning if "leaning" has the highest chance of being mentioned) (based on probablity)
+    # Step 3: Train, Score and Deploy Model:
+#
+# Feature Hashing:
+    # fixed-size array:
+    # linked list:
+    # hashing:
+        #
+#
+# Azure AutoML:
+    # Step 1: bring in dataset.
+    # Step 2: define goal, constraints, etc.
+    # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
 #
 ######################################################################################################
 ######################################################################################################
@@ -253,6 +288,12 @@
         # Lasso regression can shrink some coefficients to zero, which means performing variable selection
     # L2 Regularization: (Ridge Regression)
         # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
+#
+# Partition and Sample:
+# 
+# 
+
+
 #
 #
 # Evaluate Model Module:
