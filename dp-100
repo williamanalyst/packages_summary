@@ -24,7 +24,8 @@
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
  
-# 
+# When 2 experiment has the same name, they will be classified under the same experiment, just different runs for the same experiment.
+    # e.g. from Run 1 to Run 2 (previous output will not be impacted)
  
 # Azure Container Instance
 
