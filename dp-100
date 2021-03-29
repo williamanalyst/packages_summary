@@ -96,8 +96,9 @@
     # Cost Function
  
 
- 
- 
+# Accuracy
+# AUC Weighted
+# 
  
 # Mean Deviation (when the number of observations is small)
 # Standard Deviation (when the number of observations is large)
@@ -230,6 +231,7 @@
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
 #
 ######################################################################################################
+# 
 ######################################################################################################
 # Azure ML Studio - Modules
 #
