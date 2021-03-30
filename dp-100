@@ -1,7 +1,17 @@
 # DP100 Exam Curriculum
     # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
-        # Datastore: 
-        # Dataset: 
+        # Datastore: Datastore securely connect to your storage service on Azure without pytting your authentication credentials, 
+            # and the integrity of your original data source at risk. They store connection information, like your subscription ID and token authorization
+            # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
+                # You can create datastores that connect to these Azure store solutions.
+            # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
+                # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
+        # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
+            # FileDataset:
+                # A FileDataset references single or multiple files in your datastores or public URLs.
+                    # If your data is already cleansed, and ready to use in training experiments, 
+                    # you can download or mount the files to your compute as a FileDataset Object.
+            # TabularDataset:
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
         #
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
@@ -62,8 +72,7 @@
 # Merge datasets on column values
     # join data
 
-
- 
+#  
  
  
  
@@ -326,7 +335,9 @@
     # Could choose either REST API or excel file
 ######################################################################################################
 # Question: Introduce Docker for Windows to attendee
-    # 
+    # BIOS-enabled visualisation
+    # Windows 10 64-bit professional
+    
 # Question: Select Data Science Environment
     # 
  
