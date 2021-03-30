@@ -59,19 +59,43 @@
         # feaudulent behaviour, natural outliers, sampling error, etc.
     # boxplot, histogram and scatterplot are recommended to identify outliers visually
         # as well as percentile analysis (most common method is visualization)
-    #
-    
+#    
 # Variables at different scale
     # Normalize the dataset
-# Too many variables or curse of dimensionality
-    # PCA
+#
+# Too many variables or curse of dimensionality (100 or 1000 variables)
+    # too sparse data and low accuracy
+    # require high run time
+    # may lead to over-fitting
+        # Principal Component Analysis (PCA)
+            # Create a new set of coordinates for the data
+            # Reveals the internal structure of the data that best explains the variance in the data
+            # Reduce the dimensionality 
+                # Eigenvectors
+                # Eigenvalues
+#
 # Missing Value in a large dataset
     # replace with MICE
-# Unbalanced Dataset (e.g. fraud data)
-    # SMOTE
+# Unbalanced Dataset: presence of minority class in the dataset (e.g. 0.5% fraud, 99.5% without fraud data)
+    (e.g. manufacturing defects, rare disease disgnosis, etc.)
+    # might have biased predictions
+    # might have misleading accuracy
+    # Need to either decrease the majority (e.g. Random Under-Sampling) class or increase the minority class (e.g. SMOTE)
+        # If we are simply duplicate the minority class, that is likely to cause over-fitting problem.
+        # Synthetic Minority OverSampling Technique (SMOTE)
+            # Step 1: Identify the feature vector and its nearest neighbor
+            # Step 2: Take the difference between the 2 (feature vector and its nearest neighbor)
+            # Step 3: Multiply the difference with a random number between 0 and 1
+            # Step 4: Identity a new point on the line segment by adding the random number to the feature vector
+            # Step 5: Repeat the process for identified feature vectors.
 # Merge datasets on column values
-    # join data
-
+    # join data (datasets are related by key columns)
+        # types of joins:
+            # Inner Join: select only records that exist in both tables
+            # Left Outer Join: select all rows in the left table, and some rows from the right table with matched keys
+            # Full Outer Join: select all the rows from both tables
+            # Left Semi Join: select left table rows and columns only, and the rows must have mathing keys in the right table
+#
 #  
  
  
@@ -104,7 +128,14 @@
 ######################################################################################################
 # Gradient Descent
     # Cost Function
- 
+#
+# Normalization: a method to standardize the range of independent variables or features of data
+    # Variables are fitted within a certain range (generally between 0 and 1, e.g. min-max scaler)
+    # applied only on numeric values
+    # Z-score
+    # Min-Max Scaler
+    # Logistic
+
 
 # Accuracy
 # AUC Weighted
@@ -241,17 +272,47 @@
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
 #
 ######################################################################################################
-# 
-######################################################################################################
 # Azure ML Studio - Modules
+######################################################################################################
+# Import Dataset:
+# 
+# SMOTE
+    # Selected Column: 
+    # SMOTE percentage: 
+    # Number of nearest neighbors:
+    # Random Seed: 
+#
+# Normalize Data:
+    # Transformation Method:
+    # Selected Column: (numeric only)
 #
 # Clean Missing Data:
+    # Cleaning Mode:
+        # Replace using MICE
     # e.g. mean for numeric, mode for string
 #
 # Edit Metadata:
     # Make string variable to be categorical
 #
+# Join Data:
+    # Selected Key for Left Table:
+    # Selected Key for Right Table:
+    # Match Case:
+    # Join Type:
+    # Keep right Key columns in the joined table:
+#
+# Principal Component Analysis:
+    # Select Columns:
+    # Number of dimensionality to reduce to:
+        # Normalize dense dataset to zero mean
+#
 # Split Data:
+    # Splitting Mode: 
+        # split rows:
+        # Regular Expression: 
+    # Fraction of rows in the 1st split: 0.7
+    # Random Seed: 123
+    # Stratified Split: False
 #
 # Linear Regression:
     # OLS
@@ -270,7 +331,8 @@
 # Evaluate Model:
 #
 # Summarize Data: 
-    # gemeral summary of a dataframe (min, max, mean, mode, missing data, etc.)
+    # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
+        # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
 # Clip Values: 
     # set of threshold
         # 
@@ -304,8 +366,16 @@
 # Partition and Sample:
 # 
 # 
-
-
+# K-Means Clustering
+    # Create Trainer Mode (single parameter)
+    # Number of Centroids
+    # Initialization (K-Means++, K-Means++ Fast, First N, Forgy Method, Evenly and by Use Label Column.)
+        # Use Label Column: use a variable from the existing dataset to guide selection of the centroids.
+        # 
+    # Random Number Seed:
+    # Metric: Euclidean, Cosine
+    # Iterations: 
+    # Assign Label Mode: 
 #
 #
 # Evaluate Model Module:
@@ -384,7 +454,8 @@
 
 
 
-
+# Question: how to deal with new data input that does not exist in the training dataset.
+    # 
 
 
 
