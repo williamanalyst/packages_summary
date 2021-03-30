@@ -217,7 +217,27 @@
     # for avoiding the curse of dimensionality
     # for enhanced generalization that helps reducing over-fitting
         # Filter-based Method: use the correlation of x1, x2, x3, ... xn to Y, and choose the most relevant/ influential x
+            # Pearson Correlation Coefficient (from =1 to +1 )
+                # may be impacted significantly by outliers
+                # not good for non-linear relationship
+        # Chi-squared Test of Independence:
+            # evaluate the relationship between 2 categorical variables
+                # Step 1: Define Null and Alternative Hypothesis
+                    H0: there is no correlationship between the 2 variables (try to reject H0)
+                    H1: alternative, there is correlation
+                # Step 2: Define Alpha (probablity that H1 is true, e.g. alpha = 5%)
+                # Step 3: Calculate the Degree of Freedom 
+                    # DOF = (num of rows - 1) * (number of columns - 1) = (2-1) * (3-1) = 2
+                # Step 4: State the Decision Rule:
+                    # Critical value for chi-squared distribution
+                # Step 5: Calculate the Test Statistics:
+                    # 
+                # Step 6: Results and Consultion:
+                    # if chi-squared value exceeds the limit, reject H0
+        # Kendall Correlation Rank Correlation:
+            # 
             # e.g. Pearson Correlation, Chi-squared, Mutual Information, Fisher Score, etc.
+        #
         # Wrapper Method: test with different combinations of x1, x2, x3, ... xn, and choose the combination of variables that has the best performance
             # e.g. accuracy/ precision or RMSE based on different models
             # Forward Selection: add 1 variable after 1 variable
@@ -245,6 +265,28 @@
         # Matchbox Recommendation System: 
     #
     # Recommender Split:
+    #
+# Azure ML Matchbox Recommender System:
+    # Based on the Hybrid approach of content and collaborative filering technique
+        # When customers are new, rely on item feature
+        # When customers have sufficient activities, use activities as well
+    # Require user-item-rating triples and, optionally, somer user and item features.
+        # First Input: (mandatory)
+            # Column 1: User Identifier
+            # Column 2: Item Identifier
+            # Column 3: Rating for the User-Item pair (has to be either numeric or categorical)
+        # Second Input: (Optional)
+            # User ID and the user Features (1st column must be User ID if not blank here)
+        # Third Input: (Optional)
+            # Item ID and Item features (1st column must be Item ID if not blank here)
+    # Number of Traits:
+        # How many traits to learn for each user and item
+        # Each feature is associated with a latent "trait" vector
+    # Number of Recommendation Algorithm Iterations:
+        # How many times that the algorithm should process the data
+            # recommended 5-10
+    # Number of Training Batches:
+        # Number of batches for dividing the data into during training
 #
 # Natural Language Processing:
     # Step 1: Noise Removal:
@@ -276,6 +318,9 @@
 ######################################################################################################
 # Import Dataset:
 # 
+# Add Columns:
+# Add Rows:
+#
 # SMOTE
     # Selected Column: 
     # SMOTE percentage: 
@@ -328,6 +373,20 @@
 #
 # Score Model:
 #
+# Score Mathbox Recommendation:
+    (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
+    (can also be used for "people like you" predictions)
+    # Recommender Prediction Kind:
+        # Predict Ratings: ()
+        # Item Recommendation: 
+            (from rated items for model evaluation)
+            # Generate a list of items that will appeal to each customer
+        # 
+    # Recommended Item Selection:
+    # Maximum Number of Items to Recommend:
+    # Minimum size of recommendation pool for a single user:
+    # Whether to return predicted 
+#
 # Evaluate Model:
 #
 # Summarize Data: 
@@ -345,7 +404,14 @@
     # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
 
 
-# Filter Based Feature Selection
+# Filter Based Feature Selection:
+    # Feature Scoring Method:
+        # Pearson's Correlation:
+        # Spearman (relatively more reliable when having some, but not extreme outliers)
+        # Kandell: (more reliable when having significant outliers)
+    # Target Column:
+    # Number of Desired Features:
+    # 
     # corr(x1, y)
 # Fisher Linear Discriminant Analysis
 # Permutation Feature Importance
