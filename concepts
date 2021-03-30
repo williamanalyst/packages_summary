@@ -16,8 +16,13 @@
     # and provides information to evaluate the fitness level of data for intended uses.
     
 
+# Data Mining: Data mining is the process of finding relevant info which had not been found in the past.
+    # It is the process that row data is turned into valuable information.
+# Data Profiling: Data profiling is usually done to access a dataset for its uniqueness, consistency and logic.
+    # It does not identify whether data is accurate or correct.
+# Data Wrangling: Data wrangling is the process of cleaning, structuring and enriching the raw data into a desired format for better decision making.
+    # Discover + Structure + Clean + Enrich + Validate + Analyze
 
-# 
 ###############################################################################################################
 # Structured Data (typically stored in relational database, such as SQL Server or Azure SQL Database)
 # Semi-Structured Data (e.g. documtents, could be in JSON format, similar to key-value store, typically stored in Azure Cosmos DB)
