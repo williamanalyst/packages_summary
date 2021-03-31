@@ -317,7 +317,7 @@
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
 #
 ######################################################################################################
-# Azure ML Studio - Modules
+# Azure ML Studio - Modules (should practice 3+ times)
 ######################################################################################################
 # Import Dataset:
 # 
