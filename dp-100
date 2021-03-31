@@ -308,6 +308,9 @@
     # hashing:
         #
 #
+# Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
+# Local Feature Importance: based on certain observations only
+#
 # Azure AutoML:
     # Step 1: bring in dataset.
     # Step 2: define goal, constraints, etc.
