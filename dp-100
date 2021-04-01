@@ -477,10 +477,23 @@
 ######################################################################################################
 # Exam Questions:
     #
-
+# Question: 
+    # Data Engineering and Data Science Environment:
+        # Support Python and Scala
+        # Compose data storage, movement and processing service into automated data pipelines
+        # The same tool should be used for the orchestration of both data engineering and data science
+        # Support workload isolation and interactive workloads
+        # enable scaling across a cluster of machines
+        # You need to create the environment: should build the environment in Azure Databricks and use Azure Data Factory for orchestration.
+            # Apache Spark: support Python, R, Scala, SQL
+            # High concurrency: Azure Databricks is fully integrated with Azure Data Factory.
+                # Azure Container: Azure Container is good for development and testing, not suitable for production workloads.
+#
 # Question: Introduce Docker for Windows to attendee
-    # BIOS-enabled visualisation
+    # BIOS-enabled (Basic Input-Output System) virtualization
+        # Must make sure that the machine supports Hardware Virtualization and that Virtualization is enabled.
     # Windows 10 64-bit professional
+        # To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher.
     
 # Question: Select Data Science Environment
     # 
