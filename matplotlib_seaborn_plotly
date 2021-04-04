@@ -145,7 +145,9 @@ sns.palplot(sns.color_palette('Paired', 12)) #
 sns.palplot(sns.color_palette('Blues', 12)) # 'Purples', 'husl', 'coolwarm'
 sns.palplot(sns.color_palette('BrBG', 12))
 
-#
+# Violin Plot
+    # A Violin Plot is basically a combination of a box plot + a kernel density plot (KDE).
+        # 
 sns.violinplot(data = df, x = 'col1', y = 'col2')
 sns.lvplot(data = df, x = 'col1', y = 'col2') # similar to violin plot, easier to interpret, quicker to run
 #
