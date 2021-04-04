@@ -16,7 +16,9 @@ df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missi
     dtype = {'column_name1': 'str', 'column_name2': 'float'})
 # rename column names
 df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
-
+#
+df.isnull() 
+df_count_null = df.isnull().sum()
 ############################################################################################
 # filter dataframe with .loc
 df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
@@ -32,22 +34,27 @@ max_values = df.max(axis = 1, skimna = False)
 print(max_values)
 
 # Get the max value in each column in each group
-
-
+#
+#
 
 ############################################################################################
 # .pct_change()
 
 ############################################################################################
 # append data to existing dataframe
-#
+	# Append Rows:
 df = df.append({'col1': value1, 'col2': 'str2'}, ignore_index = True)
-#
+	# Append Columns:
+	df_concat = pd.concat([df1, df2], ignore_index = True) # 
 #
 ############################################################################################
 # Drop Columns:
-	# 
+	# df = df.iloc[:, :-1]
+	# df = df.drop(['col1', 'col2', 'col3'], axis = 1)
 #
+df_clean1 = df.dropna()
+df_clean2 = df.dropna(axis = 1)
+df_clean3 = df.
 #
 ############################################################################################
 # .shift() to apply either lag or ahead
@@ -138,4 +145,3 @@ df['current_minus_next'] = df['col'].diff(-1)
 #
 
  
-v
