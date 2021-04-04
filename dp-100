@@ -28,8 +28,10 @@
 # 
 # 
 ######################################################################################################
+# General Concepts
+######################################################################################################
 # AI (Artificial Intelligence) = computer performing tasks without being specifically programmed to.
- 
+# CUDA (Compute Unified Device Architect) 
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
@@ -434,6 +436,10 @@
 #
 # Partition and Sample:
 # 
+# Convert to ARFF: 
+    # Convert datasets and results in Azure ML to attribute-relation file format (ARFF) used by the Weka toolset.
+    # The ARFF data specification for Weka supports multiple ML tasks, including data preprocessing, classification, and feature selection.
+        # In ARFF format, data is organized by entities and their attributes, and is contained in a single text file.
 # 
 # K-Means Clustering
     # Create Trainer Mode (single parameter)
@@ -479,11 +485,14 @@
     #
 # Question: 
     # Data Engineering and Data Science Environment:
-        # Support Python and Scala
+        # Support Python and Scala 
+            # Azure Databricks
         # Compose data storage, movement and processing service into automated data pipelines
+            # Azure Data Factory
         # The same tool should be used for the orchestration of both data engineering and data science
         # Support workload isolation and interactive workloads
         # enable scaling across a cluster of machines
+            # Azure Databricks/ Azure ML Studio
         # You need to create the environment: should build the environment in Azure Databricks and use Azure Data Factory for orchestration.
             # Apache Spark: support Python, R, Scala, SQL
             # High concurrency: Azure Databricks is fully integrated with Azure Data Factory.
@@ -496,25 +505,41 @@
         # To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher.
     
 # Question: Select Data Science Environment
-    # 
+    # Azure Cognitive Services:
+        # Azure Cognitive Serviers expand on Microsoft's evolving portfolio of ML APIs ane enable developers to easily add cognitive features:
+            # e.g. emotion and video detection, facial, speech, and vision recognition; and speech and language understanding into applications.
+            # Azure Cognitive Services can be categorized into 5 main pillars: Vision, Speech, Language, Search and knowledge.
+    # Azure Data Lake Analytics:
+    # Azure HDInsight with Spark MLLib:
+    # Azure ML Studio: 
  
 # Question: Move large dataset from Azure ML Studio to Weka environment
     # 
     
 #   
- 
-# DSVM (Data Science Virtual Machine)
- 
+# Question: Difference between DSVM and Azure ML Compute Instance:
+    # DSVM (Data Science Virtual Machine)
+        # The DSVM is a customized VM image on the Azure Cloud platform built specifically for doing data science.
+            # DSVM support Python, R, Julia, SQL, C#, Java, Node.js
+            # Operating sytem support Ubuntu and Windows.
+            # Allows Scale up option.
+            # Without built-in hosted notebooks
+            # Pre-installed tools include: Jupyter(Lab), RStudio Server, VSCode, Visual Studio, PyCharm, Juno, Power BI Desktop, SSMS, Office 365, Apache Drill.
+    # Azure Machine Learning Compute Instance:
+        # Azure ML Compute Instance are fully configured and managed VM image whereas DSVM is an unmanaged VM.
+            # Azure ML Compute Instance only support Python and R.
+            # Only works on Ubuntu.
+            # Allows Scale up option.
+            # With built-in hosted Notebooks.
+            # Pre-installed tools only include: Jupyter(Lab), RStudio Server
+    # DLVM (Deep Learning Virtial Machine)
+        # DLVM is a pre-configured environment for deep learning using GPU instance.
+#
 # Question: Classification task, dataset is inbalanced, how to improve classification accuracy?
     # SMOTE (Synthetic Minority Oversampling Technique)
         # 200 SMOTE percentage would increase 1% minority class to around 3% (2/101)
-
-
-# Azure Cognitive Service: 
-# Azure Data Lake Analytics:
-# Azure HDInsight with Spark MLLib:
-# Azure ML Studio:
-
+#
+#
 # Question: You can move data to and from Azure Blob using different technologies include:
     # Azure Storage Explorer
     # AzCopy
@@ -522,12 +547,12 @@
     # SSIS
     
 # Question: Moving a large dataset from Azure ML Studio to a Weka environment:
-    # Weka: weka is used for visual data mining and machine learning software in Java.
+    
     # 
-
-
-# Rattle: Rattle is the R analytical tool that gets you started with data analytics and machine learning.
-
+# Question: 
+    # Weka: weka is used for visual data mining and machine learning software in Java.
+    # Rattle: Rattle is the R analytical tool that gets you started with data analytics and machine learning.
+# 
 
 # Caffe2: 
     #
@@ -544,6 +569,38 @@
 
 # Question: how to deal with new data input that does not exist in the training dataset.
     # 
+
+
+# Question: script to retrieve the output file names:
+    # 
+
+# Question: deploy the model to a context that allows for real-time GPU-Based inferencing:
+    # Should use compute type: Azure Kubernates Service
+        # For web-service deployment, GPU inferencing is only supported on Azure Kubernates Service.
+        # For inferencing using a Machine Learning pipeline, GPUs are only supported on Azure Machine Learning Compute.
+#
+# Question: Batch inferencing, need to monitor the progress of the pipeline execution:
+    # 
+#
+# Question: how to ensure the correct version of Pytorch can be identified for the inferencing environment when the model is deployed?
+    # 
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
