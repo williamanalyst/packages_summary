@@ -304,11 +304,7 @@
                 # e.g. Machine ____ (would recommending learning if "leaning" has the highest chance of being mentioned) (based on probablity)
     # Step 3: Train, Score and Deploy Model:
 #
-# Feature Hashing:
-    # fixed-size array:
-    # linked list:
-    # hashing:
-        #
+
 #
 # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
 # Local Feature Importance: based on certain observations only
@@ -339,7 +335,16 @@
 # Clean Missing Data:
     # Cleaning Mode:
         # Replace using MICE
-    # e.g. mean for numeric, mode for string
+    # MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
+        # Clean the missing value without affecting/ reducing the dimensionality of the feature set.
+        # 
+        # assuming that the data is missing randomly (not systematically or biased to a reason)
+        # Step 1: calculate the mean value based on available data
+        # Step 2: replace all missing value with mean
+        # Step 3: choose dependent column and restore original (for the 1 column that you would like to fill/ solve)
+        # Step 4: apply transformation and create prediction model
+        # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
+            # e.g. mean for numeric, mode for string
 #
 # Edit Metadata:
     # Make string variable to be categorical
@@ -364,6 +369,54 @@
     # Random Seed: 123
     # Stratified Split: False
 #
+# Group Data into Bins:
+    # 
+#
+# Latent Direchlet Transformation:
+    # Topic Modelling:
+# 
+# Build Counting Transformation Module:
+#
+# Missing Value Scrubber (deprecated)
+#
+# Replace Discrete Values:
+    # 
+#
+######################################################################################################
+# Python Language Modules:
+    # Python Language Modules:
+    # Execute Python Script:
+        # With Python, users could perform tasks that are not currently supported by existing ML Studio Modules.
+            # e.g. Visualizing data with Matplotlib
+            # e.g. Using python libraries to enumerate datasets and models in your workspace
+            # e.g. reading, loading, and manipulating data froms sources not supported by the "Import Data" Module
+#
+# Convert to Indicator Values Module:
+    # Use the Convert to Indicator Values module to convert columns that contain categorical values into a series of binray indicator columns
+        # that can be used as a series of features in the ML model.
+        # (similar to one-hot encoding)
+#
+# Partition and Sample:
+    # Expected Input = Data Table
+    # Expected Output = Data Table
+        # Filter 1: Partition or Sample Mode:
+            #
+        # Filter 2: Rate of Sampling:
+            #
+        # Filter 3: Random Seed for Sampling
+            # default to be 0
+        # Filer 4: Stratified split for Sampling
+            # True/ False
+    # Sampling is an important module in ML as it lets you reduce the size of a dataset while maintaining the same ratio of values.
+        # Dividing your data into multiple subsections of the same size.
+            # e.g. you might use the partition for cross-validation, or to assign cases to random groups
+        # Separating data into groups then work with data from a specific group.
+            #
+        # Sampling.
+            # e.g. either by percentage with random sampling, choose a column to use for balancing the dataset, or perform stratified sampling, etc.
+        # Creating smaller datasets for testing.
+            # e.g. to save processing time during testing
+#
 # Linear Regression:
     # OLS
     # Online Gradient Descent
@@ -372,6 +425,7 @@
         # number of training epochs
         # L2 Regularization Weight
         # Random Seed
+#
 #
 # Train Model:
     # launch column selector: select target variable
@@ -394,21 +448,28 @@
 #
 # Evaluate Model:
 #
+# Export Count Table Module:
+    # 
+#
 # Summarize Data: 
     # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
         # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
+        # e.g. how many missing values are there in each column
+        # e.g. how many unique values are there in each feature column
+        # e.g. what is the mean and standard deviation of each numeric column
+#
 # Clip Values: 
     # set of threshold
         # 
-# MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
-    # assuming that the data is missing randomly (not systematically or biased to a reason)
-    # Step 1: calculate the mean value based on available data
-    # Step 2: replace all missing value with mean
-    # Step 3: choose dependent column and restore original (for the 1 column that you would like to fill/ solve)
-    # Step 4: apply transformation and create prediction model
-    # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
-
-
+#
+# Feature Hashing:
+    # Feature hashing is used for linguistics, and works by converting unique tokens into unique integers.
+    #
+    # fixed-size array:
+    # linked list:
+    # hashing:
+        #
+#
 # Filter Based Feature Selection:
     # Feature Scoring Method:
         # Pearson's Correlation:
@@ -585,6 +646,10 @@
 # Question: how to ensure the correct version of Pytorch can be identified for the inferencing environment when the model is deployed?
     # 
 #
+# Question: Need to normalize values to produce an output column into bins to predict target column:
+    # Entropy MDL Bining Mode:
+#
+# 
 
 
 
