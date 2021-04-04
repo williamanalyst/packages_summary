@@ -10,6 +10,7 @@ df.dtypes
 # loading data
 df = pd.read_csv('sample_file.csv') # comma separated file
 df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
+df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
 	dtype = {'column_name1': 'str', 'column_name2': 'float'})
@@ -41,7 +42,13 @@ print(max_values)
 # append data to existing dataframe
 #
 df = df.append({'col1': value1, 'col2': 'str2'}, ignore_index = True)
-
+#
+#
+############################################################################################
+# Drop Columns:
+	# 
+#
+#
 ############################################################################################
 # .shift() to apply either lag or ahead
 df['col1_lag1'] = df.groupby(['group_col'])['col1'].shift(1)
