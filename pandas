@@ -138,3 +138,4 @@ df['current_minus_next'] = df['col'].diff(-1)
 #
 
  
+v
