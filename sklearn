@@ -1,19 +1,37 @@
+#######################################################################################
+# Data Normalization:
+    # MinMaxScaler:
+        from sklearn.preprocessing import MinMaxScaler
+        scaler = MinMaxScaler()
+        #
+        columns = df.select_dtypes(include = 'numeric').columns
+        df[columns] = scaler.fit_transform(df[columns])
+    # Z-transformation:
+        from sklrarn.preprocessing import StandardScaler
+        scaler = StandardScaler()
+        #
+        #
+#######################################################################################
+# Label Encoding:
+    # 
+
+#######################################################################################
 # split train and test dataset
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 21, stratify = y) #
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 21, stratify = y) #
 
-# K-NN (K-nearest neighbors, to predict, choose the closest K points of the item to be predicted, 
-    # check to which group do they belong to, and classify it to the group with highest frequency.)
-        # large K = smoother decision boundary = less complex model
-        # small K = more complex model = risk of over-fitting
-from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborClassifier(n_neighbors = 6)
-knn.fit(X_train, y_train)
+    # K-NN (K-nearest neighbors, to predict, choose the closest K points of the item to be predicted, 
+        # check to which group do they belong to, and classify it to the group with highest frequency.)
+            # large K = smoother decision boundary = less complex model
+            # small K = more complex model = risk of over-fitting
+    from sklearn.neighbors import KNeighborsClassifier
+    knn = KNeighborClassifier(n_neighbors = 6)
+    knn.fit(X_train, y_train)
 #
-prediction = knn.predict(X_test)
-knn.score(X_train, y_train) # accuracy on the training dataset
-knn.score(X_test, y_test) # accuracy on the test dataset
-
+    prediction = knn.predict(X_test)
+    knn.score(X_train, y_train) # accuracy on the training dataset
+    knn.score(X_test, y_test) # accuracy on the test dataset
+#
 #######################################################################################
 # linear regression (ordinary least squares = minimize the sum of residual-squared )
 from sklearn.linear_model import LinearRegression
