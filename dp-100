@@ -338,6 +338,7 @@
         # Threshold
     #
     # 
+######################################################################################################
 # Unsupervised Learning: does not use previously known label values to train the model 
     # Clustering:
         # e.g. recommendaiton, market segmentation, social network analysis, image segmentation, detect anomaly, etc.
@@ -360,12 +361,14 @@
         # Accuracy is more important than the margins in SVM
     # 
 # 
+######################################################################################################
 # Reinforcement Learning: 
     # 
 
     # 
 
 #
+######################################################################################################
 # Feature Selection
     # for simplification of models so that they could be interpreted and understood more easily
     # for shorter training time
@@ -444,6 +447,7 @@
     # Number of Training Batches:
         # Number of batches for dividing the data into during training
 #
+######################################################################################################
 # Natural Language Processing:
     # Step 1: Noise Removal:
         # Stopwords, Stemming (lemma), Upper/Lower case, numbers, special characters (%, $, etc.). duplication, email, url, etc.
@@ -467,6 +471,67 @@
     # Step 1: bring in dataset.
     # Step 2: define goal, constraints, etc.
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
+#
+#
+    # Replace using MICE
+    # MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
+        # Clean the missing value without affecting/ reducing the dimensionality of the feature set.
+        # 
+        # assuming that the data is missing randomly (not systematically or biased to a reason)
+        # Step 1: calculate the mean value based on available data
+        # Step 2: replace all missing value with mean
+        # Step 3: choose dependent column and restore original (for the 1 column that you would like to fill/ solve)
+        # Step 4: apply transformation and create prediction model
+        # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
+            # e.g. mean for numeric, mode for string
+######################################################################################################
+#
+# Principal Component Analysis:
+    # Select Columns:
+    # Number of dimensionality to reduce to:
+        # Normalize dense dataset to zero mean
+#
+# Latent Direchlet Transformation:
+    # Topic Modelling:
+# 
+# Build Counting Transformation Module:
+#
+
+#
+# Replace Discrete Values:
+    # 
+#
+#
+# Score Mathbox Recommendation:
+    (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
+    (can also be used for "people like you" predictions)
+    # Recommender Prediction Kind:
+        # Predict Ratings: ()
+        # Item Recommendation: 
+            (from rated items for model evaluation)
+            # Generate a list of items that will appeal to each customer
+        # 
+    # Recommended Item Selection:
+    # Maximum Number of Items to Recommend:
+    # Minimum size of recommendation pool for a single user:
+    # Whether to return predicted 
+#
+# Fisher Linear Discriminant Analysis
+#
+# Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
+    # helps in determining the best possible combination of model parameters to achieved a desicred result
+    # 
+    # Optimization Tolerance: when a new iteration does not decrease the loss function (e.g. delta loss < 10^-5 )
+    # L1 Regularization: (Lasso Regression)
+        # Lasso regression can shrink some coefficients to zero, which means performing variable selection
+    # L2 Regularization: (Ridge Regression)
+        # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
+#
+# 
+# Convert to ARFF: 
+    # Convert datasets and results in Azure ML to attribute-relation file format (ARFF) used by the Weka toolset.
+    # The ARFF data specification for Weka supports multiple ML tasks, including data preprocessing, classification, and feature selection.
+        # In ARFF format, data is organized by entities and their attributes, and is contained in a single text file.
 #
 ######################################################################################################
 # Azure ML Studio Modules (should practice 3+ times)
@@ -512,6 +577,9 @@
     # Convert to CSV:
     # Convert to Dataset:
     # Convert to Indicator Values:
+        # Use the Convert to Indicator Values module to convert columns that contain categorical values into a series of binray indicator columns
+            # that can be used as a series of features in the ML model.
+            # (similar to one-hot encoding)
     # Edit Metadata: (Make string variable to be categorical)
         # Filter 1: Select Column
         # Filter 2: Select Data Type
@@ -589,6 +657,15 @@
     # Decision Forest Regression:
     # Fast Forest Quantile Regression:
     # Linear Regression:
+        # Filter 1: Solution Method:
+            # OLS
+            # Online Gradient Descent
+                # create trainer mode
+                # learning rate
+                # number of training epochs
+        # Filter 2: L2 Regularization Weight
+        # Filter 3: Include Intercept Term:
+        # Filter 4: Random Seed
     # Neural Network Regression:
     # Poission Regression:
 # Clustering Models:
@@ -723,112 +800,16 @@
             # e.g. how many unique values are there in each feature column
             # e.g. what is the mean and standard deviation of each numeric column
 
-
-
-
-
-
-
-
-
-
-#
-    # Replace using MICE
-    # MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
-        # Clean the missing value without affecting/ reducing the dimensionality of the feature set.
-        # 
-        # assuming that the data is missing randomly (not systematically or biased to a reason)
-        # Step 1: calculate the mean value based on available data
-        # Step 2: replace all missing value with mean
-        # Step 3: choose dependent column and restore original (for the 1 column that you would like to fill/ solve)
-        # Step 4: apply transformation and create prediction model
-        # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
-            # e.g. mean for numeric, mode for string
 ######################################################################################################
-            # 
-
-#
-# Principal Component Analysis:
-    # Select Columns:
-    # Number of dimensionality to reduce to:
-        # Normalize dense dataset to zero mean
-#
-# Latent Direchlet Transformation:
-    # Topic Modelling:
-# 
-# Build Counting Transformation Module:
-#
+# Deprecated Modules: (for reference only)
+######################################################################################################
 # Missing Value Scrubber (deprecated)
-#
-# Replace Discrete Values:
-    # 
-
-# Convert to Indicator Values Module:
-    # Use the Convert to Indicator Values module to convert columns that contain categorical values into a series of binray indicator columns
-        # that can be used as a series of features in the ML model.
-        # (similar to one-hot encoding)
-#
-
-
-    # 
-    # Linear Regression:
-        # OLS
-        # Online Gradient Descent
-            # create trainer mode
-            # learning rate
-            # number of training epochs
-            # L2 Regularization Weight
-            # Random Seed
-#
-
-#
-#
-# Score Mathbox Recommendation:
-    (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
-    (can also be used for "people like you" predictions)
-    # Recommender Prediction Kind:
-        # Predict Ratings: ()
-        # Item Recommendation: 
-            (from rated items for model evaluation)
-            # Generate a list of items that will appeal to each customer
-        # 
-    # Recommended Item Selection:
-    # Maximum Number of Items to Recommend:
-    # Minimum size of recommendation pool for a single user:
-    # Whether to return predicted 
-#
-
 # Export Count Table Module:
-    # 
-
-
-#
-
-# Fisher Linear Discriminant Analysis
-# Permutation Feature Importance
-#
-# Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
-    # helps in determining the best possible combination of model parameters to achieved a desicred result
-    # 
-    # Optimization Tolerance: when a new iteration does not decrease the loss function (e.g. delta loss < 10^-5 )
-    # L1 Regularization: (Lasso Regression)
-        # Lasso regression can shrink some coefficients to zero, which means performing variable selection
-    # L2 Regularization: (Ridge Regression)
-        # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
-#
-# 
-# Convert to ARFF: 
-    # Convert datasets and results in Azure ML to attribute-relation file format (ARFF) used by the Weka toolset.
-    # The ARFF data specification for Weka supports multiple ML tasks, including data preprocessing, classification, and feature selection.
-        # In ARFF format, data is organized by entities and their attributes, and is contained in a single text file.
-# 
-
-#
-#
-
+######################################################################################################
 #
 ######################################################################################################
 # Azure ML SDK: 
+######################################################################################################
     # allow users to manage cloud resources of Azure ML in local Python environment.
     # allow users to train models locally with replicable environments.
     # available across all Python IDEs and notebooks.
