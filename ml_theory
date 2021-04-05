@@ -37,6 +37,7 @@
     # Probablity(x) = e^(a0 + a1*x1 + a2*x2 + a3*x3 + ...) / (1 + e^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...) )
     # or Odds =  Probablity(x)/ (1 - Probablity(x)) = e ^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...)
     # or Log (Odds) = a0 + a1*x1 + a2*x2 + a3*x3 + ... (Preferred Form)
+        # Log(p/(1-p)) = a0+ a1*x1 + a2*x2 + --- 
     # Assumption for Logistic Regression is very similar to Linear Regression:
         # 1. Data is free from missing values
         # 2. Target value is either binary or ordinal
