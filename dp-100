@@ -53,7 +53,7 @@
     # Data Labelling:
     # Linked Services:
         # for connecting to other Azure Services, e.g. Synapse workspace, and managed linked assets in 1 place.
-# 
+######################################################################################################
 # Managed Resources (compute instance/ cluster)
 # Linked Service (data storage, compute target)
 # Dependencies (Azure Storage Account, Azure container registry, Azure Key Vault, Azure Application Insights)
@@ -71,8 +71,6 @@
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
-#
- 
 # Azure Container Instance
 
 # Endpoint
@@ -87,7 +85,7 @@
 # Azure Cognitive Service
 # Azure Data Lake Analytics
 # Azue HDInsight with Spark Mlib
-# 
+######################################################################################################
 # Cloud Computing:
     # What is Cloud Computing:
         # Cloud computing is the on-demand availability of computer system resources, especially data storage(cloud storage) and computing power,
@@ -105,6 +103,7 @@
             # e.g. Office 365, Google Sheet, etc.
 ######################################################################################################
 # Azure Fundamental Concepts: (ref. AZ 900)
+######################################################################################################
 # What is Azure: (Project Red Dog, Oct 2008 --> Windows Azure, Feb 2010 --> Microsoft Azure, Mar 2014)
     # Azure is a Cloud computing service created by Microsoft for building, testing, deploying and managing applications and services,
         # through Microsoft-managed data centers.
@@ -123,6 +122,7 @@
             # Azure Security:
             # Azure DevOps:
             # Azure IoT, Mobile, Containers, Blockchain, Migrate, etc.
+######################################################################################################
 # Key Terms and Concepts of Azure:
     # Management Groups:
         # Under each Management Group, there might be multiple subscriptions:
@@ -142,6 +142,7 @@
         # Set/ Cluster of datacenters.
     # Availability Zone:
         # Physically spearated set of data centers within a region for high availability.
+######################################################################################################
 # Azure Storage:
     # Types:
         # Azure Disks:
@@ -180,13 +181,14 @@
     # Performance Tiers:
         # Standard:
         # Premium: Low delay, high availability.
-#
+######################################################################################################
 # Azure Compute:
     # Azure Virtual Machine Trypes:
         # A-Series = Entry Level, economical VM for development and testing.
         # D-Series = General Purpose Compute.
         # N-Series = GPU Enables Virtual Machines
         # e.g. you could have multiple Virtual Machines on the same server (which has sufficient computing power)
+######################################################################################################
 # Docker:
     # Docker is a tool to ship a group of software packages using containers.
         # Container is a bundle of software, libraries, dependencies, configuration files, etc.
@@ -208,7 +210,7 @@
 #    
 # Variables at different scale
     # Normalize the dataset
-#
+######################################################################################################
 # Too many variables or curse of dimensionality (100 or 1000 variables)
     # too sparse data and low accuracy
     # require high run time
@@ -219,7 +221,7 @@
             # Reduce the dimensionality 
                 # Eigenvectors
                 # Eigenvalues
-#
+######################################################################################################
 # Missing Value in a large dataset
     # replace with MICE
 # Unbalanced Dataset: presence of minority class in the dataset (e.g. 0.5% fraud, 99.5% without fraud data)
@@ -234,6 +236,7 @@
             # Step 3: Multiply the difference with a random number between 0 and 1
             # Step 4: Identity a new point on the line segment by adding the random number to the feature vector
             # Step 5: Repeat the process for identified feature vectors.
+######################################################################################################
 # Merge datasets on column values
     # join data (datasets are related by key columns)
         # types of joins:
@@ -241,17 +244,12 @@
             # Left Outer Join: select all rows in the left table, and some rows from the right table with matched keys
             # Full Outer Join: select all the rows from both tables
             # Left Semi Join: select left table rows and columns only, and the rows must have mathing keys in the right table
-#
-#  
- 
- 
- 
 # 
 ######################################################################################################
 # Azure Identity Servive
     # Authentication (credentials, such as username + password) = prove who you are
     # Authorization (grant access based on permission) = what you are allowed to do based on who you are
-# 
+######################################################################################################
 # Azure Active Directory (ID as a service/ IDaaS)
     # when the service involve both cloud and on-premise, or through external internet, there is not a central location to authenticate users.
         # 
@@ -259,7 +257,7 @@
 # 
     # Single Sign on (SSO) = same access for multiple apps
     # Role-based access 
-# 
+######################################################################################################
 # Azure Resource Lock (Cannot delete or read only) = 
     # Locks are interited from the parent group/ resource
 # 
@@ -274,7 +272,7 @@
 ######################################################################################################
 # Gradient Descent
     # Cost Function
-#
+######################################################################################################
 # Normalization: a method to standardize the range of independent variables or features of data
     # Variables are fitted within a certain range (generally between 0 and 1, e.g. min-max scaler)
     # applied only on numeric values
@@ -286,7 +284,7 @@
 # Accuracy
 # AUC Weighted
 # 
- 
+######################################################################################################
 # Mean Deviation (when the number of observations is small)
 # Standard Deviation (when the number of observations is large)
     # describe how the data is distributed around the mean
@@ -403,14 +401,14 @@
             # Backward Elimination: eliminate 1 variable after 1 variable
             # Recursive Feature Elimination: random select variables in each iteration, keep the most important variables and removes least influential ones.
         # Embedded Method: 
-
+######################################################################################################
 # Impact of Split Percentage:
 # Impact of Stratification:
 # Low L1 and High L2:
 # High L1 and Low L2:
 # High L1 and High L2:
 # Low L1 and Low L2: 
-#
+######################################################################################################
 # Recommendation System: predict the rating/ preference that a customer would give to a new item
     # Problem: cold start, same scale judgement (users not having same standard)
     # 
@@ -425,6 +423,7 @@
     #
     # Recommender Split:
     #
+######################################################################################################
 # Azure ML Matchbox Recommender System:
     # Based on the Hybrid approach of content and collaborative filering technique
         # When customers are new, rely on item feature
@@ -449,6 +448,7 @@
 #
 ######################################################################################################
 # Natural Language Processing:
+######################################################################################################
     # Step 1: Noise Removal:
         # Stopwords, Stemming (lemma), Upper/Lower case, numbers, special characters (%, $, etc.). duplication, email, url, etc.
         # Need to consider separation in sentence.
@@ -461,13 +461,13 @@
             # N-gram model: (instead of a single word, get 2 words, 3 words as basic components in the feature selection)
                 # e.g. Machine ____ (would recommending learning if "leaning" has the highest chance of being mentioned) (based on probablity)
     # Step 3: Train, Score and Deploy Model:
-#
-
+######################################################################################################
 #
 # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
 # Local Feature Importance: based on certain observations only
-#
+######################################################################################################
 # Azure AutoML:
+######################################################################################################
     # Step 1: bring in dataset.
     # Step 2: define goal, constraints, etc.
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
@@ -485,12 +485,17 @@
         # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
             # e.g. mean for numeric, mode for string
 ######################################################################################################
-#
-# Principal Component Analysis:
-    # Select Columns:
-    # Number of dimensionality to reduce to:
-        # Normalize dense dataset to zero mean
-#
+Feature Selection:
+######################################################################################################
+    # Method 1: Filter Based Feature Selection:
+    # Method 2: Principal Component Analysis: (unsupervised) (select the principal components based on the spread of the data)
+        # Select Columns:
+        # Number of dimensionality to reduce to:
+            # Normalize dense dataset to zero mean
+    # Method 3: Fisher Linear Discriminant Analysis
+        # find an axis based on which certain threshold on that axis could separate the values into different groups well.
+            # Analysis of Variance (ANOVA)
+######################################################################################################
 # Latent Direchlet Transformation:
     # Topic Modelling:
 # 
@@ -516,8 +521,8 @@
     # Minimum size of recommendation pool for a single user:
     # Whether to return predicted 
 #
-# Fisher Linear Discriminant Analysis
-#
+
+######################################################################################################
 # Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
     # helps in determining the best possible combination of model parameters to achieved a desicred result
     # 
@@ -527,12 +532,12 @@
     # L2 Regularization: (Ridge Regression)
         # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
 #
-# 
+######################################################################################################
 # Convert to ARFF: 
     # Convert datasets and results in Azure ML to attribute-relation file format (ARFF) used by the Weka toolset.
     # The ARFF data specification for Weka supports multiple ML tasks, including data preprocessing, classification, and feature selection.
         # In ARFF format, data is organized by entities and their attributes, and is contained in a single text file.
-#
+######################################################################################################
 ######################################################################################################
 # Azure ML Studio Modules (should practice 3+ times)
 ######################################################################################################
@@ -649,6 +654,7 @@
             # Kandell: (more reliable when having significant outliers)
                 # corr(x1, y)
     # Premutation Feature Importance:
+        # 
 ######################################################################################################
 # Machine Learning Algorithms Modules: (19)
 ######################################################################################################
@@ -668,6 +674,7 @@
         # Filter 4: Random Seed
     # Neural Network Regression:
     # Poission Regression:
+######################################################################################################
 # Clustering Models:
     # K-Means Clustering:
         # Filter 1: Create Trainer Mode (single parameter)
@@ -679,6 +686,7 @@
         # Filter 6: Normalize Features: True/ False
         # Filter 7: Iterations: e.g. 1000
         # Filter 8: Assign Label Mode: (ignore label column, fill missing values, overwrite from closest to center)
+######################################################################################################
 # Classification Models:
     # MultiClass Boosted Decision Tree:
     # MultiClass Decision Forest:
@@ -807,16 +815,17 @@
 # Export Count Table Module:
 ######################################################################################################
 #
+#
 ######################################################################################################
 # Azure ML SDK: 
 ######################################################################################################
-    # allow users to manage cloud resources of Azure ML in local Python environment.
-    # allow users to train models locally with replicable environments.
-    # available across all Python IDEs and notebooks.
-        # Each of the resources is defined as a class in Azure ML SDK:
-            # e.g. Workspace(), Environment(), Dataset(), Experiment(), Pipeline(), Run(), Model(), ComputeTarger(), AutoMLConfig(), etc.
-                # e.g. we are creating instances of the above classes whe using Azure ML SDK.
-        # Install Azure ML SDK --> Anaconda Prompt --> pip install azreml-sdk
+# allow users to manage cloud resources of Azure ML in local Python environment.
+# allow users to train models locally with replicable environments.
+# available across all Python IDEs and notebooks.
+    # Each of the resources is defined as a class in Azure ML SDK:
+        # e.g. Workspace(), Environment(), Dataset(), Experiment(), Pipeline(), Run(), Model(), ComputeTarger(), AutoMLConfig(), etc.
+            # e.g. we are creating instances of the above classes whe using Azure ML SDK.
+    # Install Azure ML SDK --> Anaconda Prompt --> pip install azreml-sdk
 # 
 #
 # Deploy Web Service: (based on score model)
@@ -825,13 +834,13 @@
 # Exam Structure:
 ######################################################################################################
 # Exam Questions:
-    #
+######################################################################################################
 # Question: when you create a new ML Worispace, what resources are created alongside with the Workspace?
     # Azure Key Vault, Application Insights, Azure Storage Account, Container Registry.
-# 
+######################################################################################################
 # Question: which VS Code extension enables integrated management of workspace assets?
     # Azure Machine Learning Extension
-# 
+######################################################################################################
 # Question: 
     # Data Engineering and Data Science Environment:
         # Support Python and Scala 
@@ -846,13 +855,13 @@
             # Apache Spark: support Python, R, Scala, SQL
             # High concurrency: Azure Databricks is fully integrated with Azure Data Factory.
                 # Azure Container: Azure Container is good for development and testing, not suitable for production workloads.
-#
+######################################################################################################
 # Question: Introduce Docker for Windows to attendee
     # BIOS-enabled (Basic Input-Output System) virtualization
         # Must make sure that the machine supports Hardware Virtualization and that Virtualization is enabled.
     # Windows 10 64-bit professional
         # To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher.
-    
+######################################################################################################
 # Question: Select Data Science Environment
     # Azure Cognitive Services:
         # Azure Cognitive Serviers expand on Microsoft's evolving portfolio of ML APIs ane enable developers to easily add cognitive features:
@@ -861,11 +870,11 @@
     # Azure Data Lake Analytics:
     # Azure HDInsight with Spark MLLib:
     # Azure ML Studio: 
- 
+######################################################################################################
 # Question: Move large dataset from Azure ML Studio to Weka environment
     # 
     
-#   
+######################################################################################################
 # Question: Difference between DSVM and Azure ML Compute Instance:
     # DSVM (Data Science Virtual Machine)
         # The DSVM is a customized VM image on the Azure Cloud platform built specifically for doing data science.
@@ -883,21 +892,21 @@
             # Pre-installed tools only include: Jupyter(Lab), RStudio Server
     # DLVM (Deep Learning Virtial Machine)
         # DLVM is a pre-configured environment for deep learning using GPU instance.
-#
+######################################################################################################
 # Question: Classification task, dataset is inbalanced, how to improve classification accuracy?
     # SMOTE (Synthetic Minority Oversampling Technique)
         # 200 SMOTE percentage would increase 1% minority class to around 3% (2/101)
 #
-#
+######################################################################################################
 # Question: You can move data to and from Azure Blob using different technologies include:
     # Azure Storage Explorer
     # AzCopy
     # Python/ Pyspark
     # SSIS
-    
+###################################################################################################### 
 # Question: Moving a large dataset from Azure ML Studio to a Weka environment:
     
-    # 
+######################################################################################################
 # Question: 
     # Weka: weka is used for visual data mining and machine learning software in Java.
     # Rattle: Rattle is the R analytical tool that gets you started with data analytics and machine learning.
@@ -906,40 +915,40 @@
 # Caffe2: 
     #
 # Ubuntu:
-
+######################################################################################################
 # Question: compute target to deploy the workspace
     # Azure Container Service
 
 
-
+######################################################################################################
 # Question: what is a workspace in Azure ML?
     # 
 
-
+######################################################################################################
 # Question: how to deal with new data input that does not exist in the training dataset.
     # 
 
-
+######################################################################################################
 # Question: script to retrieve the output file names:
     # 
-
+######################################################################################################
 # Question: deploy the model to a context that allows for real-time GPU-Based inferencing:
     # Should use compute type: Azure Kubernates Service
         # For web-service deployment, GPU inferencing is only supported on Azure Kubernates Service.
         # For inferencing using a Machine Learning pipeline, GPUs are only supported on Azure Machine Learning Compute.
-#
+######################################################################################################
 # Question: Batch inferencing, need to monitor the progress of the pipeline execution:
     # 
-#
+######################################################################################################
 # Question: how to ensure the correct version of Pytorch can be identified for the inferencing environment when the model is deployed?
     # 
-#
+######################################################################################################
 # Question: Need to normalize values to produce an output column into bins to predict target column:
     # Entropy MDL Bining Mode:
 #
 # 
 
-
+######################################################################################################
 # Question: Difference between Azure ML Service and Azure ML Studio?
     # 
 
