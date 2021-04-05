@@ -18,7 +18,7 @@ df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
-dtype = {'column_name1': 'str', 'column_name2': 'float'})
+    dtype = {'column_name1': 'str', 'column_name2': 'float'})
 # rename column names
 df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
 #
