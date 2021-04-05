@@ -12,11 +12,30 @@ df.dtypes #
 df_numeric_columns_names = df.select_dtypes(include = 'number').columns
 df_numeric_columns = df.select_dtypes(include = 'number')
 #
+df_object_columns_names = df.select_dtypes(include = 'object').columns
+df_numeric_columns = df.select_dtypes(include = 'object')
+#
 ############################################################################################
 # Change Data Type
 df['col1'] = df['col1'].astype('category') # could also use 'int', 'float', 'str', etc.
 df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 #
+############################################################################################
+# Change object type columns into Categorical Variables
+    columns = df.select_dtyped(include = 'object').columns
+    df[columns] = df[columns].astype('category')
+    #
+    df['col1'] = df['col1'].cat.codes
+    for column in columns: # 
+        df[column] = df[column].cat.codes
+# 
+# One-Hot Encoding/ Dummy Variables Creations:
+    #
+    df_dummy = pd.get_dummies(df)
+    df_dummy = pd.get_dummies(df, prefix = '', prefix_sep = '', columns = ['col1', 'col2'], 
+                                drop_first = True) # get k-1 columns of dummy variables
+    # 
+    
 ############################################################################################
 # loading data
 df = pd.read_csv('sample_file.csv') # comma separated file
