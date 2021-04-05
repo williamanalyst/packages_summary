@@ -114,6 +114,7 @@ Under-Fitting: the model has not captured the logic within the data
             # Problem 1: people's taste changes over time
             # Problem 2: high complexity in calculation, e.g. there are more people than movies
     # 2. Content/Item-based Collaborative Filtering
+        # The content-based recommendation is the maximum value of the product of Items and User vectors created from Item-Feature and User-Feature Matrix.
         # Based on the features of the items themselves (e.g. movie type, movie actor, movie year, etc.) amd actions from users.
             # 1. Find each pair of item that were bought/viewed by the same person
             # 2. Measure the similarity of rating/ review from that person who bought/ viewed the 2 items
