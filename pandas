@@ -2,9 +2,14 @@ import pandas as pd
 pd.set_option('display.max_columns', 100, 'display.max_rows', 200)
 from IPython.display import display # for better formatted tables to be displayed
 # 
-df.describe()
-df.shape
-df.dtypes
+df.describe(include = 'all', 
+percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statistics for each column
+df.shape # 
+df.dtypes # 
+############################################################################################
+# Change Data Type
+df['col1'] = df['col1'].astype('category') # could also use 'int', 'float', 'str', etc.
+df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 #
 ############################################################################################
 # loading data
@@ -13,7 +18,7 @@ df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
-    dtype = {'column_name1': 'str', 'column_name2': 'float'})
+dtype = {'column_name1': 'str', 'column_name2': 'float'})
 # rename column names
 df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
 #
@@ -22,12 +27,12 @@ df_count_null = df.isnull().sum()
 ############################################################################################
 # filter dataframe with .loc
 df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
-
+#
 
 
 # groupby by and aggregate by function
 df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', 'column12': 'sum', 'column13': 'nunique', 
-  'column14': 'mean', 'column15': 'min', 'column16': 'max'})
+'column14': 'mean', 'column15': 'min', 'column16': 'max'})
 #
 # Get the max value in each column
 max_values = df.max(axis = 1, skimna = False)
@@ -35,22 +40,24 @@ print(max_values)
 
 # Get the max value in each column in each group
 #
-#
-
+############################################################################################
+# Process Outliers:
+# clip
+df[[col1]].clip(0, 100) # any value below 1 will be replaced by 1, and value above 100 will be replced by 100
 ############################################################################################
 # .pct_change()
 
 ############################################################################################
 # append data to existing dataframe
-	# Append Rows:
+# Append Rows:
 df = df.append({'col1': value1, 'col2': 'str2'}, ignore_index = True)
-	# Append Columns:
-	df_concat = pd.concat([df1, df2], ignore_index = True) # 
+# Append Columns:
+df_concat = pd.concat([df1, df2], ignore_index = True) # 
 #
 ############################################################################################
 # Drop Columns:
-	# df = df.iloc[:, :-1]
-	# df = df.drop(['col1', 'col2', 'col3'], axis = 1)
+# df = df.iloc[:, :-1]
+# df = df.drop(['col1', 'col2', 'col3'], axis = 1)
 #
 df_clean1 = df.dropna()
 df_clean2 = df.dropna(axis = 1)
@@ -64,7 +71,7 @@ df['col1_lead1'] = df.groupby(['group_col'])['col1'].shift(-1)
 ############################################################################################
 # pivot_table
 df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
-    values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
+values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
 
 #
 ############################################################################################
@@ -129,7 +136,7 @@ fig.show()
 # Read extremely large files:
 records = []
 for chunk in pd.read_csv('bigfile.csv', chunksize = 1000):
-    result.append(sum(chunk['column_to_be_sumed']))
+result.append(sum(chunk['column_to_be_sumed']))
 result = sum(records)
 #
 ############################################################################################
