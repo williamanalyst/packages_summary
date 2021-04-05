@@ -377,13 +377,14 @@
         # Normalize dense dataset to zero mean
 #
 
-# Split Data:
-    # Splitting Mode: 
+# Split Data Module:
+    # Filter 1: Splitting Mode: 
         # split rows:
         # Regular Expression: 
-    # Fraction of rows in the 1st split: 0.7
-    # Random Seed: 123
-    # Stratified Split: False
+    # Filter 2: Fraction of rows in the 1st split: 0.7
+    # Filter 3: Random Seed: 123
+    # Filter: Stratified Split: False
+        # 
 #
 # Group Data into Bins:
     # 
