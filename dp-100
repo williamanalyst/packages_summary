@@ -1,7 +1,7 @@
 # DP100 Exam Curriculum
     # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
-        # Datastore: Datastore securely connect to your storage service on Azure without pytting your authentication credentials, 
-            # and the integrity of your original data source at risk. They store connection information, like your subscription ID and token authorization
+        # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
+            # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
             # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
                 # You can create datastores that connect to these Azure store solutions.
             # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
@@ -10,6 +10,8 @@
             # FileDataset:
                 # A FileDataset references single or multiple files in your datastores or public URLs.
                     # If your data is already cleansed, and ready to use in training experiments, 
+            # Tabular Dataset:
+                # 
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
         #
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
@@ -19,28 +21,57 @@
 # 
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
-    # Managed Resources (compute instance/ cluster)
-    # Linked Service (data storage, compute target)
-    # Assets (environments, experiments, pipelines, datasets, models, endpoints)
-    # Dependencies (Azure Storage Account, Azure container registry, Azure Key Vault, Azure Application Insights)
-        # Azure Storag Account:
-            # Containers:
-            # File Shares:
-            # Tables:
-            # Queues: 
-# 
-# 
 ######################################################################################################
-# General Concepts
+# Assets within ML Studio: (based on UI logic):
+# Azure ML Studio = web-based platform using which users could track details about the ML appplication
+# Azure ML Workspace = boundary of related assets used in ML Studio.
+    # Notebooks:
+    # Automated ML:
+    # Designer:
+    # Datasets:
+    # Experiments:
+        # Note: When 2 experiment has the same name, they will be classified under the same experiment, just different runs for the same experiment.
+            # e.g. from Run 1 to Run 2 (previous output will not be impacted)
+    # Pipelines = ML Workflow
+        # pipelines are created for the purpose of automating ML workflow
+    # Models:
+    # Endpoints:
+    # Compute:
+        # Compute Insatances:
+            # (local) work station for data scientist
+        # Compute Clusters: (2 Nodes --> 2 Virtual Machine/ instance currently provisioned to the cluster)
+            # (distributed)
+        # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
+            # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint.
+        # Attached Compute: 
+            # An existing VM, Databricks, Cluster, etc., that can be borrowed here as compute resource.
+    # Datastores:
+        # Azure Blob Storage:
+        # Azure Data Lake:
+        # Azure SQL/ PostgreSQL/ MySQL Database:
+        # Azure File Share: 
+    # Data Labelling:
+    # Linked Services:
+        # for connecting to other Azure Services, e.g. Synapse workspace, and managed linked assets in 1 place.
+# 
+# Managed Resources (compute instance/ cluster)
+# Linked Service (data storage, compute target)
+# Dependencies (Azure Storage Account, Azure container registry, Azure Key Vault, Azure Application Insights)
+    # Azure Storag Account:
+        # Containers:
+        # File Shares:
+        # Tables:
+        # Queues: 
 ######################################################################################################
+# General Azure ML Concepts:
+######################################################################################################
+#
 # AI (Artificial Intelligence) = computer performing tasks without being specifically programmed to.
 # CUDA (Compute Unified Device Architect) 
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
- 
-# When 2 experiment has the same name, they will be classified under the same experiment, just different runs for the same experiment.
-    # e.g. from Run 1 to Run 2 (previous output will not be impacted)
+#
  
 # Azure Container Instance
 
@@ -272,6 +303,8 @@
     # 
  
 ######################################################################################################
+# ML Concepts:
+######################################################################################################
 # Supervised Learning: 
     # Classification
         # Logistic Regression:
@@ -436,7 +469,7 @@
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
 #
 ######################################################################################################
-# Azure ML Studio - Modules (should practice 3+ times)
+# Azure ML Studio Modules (should practice 3+ times)
 ######################################################################################################
 # Import Dataset:
 # 
@@ -693,6 +726,12 @@
 ######################################################################################################
 # Exam Questions:
     #
+# Question: when you create a new ML Worispace, what resources are created alongside with the Workspace?
+    # Azure Key Vault, Application Insights, Azure Storage Account, Container Registry.
+# 
+# Question: which VS Code extension enables integrated management of workspace assets?
+    # Azure Machine Learning Extension
+# 
 # Question: 
     # Data Engineering and Data Science Environment:
         # Support Python and Scala 
