@@ -10,8 +10,6 @@
             # FileDataset:
                 # A FileDataset references single or multiple files in your datastores or public URLs.
                     # If your data is already cleansed, and ready to use in training experiments, 
-                    # you can download or mount the files to your compute as a FileDataset Object.
-            # TabularDataset:
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
         #
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
@@ -25,6 +23,11 @@
     # Linked Service (data storage, compute target)
     # Assets (environments, experiments, pipelines, datasets, models, endpoints)
     # Dependencies (Azure Storage Account, Azure container registry, Azure Key Vault, Azure Application Insights)
+        # Azure Storag Account:
+            # Containers:
+            # File Shares:
+            # Tables:
+            # Queues: 
 # 
 # 
 ######################################################################################################
@@ -54,6 +57,116 @@
 # Azure Data Lake Analytics
 # Azue HDInsight with Spark Mlib
 # 
+# Cloud Computing:
+    # What is Cloud Computing:
+        # Cloud computing is the on-demand availability of computer system resources, especially data storage(cloud storage) and computing power,
+            # without direct active management from the user (no pyhsical infrastructure management).
+    # Why do we need Cloud Computing:
+        # If the demand of computing power fluctuates significantly.
+        # Save capital input for better cashflows.
+        # Save time to get the infrastructure ready.
+    # Cloud Service include: (3 main categories)
+        # Infrastructure as a Service (IaaS):
+            # e.g. Virtual Machine, Servers, Storage, etc.
+        # Platform as a Service (PaaS):
+            # e.g. Machine Learning Studio (as a platform)
+        # Software as a Service (SaaS): 
+            # e.g. Office 365, Google Sheet, etc.
+######################################################################################################
+# Azure Fundamental Concepts: (ref. AZ 900)
+# What is Azure: (Project Red Dog, Oct 2008 --> Windows Azure, Feb 2010 --> Microsoft Azure, Mar 2014)
+    # Azure is a Cloud computing service created by Microsoft for building, testing, deploying and managing applications and services,
+        # through Microsoft-managed data centers.
+        # Azure include many different resources include but not limited to:
+            # Azure Compute:
+                # e.g. Virtual Machine, Virtual Desktop, etc.   
+            # Azure Networking Resources:
+                # e.g. managing firewalls, web traffic, etc.
+            # Azure Storage:
+                # e.g. HDD, SSD, etc.
+            # Azure Database:
+            # Azure Analytics:
+            # Azure AI/ML:
+            # Azure Identity:
+                e.g. Azure Active Direcory
+            # Azure Security:
+            # Azure DevOps:
+            # Azure IoT, Mobile, Containers, Blockchain, Migrate, etc.
+# Key Terms and Concepts of Azure:
+    # Management Groups:
+        # Under each Management Group, there might be multiple subscriptions:
+            # e.g. some are free subscriptions, some are Pay-as-you-go subscriptions.
+    # Subscriptions:
+    # Resource Groups:
+        # Under each subscription, there could be multiple resource groups.
+        # Resource Group are essentially a "container" that gets all the needed resources together, or into a group.
+        # It is recommended that resources that supports the same application, or in the same life cycle, to be put under the same resource group.
+            # so that we could standardize the process of creation, deployment, deletion of resources.
+            # also helps the security, manage the accessibility, record log of manipulation by users, etc.
+    # Resources:
+        # e.g. SQL Server Database, ML Studio, Blob, etc.
+    # Data Centers:
+        # Physical buildings that house networked computer servers.
+    # Regions:
+        # Set/ Cluster of datacenters.
+    # Availability Zone:
+        # Physically spearated set of data centers within a region for high availability.
+# Azure Storage:
+    # Types:
+        # Azure Disks:
+        # Azure Blobs:
+            # Object Storage Solution
+            # Ideal for massive unstructured data such as text and images
+            # Use containers of data
+        # Azure File Share: (typically used to sharing files with end users)
+            # Provide file share as a drive.
+            # Supports SMB or NFS file format.
+            # Can be used as back-up of various application files.
+        # Azure Queues: (data from multiple users at a time)
+            # For storing and retrieving the messages.
+            # Usually, the messages are stored as a list and then processed.
+        # Azure Tables: (upgraded to Azure Cosmos DB)
+            # NoSQL Tables (data are structured/ in tabular format, whereas not correlated)
+            # Uses the name-value pair for storing and retrieving the data
+            # Offers high scalability and flexibility (because the name-value pair structure)
+    # Access Tiers:
+        # Hot: Frequently accessed data
+            # e.g. saved on SSD
+        # Cool: Less Frequently accessed data.
+            # e.g. saved on HDD
+        # Archive: Rarely accessed and stored offline.
+            # e.g. storage not connected to the network/ server on most occassion.
+    # Redundancy:
+        # Locally Redundant:
+            # e.g. 3 copies are in the same pyhsical location, just different machines.
+            # least expensive.
+        # Zone Redundant:
+            # e.g. 3 copies in different availability zones.
+        # Geo Redundant:
+            # e.g. 3 copies in single pyhsical location in primary region + 1 copy in secondary region
+        # Geo-zone Redundant:
+            # e.g. 3 copies in 3 zones in primary region + 1 copy in secondary region
+    # Performance Tiers:
+        # Standard:
+        # Premium: Low delay, high availability.
+#
+# Azure Compute:
+    # Azure Virtual Machine Trypes:
+        # A-Series = Entry Level, economical VM for development and testing.
+        # D-Series = General Purpose Compute.
+        # N-Series = GPU Enables Virtual Machines
+        # e.g. you could have multiple Virtual Machines on the same server (which has sufficient computing power)
+# Docker:
+    # Docker is a tool to ship a group of software packages using containers.
+        # Container is a bundle of software, libraries, dependencies, configuration files, etc.
+    # Docker Image is a template or specifications.
+        # e.g. 1 docker image would include: Windows OS version, Python Version, Pandas Version, Scikit-learn version, etc.
+        # Docker Image is like a class, and a container is like an instance of that class.
+            # We could create multiple containers using (running) 1 docker image.
+    # Once created, user could not modify docker files (a series of read-only files).
+        # Docker files could be created and shared.
+        # e.g. in the 5 stages of software development: Gather Requirements, Design, Development, Testing, Deployment:
+            # The last 3 steps could (should) use the same docker file.
 ######################################################################################################
 # Outliers: observations that have much higher distance compared to other observations
     # outliers does impact the prediction/ estimation of the sample/ model
@@ -161,7 +274,15 @@
 ######################################################################################################
 # Supervised Learning: 
     # Classification
-        # Logistic Regression
+        # Logistic Regression:
+            # Step 1: Import Data
+            # Step 2: Select Column
+            # Step 3: Clean Missing Data
+            # Step 4: Normalize Data/ Convert Some Column into Categorical Data/ One-Hot Encoding
+            # Step 5: Split Data
+            # Step 6: Train Model 
+            # Step 7: Score Model
+            # Step 8: Evaluate Model
         #
         # Decision Tree: (could be for both categorical and continuous variables)
             # Boosted Decision Tree: (for classification by regions)
@@ -553,7 +674,17 @@
         # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
             # TPR = True Positive Rate = TP / (TP + FN) = Recall
             # FPR = False Positive Rate = FP / (FP + TN) = 
-#            
+#
+######################################################################################################
+# Azure ML SDK: 
+    # allow users to manage cloud resources of Azure ML in local Python environment.
+    # allow users to train models locally with replicable environments.
+    # available across all Python IDEs and notebooks.
+        # Each of the resources is defined as a class in Azure ML SDK:
+            # e.g. Workspace(), Environment(), Dataset(), Experiment(), Pipeline(), Run(), Model(), ComputeTarger(), AutoMLConfig(), etc.
+                # e.g. we are creating instances of the above classes whe using Azure ML SDK.
+        # Install Azure ML SDK --> Anaconda Prompt --> pip install azreml-sdk
+# 
 #
 # Deploy Web Service: (based on score model)
     # Could choose either REST API or excel file
