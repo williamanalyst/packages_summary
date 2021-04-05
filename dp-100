@@ -471,24 +471,269 @@
 ######################################################################################################
 # Azure ML Studio Modules (should practice 3+ times)
 ######################################################################################################
-# Import Dataset:
-# 
-# Add Columns:
-# Add Rows:
+# Data Input and Output Modules: (3)
+######################################################################################################
+    # Enter Data Manually:
+        # Filter 1: Data Format:
+            # CSV, ARFF, SvmLight, TSV
+        # Filter 2: Has Header
+    # Export Data:
+        # Filter 1: Datastore type:
+            # Azure Blob Storage, Azure SQL Database, Azure Data Lake Storage, Azure File Share.
+    # Import Data:
+        # Filter 1: Data Source:
+            # Datastore:
+            # URL vis HTTP:
+######################################################################################################
+# Data Transformation Modules: (19)
+######################################################################################################
+    # Add Columns:
+    # Add Rows:
+    # Apply Math Operations:
+    # Apply SQL Transformation:
+    # Clean Missing Data:
+        # Filter 1: Columns to be Cleaned:
+        # Filter 2: Minimum Missing Value Ratio:
+        # Filter 3: Maximum Missing Value Ratio:
+        # Filter 4: Cleaning Mode:
+            # Option 1: Custom Substitution Value:
+            # Option 2: Replace with Mean/ Median/ Mode.
+            # Option 3: Remove entire Row/ Column.
+    # Clip Values:
+        # refer to df.clip() in pandas
+        # Filter 1: Set of thresholds:
+        # Filter 2: Upper Thresholds:
+        # Filter 3: Constant Value for Upper Threshold
+        # Filter 4: Substitute value for Peaks:
+        # Filter 5: List of Columns:
+        # Filter 6: Overwrite Flag:
+        # Filter 7: Add Indicator Columns:
+            # set of threshold
+    # Convert to CSV:
+    # Convert to Dataset:
+    # Convert to Indicator Values:
+    # Edit Metadata: (Make string variable to be categorical)
+        # Filter 1: Select Column
+        # Filter 2: Select Data Type
+        # Filter 3: Categorical
+        # Filter 4: Fields
+        # Filter 5: New Column Name
+    # Group data into Bins:
+    # Join Data:
+        # Filter 1: Selected Key for Left Table:
+        # Filter 2: Selected Key for Right Table:
+        # Filter 3: Match Case:
+        # Filter 4: Join Type:
+        # Filter 5: Keep right Key columns in the joined table:
+    # Normaliza Data:
+        # Filter 1: Transformation Method:
+            # Z-Score, MinMax, Logistic, LogNormal, Tanh
+        # Filter 2: Use 0 for constant columns when checked: True/ False
+        # Filter 3: Columns to Transform: (numeric only)
+    # Partition and Sample:
+        # Expected Input = Data Table
+        # Expected Output = Data Table
+        # Filter 1: Partition or Sample Mode:
+            # Assign to Folds, Pick Fold, Sampling, Head
+        # Filter 2: Rate of Sampling:
+            # e.g. 0.01 = 1%, 0.70 = 70%
+        # Filter 3: Random Seed for Sampling
+            # default to be 0
+        # Filer 4: Stratified split for Sampling
+            # True/ False
+            # Sampling is an important module in ML as it lets you reduce the size of a dataset while maintaining the same ratio of values.
+                # Dividing your data into multiple subsections of the same size.
+                # e.g. you might use the partition for cross-validation, or to assign cases to random groups
+                # Separating data into groups then work with data from a specific group.
+                # Sampling application:
+                    # e.g. either by percentage with random sampling, choose a column to use for balancing the dataset, or perform stratified sampling, etc.
+                # Creating smaller datasets for testing.
+                    # e.g. to save processing time during testing
+    # Remove Duplicate Rows:
+    # SMOTE:
+        # Filter 1: Selected Column: 
+        # Filter 2: SMOTE percentage: 
+            # e.g. 2000% = +20 times = 21 times in total
+        # Filter 3: Number of nearest neighbors:
+            # 
+        # Filter 4: Random Seed: 
+    # Select Columns Transform:
+    # Select Columns in Dataset
+    # Split Data:
+        # Filter 1: Splitting Mode: 
+            # split rows:
+            # Regular Expression: 
+            # Relative Expression:
+        # Filter 2: Fraction of rows in the 1st split: 0.7 (70% train, 30% split)
+        # Filter 3: Random Seed: 123 (default = 0)
+        # Filter 4: Stratified Split: False
+######################################################################################################
+# Feature Selection Modules: (2)
+######################################################################################################
+    # Filter Based Feature Selection:
+        # Filter 1: Operate on feature Columns only: (True/ False/ Null)
+        # Filter 2: Target Column:
+        # Filter 3: Number of Desired Features:
+        # Filter 4: Feature Scoring Method:
+            # Pearson's Correlation:
+            # ChiSquared:
+            # Spearman (relatively more reliable when having some, but not extreme outliers)
+            # Kandell: (more reliable when having significant outliers)
+                # corr(x1, y)
+    # Premutation Feature Importance:
+######################################################################################################
+# Machine Learning Algorithms Modules: (19)
+######################################################################################################
+# Regression Models:
+    # Boosted Decision Tree Regression:
+    # Decision Forest Regression:
+    # Fast Forest Quantile Regression:
+    # Linear Regression:
+    # Neural Network Regression:
+    # Poission Regression:
+# Clustering Models:
+    # K-Means Clustering:
+        # Filter 1: Create Trainer Mode (single parameter)
+        # Filter 2: Number of Centroids
+        # Filter 3: Initialization (K-Means++, K-Means++ Fast, First N, Forgy Method, Evenly and by Use Label Column.)
+            # Use Label Column: use a variable from the existing dataset to guide selection of the centroids.
+        # Filter 4: Random Number Seed:
+        # Filter 5: Metric: Euclidean, Cosine
+        # Filter 6: Normalize Features: True/ False
+        # Filter 7: Iterations: e.g. 1000
+        # Filter 8: Assign Label Mode: (ignore label column, fill missing values, overwrite from closest to center)
+# Classification Models:
+    # MultiClass Boosted Decision Tree:
+    # MultiClass Decision Forest:
+    # MultiClass Logistic Regression:
+    # MultiClass Neural Network:
+    # One-vs-All MultiClass:
+    # One-vs-One MultiClass:
+    # Two-Class Average Perception:
+    # Two-Class Boosted Decision Tree:
+    # Two-Class Decision Forest:
+    # Two-Class Logistic Regression:
+    # Two-Class Neural Network
+    # Two-Class Support Vector Machine:
+######################################################################################################
+# Model Training Modules: (4)
+######################################################################################################
+    # Train Model:
+        # launch column selector: select target variable
+    # Train Clustering Model:
+    # Train PyTorch Model:
+    # Trune Model Hyperparameters:
+######################################################################################################
+# Model Scoring and Evaluations Modules: (6)
+######################################################################################################
+    # Apply Transformation:
+    # Assign Data to Cluster:
+    # Cross Validate Model:
+    # Evaluate Model:
+        # Confusion Matrix:
+            #               Predicted(True)     Predicted(False)
+            # Actual(True)  True Positive       False Negative
+            # Actual(False) False Positive      True Negative
+            # 
+            # Matrix: [[TP, FN], [FP, TN]]
+            # 
+            # Recall = TP/ (TP + FN) = True Positive 
+            # 
+            # Accuracy = (TP + TN)/ (TP + TN + FP + FN) = total number of accurate predictions/ total number of observations
+            # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
+            # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
+            # 
+            # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP)
+                # F1 Score = Weighted average (Harmonic Mean) of Precision and Recall = 2 * Precision * Recall / (Precision + Recall)
+        # AUC = Area Under Curve (e.g. value = 0.8)
+            # ROC = Receiver Operating Characteristics
+            # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
+                # TPR = True Positive Rate = TP / (TP + FN) = Recall
+                # FPR = False Positive Rate = FP / (FP + TN) = 
+    # Score Model:
+    # Score Image Model:
+######################################################################################################
+# Python Language Modules: (2)
+######################################################################################################
+    # Python Language Modules:
+        #
+    # Execute Python Script:
+        # With Python, users could perform tasks that are not currently supported by existing ML Studio Modules.
+            # e.g. Visualizing data with Matplotlib
+            # e.g. Using python libraries to enumerate datasets and models in your workspace
+            # e.g. reading, loading, and manipulating data froms sources not supported by the "Import Data" Module
+######################################################################################################
+# R Language Module: (1)
+######################################################################################################
+    # Execute R Script
+######################################################################################################
+# Text Analysis Modules: (7)
+######################################################################################################
+    # Convert Word to Vector:
+    # Extract N-grams Feature from Text:
+    # Feature Hashing:
+        # Feature hashing is used for linguistics, and works by converting unique tokens into unique integers.
+        # Filter 1: Target Column:
+        # Filter 2: Hashing Bitsize: 
+        # Filter 3: N-grams: 
+            # fixed-size array:
+            # linked list:
+            # hashing:
+    # Latent Dirichlet Allocation:
+    # Preprocess Text
+    # Score Vowpal Wabbit Model:
+    # Train Vowpal Wabbit Model:
+######################################################################################################
+# Computer Vision Modules: (6)
+######################################################################################################
+# Image Data Transformation:
+    # Apply Image Transformation:
+    # Convert to Image Directory:
+    # Init Image Transformation:
+    # Split Image Directory:
+# Image Classification:
+    # DenseNet:
+    # RestNet:
+######################################################################################################
+# Recommendations Modules: (5)
+######################################################################################################
+    # Evaluate Recommender:
+    # Train SVD Recommender:
+    # Train Wide and Deep Recommender:
+    # Score SVD Recommender:
+    # Score Wide and Deep Recommender:
+######################################################################################################
+# Ahomaly Detection Modules: (2)
+######################################################################################################
+    # PCA-Based Anomaly Detection:
+    # Train Anomaly Detection Model:
+######################################################################################################
+# Web Service Modules: (2)
+######################################################################################################
+    # Web Service Input:
+    # Web Service Output:
+######################################################################################################
+# Statistical Functions Modules: (1)
+######################################################################################################
+    # Summarize Data: 
+        # refer to: df.describe(include = 'all')
+        # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
+            # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
+            # e.g. how many missing values are there in each column
+            # e.g. how many unique values are there in each feature column
+            # e.g. what is the mean and standard deviation of each numeric column
+
+
+
+
+
+
+
+
+
+
 #
-# SMOTE
-    # Selected Column: 
-    # SMOTE percentage: 
-    # Number of nearest neighbors:
-    # Random Seed: 
-#
-# Normalize Data:
-    # Transformation Method:
-    # Selected Column: (numeric only)
-#
-# Clean Missing Data:
-    # Cleaning Mode:
-        # Replace using MICE
+    # Replace using MICE
     # MICE: multi-variate imputation using chained equation or multiple imputation by chained equations
         # Clean the missing value without affecting/ reducing the dimensionality of the feature set.
         # 
@@ -500,48 +745,13 @@
         # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
             # e.g. mean for numeric, mode for string
 ######################################################################################################
-# Data Transformation:
-    # Edit Metadata Module:
-        # Filter 1: Select Column
-        # Filter 2: Select Data Type
-        # Filter 3: Categorical
-        # Filter 4: Fields
-        # Filter 5: New Column Name
-        # Make string variable to be categorical
-    #
-    # Clip Values Module: 
-    # refer to df.clip() in pandas
-        # Filter 1: Set of thresholds
-        # Filter 2:
-        # Filter 3:
-        # Filter 4:
-        # Filter 5:        
-        # set of threshold
             # 
-# Join Data:
-    # Selected Key for Left Table:
-    # Selected Key for Right Table:
-    # Match Case:
-    # Join Type:
-    # Keep right Key columns in the joined table:
+
 #
 # Principal Component Analysis:
     # Select Columns:
     # Number of dimensionality to reduce to:
         # Normalize dense dataset to zero mean
-#
-
-# Split Data Module:
-    # Filter 1: Splitting Mode: 
-        # split rows:
-        # Regular Expression: 
-    # Filter 2: Fraction of rows in the 1st split: 0.7
-    # Filter 3: Random Seed: 123
-    # Filter: Stratified Split: False
-        # 
-#
-# Group Data into Bins:
-    # 
 #
 # Latent Direchlet Transformation:
     # Topic Modelling:
@@ -552,56 +762,26 @@
 #
 # Replace Discrete Values:
     # 
-#
-######################################################################################################
-# Python Language Modules:
-    # Python Language Modules:
-    # Execute Python Script:
-        # With Python, users could perform tasks that are not currently supported by existing ML Studio Modules.
-            # e.g. Visualizing data with Matplotlib
-            # e.g. Using python libraries to enumerate datasets and models in your workspace
-            # e.g. reading, loading, and manipulating data froms sources not supported by the "Import Data" Module
-#
+
 # Convert to Indicator Values Module:
     # Use the Convert to Indicator Values module to convert columns that contain categorical values into a series of binray indicator columns
         # that can be used as a series of features in the ML model.
         # (similar to one-hot encoding)
 #
-# Partition and Sample:
-    # Expected Input = Data Table
-    # Expected Output = Data Table
-        # Filter 1: Partition or Sample Mode:
-            #
-        # Filter 2: Rate of Sampling:
-            #
-        # Filter 3: Random Seed for Sampling
-            # default to be 0
-        # Filer 4: Stratified split for Sampling
-            # True/ False
-    # Sampling is an important module in ML as it lets you reduce the size of a dataset while maintaining the same ratio of values.
-        # Dividing your data into multiple subsections of the same size.
-            # e.g. you might use the partition for cross-validation, or to assign cases to random groups
-        # Separating data into groups then work with data from a specific group.
-            #
-        # Sampling.
-            # e.g. either by percentage with random sampling, choose a column to use for balancing the dataset, or perform stratified sampling, etc.
-        # Creating smaller datasets for testing.
-            # e.g. to save processing time during testing
+
+
+    # 
+    # Linear Regression:
+        # OLS
+        # Online Gradient Descent
+            # create trainer mode
+            # learning rate
+            # number of training epochs
+            # L2 Regularization Weight
+            # Random Seed
 #
-# Linear Regression:
-    # OLS
-    # Online Gradient Descent
-        # create trainer mode
-        # learning rate
-        # number of training epochs
-        # L2 Regularization Weight
-        # Random Seed
+
 #
-#
-# Train Model:
-    # launch column selector: select target variable
-#
-# Score Model:
 #
 # Score Mathbox Recommendation:
     (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
@@ -617,46 +797,15 @@
     # Minimum size of recommendation pool for a single user:
     # Whether to return predicted 
 #
-# Evaluate Model:
-#
+
 # Export Count Table Module:
     # 
-#
-######################################################################################################
-# Statistical Functions:
-    # Summarize Data: 
-        # refer to: df.describe(include = 'all')
-        # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
-            # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
-            # e.g. how many missing values are there in each column
-            # e.g. how many unique values are there in each feature column
-            # e.g. what is the mean and standard deviation of each numeric column
-#
+
 
 #
-# Feature Hashing:
-    # Feature hashing is used for linguistics, and works by converting unique tokens into unique integers.
-    #
-    # fixed-size array:
-    # linked list:
-    # hashing:
-        #
-#
-# Filter Based Feature Selection:
-    # Feature Scoring Method:
-        # Pearson's Correlation:
-        # Spearman (relatively more reliable when having some, but not extreme outliers)
-        # Kandell: (more reliable when having significant outliers)
-    # Target Column:
-    # Number of Desired Features:
-    # 
-    # corr(x1, y)
+
 # Fisher Linear Discriminant Analysis
 # Permutation Feature Importance
-#
-# Boosted Decision Tree Regression:
-    # Parameter Range
-    # 
 #
 # Hyperparameters Tuning/ Tune Model Hyperparameters : (every module has a set of input parameters, called hyperparameters)
     # helps in determining the best possible combination of model parameters to achieved a desicred result
@@ -667,46 +816,16 @@
     # L2 Regularization: (Ridge Regression)
         # Ridge regression will shrink all the coefficientby the same scale, which will not eliminate any variable
 #
-# Partition and Sample:
 # 
 # Convert to ARFF: 
     # Convert datasets and results in Azure ML to attribute-relation file format (ARFF) used by the Weka toolset.
     # The ARFF data specification for Weka supports multiple ML tasks, including data preprocessing, classification, and feature selection.
         # In ARFF format, data is organized by entities and their attributes, and is contained in a single text file.
 # 
-# K-Means Clustering
-    # Create Trainer Mode (single parameter)
-    # Number of Centroids
-    # Initialization (K-Means++, K-Means++ Fast, First N, Forgy Method, Evenly and by Use Label Column.)
-        # Use Label Column: use a variable from the existing dataset to guide selection of the centroids.
-        # 
-    # Random Number Seed:
-    # Metric: Euclidean, Cosine
-    # Iterations: 
-    # Assign Label Mode: 
+
 #
 #
-# Evaluate Model Module:
-    # Confusion Matrix:
-        #               Predicted(True)     Predicted(False)
-        # Actual(True)  True Positive       False Negative
-        # Actual(False) False Positive      True Negative
-        # 
-        # Matrix: [[TP, FN], [FP, TN]]
-        # 
-        # Recall = TP/ (TP + FN) = True Positive 
-        # 
-        # Accuracy = (TP + TN)/ (TP + TN + FP + FN) = total number of accurate predictions/ total number of observations
-        # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
-        # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
-        # 
-        # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP)
-            # F1 Score = Weighted average (Harmonic Mean) of Precision and Recall = 2 * Precision * Recall / (Precision + Recall)
-    # AUC = Area Under Curve (e.g. value = 0.8)
-        # ROC = Receiver Operating Characteristics
-        # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
-            # TPR = True Positive Rate = TP / (TP + FN) = Recall
-            # FPR = False Positive Rate = FP / (FP + TN) = 
+
 #
 ######################################################################################################
 # Azure ML SDK: 
