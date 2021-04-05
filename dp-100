@@ -345,10 +345,25 @@
         # Step 4: apply transformation and create prediction model
         # Step 5: predict missing value and repeat step 3-5 (for other columns with missing value)
             # e.g. mean for numeric, mode for string
-#
-# Edit Metadata:
-    # Make string variable to be categorical
-#
+######################################################################################################
+# Data Transformation:
+    # Edit Metadata Module:
+        # Filter 1: Select Column
+        # Filter 2: Select Data Type
+        # Filter 3: Categorical
+        # Filter 4: Fields
+        # Filter 5: New Column Name
+        # Make string variable to be categorical
+    #
+    # Clip Values Module: 
+    # refer to df.clip() in pandas
+        # Filter 1: Set of thresholds
+        # Filter 2:
+        # Filter 3:
+        # Filter 4:
+        # Filter 5:        
+        # set of threshold
+            # 
 # Join Data:
     # Selected Key for Left Table:
     # Selected Key for Right Table:
@@ -361,6 +376,7 @@
     # Number of dimensionality to reduce to:
         # Normalize dense dataset to zero mean
 #
+
 # Split Data:
     # Splitting Mode: 
         # split rows:
@@ -451,16 +467,17 @@
 # Export Count Table Module:
     # 
 #
-# Summarize Data: 
-    # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
-        # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
-        # e.g. how many missing values are there in each column
-        # e.g. how many unique values are there in each feature column
-        # e.g. what is the mean and standard deviation of each numeric column
+######################################################################################################
+# Statistical Functions:
+    # Summarize Data: 
+        # refer to: df.describe(include = 'all')
+        # general summary of a dataframe (min, max, mean, mode, number of unique values, missing data count, etc.)
+            # Kurtosis, Skewness, Percentile 1, Percentile 95, etc.
+            # e.g. how many missing values are there in each column
+            # e.g. how many unique values are there in each feature column
+            # e.g. what is the mean and standard deviation of each numeric column
 #
-# Clip Values: 
-    # set of threshold
-        # 
+
 #
 # Feature Hashing:
     # Feature hashing is used for linguistics, and works by converting unique tokens into unique integers.
