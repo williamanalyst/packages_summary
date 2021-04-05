@@ -6,6 +6,12 @@ df.describe(include = 'all',
 percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statistics for each column
 df.shape # 
 df.dtypes # 
+#
+############################################################################################
+# Get the numeric columns
+df_numeric_columns_names = df.select_dtypes(include = 'number').columns
+df_numeric_columns = df.select_dtypes(include = 'number')
+#
 ############################################################################################
 # Change Data Type
 df['col1'] = df['col1'].astype('category') # could also use 'int', 'float', 'str', etc.
@@ -42,8 +48,13 @@ print(max_values)
 #
 ############################################################################################
 # Process Outliers:
-# clip
-df[[col1]].clip(0, 100) # any value below 1 will be replaced by 1, and value above 100 will be replced by 100
+    # clip
+    df[[col1]].clip(0, 100) # any value below 1 will be replaced by 1, and value above 100 will be replced by 100
+    for column in df.select_dtypes(include = 'number').columns:
+        lower = df[column].percentile(0.01)
+        upper = df[column].percentile(0.99)
+        df[column_clipped] = df[column].clip(lower, upper)
+        print(column, lower, upper)
 ############################################################################################
 # .pct_change()
 
@@ -116,9 +127,14 @@ df['max_column'] = np.maximum(df['col1'] * 2, df['col2'] + df['col3']) # array c
 
 # crosstab function (similar to pivot_table function) 
 pd.crosstab(df['col1'], df['col2'], values = df['col2'], aggfunc = 'mean').round()
-
-
-
+#
+#
+############################################################################################
+# Save file as .csv
+df.to_csv('filename.csv', header = True, 
+    index = False) # not saving index column
+# Save file as .tsv
+df.to_csv('filename.txt', header = True, index = False, sep = '\t') # save as .tsv file 
 
 
 
