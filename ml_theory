@@ -323,9 +323,28 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
-
+########################################################################################
+# Confusion Matrix:
+    #               Predicted(True)     Predicted(False)
+    # Actual(True)  True Positive       False Negative
+    # Actual(False) False Positive      True Negative
+    # 
+    # Matrix: [[TP, FN], [FP, TN]]
+    # 
+    # Recall = TP/ (TP + FN) = True Positive 
+    # 
+    # Accuracy = (TP + TN)/ (TP + TN + FP + FN) = total number of accurate predictions/ total number of observations
+    # Precision = TP/ (TP + FP) = (Among those classified as True, % accurate) 
+    # Recall = TP/ (TP + FN) = (For those that are actually True, % identified as True) 
+    # 
+    # F1 Score = 2/(1/Accuracy + 1/Precision) = 2/ [(2TP + FP + FN)/TP] = 2TP/ (2TP + FP + FN) = 1/ (1 + FP/ 2TP + FN/ 2TP)
+        # F1 Score = Weighted average (Harmonic Mean) of Precision and Recall = 2 * Precision * Recall / (Precision + Recall)
 # ROC Curve
-
+# AUC = Area Under Curve (e.g. value = 0.8)
+    # ROC = Receiver Operating Characteristics
+    # ROC Curve = ( FPR on x-axis and TPR on the y-axis )
+        # TPR = True Positive Rate = TP / (TP + FN) = Recall
+        # FPR = False Positive Rate = FP / (FP + TN) = 
 
 
 
