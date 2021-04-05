@@ -18,7 +18,12 @@
         #
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
         # 
-# 
+        # Real-time Inference Pipeline:
+            # Step 1: Remove target variable from "Select Columns in Dataset" Module
+            # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
+            # Step 3: "Evluate Model" is not needed as we cannot test on new data input(therefore removed).
+        # Batch Inference Pipeline:
+            # 
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
 ######################################################################################################
@@ -507,19 +512,7 @@ Feature Selection:
     # 
 #
 #
-# Score Mathbox Recommendation:
-    (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
-    (can also be used for "people like you" predictions)
-    # Recommender Prediction Kind:
-        # Predict Ratings: ()
-        # Item Recommendation: 
-            (from rated items for model evaluation)
-            # Generate a list of items that will appeal to each customer
-        # 
-    # Recommended Item Selection:
-    # Maximum Number of Items to Recommend:
-    # Minimum size of recommendation pool for a single user:
-    # Whether to return predicted 
+
 #
 
 ######################################################################################################
@@ -783,10 +776,26 @@ Feature Selection:
 # Recommendations Modules: (5)
 ######################################################################################################
     # Evaluate Recommender:
+        # Input 1: Split Data - Test Dataset
+        # Input 2: Score Wide and Deep Recommender - Scored Dataset (each user with recommended items, e.g. 2 - 5 items by ranking)
+        # Output: 
+            # NDCG: (Normalized Discounted Cumulative Gain) (e.g. NDCG = 0.9, is a high-performance value)
+            # e.g. search result returns Item 1, Item 2, Item 3, Item  4, Item 5, Item 6
+                # However, user has rating Item 1 = 4, Item 2 = 3, Item 3 = 4, Item 4 = 0, Item 5 = 1, Item 6 = 2
+                    # In this case, the cumulated gain = 4 + 3 + 4 + 0 + 1 + 2 = 14
+                # DCG (Discounted Cumulative Gain) = 4/ log2(1+1) + 3/ log2(2+1) + 4/ log2(3+1) + ... + 2/ log2(6+1) = 8.99
+                    # Ideal Ranking = 4/ log2(1+1) + 4/ log2(2+1) + 3/ log2(3+1) + ... + 0/ log2(6+1) = 9.27
+                    # Therefore, NDCG = Actual/ Ideal = 8.99/ 9.27 = 0.9697
     # Train SVD Recommender:
+        # Train a colllaborative filtering recommendation using SVD algorithm.
     # Train Wide and Deep Recommender:
+        # Train a recommender based on Wide & Deep model.
     # Score SVD Recommender:
+        # 
     # Score Wide and Deep Recommender:
+        # Input 1: (Mandatory) User-Item-Rating triples 
+        # Input 2: (Optional) user features
+        # Input 3: (Optional) item features
 ######################################################################################################
 # Ahomaly Detection Modules: (2)
 ######################################################################################################
@@ -811,8 +820,21 @@ Feature Selection:
 ######################################################################################################
 # Deprecated Modules: (for reference only)
 ######################################################################################################
-# Missing Value Scrubber (deprecated)
-# Export Count Table Module:
+# Missing Value Scrubber: (deprecated)
+# Export Count Table Module: (deprecated)
+# Score Mathbox Recommendation: (deprecated)
+    (5 inputs: trained matchbox recommender model, dataset to score, user features, item features, training data)
+    (can also be used for "people like you" predictions)
+    # Recommender Prediction Kind:
+        # Predict Ratings: ()
+        # Item Recommendation: 
+            (from rated items for model evaluation)
+            # Generate a list of items that will appeal to each customer
+        # 
+    # Recommended Item Selection:
+    # Maximum Number of Items to Recommend:
+    # Minimum size of recommendation pool for a single user:
+    # Whether to return predicted 
 ######################################################################################################
 #
 #
