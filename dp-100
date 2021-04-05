@@ -17,7 +17,11 @@
     # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
         #
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
-        # 
+        # Deployment Steps:
+            # Step 1: Register the Model:
+            # Step 2: Define an inference configuration: (create entry script, environment, inference configuration)
+            # Step 3: Define the deployment configuration:
+            # Step 4: Deply the Model:
         # Real-time Inference Pipeline:
             # Step 1: Remove target variable from "Select Columns in Dataset" Module
             # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
@@ -52,7 +56,7 @@
             # An existing VM, Databricks, Cluster, etc., that can be borrowed here as compute resource.
     # Datastores:
         # Azure Blob Storage:
-        # Azure Data Lake:
+        # Azure Data Lake: 
         # Azure SQL/ PostgreSQL/ MySQL Database:
         # Azure File Share: 
     # Data Labelling:
@@ -88,7 +92,10 @@
     # and can be tracked in the Azure ML workspace
 # 
 # Azure Cognitive Service
-# Azure Data Lake Analytics
+# Azure Data Lake Analytics:
+    # Azur Data Lake Analytics is an on-demand analytics job service that simplifies big data.
+    # Azure Data Lake Analytics is for easy develop and run massively parallel data transformation and processing programs in U-SQL, R, Python, and .Net over
+        # petabytes of data. With no infrastructure to manage, you can process data on demand, scale instantly, and only pay per job.
 # Azue HDInsight with Spark Mlib
 ######################################################################################################
 # Cloud Computing:
@@ -939,8 +946,8 @@ Feature Selection:
 # Ubuntu:
 ######################################################################################################
 # Question: compute target to deploy the workspace
-    # Azure Container Service
-
+    # Azure Container Service (allow deployment)
+        # (Azure Data Lake Analytics, Databricks, HDInsights do not allow deployment option.) 
 
 ######################################################################################################
 # Question: what is a workspace in Azure ML?
