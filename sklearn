@@ -73,6 +73,7 @@ logreg = LogisticRegression()
 logreg.fit(X_train, y_train)
 #
 from sklearn.metrics import roc_curve
+y_pred = logreg.predict(X_test) # 
 y_pred_prob = logreg.predict_proba(X_test)[: 1] # 
 fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
 #
