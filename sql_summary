@@ -1,5 +1,7 @@
 # SQL Summary
-#
+#####################################################################################################
+# import pyodbc
+# conn_bi = pyodbc.connect('DRIVER={SQL Server};' 'SERVER=WISBIDATA;' 'Trusted_connection=True')
 #####################################################################################################
 # UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
 -- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
