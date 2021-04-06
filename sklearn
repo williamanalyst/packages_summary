@@ -49,6 +49,8 @@ rmse = np.sqrt(mean_squared_error(y_pred, y_test)) # calculate the error/loss fu
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LinearRegression
 #
+from sklearn.model_selection import k-fold
+#
 reg = LinearRegression()
 cv_score = cross_val_score(reg, X, y, cv = 5) # returns 5 results in 5 folds
 
@@ -84,7 +86,7 @@ plt.plot(tpr, fpr) # line chart
 
 #######################################################################################
 # k-means clustering
-# 
+#######################################################################################
 
 #
 ss = StandardScaler()
