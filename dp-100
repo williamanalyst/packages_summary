@@ -80,7 +80,8 @@
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
-# Azure Container Instance
+# Azure Container Instance: 
+# Azure Container Registry: 
 
 # Endpoint
 
@@ -592,6 +593,12 @@ Feature Selection:
         # Filter 4: Fields
         # Filter 5: New Column Name
     # Group data into Bins:
+        # Filter 1: Binning Mode: (Quantiles, Equal Width, Custom Edges)
+        # Filter 2: Number of Bins:
+        # Filter 3: Quantile Normalization (Percent, PQuantile, Quantile Index)
+        # Filter 4: Columns into Bin
+        # Filter 5: Output Mode (Append, Inplace, Result Only)
+        # Filter 6: Tag Columns as Categorical (True/ False)
     # Join Data:
         # Filter 1: Selected Key for Left Table:
         # Filter 2: Selected Key for Right Table:
@@ -651,7 +658,7 @@ Feature Selection:
             # Pearson's Correlation:
             # ChiSquared:
             # Spearman (relatively more reliable when having some, but not extreme outliers)
-            # Kandell: (more reliable when having significant outliers)
+            # Kandall: (more reliable when having significant outliers)
                 # corr(x1, y)
     # Premutation Feature Importance:
         # 
@@ -756,6 +763,14 @@ Feature Selection:
 ######################################################################################################
     # Convert Word to Vector:
     # Extract N-grams Feature from Text:
+        # Filter 1: Select Text Column
+        # Filter 2: Vocabulary Mode (Create, ReadOnly)
+        # Filter 3: N-gram Size:
+        # Filter 4: Weighting Function (Binary Weight, TF Weight, IDF Weight, TF-IDF Weight)
+        # Filter 5: Minimum / Maximum Word Length
+        # Filter 6: Minimum N-gram document absosulte frequency.
+        # Filter 7: Maximum N-gram document ratio.
+        # Filter 8: Normalize N-gram feature vectors (True/ False)
     # Feature Hashing:
         # Feature hashing is used for linguistics, and works by converting unique tokens into unique integers.
         # Filter 1: Target Column:
@@ -766,8 +781,9 @@ Feature Selection:
             # hashing:
     # Latent Dirichlet Allocation:
     # Preprocess Text
+    # Train Vowpal Wabbit Model: (Deep neural network)
+        # 
     # Score Vowpal Wabbit Model:
-    # Train Vowpal Wabbit Model:
 ######################################################################################################
 # Computer Vision Modules: (6)
 ######################################################################################################
@@ -892,7 +908,7 @@ Feature Selection:
         # To run Docker, your machine must have a 64-bit operating system running Windows 7 or higher.
 ######################################################################################################
 # Question: Select Data Science Environment
-    # Azure Cognitive Services:
+    # Azure Cognitive Services: (pre-built deep learning models for video/ language processing.)
         # Azure Cognitive Serviers expand on Microsoft's evolving portfolio of ML APIs ane enable developers to easily add cognitive features:
             # e.g. emotion and video detection, facial, speech, and vision recognition; and speech and language understanding into applications.
             # Azure Cognitive Services can be categorized into 5 main pillars: Vision, Speech, Language, Search and knowledge.
@@ -901,8 +917,10 @@ Feature Selection:
     # Azure ML Studio: 
 ######################################################################################################
 # Question: Move large dataset from Azure ML Studio to Weka environment
-    # 
-    
+    # ARFF
+######################################################################################################
+# Question: Recommended K value for K-fold Validation: 
+    # 5-10
 ######################################################################################################
 # Question: Difference between DSVM and Azure ML Compute Instance:
     # DSVM (Data Science Virtual Machine)
@@ -931,22 +949,18 @@ Feature Selection:
     # Azure Storage Explorer
     # AzCopy
     # Python/ Pyspark
-    # SSIS
-###################################################################################################### 
-# Question: Moving a large dataset from Azure ML Studio to a Weka environment:
-    
+    # SSIS 
 ######################################################################################################
 # Question: 
     # Weka: weka is used for visual data mining and machine learning software in Java.
     # Rattle: Rattle is the R analytical tool that gets you started with data analytics and machine learning.
-# 
-
-# Caffe2: 
-    #
-# Ubuntu:
+######################################################################################################
+# Question: if you are planning to use a DSVM with the open source deep learning framework Caffe2 and PyTorch: 
+    # Use DSVM for Linux (Ubuntu)
 ######################################################################################################
 # Question: compute target to deploy the workspace
-    # Azure Container Service (allow deployment)
+    # Azure Container Service (allow deployment) (retired on Jan 31, 2020, replaced by AKS)
+    # Azure Kubernates Service
         # (Azure Data Lake Analytics, Databricks, HDInsights do not allow deployment option.) 
 
 ######################################################################################################
@@ -974,23 +988,60 @@ Feature Selection:
 ######################################################################################################
 # Question: Need to normalize values to produce an output column into bins to predict target column:
     # Entropy MDL Bining Mode:
-#
-# 
+######################################################################################################
+# Question: When needed to tune hyperparameters, and we need to iterate all possible combinations while minimizing computing resources required.
+    # Use Random Grid 
 
 ######################################################################################################
 # Question: Difference between Azure ML Service and Azure ML Studio?
-    # 
-
-
-
-
-
-
-
-
-
-
-
+    # Azure ML Studio is just the UI, which is not the core service
+######################################################################################################
+# Question: need to register the new version of a model while keeping the current version of the model in the registry, how could we do that?
+    # Register the model with the same name as the existing model.
+######################################################################################################
+# Question: you need to normalize values to produce a feature column grouped into Bins:
+    # apply an Entropy Mimimum Description Length (MDL) binning mode 
+######################################################################################################
+# Question: how do you record unique label values as run metrics?
+    # Script:
+    import pandas as pd
+    run = Run.get_context()
+    data = pd.read_csv('file1.csv')
+    labels = data['label'].unique()
+    for label in labels:
+        run.log('Label Value', label)
+######################################################################################################
+# Question: which metrics should we use to evaluate model results for imbalance. (binary classification model)
+    # AUC Curve
+######################################################################################################
+# Question: Which mode should you use to split a "time-series" dataset in Azure ML Studio into training and test sets？
+    # Relative Expression Split
+######################################################################################################
+# Question: how to reduce over-fitting for CNN Model?
+    # Solution 1：Add L1/L2 regularization
+    # Solution 2: Use training data augmentation
+    # Solution 3: Increase Training Data Size
+    # Solution 4: Add Dropout Layers
+######################################################################################################
+# Question: When a model is over-fitted, how is the loss in both the training and test set changing?
+    # The training loss would be decreasing while the validation loss is actually increasing.
+######################################################################################################
+# Question: The binary classification model training set is imbalanced, how to we resolve the data imbalance?
+    # Solution 1: Penalize the Classification
+    # Solution 2: Resample the dataset using under-sampling and over-sampling
+    # Solution 3: Generate synthetic samples in the minority class
+######################################################################################################
+# Question: Feature Scaling --> original and scaled data:
+    # Scenario 1: Standard Scaler (mean = 0, std)
+        # Z = (x - miu)/ std()
+    # Scenario 2: Min-Max Scaler ([0, 1])
+    # Scenario 3: Normalizer 
+######################################################################################################
+# Question: You are producing a multiple linear regression model, and several independent variables are highly correlated.
+    # You need to select appropriate methods for feature engineering:
+        # Step 1: Use the Filter-based Feature Selection Module
+        # Step 2: Build a counting transformation
+        # Step 3: Test the hypothesis using t-test
 
 
 
