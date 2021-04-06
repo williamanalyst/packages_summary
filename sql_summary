@@ -1,5 +1,5 @@
 # SQL Summary
-
+#
 #####################################################################################################
 # UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
 -- UNION removes the duplicates in the 2 tables, whereas UNION ALL keeps all the records
