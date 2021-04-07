@@ -31,9 +31,16 @@ print(corr)
 
 
 
-
-
-
+################################################################################
+# t-test
+################################################################################
+# paired t-test v.s. unpaired t-test
+    # Paired t-test is designed to compare the means of the same group or items under 2 separate groups.
+        # Unpaired t-test compares the mean of 2 independent or unrelated groups.
+    # In a unpaired t-test, the variance between groups is assumed to be equal.
+        # In a paired test, the variance is not assumed to be equal.
+################################################################################
+# t-test
 
 
 
