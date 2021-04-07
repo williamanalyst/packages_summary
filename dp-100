@@ -84,9 +84,15 @@
 # Azure Container Registry: 
 
 # Endpoint
+# Mimic Explainer:
+# Tabular Explainer:
+# PFI Explainer:
 
 # Inference Cluster
- 
+# Permutation Feature Importance:
+# Mutual Information:
+# Mood's Median Test:
+
 # Resource Group
  
 # Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs.
