@@ -14,14 +14,51 @@
                 # 
     # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
         #
-    # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrice to tune parameters, use model explainer to interpret model, manage model)
-        #
+    # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
+        # 
+        # Use Azure Hyperdrive to turn Hyperparameters (also known as hyperparameter optimization)
+            # Performance Metric to Measure: Accuracy, Precision, Recall, AUC, F1 Score
+                # Step 1: Select a Sampling Method (Random sampling, Grid sampling, Bayesian Sampling)
+                # Step 2: Define the parameter Search Space
+                # Step 3: Define Primary Metric
+                # Step 4: Define Early Termination Options: (Bayesian sampling does not allow early termination)
+                    # Option 1: Bandit Policy
+                        from azureml.train.hyperdrive import BanditPolicy
+                        early_termination_policy = BanditPolicy(slack_amount = 0.1, evaluation_interval = 1, delay_evaluation = 10)
+                            # early termiation start from 10 dalays, and check each iteration from 11th epoch, and if new accuracy < max(past performance) - 0.1 then stop.
+                    # Option 2: Median Stopping Policy
+                        from azureml.train.hyperdrive import MedianStoppingPolicy
+                        early_termination_policy = MedianStoppingPolicy(evaluation_internal = 1, delay_evaluation = 5)
+                            # early termination start from 5 delays, and check each epoch run, stop if new accuracy < median(past performance)
+                    # Option 3: Truncation Selection Policy (do not keep the iterations that has worst performance)
+                    # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
+                # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
+            # Use Model Explainer to Interpret Models:
+                # Select Model Interpreter:
+                    # SHAP Tree Explainer:
+                    # SHAP Deep Explainer:
+                    # SHAP Linear Explainer:
+                    # SHAP Kernel Explainer: 
+                    # Mimic Explainer: 
+                    # Permutation Feature Importance Explainer:
+                # Generate feature importance data:
+                    # Shapley Value: 
+                    # Local and Global Interpretability:
+        # Manage Models:
+            
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
-        # Deployment Steps:
-            # Step 1: Register the Model:
-            # Step 2: Define an inference configuration: (create entry script, environment, inference configuration)
-            # Step 3: Define the deployment configuration:
-            # Step 4: Deply the Model:
+        # Model Deployment Steps:
+            # Step 1: Save data transformations:
+            # Step 2: Save trained model: (need to save the model in a serialized/ binary format)
+                # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
+                    # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
+            # Step 3: Register models and Transformations:
+            # Step 4: Create Azure Kubernete Service (AKS) Cluster:
+            # Step 5: Create a production environment:
+            # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
+            # Step 7: Create an entry script to retrieve models and transformations for predictions:
+            # Step 8: Deploy the model and consume the web service: 
+        
         # Real-time Inference Pipeline:
             # Step 1: Remove target variable from "Select Columns in Dataset" Module
             # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
@@ -47,11 +84,11 @@
     # Endpoints:
     # Compute:
         # Compute Insatances:
-            # (local) work station for data scientist
+            # (local) work station for data scientist (cannot adjust computing power automatically)
         # Compute Clusters: (2 Nodes --> 2 Virtual Machine/ instance currently provisioned to the cluster)
-            # (distributed)
+            # (distributed, can automatically increase/ decrease computer capacity based on demand)
         # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
-            # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint.
+            # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint. (cannot adjust computing power automatically)
         # Attached Compute: 
             # An existing VM, Databricks, Cluster, etc., that can be borrowed here as compute resource.
     # Datastores:
@@ -709,6 +746,12 @@ Feature Selection:
     # One-vs-One MultiClass:
     # Two-Class Average Perception:
     # Two-Class Boosted Decision Tree:
+        # Create Trainer Mode: Single Parameter/ Parameter Range
+        # Maximum number of leaves per Tree: e.g. [2, 8, 32, 128]
+        # Minimum Number of samples per leaf: e.g. [1, 10, 50]
+        # Learning Rate: e.g. [0.025, 0.05, 0.1, 0.2, 0.4]
+        # Number of Trees Constructed:
+        # Random Number Seed:
     # Two-Class Decision Forest:
     # Two-Class Logistic Regression:
     # Two-Class Neural Network
