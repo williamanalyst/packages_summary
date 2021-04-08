@@ -5,15 +5,16 @@ dynamicparts=spark.read.parquet('/mnt/margin_management/daily/DynamicPrices_'+to
 #
 display(dynamicparts.filter(F.col('IPD_Dynamically_Priced')=='Y')) # filter the data table with certain criteria
 df2 = df.filter(F.col('date_col') == '2020-12-12')
-
-
+df3 = df.filter(F.col['col2'].isNull())
+df3 = df.filter(F.col['col2'].isNotNull())
+#
 ############################################################################################
 # Check general features of a pysparl.sql.dataframe
 # 
 df = spark.read.parquet('/folder/filename.parquet') # read .parquet files as dataframes in pyspark
 print('Shape of the pyspark dataframe = ({}, {})'.format(p2s_daily.count(), len(p2s_daily.columns))) # returns the shape of the pyspark dataframe
 #
-df.schema
+df.schema # shown as a list
 df.printSchema() # print out the datatypes of a pyspark dataframe
 #
 # Unique values
