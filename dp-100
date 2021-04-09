@@ -43,7 +43,7 @@
                 # Generate feature importance data:
                     # Shapley Value: 
                     # Local and Global Interpretability:
-        # Manage Models:
+        # Manage Models: 
             
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
         # Model Deployment Steps:
