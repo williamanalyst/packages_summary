@@ -39,10 +39,16 @@
                     # SHAP Linear Explainer:
                     # SHAP Kernel Explainer: 
                     # Mimic Explainer: 
+                        # 
+                    # Tabular Explainer:
                     # Permutation Feature Importance Explainer:
                 # Generate feature importance data:
                     # Shapley Value: 
                     # Local and Global Interpretability:
+                # Global Feature Importance:
+                    # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
+                # Local Feature Importance:
+                    # Local feature importance measures the influence of each feature value for a specific individual prediction.
         # Manage Models: 
             
     # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
@@ -144,7 +150,15 @@
             from azureml.train.automl.utilities import get_primary_metrics
             get_primary_metrics('classification')
         # Step 3: Sumbit an automated ML Experiment: (could specify early termination based on accuracy as well)
+            from azureml.core.experiment import Experiment
+            automl_experiment = Experiment(ws, 'automl_experiment1')
+            automl_run = automl_experiment.submit(automl_config)
         # Step 4: Retrieve the best run and the corresponding model. 
+            best_run, fitted_model = automl_run.get_outputs()
+            best_run_metrics = best_run.get_metrics()
+            for metric_name in best_run_metrics:
+                metric = best_run_metrics[metric_name]
+                print(metric_name, metric)
     # Designer:
     # Datasets:
     # Experiments:
@@ -216,6 +230,10 @@
     # Azure Data Lake Analytics is for easy develop and run massively parallel data transformation and processing programs in U-SQL, R, Python, and .Net over
         # petabytes of data. With no infrastructure to manage, you can process data on demand, scale instantly, and only pay per job.
 # Azue HDInsight with Spark Mlib
+#
+# Differential Pricacy:
+    # Differential Privacy seeks to protect individual data value by adding "noise" to the analysis process.
+        # Epsilon Value: ( 0-1 ) --> (Privacy - Accuracy)
 ######################################################################################################
 # Cloud Computing:
     # What is Cloud Computing:
