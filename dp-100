@@ -58,7 +58,7 @@
             # Step 7: Create an entry script to retrieve models and transformations for predictions:
             # Step 8: Deploy the model and consume the web service: 
         
-        # Real-time Inference Pipeline:
+        # Real-time Inference Pipeline: (the 3 steps only applies when you create a inference pipeline from an existing normal trained model)
             # Step 1: Remove target variable from "Select Columns in Dataset" Module
             # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
             # Step 3: "Evluate Model" is not needed as we cannot test on new data input(therefore removed).
