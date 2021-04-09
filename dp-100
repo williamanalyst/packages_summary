@@ -134,6 +134,17 @@
 # Azure ML Workspace = boundary of related assets used in ML Studio.
     # Notebooks:
     # Automated ML:
+        from azureml.train.automl import AutoMLConfig
+        automl_run_config = RunConfiguration(framework = 'python')
+        automl_config = AutoMLConfig(name = 'Automated ML Experiment', task = 'classification/ regression', primary_metric = 'AUC_Weighted',
+                                     compute_target = computewx1, training_data = train_dataset, validation_data = test_dataset, 
+                                     label_column_name = 'Y', featurization = 'auto', iterations = 12, max_concurrent_iterations = 4)
+        # Step 1: Specify Data for Training:
+        # Step 2: Specify the Primary Metrics
+            from azureml.train.automl.utilities import get_primary_metrics
+            get_primary_metrics('classification')
+        # Step 3: Sumbit an automated ML Experiment: (could specify early termination based on accuracy as well)
+        # Step 4: Retrieve the best run and the corresponding model. 
     # Designer:
     # Datasets:
     # Experiments:
