@@ -40,8 +40,15 @@ print(corr)
     # In a unpaired t-test, the variance between groups is assumed to be equal.
         # In a paired test, the variance is not assumed to be equal.
 ################################################################################
-# t-test
-
+# Skewness
+    Skewness = expected((x - miu)/ sigma)^3
+        # 
+    # Positive Skewness:
+        # Positive Skewness = Skew to Left = Long tail on right side
+        # Long tail on the right will increase mean, therefore mean > median > mode
+    # Negative Skewness:
+        # Negative Skewness = Skew to Right = Long tail on left side
+        # Long tail on the left will decrease mean, therefore mean < median < mode
 
 
 
