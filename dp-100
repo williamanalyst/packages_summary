@@ -1,137 +1,185 @@
 # DP100 Exam Curriculum
-    # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
-        # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
-            # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
-            # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
-                # You can create datastores that connect to these Azure store solutions.
-            # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
-                # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
-        # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
-            # FileDataset:
-                    # If your data is already cleansed, and ready to use in training experiments, 
-            # Tabular Dataset:
-                # 
-    # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
-        #
-    # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
-        # 
-        # Use Azure Hyperdrive to turn Hyperparameters (also known as hyperparameter optimization)
-            # Performance Metric to Measure: Accuracy, Precision, Recall, AUC, F1 Score
-                # Step 1: Select a Sampling Method (Random sampling, Grid sampling, Bayesian Sampling)
-                # Step 2: Define the parameter Search Space
-                # Step 3: Define Primary Metric
-                # Step 4: Define Early Termination Options: (Bayesian sampling does not allow early termination)
-                    # Option 1: Bandit Policy
-                        from azureml.train.hyperdrive import BanditPolicy
-                        early_termination_policy = BanditPolicy(slack_amount = 0.1, evaluation_interval = 1, delay_evaluation = 10)
-                            # early termiation start from 10 dalays, and check each iteration from 11th epoch, and if new accuracy < max(past performance) - 0.1 then stop.
-                    # Option 2: Median Stopping Policy
-                        from azureml.train.hyperdrive import MedianStoppingPolicy
-                        early_termination_policy = MedianStoppingPolicy(evaluation_internal = 1, delay_evaluation = 5)
-                            # early termination start from 5 delays, and check each epoch run, stop if new accuracy < median(past performance)
-                    # Option 3: Truncation Selection Policy (do not keep the iterations that has worst performance)
-                    # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
-                # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
-            # Use Model Explainer to Interpret Models:
-                # Select Model Interpreter:
+######################################################################################################
+# 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
+######################################################################################################
+    # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
+        # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
+        # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
+            # You can create datastores that connect to these Azure store solutions.
+        # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
+            # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
+    # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
+        # FileDataset:
+                # If your data is already cleansed, and ready to use in training experiments, 
+        # Tabular Dataset:
+            # 
+######################################################################################################
+# 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
+######################################################################################################
+    #
+######################################################################################################
+# 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
+######################################################################################################
+    # Use Azure Hyperdrive to turn Hyperparameters (also known as hyperparameter optimization)
+        # Performance Metric to Measure: Accuracy, Precision, Recall, AUC, F1 Score
+            # Step 1: Select a Sampling Method (Random sampling, Grid sampling, Bayesian Sampling)
+            # Step 2: Define the parameter Search Space
+            # Step 3: Define Primary Metric
+            # Step 4: Define Early Termination Options: (Bayesian sampling does not allow early termination)
+                # Option 1: Bandit Policy
+                    from azureml.train.hyperdrive import BanditPolicy
+                    early_termination_policy = BanditPolicy(slack_amount = 0.1, evaluation_interval = 1, delay_evaluation = 10)
+                        # early termiation start from 10 dalays, and check each iteration from 11th epoch, and if new accuracy < max(past performance) - 0.1 then stop.
+                # Option 2: Median Stopping Policy
+                    from azureml.train.hyperdrive import MedianStoppingPolicy
+                    early_termination_policy = MedianStoppingPolicy(evaluation_internal = 1, delay_evaluation = 5)
+                        # early termination start from 5 delays, and check each epoch run, stop if new accuracy < median(past performance)
+                # Option 3: Truncation Selection Policy (do not keep the iterations that has worst performance)
+                # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
+            # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
+        # Use Model Explainer to Interpret Models:
+            # Select Model Interpreter:
+                # Mimic Explainer: 
+                    # An explainer that creates a surrogate(replacement) model that approximates your trained model and can be used to generate explainations.
+                        # This explainable model must have the same kind of architecture as your trained model (e.g. linear, or tree-based). 
+                # Tabular Explainer:
+                    # An explainer that acts as a wrapper around various SHAP explainer algorithms, automatically choosing the one that is most appropriate
+                        # for your model architecture.
                     # SHAP Tree Explainer:
                     # SHAP Deep Explainer:
                     # SHAP Linear Explainer:
                     # SHAP Kernel Explainer: 
-                    # Mimic Explainer: 
-                        # 
-                    # Tabular Explainer:
-                    # Permutation Feature Importance Explainer:
-                # Generate feature importance data:
-                    # Shapley Value: 
-                    # Local and Global Interpretability:
-                # Global Feature Importance:
-                    # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
-                # Local Feature Importance:
-                    # Local feature importance measures the influence of each feature value for a specific individual prediction.
-        # Manage Models: 
-            
-    # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
-        # Model Deployment Steps:
-            # Step 1: Save data transformations:
-            # Step 2: Save trained model: (need to save the model in a serialized/ binary format)
-                # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
-                    # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
-            # Step 3: Register models and Transformations:
-            # Step 4: Create Azure Kubernete Service (AKS) Cluster:
-            # Step 5: Create a production environment:
-            # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
-            # Step 7: Create an entry script to retrieve models and transformations for predictions:
-            # Step 8: Deploy the model and consume the web service: 
-        
-        # Real-time Inference Pipeline: (the 3 steps only applies when you create a inference pipeline from an existing normal trained model)
-            # Step 1: Remove target variable from "Select Columns in Dataset" Module
-            # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
-            # Step 3: "Evluate Model" is not needed as we cannot test on new data input(therefore removed).
-        # Batch Inference Pipeline:
-            # 
-        #
-        # Publish Pipeline:
-            # Option 1: call publish method:
-                published_pipeline = pipeline.publish(name = 'training_pipeline', description = 'Model Training Pipeline', version = '1.0')
-            # Option 2: Call the publish method on a successful run of the pipeline:
-                pipeline_experiment = ws.experiment.get('training-pipeline')
-                run = list(pipeline_experiment.getruns())[0] # naturally from most recent to earlier runs
-                published_pipeline = run.publish_pipeline(name = 'training_pipeline', description = 'Model Training Pipeline', version = '1.0')
-        # After the pipeline has been published, you can view it in Azure ML Studio, you can also determine the URI of its endpoint:
-            rest_endpoint = published_pipeline.endpoint
-            print(rest_endpoint)
-        # Using a published pipeline: (REST API request)
-            import requests
-            response = requests.post(rest_endpoint, header = header, json = {'Experiment_Name': 'run_trained_pipeline', 
-                                                                             'ParameterAssignments': {'learning_rate': 0.1}})
-            run_id = response.json()['id']
-            print(run_id)
-        # Schedule Pipeline for periodic intervals/ data change:
-            from azureml.pipeline.core import ScheduleRecurrence, Schedule
-            weekly = ScheduleRecurrence(frequency = 'week', interval = 1)
-            pipeline_schedule = Schedule.create(ws, name = 'Weekly Run Predictions', description = 'batch inferencing', 
-                                                    pipeline_id = published_pipeline.id, experiment_name = 'Batch Prediction', recurrence = weekly)
-        # Register a trained Model:
-            # Option 1: use the register method
-                from azureml.core import Model
-                register_model = Model.register(workspace = ws, model_name = 'name of your model', model_path = 'trained_model.pkl', description = 'classification model')
-            # Option 2: refer to runs that have been used to train the model:
-                run.register_model(model_name = 'classification_model1', model_path = 'outputs/model1.pkl', # this is the run output path
-                                                                         description = 'a classification model')
-        # Deploy the trained Model:
-            from azureml.core.model import Model
-            model = ws.models['classification_model1']
-            service = Model.deploy(workspace = ws, name = 'service name', models = [model], 
-                                                                          inference_config = classifier_inference_config, 
-                                                                          deployment_config = classifier_deploy_config, 
-                                                                          deployment_target = production_cluster)
-            service.wait_for_deployment(show_output = True) # for ACI or local service, you can omit show_output parameter or set 'show_output = None'
-        # Consuming a real-time inferencing Service:
-            # Option 1: using Azure ML SDK:
-                import json
-                new_input = [[0.1, 0.2, 0.3, 0.4], [1.1, 1.2, 1.3, 1.4]]
-                json_data = json.dumps({'data': new_input})
-                response = service.run(input_data = json_data)
-                predictions = json.loads(response)
-                for i in range(len(new_input)):
-                    print(new_input[i], predictions[i])
-            # Option 2: Using a REST endpoint:
-                endpoint = service.scoring_uri
+                # Permutation Feature Importance (PFI) Explainer:
+                    # Analyzes the feature importance by shuffling feature values(e.g. remove 1 variable randomly) and measuring the impact on perdiction performance.
                 #
-                request_header = {'Content-Type': 'application/json', 
-                                  'Authentication': 'Bearer' + Key/ or Token}
-                response = requests.post(url = endpoint, data = json_data, headers = request_header)
-                predictions = json.load(response.json())
-            # There are 2 kinds of authentication that can be used:
-                # Option 1: Key = requests are authenticated by specifying the key associated with the service
-                    primary_key, secondary_key = service.get_keys()
-                # Option 2: Token = requests are authenticated by providing a JSON Web Token (JWT)
-            # Check the Service State:
-                from azureml.core.webservice import AksWebservice
-                service = AksWebservice(name = 'service name', workspace = ws)
-                print(service.state) # check the service state
-                print(service.get_logs()) # review the service log
+                from interpret.ext.blackbox import MimicExplainer
+                from interpret.ext.glassbox import DecisionTreeExplainableModel
+                mimic_explainer = MimicExplainer(model = loan_model, initilization_examples = X_test, 
+                                                 explainable_model = DecisionTreeExplainableModel, 
+                                                 features = ['loan_amount', 'income', 'age', 'marital_status'],
+                                                 classes = ['reject', 'approve'])
+                # 
+                from interpret.ext.blackbox import TabularExplainer
+                tab_explainer = TabularExplainer(model = loan_model, initilization_examples = X_test, 
+                                                 features = ['loan_amount', 'income', 'age', 'marital_status'], 
+                                                 classes = ['reject', 'approve'])
+                # 
+                from interpret.ext.blackbox import FPIExplainer
+                pfi_explainer = PFIExplainer(model = loan_model, features = ['loan_amount', 'income ', 'age', 'marital_status'],
+                                                                 classes = ['reject', 'approve'])
+            # Generate feature importance data:
+                # Shapley Value: 
+                # Local and Global Interpretability:
+            # Global Feature Importance:
+                # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
+                # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
+                # 
+                global_mimic_explanation = mimic_explainer.explain_global(X_train)
+                global_mimic_feature_importance = global_mimic_explanation.get_feature_importance_dict()
+                #
+                global_tab_explainer = tab_explainer.explain_global(X_train)
+                global_tab_feature_importance = global_tab_explainer.get_feature_importance_dict()
+                # 
+                # Unlike mimic/ tabular explainer, PFI Explainer requires the actual label:
+                global_pfi_explanation = pfi_explainer.explain_global(X_train, y_train)
+                global_pfi_feature_importance = global_pfi_explainer.get_feature_importance_dict()
+            # Local Feature Importance:
+                # Local Feature Importance: based on certain observations only
+                # Local feature importance measures the influence of each feature value for a specific individual prediction.
+                # Unlike mimic/ tabular explainer, PFI Explainer does not support local feature importance explanations.
+                #
+                local_mimic_explanation = mimic_explainer.explain_local(X_test[0:5])
+                local_mimic_features = local_mimic_explanation.get_ranked_local_names()
+                local_mimic_importance = local_mimic_explanation.get_ranked_local_values()
+                #
+                local_tabular_explanation = tabular_explainer.explain_local(X_test[0:5])
+                local_tabular_features = local_tabular_explanation.get_ranked_local_names()
+                local_tabular_features = local_tabular_explanation.get_ranked_local_values()
+    # Manage Models: 
+        #            
+######################################################################################################
+# 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
+######################################################################################################
+    # Model Deployment Steps:
+        # Step 1: Save data transformations:
+        # Step 2: Save trained model: (need to save the model in a serialized/ binary format)
+            # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
+                # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
+        # Step 3: Register models and Transformations:
+        # Step 4: Create Azure Kubernete Service (AKS) Cluster:
+        # Step 5: Create a production environment:
+        # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
+        # Step 7: Create an entry script to retrieve models and transformations for predictions:
+        # Step 8: Deploy the model and consume the web service: 
+
+    # Real-time Inference Pipeline: (the 3 steps only applies when you create a inference pipeline from an existing normal trained model)
+        # Step 1: Remove target variable from "Select Columns in Dataset" Module
+        # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
+        # Step 3: "Evluate Model" is not needed as we cannot test on new data input(therefore removed).
+    # Batch Inference Pipeline:
+        # 
+    #
+    # Publish Pipeline:
+        # Option 1: call publish method:
+            published_pipeline = pipeline.publish(name = 'training_pipeline', description = 'Model Training Pipeline', version = '1.0')
+        # Option 2: Call the publish method on a successful run of the pipeline:
+            pipeline_experiment = ws.experiment.get('training-pipeline')
+            run = list(pipeline_experiment.getruns())[0] # naturally from most recent to earlier runs
+            published_pipeline = run.publish_pipeline(name = 'training_pipeline', description = 'Model Training Pipeline', version = '1.0')
+    # After the pipeline has been published, you can view it in Azure ML Studio, you can also determine the URI of its endpoint:
+        rest_endpoint = published_pipeline.endpoint
+        print(rest_endpoint)
+    # Using a published pipeline: (REST API request)
+        import requests
+        response = requests.post(rest_endpoint, header = header, json = {'Experiment_Name': 'run_trained_pipeline', 
+                                                                         'ParameterAssignments': {'learning_rate': 0.1}})
+        run_id = response.json()['id']
+        print(run_id)
+    # Schedule Pipeline for periodic intervals/ data change:
+        from azureml.pipeline.core import ScheduleRecurrence, Schedule
+        weekly = ScheduleRecurrence(frequency = 'week', interval = 1)
+        pipeline_schedule = Schedule.create(ws, name = 'Weekly Run Predictions', description = 'batch inferencing', 
+                                                pipeline_id = published_pipeline.id, experiment_name = 'Batch Prediction', recurrence = weekly)
+    # Register a trained Model:
+        # Option 1: use the register method
+            from azureml.core import Model
+            register_model = Model.register(workspace = ws, model_name = 'name of your model', model_path = 'trained_model.pkl', description = 'classification model')
+        # Option 2: refer to runs that have been used to train the model:
+            run.register_model(model_name = 'classification_model1', model_path = 'outputs/model1.pkl', # this is the run output path
+                                                                     description = 'a classification model')
+    # Deploy the trained Model:
+        from azureml.core.model import Model
+        model = ws.models['classification_model1']
+        service = Model.deploy(workspace = ws, name = 'service name', models = [model], 
+                                                                      inference_config = classifier_inference_config, 
+                                                                      deployment_config = classifier_deploy_config, 
+                                                                      deployment_target = production_cluster)
+        service.wait_for_deployment(show_output = True) # for ACI or local service, you can omit show_output parameter or set 'show_output = None'
+    # Consuming a real-time inferencing Service:
+        # Option 1: using Azure ML SDK:
+            import json
+            new_input = [[0.1, 0.2, 0.3, 0.4], [1.1, 1.2, 1.3, 1.4]]
+            json_data = json.dumps({'data': new_input})
+            response = service.run(input_data = json_data)
+            predictions = json.loads(response)
+            for i in range(len(new_input)):
+                print(new_input[i], predictions[i])
+        # Option 2: Using a REST endpoint:
+            endpoint = service.scoring_uri
+            #
+            request_header = {'Content-Type': 'application/json', 
+                              'Authentication': 'Bearer' + Key/ or Token}
+            response = requests.post(url = endpoint, data = json_data, headers = request_header)
+            predictions = json.load(response.json())
+        # There are 2 kinds of authentication that can be used:
+            # Option 1: Key = requests are authenticated by specifying the key associated with the service
+                primary_key, secondary_key = service.get_keys()
+            # Option 2: Token = requests are authenticated by providing a JSON Web Token (JWT)
+        # Check the Service State:
+            from azureml.core.webservice import AksWebservice
+            service = AksWebservice(name = 'service name', workspace = ws)
+            print(service.state) # check the service state
+            print(service.get_logs()) # review the service log
 ######################################################################################################
 # Azure ML Workspace (Architecture/ Structure)
 ######################################################################################################
@@ -615,8 +663,6 @@
     # Step 3: Train, Score and Deploy Model:
 ######################################################################################################
 #
-# Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
-# Local Feature Importance: based on certain observations only
 ######################################################################################################
 # Azure AutoML:
 ######################################################################################################
