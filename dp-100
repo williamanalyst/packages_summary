@@ -201,10 +201,19 @@
         run_id = response.json()['id']
         print(run_id)
     # Schedule Pipeline for periodic intervals/ data change:
-        from azureml.pipeline.core import ScheduleRecurrence, Schedule
-        weekly = ScheduleRecurrence(frequency = 'week', interval = 1)
-        pipeline_schedule = Schedule.create(ws, name = 'Weekly Run Predictions', description = 'batch inferencing', 
-                                                pipeline_id = published_pipeline.id, experiment_name = 'Batch Prediction', recurrence = weekly)
+        # Option 1: time frequency:
+            from azureml.pipeline.core import ScheduleRecurrence, Schedule
+            weekly = ScheduleRecurrence(frequency = 'week', interval = 1)
+            pipeline_schedule = Schedule.create(ws, name = 'Weekly Run Predictions', description = 'batch inferencing', 
+                                                    pipeline_id = published_pipeline.id, experiment_name = 'Batch Prediction', recurrence = weekly)
+        # Option 2: based on data change:
+            from azureml.pipeline.core import Schedule
+            from azureml.core.dataset import Datastore
+            #
+            datastore = Datastore(workspace = ws, name = 'workspaceblobstore')
+            schedule = Schedule.create(workspace = ws, name = 'Sample Schedule Name', pipeline_id = 'pipeline_id', 
+                                                       experiment_name = 'experiment name', datastore = datastore, 
+                                                       pooling_interval = 5, path_on_datastore = 'file/path')
     # Register a trained Model:
         # Option 1: use the register method
             from azureml.core import Model
@@ -401,6 +410,7 @@
 # Transport Layer Security (TLS):
 # Secure Sockets Layer (SSL): 
 
+# Apache Ambari: 
 # Endpoint
 # Mimic Explainer:
 # Tabular Explainer:
@@ -527,6 +537,8 @@
     # Azure Virtual Machine Trypes:
         # A-Series = Entry Level, economical VM for development and testing.
         # D-Series = General Purpose Compute.
+        # F-series = CPU-intensive workloads
+        # L-series = storage optimized
         # N-Series = GPU Enables Virtual Machines
         # e.g. you could have multiple Virtual Machines on the same server (which has sufficient computing power)
 ######################################################################################################
@@ -822,6 +834,7 @@
     # Step 1: bring in dataset.
     # Step 2: define goal, constraints, etc.
     # Step 3: auto ML will test available algorithms, compare the accuracy and provide the evaluations.
+        # Auto ML only accepts tabular data form.
 #
 #
     # Replace using MICE
@@ -1531,7 +1544,21 @@ Feature Selection:
         from azureml.core import Experiment
         experiment = Experiment(workspace = ws, experiment_name = experiment_name)
         run = experiment.submit(config = run_config_object, show_object = True)
- 
+######################################################################################################
+# Question: different logging stage:
+    # Stage 1: during a compute target creation: (compute.wait_for_completion(show_output = True))
+        from azureml.core.compute import ComputeTarget
+        compute_target = ComputTarget.attach(workspace = ws, name = 'example_name', attach_configuration = config)
+        compute.wait_for_completion(show_output = True)
+    # Stage 2: during the training process: 
+        from azureml.core import Experiment
+        experiment = Experiment(ws, experiment_name)
+        run = experiment.submit(config = run_config_object, show_output = True)
+    # Stage 3: logging for run-related data within the experiment: (.start_logging())
+        #
+    # Stage 4: logs for previously deployed web service: (.get_logs())
+######################################################################################################
+# Question:
  
  
  
