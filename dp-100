@@ -152,25 +152,23 @@
 ######################################################################################################
 # 4. Deploy and Consume Models (create compute production target, deploy model as a service, create pipeline, publish pipeline as a web service)
 ######################################################################################################
-    # Model Deployment Steps:
-        # Step 1: Save data transformations:
-        # Step 2: Save trained model: (need to save the model in a serialized/ binary format)
-            # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
-                # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
-        # Step 3: Register models and Transformations:
-        # Step 4: Create Azure Kubernete Service (AKS) Cluster:
-        # Step 5: Create a production environment:
-        # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
-        # Step 7: Create an entry script to retrieve models and transformations for predictions:
-        # Step 8: Deploy the model and consume the web service: 
-
+# Step 1: Save data transformations:
+# Step 2: Save trained model: (need to save the model in a serialized/ binary format)
+    # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
+        # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
+# Step 3: Register models and Transformations:
+# Step 4: Create Azure Kubernete Service (AKS) Cluster:
+# Step 5: Create a production environment:
+# Step 6: Create inference configuration: (create entry script, environment, inference configuration)
+# Step 7: Create an entry script to retrieve models and transformations for predictions:
+# Step 8: Deploy the model and consume the web service: 
+    #
     # Real-time Inference Pipeline: (the 3 steps only applies when you create a inference pipeline from an existing normal trained model)
         # Step 1: Remove target variable from "Select Columns in Dataset" Module
         # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
         # Step 3: "Evluate Model" is not needed as we cannot test on new data input(therefore removed).
     # Batch Inference Pipeline:
         # 
-    #
     # Publish Pipeline:
         # Option 1: call publish method:
             published_pipeline = pipeline.publish(name = 'training_pipeline', description = 'Model Training Pipeline', version = '1.0')
@@ -200,6 +198,7 @@
             run.register_model(model_name = 'classification_model1', model_path = 'outputs/model1.pkl', # this is the run output path
                                                                      description = 'a classification model')
     # Deploy the trained Model:
+        #
         from azureml.core.model import Model
         model = ws.models['classification_model1']
         service = Model.deploy(workspace = ws, name = 'service name', models = [model], 
@@ -207,6 +206,21 @@
                                                                       deployment_config = classifier_deploy_config, 
                                                                       deployment_target = production_cluster)
         service.wait_for_deployment(show_output = True) # for ACI or local service, you can omit show_output parameter or set 'show_output = None'
+        #
+        from azureml.core.conda_dependencies import CondaDependencies
+        from azureml.core.webservice import AciWebservice
+        from azureml.core.model import InferenceConfig
+        #
+        my_environment = CondaDependencies()
+        my_environment.add_conda_package('scikit-learn')
+        #
+        folder_name = ''
+        environment_file = folder_name + '/diabetes_env.yml'
+        with open(environment_file, 'w') as f:
+            f.write(my_environment.serialize_to_string())
+        #
+        inference_configuration = InferenceConfig(runtime = 'python', source_directory = folder_name, entry_script = 'score_diabetes.py')
+        deployment_configuration = AciWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 1, token_auth_enabled = True)
     # Consuming a real-time inferencing Service:
         # Option 1: using Azure ML SDK:
             import json
@@ -217,6 +231,8 @@
             for i in range(len(new_input)):
                 print(new_input[i], predictions[i])
         # Option 2: Using a REST endpoint:
+            #
+            import requests
             endpoint = service.scoring_uri
             #
             request_header = {'Content-Type': 'application/json', 
@@ -226,7 +242,14 @@
         # There are 2 kinds of authentication that can be used:
             # Option 1: Key = requests are authenticated by specifying the key associated with the service
                 primary_key, secondary_key = service.get_keys()
+                #
+                AksWebservice.deploy_configuration(auth_enabled = True)
+                #
             # Option 2: Token = requests are authenticated by providing a JSON Web Token (JWT)
+                #
+                (Token authentication and Key-based authentication cannot be enabled at the same time.)
+                AksWebservice.deploy_configuration(token_auth_enabled = True, auth_enabled = False)
+                #
         # Check the Service State:
             from azureml.core.webservice import AksWebservice
             service = AksWebservice(name = 'service name', workspace = ws)
@@ -287,13 +310,16 @@
     # Compute: 
         # Compute Insatances:
             # (local) work station for data scientist (cannot adjust computing power automatically)
+                # local computer training target supports AutoML, whereas does not support ML Pipelines or Azure ML designer.
         # Compute Clusters: (2 Nodes --> 2 Virtual Machine/ instance currently provisioned to the cluster)
             # (distributed, can automatically increase/ decrease computer capacity based on demand)
+                # Supports AutoML, ML Pipeline, Azure ML Designer.
         # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
             # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint. (cannot adjust computing power automatically)
                 # In ML, inferencing refers to the use of trained model to predict labels for new data on which models has not been trained.
         # Attached Compute: 
             # An existing VM, Databricks, Cluster, etc., that can be borrowed here as compute resource.
+                # Remote VM does not support Azure ML Designer.
     # Datastores:
         # Azure Blob Storage:
         # Azure Data Lake: 
@@ -318,7 +344,8 @@
             ws = Workspace.from_config()
             ws.get_details()['applicationInsights']
         # Enabling Application Insights for an application (could be external to Azure):
-            deployment_configuration = AciWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 2, enable_app_insights = True)
+            
+            ment_configuration = AciWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 2, enable_app_insights = True)
             # Enable/ or modify the deployment configuration for Azure Kubernetes Service (AKS) based services:
                 service = ws.webservices['my-service1']
                 service.update(enable_app_insights = True)
@@ -343,8 +370,16 @@
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
-# Azure Container Instance: 
-# Azure Container Registry: 
+# Azure Container Instance (ACI): 
+    # Containers are becoming the preferred way to package, deploy, and manage cloud applications.
+    # Azure Container Instance is a great solution for any scenario that can operate in isolated containers, including simple applications,
+        # task automation, and build jobs.
+            # For scenario where you need full container orchestration, including service discovery across multiple containers, automatic sacling,
+                # and coordinated application upgrades, Azure Kubernetes Service (AKS) is recommended.
+# Azure Container Registry (ACR): 
+
+# Transport Layer Security (TLS):
+# Secure Sockets Layer (SSL): 
 
 # Endpoint
 # Mimic Explainer:
@@ -1203,11 +1238,24 @@ Feature Selection:
         env = Environment.from_existing_conda_environment(name = 'training_environment', conda_environment_name = 'py_env')
     # Option 3: Creating environment by specifying packages:
         env = Environment('New_Environment')
-        dependencies = CondaDependencies.create(conda_package = ['scikit-learn', 'pandas', 'numpy'], pip_packages = ['azureml-defaults'])
-    # 
-#
+        dependencies = CondaDependencies.create(conda_package = ['scikit-learn', 'pandas', 'numpy'], pip_packages = ['azureml-defaults']) 
+######################################################################################################
+# Linear Model: (Tensorflow or Pytorch estimator cannot leverage SKLearn model or parameter.)
+    from azureml.train.sklearn import SKLearn
+    script_params = {'--kernel': 'linear', '--penalty': 1.0 }
+    local_folder = ''
+    compute_cluster = ''
+    sklearn_model1 = SKLearn(source_directory = local_folder, script_paramms = script_params, compute_target = compute_cluster, entry_script = 'sample.py')
+######################################################################################################
+# Create Pipeline:
+    from azureml.pipeline.core import Pipeline
+    steps = 
+    pipeline = Pipeline(workspace = ws, steps = steps)
+    pipeline_run = experiment.submit(pipeline, continue_on_step_failure = True, 
+                                               regenerate_outputs = True, pipeline_parameters = {'param1': 'value1'})
 ######################################################################################################
 # Exam Structure:
+    # 
 ######################################################################################################
 # Exam Questions:
 ######################################################################################################
@@ -1411,9 +1459,11 @@ Feature Selection:
         # Step 1: Use the Filter-based Feature Selection Module
         # Step 2: Build a counting transformation
         # Step 3: Test the hypothesis using t-test
-
-
-
+######################################################################################################
+# Question: Azure CLI - automate the creation of Azure ML workspace:
+    # Step 1: az extension add -n azure-cli-ml # register the ML extension to run Azure ML commands
+    # Step 2: az group create --name<resource-group-name> --location<location> # create resource group where Azure ML Workspace could reside in
+    # Step 3: az ml workspace create -w<workspace-name> -g<resource-group-name> # create workspace in the resource group
 
 
 
