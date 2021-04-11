@@ -13,10 +13,15 @@
                 # If your data is already cleansed, and ready to use in training experiments, 
         # Tabular Dataset:
             # 
+    # Create Workspace:
+        Workspace.create(name = workspaceName, subscription_id = subscription_id, resource_group = resource_group, 
+                                               private_endpoint_config = private_endpoint_config, sku = 'enterprise')
+        # The Azure ML designer is only availabel with the enterprise edition of the workspace.
+    #
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
-    #
+    # 
 ######################################################################################################
 # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
 ######################################################################################################
@@ -163,6 +168,16 @@
 # Step 7: Create an entry script to retrieve models and transformations for predictions:
 # Step 8: Deploy the model and consume the web service: 
     #
+    # Create Pipeline:
+        # Step 1: Register a new Azure Storage file container datastore.
+        # Step 2: Create a PipelineData object, Specify a name and output datastore.
+        # Step 3: Specify a PipelineData object for data output.
+        #
+        from azureml.pipeline.core import Pipeline
+        steps = 
+        pipeline = Pipeline(workspace = ws, steps = steps)
+        pipeline_run = experiment.submit(pipeline, continue_on_step_failure = True, 
+                                               regenerate_outputs = True, pipeline_parameters = {'param1': 'value1'})
     # Real-time Inference Pipeline: (the 3 steps only applies when you create a inference pipeline from an existing normal trained model)
         # Step 1: Remove target variable from "Select Columns in Dataset" Module
         # Step 2: Directly (change) connect "Web Service Input" with "Apply Transformation" (2nd Input)
@@ -241,6 +256,7 @@
             predictions = json.load(response.json())
         # There are 2 kinds of authentication that can be used:
             # Option 1: Key = requests are authenticated by specifying the key associated with the service
+                # ACI only supports key authentication.
                 primary_key, secondary_key = service.get_keys()
                 #
                 AksWebservice.deploy_configuration(auth_enabled = True)
@@ -311,9 +327,11 @@
         # Compute Insatances:
             # (local) work station for data scientist (cannot adjust computing power automatically)
                 # local computer training target supports AutoML, whereas does not support ML Pipelines or Azure ML designer.
+                # Do not provide GPU-based instance configuration.
         # Compute Clusters: (2 Nodes --> 2 Virtual Machine/ instance currently provisioned to the cluster)
             # (distributed, can automatically increase/ decrease computer capacity based on demand)
                 # Supports AutoML, ML Pipeline, Azure ML Designer.
+                # Used for batch inferencing, not suitable for real-time inferencing.
         # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
             # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint. (cannot adjust computing power automatically)
                 # In ML, inferencing refers to the use of trained model to predict labels for new data on which models has not been trained.
@@ -376,6 +394,8 @@
         # task automation, and build jobs.
             # For scenario where you need full container orchestration, including service discovery across multiple containers, automatic sacling,
                 # and coordinated application upgrades, Azure Kubernetes Service (AKS) is recommended.
+    # Azure Container Instance (ACI) are well suited for testing/ debugging workloads and only support low-scale CPU-based workloads.
+        # Do not provide GPU-based instance configuration.
 # Azure Container Registry (ACR): 
 
 # Transport Layer Security (TLS):
@@ -390,7 +410,9 @@
 # Permutation Feature Importance:
 # Mutual Information:
 # Mood's Median Test:
- 
+#
+# Service Principal (SP): 
+#
 # Azure ML Experiment = named process, usually the running of a script or pipeline, that can generates metrics/ outputs.
     # and can be tracked in the Azure ML workspace
 # 
@@ -598,11 +620,12 @@
 # Normalization: a method to standardize the range of independent variables or features of data
     # Variables are fitted within a certain range (generally between 0 and 1, e.g. min-max scaler)
     # applied only on numeric values
-    # Z-score
-    # Min-Max Scaler
-    # Logistic
-
-
+        # Option 1: Z-score
+        # Option 2: Min-Max Scaler
+        # Option 3: MaxAbs Scaler = scale feature by their maximum absolute value
+        # Option 4: Logistic
+        # Option 5: 
+        # Option 6: StandardScaleWrapper = ensure that features are standardized by altering the dataset, removing the mean, and scaling to unit variance
 # Accuracy
 # AUC Weighted
 # 
@@ -1247,12 +1270,7 @@ Feature Selection:
     compute_cluster = ''
     sklearn_model1 = SKLearn(source_directory = local_folder, script_paramms = script_params, compute_target = compute_cluster, entry_script = 'sample.py')
 ######################################################################################################
-# Create Pipeline:
-    from azureml.pipeline.core import Pipeline
-    steps = 
-    pipeline = Pipeline(workspace = ws, steps = steps)
-    pipeline_run = experiment.submit(pipeline, continue_on_step_failure = True, 
-                                               regenerate_outputs = True, pipeline_parameters = {'param1': 'value1'})
+
 ######################################################################################################
 # Exam Structure:
     # 
@@ -1464,11 +1482,70 @@ Feature Selection:
     # Step 1: az extension add -n azure-cli-ml # register the ML extension to run Azure ML commands
     # Step 2: az group create --name<resource-group-name> --location<location> # create resource group where Azure ML Workspace could reside in
     # Step 3: az ml workspace create -w<workspace-name> -g<resource-group-name> # create workspace in the resource group
-
-
-
-
-
-
-
+######################################################################################################
+# Question: Azure CLI - update the storage keys in the workspace (after workspace is compromised and regenerated storage account keys)
+    # az ml workspace sync-keys
+######################################################################################################
+# Question: You use Azure ML to deploy ML models, and want to be notified when a model deployment fails:
+    # You should: Stream Azure ML Logs to Azure Monitor.
+        # Azure Event Hub: focused on data analysis to discover actionable insights/ BI.
+            # You cannot create alerts in Azure Event Hub.
+        # Query AmlComputeJobEvents using the ExecutionState property:
+            # Does provide the job execution state, whereas do not provide alerts.
+        # Query AmlComputeJobEvents using the ProvisionState property:
+            # Record the state of the job submission, whereas not the state of the job itself.
+######################################################################################################
+# Question: You are using Azure ML to deploy a ML model to a AKS cluster, during the test, you received a large number of HTTP 503 errors.
+    # And you need to reduce the instances of HTTP 503 errors.
+        # HTTP 503 Service Unavailable error indicates that the service is operational, whereas it's unable to respond to request.
+            # This often indicates that the server is overloaded and does not have the resources to process the request.
+                # Option 1: Change the utilization level at which containers autoscale up
+                # Option 2: Change the minimum number of replicas.
+                    # Minimum number pf replicas = minimum number of nodes that should be online at any time, default value = 1.
+                # Option 3: Modify the autoscale_max_replicas parameter 
+                    # Maximum number of replicas = maximum number of nodes that can be operating, default vlaue = 10.
+######################################################################################################
+# Question: Use local computer (Anaconda Environment) as a development environment to work with Azure ML, and you want to leverage Automated ML to
+    # tune hyperparameters for your training pipelines.
+        conda create -n devenv python = 3.7.7
+        conda activate devenv
+        conda install notebook ipykernel
+        ipython kernel install --user --name devenv --display-name "Python(devenv)"
+        pip install azureml-sdk[notebooks, automl]
+######################################################################################################
+# Question: logging method to generate required logging information:
+    #
+        # Option 1: run.log()
+            # can be used to log scalar string or numeric values
+        # Option 2: run.log_list()
+            # when needing to log list of values, arrays, dictionaries, vectors or any other non-scalar 
+        # Option 3: run.log_image()
+            # to log transformed PNG images (or matplotlib plots) to the run record
+######################################################################################################
+# Question: how to create an Azure ML workspace using Azure Cloud Shell?
+    #
+    az ml workspace create -w AML-WorkspaceName -g AML-LearningResourceGroupName
+######################################################################################################
+# Question: You need to enable logging the application state during the training process:
+    #  the experiment.submit() method can be configured with the show_output parameter to enable local logging during the training process.
+        from azureml.core import Experiment
+        experiment = Experiment(workspace = ws, experiment_name = experiment_name)
+        run = experiment.submit(config = run_config_object, show_object = True)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
