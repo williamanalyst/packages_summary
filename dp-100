@@ -2,25 +2,33 @@
 ######################################################################################################
 # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
 ######################################################################################################
+    # Create Workspace:
+        from azureml.core import Workspace
+        Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group, 
+                                                location = 'australiaeast', # minimum 4 parameters above
+                                                private_endpoint_config = private_endpoint_config, sku = 'enterprise')
+        # Note: The Azure ML designer is only availabel with the enterprise edition of the workspace.
     # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
         # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
         # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
             # You can create datastores that connect to these Azure store solutions.
         # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
             # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
+        from azureml.core import Datastore
+        ws = Workspace.from_config(path = './config1.json')
+        az_datastore = Datastore.register_azure_blob_container(workspace = ws, datastore_name = 'azure_sdk_blob01', 
+                                            account_name = '', container_name = '', account_key = '')
     # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
         # FileDataset:
                 # If your data is already cleansed, and ready to use in training experiments, 
         # Tabular Dataset:
             # 
-    # Create Workspace:
-        Workspace.create(name = workspaceName, subscription_id = subscription_id, resource_group = resource_group, 
-                                               private_endpoint_config = private_endpoint_config, sku = 'enterprise')
-        # The Azure ML designer is only availabel with the enterprise edition of the workspace.
+    
     #
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
+    # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
     # 
 ######################################################################################################
 # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
