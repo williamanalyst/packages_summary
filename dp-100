@@ -432,7 +432,9 @@
     # Azur Data Lake Analytics is an on-demand analytics job service that simplifies big data.
     # Azure Data Lake Analytics is for easy develop and run massively parallel data transformation and processing programs in U-SQL, R, Python, and .Net over
         # petabytes of data. With no infrastructure to manage, you can process data on demand, scale instantly, and only pay per job.
-# Azue HDInsight with Spark Mlib
+# Azure HDInsight with Spark Mlib
+# Azure HDInsight:
+    # 
 #
 # Differential Pricacy:
     # Differential Privacy seeks to protect individual data value by adding "noise" to the analysis process.
