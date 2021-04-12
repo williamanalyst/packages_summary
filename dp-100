@@ -429,6 +429,10 @@
 # Mutual Information:
 # Mood's Median Test:
 #
+# IoT Edge Module:
+    # Azure Stack Edge: Azure Stack Edge is a hardware-as-a-service platform offered by Microsoft.
+        # filter, aggregate, and optimize data in order to reduce bandwidth requirements.
+#
 # Service Principal (SP): 
     # Use the client secrets to retrieve authentication token
 #
@@ -566,7 +570,7 @@
         # Docker files could be created and shared.
         # e.g. in the 5 stages of software development: Gather Requirements, Design, Development, Testing, Deployment:
             # The last 3 steps could (should) use the same docker file.
-    #
+    # Note: when using GPU for inferencing, local web service is not supported.
 ######################################################################################################
 # Outliers: observations that have much higher distance compared to other observations
     # outliers does impact the prediction/ estimation of the sample/ model
@@ -1569,7 +1573,10 @@ Feature Selection:
         #
     # Stage 4: logs for previously deployed web service: (.get_logs())
 ######################################################################################################
-# Question:
+# Question: how to ensure that the output files are uploaded in real time?
+    experiment_output = os.path.join(os.curdir, 'logs')
+    # Files written to ./logs are uploaded in real time.
+        # files written to the output folder persist across experiments, but they are not uploaded in real time.
  
  
  
