@@ -49,6 +49,7 @@ df = df1.union(df2)
 ############################################################################################
 # Join 2 tables:
 df_joined = df1.join(df2, F.col('col_name1') == F.col('col_name2'), how = 'left') # could also be right join, inner join, outer join, etc.
+df_joined = df1.join(df2, ['col1', 'col2'], how = 'leftanti') # 
 
 ############################################################################################
 # Calculate new column based on existing columns:
