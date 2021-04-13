@@ -336,6 +336,7 @@
             # Forcing all steps in a pipeline to re-run
                 pipeline_rerun = experiment.submit(train_pipeline, regenerate_outputs = True) # regenerate_outputs means running all steps again
             # Create a pipeline with a ParallelRunStep:
+                parallel
             # Run the pipeline and retrieve the Step Output:
                 # 
     # Models:
