@@ -352,6 +352,7 @@
         # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
             # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint. (cannot adjust computing power automatically)
                 # In ML, inferencing refers to the use of trained model to predict labels for new data on which models has not been trained.
+                    # AKS compute is for deployment only in terms of ML tasks.
         # Attached Compute: 
             # An existing VM, Databricks, Cluster, etc., that can be borrowed here as compute resource.
                 # Remote VM does not support Azure ML Designer.
