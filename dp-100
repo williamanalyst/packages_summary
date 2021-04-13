@@ -1455,6 +1455,8 @@ Feature Selection:
 ######################################################################################################
 # Question: compute target to deploy the workspace
     # Azure Container Service (allow deployment) (retired on Jan 31, 2020, replaced by AKS)
+        # Azure container instance can be used as compute target for testing or deployment.
+            # Used for low-scale CPU-based workloads that require less than 48 GB of ram.
     # Azure Kubernates Service
         # (Azure Data Lake Analytics, Databricks, HDInsights do not allow deployment option.) 
 
