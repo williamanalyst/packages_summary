@@ -2,7 +2,10 @@
 ######################################################################################################
 # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
 ######################################################################################################
-    # Create Workspace:
+    # Create Workspace: (4 Dependencies: Azure Storage Account, Azure Container Registry, Azure Key Vault, Azure Application Insight)
+        # Linked to: Datastores, Compute Targets
+        # Assets include: Environment, Experiment, Pipelines, Datasets, Models, Endpoints
+        # Managed Resources: Compute Instances, Compute Clusters
         from azureml.core import Workspace
         Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group, 
                                                 location = 'australiaeast', # minimum 4 parameters above
@@ -23,13 +26,13 @@
                 # If your data is already cleansed, and ready to use in training experiments, 
         # Tabular Dataset:
             # 
-    
-    #
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
     # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
     # 
+    # 
+    #
     # Run Automated ML Experiment:
         from azureml.core.experiment import Experiment
         from azureml.widgets import RunDetails
@@ -194,7 +197,9 @@
         # Step 1: Register a new Azure Storage file container datastore.
         # Step 2: Create a PipelineData object, Specify a name and output datastore.
         # Step 3: Specify a PipelineData object for data output.
-        #
+            # General pipeline procedure include 2 major stages: (create_pipeline.py)
+                # Data Processing: reading data, select/drop columns, replace missing values, normalize data, upload the data and log metrics (data_prep.py)
+                # Build and Train Model: read data, split into train and test, train and test the model, upload results and metrics (train_model.py)
         from azureml.pipeline.core import Pipeline
         steps = 
         pipeline = Pipeline(workspace = ws, steps = steps)
@@ -340,6 +345,14 @@
             # e.g. from Run 1 to Run 2 (previous output will not be impacted)
     # Pipelines = ML Workflow
         # pipelines are created for the purpose of automating ML workflow
+            # Step 1: Create the environment
+            # Step 2: assign compute clusters
+            # Step 3: create data transfer folder
+            # Step 4: define pipeline steps
+            # Step 5: build the pipeline
+            # Step 6: create/ access an experiment
+            # Step 7: run the pipeline
+            #
             from azureml.pipeline.core import Pipeline, PipelineData
             from azureml.steps import PythonScriptStep
             #
