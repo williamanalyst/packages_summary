@@ -41,7 +41,7 @@
         automl_experiment = Experiment(ws, 'experiment_name')
         automl_run = automl_experiment.submit(automl_config)
         RunDetails(automl_run).show()
-        automl_run.wait_fot_completion(show_output = True)
+        automl_run.wait_fot_completion(show_output = True)  # 
         #
         best_run, fitted_model = automl_run.get_output()
         print(best_run)
@@ -81,6 +81,7 @@
                     # SHAP Kernel Explainer: 
                 # Permutation Feature Importance (PFI) Explainer:
                     # Analyzes the feature importance by shuffling feature values(e.g. remove 1 variable randomly) and measuring the impact on perdiction performance.
+                # Note: azureml.interpret package can be installed locally to create explainers.
                 #
                 from interpret.ext.blackbox import MimicExplainer
                 from interpret.ext.glassbox import DecisionTreeExplainableModel
