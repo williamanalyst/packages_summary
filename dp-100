@@ -30,6 +30,19 @@
 ######################################################################################################
     # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
     # 
+    # Run Automated ML Experiment:
+        from azureml.core.experiment import Experiment
+        from azureml.widgets import RunDetails
+        #
+        print('Submitting Auto ML Experiment')
+        automl_experiment = Experiment(ws, 'experiment_name')
+        automl_run = automl_experiment.submit(automl_config)
+        RunDetails(automl_run).show()
+        automl_run.wait_fot_completion(show_output = True)
+        #
+        best_run, fitted_model = automl_run.get_output()
+        print(best_run)
+        #
 ######################################################################################################
 # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
 ######################################################################################################
@@ -50,6 +63,7 @@
                 # Option 3: Truncation Selection Policy (do not keep the iterations that has worst performance)
                 # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
             # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
+                # Note: 
         # Use Model Explainer to Interpret Models:
             # Select Model Interpreter: (without specifying the features and classes, the explainer could still work, just without labels.)
                 # Mimic Explainer: 
@@ -71,7 +85,7 @@
                                                  explainable_model = DecisionTreeExplainableModel, 
                                                  features = ['loan_amount', 'income', 'age', 'marital_status'],
                                                  classes = ['reject', 'approve'])
-                # 
+                # a tabular dataset will be processed, an explainer will be loaded based on a model type.
                 from interpret.ext.blackbox import TabularExplainer
                 tab_explainer = TabularExplainer(model = loan_model, initilization_examples = X_test, 
                                                  features = ['loan_amount', 'income', 'age', 'marital_status'], 
@@ -220,8 +234,8 @@
             #
             datastore = Datastore(workspace = ws, name = 'workspaceblobstore')
             schedule = Schedule.create(workspace = ws, name = 'Sample Schedule Name', pipeline_id = 'pipeline_id', 
-                                                       experiment_name = 'experiment name', datastore = datastore, 
-                                                       pooling_interval = 5, path_on_datastore = 'file/path')
+                                       experiment_name = 'experiment name', datastore = datastore, 
+                                       pooling_interval = 5, path_on_datastore = 'file/path') # the datastore is pulled every 5 minutes to check for any changes.
     # Register a trained Model:
         # Option 1: use the register method
             from azureml.core import Model
@@ -316,6 +330,10 @@
                 metric = best_run_metrics[metric_name]
                 print(metric_name, metric)
     # Designer:
+        # The submit button runs the pipeline against the dataset provided.
+        # The publish button creates a REST endpoint to the pipeline that other users/ developers/ data scientists can make calls to.
+            # It also provides an endpoint with a key-based authentication.
+            # (publish button will not deploy the model as a web service endpoint)
     # Datasets:
     # Experiments:
         # Note: When 2 experiment has the same name, they will be classified under the same experiment, just different runs for the same experiment.
@@ -336,10 +354,31 @@
             # Forcing all steps in a pipeline to re-run
                 pipeline_rerun = experiment.submit(train_pipeline, regenerate_outputs = True) # regenerate_outputs means running all steps again
             # Create a pipeline with a ParallelRunStep:
-                parallel
+                experiment_folder = ''
+                parallel_run_configuration = ParallelRunConfig( source_directory = experiment_folder, entry_script = 'batch_inference.py', 
+                                                                mini_match_suze = '5', error_threshold = 10, output_action = 'append_now', 
+                                                                environment = batch_env, compute_target = inference_cluster, node_count = 2)
+                from azureml.pipeline.steps import ParallelRunStep
+                from azureml.pipeline.core import Pipeline
+                from azureml.core.experiment import Experiment
+                #
+                parallel_run_step = ParallelRunStep(name = 'preduct-infections', parallel_run_config = parallel_run_configuration, 
+                                                    inputs = [input_infections_ds_consumption], output = output_dir, allow_reuse = True)
+                #
+                pipeline = Pipeline(workspace = ws, steps = [parallel_run_step])
+                experiment = Experiment(ws, 'infection_identification')
+                pipeline_run = experiment.submit(pipeline)
+                # Download the output files that are generated by the experiment to a local folder:
+                import tempfile
+                batch_run = pipeline_run.find_step_run(parallel_run_step.name)[0] # get the last execution of the parallel run steps from the pipeline
+                batch_output = batch_run.get_output_data(output_dir.name) # read the output data in batch_output object
+                target_dir = tempfile.mkdtemp() # create a local target directory
+                batch_output.download(local_path = target_dir) # download the output file
+                #
             # Run the pipeline and retrieve the Step Output:
                 # 
     # Models:
+        # To deploy the model as a web service endpoint, you need to navigate to Model menu on ML Studio, select the model and deploy.
     # Endpoints:
     # Compute: 
         # Compute Insatances:
