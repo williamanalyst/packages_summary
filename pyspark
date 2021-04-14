@@ -70,8 +70,9 @@ df = df.drop('col1')
 
 
 
-
-
+############################################################################################
+# Get the aggregation for certain column:
+max_line_number = df_spark.agg({'col1': 'max'}).show()
 
 
 
