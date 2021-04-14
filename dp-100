@@ -21,11 +21,16 @@
         ws = Workspace.from_config(path = './config1.json')
         az_datastore = Datastore.register_azure_blob_container(workspace = ws, datastore_name = 'azure_sdk_blob01', 
                                             account_name = '', container_name = '', account_key = '')
+        # retrieve existing datastore
+            datastore = Datastore.get(ws, 'datastore_name')
+            
     # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
         # FileDataset:
                 # If your data is already cleansed, and ready to use in training experiments, 
         # Tabular Dataset:
-            # 
+            # create datasets based on a list of datastore file (demilited files) locations
+            datastore_paths = [(datastore, 'weather/2018/11.csv'), (datastore, 'weather/2018/12.csv'), (datastore, 'weather/2019?*.csv')]
+            weather_dataset = Dataset.Tabular.from_delimited_files(path = datastore_paths)
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
@@ -40,8 +45,8 @@
         print('Submitting Auto ML Experiment')
         automl_experiment = Experiment(ws, 'experiment_name')
         automl_run = automl_experiment.submit(automl_config)
-        RunDetails(automl_run).show()
-        automl_run.wait_fot_completion(show_output = True)  # 
+        RunDetails(automl_run).show() # 
+        automl_run.wait_fot_completion(show_output = True)  # the "wait for completion" method waits for the current provisioning operation to finish on the cluster.
         #
         best_run, fitted_model = automl_run.get_output()
         print(best_run)
@@ -229,6 +234,15 @@
         run_id = response.json()['id']
         print(run_id)
     # Schedule Pipeline for periodic intervals/ data change:
+        # Step 1: Publish the pipeline
+            # To schedule a pipeline, you will need a reference to your workspace, identiier of the pipeline, name of the experiment, etc.
+        # Step 2: Retrieve the pipeline ID.
+            # needed for scheduling the pipeline
+        # Step 3: Create a ScheduleRecurrence
+            # Create a schedule associated with the pipeline, the experiment, with a trigger.
+        # Step 4: Define an Azure ML pipeline schedule:
+            recurring_schedule = Schedule.create(ws, name = 'My Recurring Schedule', description = 'Based on time', 
+                                                 pipeline_id = pipeline_id, experiment_name = experiment_name, recurrence = recurrence)
         # Option 1: time frequency:
             from azureml.pipeline.core import ScheduleRecurrence, Schedule
             weekly = ScheduleRecurrence(frequency = 'week', interval = 1)
@@ -294,6 +308,7 @@
         # There are 2 kinds of authentication that can be used:
             # Option 1: Key = requests are authenticated by specifying the key associated with the service
                 # ACI only supports key authentication.
+                    # ACI service has key-based authentication disabled by default.
                 primary_key, secondary_key = service.get_keys()
                 #
                 AksWebservice.deploy_configuration(auth_enabled = True)
@@ -302,6 +317,7 @@
                 #
                 (Token authentication and Key-based authentication cannot be enabled at the same time.)
                 AksWebservice.deploy_configuration(token_auth_enabled = True, auth_enabled = False)
+                    # Web Service deployed on AKS have key-based authentication enabled by default.
                 #
         # Check the Service State:
             from azureml.core.webservice import AksWebservice
@@ -1470,7 +1486,18 @@ Feature Selection:
 
 ######################################################################################################
 # Question: script to retrieve the output file names:
-    # 
+    #
+    from azureml.core import Workspace, Experiment, Run
+    from azureml.core import RunConfig, ScriptRunConfig
+    #
+    ws = Workspace.from_config('./config1.json')
+    run_config = RunConfiguration()
+    run_config.target = 'local'
+    script_config = ScriptRunConfig(source_directory = './script', script = 'script1.py', run_config = run_config)
+    experiment = Experiment(workspace = ws, name = 'experiment script1')
+    run = experiment.submit(config = script_config)
+    run.wait_for_completion()
+    run.get_file_names()
 ######################################################################################################
 # Question: deploy the model to a context that allows for real-time GPU-Based inferencing:
     # Should use compute type: Azure Kubernates Service
