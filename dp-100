@@ -495,6 +495,14 @@
 # Tabular Explainer:
 # PFI Explainer:
 
+# Databricks File System (DBFS):
+    # Databricks File System is a distributed file system mounted into a Databricks workspace and available on databricks clusters.
+        # DBFS is an abstraction on top of the scalable object storage and offer the following benefits:
+            # Allows you to mount storage objects so that you can seamlessly access data without credentials.
+            # Allow you to interact with object storage using directory and file semantics instead of using URLs.
+            # Persist files to object storage, so you won't lose data after you terminate a cluster.
+                # mount point paths (/mnt)
+#
 # Inference Cluster
 # Permutation Feature Importance:
 # Mutual Information:
@@ -1667,7 +1675,12 @@ Feature Selection:
 ######################################################################################################
 # Question: how to bookmark the state of your data prior to retraining?
     # use the register model from the dataset class to create a new dataset version.
- 
+######################################################################################################
+# Question: how to ensure that Azure compute is not incurring costs when jobs are not running?
+    # Create an Azure ML Compute target
+    # Specify the minimum number of cluster nodes, set the minimum number of cluster nodes to 0.
+        # Specify an idle sceonds scale down will not reach the target, instead, it can save time by avioding constant provisioning ande deprovisioning of nodes.
+        # ADF compute target should not be selected, they were designed to create ML pipelines.
  
  
  
