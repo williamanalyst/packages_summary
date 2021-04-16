@@ -76,6 +76,28 @@ max_line_number = df_spark.agg({'col1': 'max'}).show()
 
 
 
+############################################################################################
+# import specific datatypes
+from pyspark.sql.types import IntegerType
+
+############################################################################################
+# udf manipulating a certain column
+from pyspark.sql.types import IntegerType
+add_n = udf(lambda x, y: x + y, IntegerType())
+df_test = df_test.withColumn('New_Line_Number', add_n(F.lit(1000), df_test.QTY_BREAK_1.cast(IntegerType())))
+display(df_test)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
