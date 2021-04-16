@@ -977,7 +977,17 @@ Feature Selection:
                 from azureml.train.hyperdrive import choice, normal
                 param_space = {'--batch_size': choice(16, 32, 64), '--learning_rate': normal(10, 3)}
             # Grid Sampling: (only applies to discrete values)
-                from azureml.train.hyperdrice import GridParameterSmpling 
+                from azureml.train.hyperdrive import GridParameterSmpling 
+                param_space = {'--n_estimators': choice(10, 20, 50, 100), '--min_samples_leaf': choice(1, 2, 5)}
+                #
+                from azureml.train.dyperdrive import HyperDriveConfig, PrimaryMetricGoal
+                hyper_config = HyperDriveConfig(run_config = script_config, 
+                                                hyperpamameter_sampling = paramspace, 
+                                                policy = None, 
+                                                primary_metric_name = 'accuracy', 
+                                                primary_metric_goal = PrimaryMetricGoal.MAXIMIZE, 
+                                                max_total_runs = 20, 
+                                                max_concurrant_runs = 2)
                 param_sampling = GridParameterSampling(param_space)
             # Random Sampling:
                 from azureml.train.hyperdrive import RandomParameterSampling, choice, normal
@@ -1112,8 +1122,13 @@ Feature Selection:
         # Filter 3: Number of Desired Features:
         # Filter 4: Feature Scoring Method:
             # Pearson's Correlation:
+                # for linear relation
             # ChiSquared:
             # Spearman (relatively more reliable when having some, but not extreme outliers)
+                # Spearman's Rank Correlation:
+                    # rho = 1 - 6 * sum(d^2)/ (n^3 - n)
+                        # d = rank_x - rank_y
+                        # n = number_of_observations
             # Kandall: (more reliable when having significant outliers)
                 # corr(x1, y)
     # Premutation Feature Importance:
