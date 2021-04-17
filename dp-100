@@ -226,12 +226,91 @@
 # Step 2: Save trained model: (need to save the model in a serialized/ binary format)
     # Model/ Object Serialization: serialize objects/ attributes/ functions and deserialize them for future usage.
         # (Serialize = transform into a format, e.g. binary, that can be stored) (can use Joblib/ Pickle/ dill, etc.)
+            import joblib
+            # dump/serialize the object:
+            obj_file = './outputs/scaler.pkl' # binary document filetype
+            joblib.dump(value = scaler_fitted, filename = obj_file) # scaler is the processed scaled data from previous script
+            # load/ deserialize the object:
+            scaler_location = './outputs/scaler.pkl'
+            scaler_loaded = joblib.load(obj_location) # in this case, it is just a scaler that is loaded
+            #
+            data[columns] = sccaler_loaded.transform(data[columns]) # apply the scaler transformation
 # Step 3: Register models and Transformations:
+    # Option 1: use the register method (with local .pkl file)
+        from azureml.core import Model
+        register_model = Model.register(workspace = ws, 
+                                        model_name = 'name of your model', 
+                                        model_path = './outputs/trained_model.pkl', # local file path
+                                        tags = {'source': 'SDK-Local'},
+                                        properties = {'accuracy': 0.77),
+                                        description = 'Combined models from the local file.')
+        #
+    # Option 2: refer to runs that have been used to train the model:
+        # Get the run id from the experiments and access the run with run_id:
+        list(experiment.get_runs()) # get the list of run_id
+        new_run = ws.get_run(run_id) # retrieve the run
+        #
+        new_run.register_model(model_name = 'classification_model1', model_path = 'outputs/model1.pkl', # this is the run output path # model name could be any
+                               tags = {'Source': 'SDK-run', 'algorithm': 'RandomForest'}, # tages can be deleted at any time
+                               properties = {'Accuracy': new_run.get_metrics()['accuracy']}, # we cannot delete the property once created
+                               description = 'a classification model')
 # Step 4: Create Azure Kubernete Service (AKS) Cluster:
+    # Create an AKS provisioning configuration:
+        from azureml.core.compute import AksCompute
+        cluster_name = 'aks-cluster-001'
+        aks_config = AksCompute.provisioning_configuration(location = 'eastus', 
+                                                            vm_size = 'STANDARD_D11_V2', 
+                                                            agent_count = 1, 
+                                                            cluster_purpose = 'Development Test')
+        #
+        from azureml.core.compute import ComputeTarget #
+        production_cluster = ComputeTarget.create(ws, cluster_name = cluster_name, aks_config) # create the compute target
+        production_cluster.wait_for_completion(shout_output = True)
 # Step 5: Create a production environment:
+    # 
 # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
+    # Create the inference configuration
+        from azureml.core.model import InferenceConfig
+        my_env = 
+        inference_config = InferenceConfig(environment = my_env, 
+                           entry_script = 'scoring_script.py', # load various models that we have created, provide input data and run model, init() and run()
+                           source_directory = './service_files')
+    # Create up the deployment configuration:
+        from azureml.core.webservice import AksWebService
+        deploy_config = AksWebService(cpu_cores = 1, memory_gb = 1)
 # Step 7: Create an entry script to retrieve models and transformations for predictions:
-# Step 8: Deploy the model and consume the web service: 
+    # 
+        import joblib
+        from azureml.core.model import Model
+        #
+        def init(): # init() function for service deployment
+            global ref_column, predictor # declare the 2 variables as global variables
+            model_path = Model.get_model_path('Adult_Income_Model')
+            ref_columns, predictor = joblib.load(model_path)
+        #
+        import json
+        def run(raw_data): # run() function for predictions
+            data_dict = json.loads(raw_data)['data']
+            #
+            data = pd.DataFrame.from_dict(data_dict)
+            data_encoded = pd.get_dummies(data) # get dummy variables (can only be string/ object variable)
+            deploy_columns = data_encoded.columns
+            missing_columns = ref_columns.difference(deploy_columns) # 
+            #
+            for column in missing_columns:
+                data_encoded[column] = 0
+            data_encoded = data_encoded[ref_columns]
+            #
+            predictions = predictor.predict(data_encoded)
+            classes = ['category1 - lower than 50k', 'category2 - higher than 50k']
+            predicted_classes = []
+            for prediction in predictions:
+                predicted_classes.append(classes[prediction]) # 
+            #
+            return json.dumps(predicted_classes) # 
+# Step 8: Deploy the model:
+    # 
+# Step 9: Consume the web service: 
     #
     # Create Pipeline:
         # Step 1: Register a new Azure Storage file container datastore.
@@ -290,13 +369,7 @@
             schedule = Schedule.create(workspace = ws, name = 'Sample Schedule Name', pipeline_id = 'pipeline_id', 
                                        experiment_name = 'experiment name', datastore = datastore, 
                                        pooling_interval = 5, path_on_datastore = 'file/path') # the datastore is pulled every 5 minutes to check for any changes.
-    # Register a trained Model:
-        # Option 1: use the register method
-            from azureml.core import Model
-            register_model = Model.register(workspace = ws, model_name = 'name of your model', model_path = 'trained_model.pkl', description = 'classification model')
-        # Option 2: refer to runs that have been used to train the model:
-            run.register_model(model_name = 'classification_model1', model_path = 'outputs/model1.pkl', # this is the run output path
-                                                                     description = 'a classification model')
+        
     # Deploy the trained Model:
         #
         from azureml.core.model import Model
@@ -321,6 +394,8 @@
         #
         inference_configuration = InferenceConfig(runtime = 'python', source_directory = folder_name, entry_script = 'score_diabetes.py')
         deployment_configuration = AciWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 1, token_auth_enabled = True)
+    # Retrieve all the registered models from the workspace:
+        Model.list(ws) # return a list of all the models in the workspace
     # Consuming a real-time inferencing Service:
         # Option 1: using Azure ML SDK:
             import json
@@ -525,9 +600,6 @@
 
 # Apache Ambari: 
 # Endpoint
-# Mimic Explainer:
-# Tabular Explainer:
-# PFI Explainer:
 
 # Databricks File System (DBFS):
     # Databricks File System is a distributed file system mounted into a Databricks workspace and available on databricks clusters.
@@ -538,7 +610,6 @@
                 # mount point paths (/mnt)
 #
 # Inference Cluster
-# Permutation Feature Importance:
 # Mutual Information:
 # Mood's Median Test:
 #
