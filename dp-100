@@ -310,8 +310,37 @@
             return json.dumps(predicted_classes) # 
 # Step 8: Deploy the model:
     # 
+        from azureml.core.model import Model
+        model = ws.models('Model_Name')
+        service = Model.deploy(workspace = ws, 
+                               name = 'deployed_service', 
+                               models = [model], 
+                               inference_config = inference_config, 
+                               deployment_config = deploy_config, 
+                               deployment_target = production_cluster)
+        #
+        service.wait_for_deployment(show_output = True) # show deployment status 
 # Step 9: Consume the web service: 
-    #
+    # Option 1: Using Python (SDK accessing Workspace)
+        import json
+        new_input = {'Age': [46], 'Education': ['Masters'], 'Race': ['White'], 'Gender': ['Male'], 'Hours_Worked': [60]}
+        new_input_json = json.dumps({'data': new_input})
+        #
+        print('Calling the Service')
+        response = service.run(input_data = new_input_json)
+        #
+        print('Printing the predicted Classes: ')
+        predicted_classes = json.loads(response)
+        #
+        print('\n', predicted_classes)
+    # Option 2: Using End Point (REST API request)
+        # Step 1: Get the scoring URL:
+        # Step 2: Prepare the input data and create JSON file:
+        # Step 3: Prepare the header with authorization key:
+        
+        # Step 4: 
+        # Step 5: 
+######################################################################################################
     # Create Pipeline:
         # Step 1: Register a new Azure Storage file container datastore.
         # Step 2: Create a PipelineData object, Specify a name and output datastore.
@@ -369,7 +398,7 @@
             schedule = Schedule.create(workspace = ws, name = 'Sample Schedule Name', pipeline_id = 'pipeline_id', 
                                        experiment_name = 'experiment name', datastore = datastore, 
                                        pooling_interval = 5, path_on_datastore = 'file/path') # the datastore is pulled every 5 minutes to check for any changes.
-        
+        #
     # Deploy the trained Model:
         #
         from azureml.core.model import Model
