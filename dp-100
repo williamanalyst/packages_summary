@@ -1098,6 +1098,8 @@ Feature Selection:
     # Method 3: Fisher Linear Discriminant Analysis
         # find an axis based on which certain threshold on that axis could separate the values into different groups well.
             # Analysis of Variance (ANOVA)
+        # The linear discriminant analysis method works only on continuous variables, not categorical or ordinal variables.
+            # Linear discriminant analysis is similar to analysis of variance (ANOVA) in that it works by comparing the means of variables.
 ######################################################################################################
 # Latent Direchlet Transformation:
     # Topic Modelling:
@@ -1199,9 +1201,9 @@ Feature Selection:
             # (similar to one-hot encoding)
     # Edit Metadata: (Make string variable to be categorical)
         # Filter 1: Select Column
-        # Filter 2: Select Data Type
-        # Filter 3: Categorical
-        # Filter 4: Fields
+        # Filter 2: Select Data Type == specify the new datatype of the column
+        # Filter 3: Categorical == indicate whether the column should be flagged as categorical
+        # Filter 4: Fields == specify whether the column should be treated as feature or label by the ML algorithm
         # Filter 5: New Column Name
     # Group data into Bins:
         # Filter 1: Binning Mode: (Quantiles, Equal Width, Custom Edges)
@@ -1226,6 +1228,9 @@ Feature Selection:
         # Expected Output = Data Table
         # Filter 1: Partition or Sample Mode:
             # Assign to Folds, Pick Fold, Sampling, Head
+                # Assign to Folds --> Use Replacement in the partitioning/ Randomized Split --> Partition evenly/ with customized proportions
+                    # Assign to folds == divide the data into subsets.
+                    # Use replacement in the partitioning == allow rows in the dataset to be reused.
         # Filter 2: Rate of Sampling:
             # e.g. 0.01 = 1%, 0.70 = 70%
         # Filter 3: Random Seed for Sampling
@@ -1267,11 +1272,13 @@ Feature Selection:
         # Filter 2: Target Column:
         # Filter 3: Number of Desired Features:
         # Filter 4: Feature Scoring Method:
-            # Pearson's Correlation:
-                # for linear relation
-            # ChiSquared:
+            # Pearson's Correlation: (Pearson's R Test)
+                # for linear relationship between 2 variables
+                # by examining the coefficient values, you can infer the strength of the relationship between 2 variables, whether positive/ negative related, etc.
             # Spearman (relatively more reliable when having some, but not extreme outliers)
-                # Spearman's Rank Correlation:
+                # Spearman's correlation coefficient is designed for use with non-parametric and non-normally distributed data.
+                    # Spearman's coefficient is a nonparametric measure of statistical dependnce between 2 variables, and is sometims denoted by "rho".
+                # Spearman's Rank Correlation: (can be used with oridinal variables)
                     # rho = 1 - 6 * sum(d^2)/ (n^3 - n)
                         # d = rank_x - rank_y
                         # n = number_of_observations
@@ -1756,6 +1763,7 @@ Feature Selection:
 ######################################################################################################
 # Question: The binary classification model training set is imbalanced, how to we resolve the data imbalance?
     # Solution 1: Penalize the Classification
+        # target function imposes additional cost/loss for making wrong classification in the minority group during training.
     # Solution 2: Resample the dataset using under-sampling and over-sampling
     # Solution 3: Generate synthetic samples in the minority class
 ######################################################################################################
@@ -1873,7 +1881,16 @@ Feature Selection:
     # Student do not have administrator access to install software on their devices
     # Azure subscriptions are not available for students:
         # Azure ML Service: 
- 
+######################################################################################################
+# Question: you must create a new model and perform cross-validation:
+    # Step 1: Split Data (train and test)
+    # Step 2: Partition and Sample (cross-validation)
+    # Step 3: Two-class boosted decision tree (select model)
+    # Step 4: tune model hyperparameters (find best parameters and train model)
+        # tune model hyperparameters = integrated train and tune
+            # you configure a set of parameters to use, and then let the module iterate over multiple combinations, measuring the accuracy until finding best model.
+# 
+
  
  
  
