@@ -31,6 +31,14 @@
             # create datasets based on a list of datastore file (demilited files) locations
             datastore_paths = [(datastore, 'weather/2018/11.csv'), (datastore, 'weather/2018/12.csv'), (datastore, 'weather/2019?*.csv')]
             weather_dataset = Dataset.Tabular.from_delimited_files(path = datastore_paths)
+            # access dataset in estimator:
+                dataset = ws.datasets.get('dataset_name')
+                estimator = SKLearn(source_directory = experiment_folder, 
+                                    inputs = [dataset.as_named_input('name')], # pass the dataset as input (registered in the past)
+                                    compute_target = compute_target, 
+                                    conda_packages = ['pandas', 'ipykernel', 'matplotlib', 'plotly'], 
+                                    pip_packages = ['azureml-sdk', 'argparse', 'pyarrow'], 
+                                    entry_script = 'process_action.py')
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
@@ -61,14 +69,19 @@
             # Step 3: Define Primary Metric
             # Step 4: Define Early Termination Options: (Bayesian sampling does not allow early termination)
                 # Option 1: Bandit Policy
+                    # The bandit policy takes the following configuration parameters: slack factor:
+                        # the amount of slack allowed with respect to the best performing training run. (this factor specifies the slack as a ratio.)
                     from azureml.train.hyperdrive import BanditPolicy
                     early_termination_policy = BanditPolicy(slack_amount = 0.1, evaluation_interval = 1, delay_evaluation = 10)
                         # early termiation start from 10 dalays, and check each iteration from 11th epoch, and if new accuracy < max(past performance) - 0.1 then stop.
                 # Option 2: Median Stopping Policy
+                    # median stopping policy computes running averages across all runs and cancels runs whose best performance is worse than median of all runs.
                     from azureml.train.hyperdrive import MedianStoppingPolicy
                     early_termination_policy = MedianStoppingPolicy(evaluation_internal = 1, delay_evaluation = 5)
                         # early termination start from 5 delays, and check each epoch run, stop if new accuracy < median(past performance)
                 # Option 3: Truncation Selection Policy (do not keep the iterations that has worst performance)
+                # Option 4: Default
+                    # If no policy is specified, the hyperparameter tuning service will let all training runs execute to completion.
                 # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
             # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
                 # Note: 
@@ -309,15 +322,16 @@
             #
             return json.dumps(predicted_classes) # 
 # Step 8: Deploy the model:
-    # 
+    # using the Model.deploy() API:
+        # the service will create a base docker image during deployment stage and mount the registered models all in one call.
         from azureml.core.model import Model
         model = ws.models('Model_Name')
         service = Model.deploy(workspace = ws, 
                                name = 'deployed_service', 
                                models = [model], 
-                               inference_config = inference_config, 
-                               deployment_config = deploy_config, 
-                               deployment_target = production_cluster)
+                               inference_config = inference_config,  # key part == environment, entry script (init, run), etc.
+                               deployment_config = deploy_config,  # AKS (cpu_cores = 1, memory_gb = 1)
+                               deployment_target = production_cluster) # compute target --> vm_size, agent_count, locaiton, etc.
         #
         service.wait_for_deployment(show_output = True) # show deployment status 
 # Step 9: Consume the web service: 
@@ -632,6 +646,7 @@
                 # and coordinated application upgrades, Azure Kubernetes Service (AKS) is recommended.
     # Azure Container Instance (ACI) are well suited for testing/ debugging workloads and only support low-scale CPU-based workloads.
         # Do not provide GPU-based instance configuration.
+            # Azure Container Instance (ACI) are only suitable for small models less than 1 GB in size.
 # Azure Container Registry (ACR): 
 
 # Transport Layer Security (TLS):
@@ -1889,8 +1904,18 @@ Feature Selection:
     # Step 4: tune model hyperparameters (find best parameters and train model)
         # tune model hyperparameters = integrated train and tune
             # you configure a set of parameters to use, and then let the module iterate over multiple combinations, measuring the accuracy until finding best model.
-# 
-
+######################################################################################################
+# Question: register the model and ensure that the model is created by subsquent retraining experiments are registered only if their accuracy is higher than current
+    # Option 1: Specify the model framework version when registering the model.
+        # And only register subsquent models if the value is higher.
+    # Option 2: Specify a tag named accuracy with the accuracy metric as a value when registering the model.
+        # And only register subsquent models if their accuracy is higher than the accuracy tag value of the current registered model.
+        # Using tages, user can track useful information such as the name and version of the machine learning library used to train the model.
+            # Note that tags must be alphanumeric.
+######################################################################################################
+# Question: you need to prepare the pipeline for deployment as an endpoint that generates predictions asynchornously for a dataset of input data vlues:
+    # create a real-time inference pipeline from the training pipeline
+        # asynchronous != synchronous
  
  
  
