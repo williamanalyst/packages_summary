@@ -1,0 +1,13 @@
+#
+#
+################################################################################################################
+#
+#
+import json
+    #
+dict1 = {'Name': 'John', 'Age': 40}
+#
+dict1_json = json.dumps(dict1)
+print(dict1_json)
+#
+print(type(dict1_json)) # the file is actually converted into a string format in Python.
