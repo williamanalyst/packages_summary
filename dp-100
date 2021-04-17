@@ -77,19 +77,28 @@
                 # Mimic Explainer: 
                     # An explainer that creates a surrogate(replacement) model that approximates your trained model and can be used to generate explainations.
                         # This explainable model must have the same kind of architecture as your trained model (e.g. linear, or tree-based). 
-                # Tabular Explainer:
+                # Tabular Explainer: (SHAP based)
                     # An explainer that acts as a wrapper around various SHAP explainer algorithms, automatically choosing the one that is most appropriate
                         # for your model architecture.
                     # SHAP Tree Explainer:
+                        # Model specific: focused on Tree and Ensemble Tree Algorithms such as Decision Tree, Random Forest, etc.
+                            # Cannot be used on linear/ deep learning algorithms.
                     # SHAP Deep Explainer:
+                        # Model specific: supports the explanation for deep learning models such as Tensorflow or PyTorch.
                     # SHAP Linear Explainer:
+                        # Model Specific: supports linear models such as linear regression, logistic regression, etc.
                     # SHAP Kernel Explainer: 
+                        # Model Agnostic: supports any model
+                            # 
                 # Permutation Feature Importance (PFI) Explainer:
                     # Analyzes the feature importance by shuffling feature values(e.g. remove 1 variable randomly) and measuring the impact on perdiction performance.
+                        # e.g. how much less accuracy is returned after removing a variable
                 # Note: azureml.interpret package can be installed locally to create explainers.
                 #
                 from interpret.ext.blackbox import MimicExplainer
                 from interpret.ext.glassbox import DecisionTreeExplainableModel
+                # class = ['less than threshold', 'above threshold'] # the classification result
+                # features = X_train.columns
                 mimic_explainer = MimicExplainer(model = loan_model, initilization_examples = X_test, 
                                                  explainable_model = DecisionTreeExplainableModel, 
                                                  features = ['loan_amount', 'income', 'age', 'marital_status'],
@@ -99,39 +108,61 @@
                 tab_explainer = TabularExplainer(model = loan_model, initilization_examples = X_test, 
                                                  features = ['loan_amount', 'income', 'age', 'marital_status'], 
                                                  classes = ['reject', 'approve'])
-                # 
+                # Get the global explanations:
+                global_explanation = tab_explanier.explain_global(X_train) # the importance of each feature will be calculated, will take some time
+                # Get the feature importance data:
+                global_feature_importance = galbel_explanation.get_feature_importance_dict()
+                # Get the local feature importance:
+                X_explain = X_test[0: 5]
+                local_explanation = tab_explainer.explain_local(X_explain) # will generate the local feature importance for the 5 records
+                local_features = local_explanation.get_ranked_local_names()
+                local_importance = local_explanation.get_ranked_local_values()
+                #
                 from interpret.ext.blackbox import FPIExplainer
                 pfi_explainer = PFIExplainer(model = loan_model, features = ['loan_amount', 'income ', 'age', 'marital_status'],
                                                                  classes = ['reject', 'approve'])
+        # Retrieve or download feature importance values:
+            from azureml.interpret import ExplanationClient
+            from azureml.core import WorkSpace
+            #
+            ws = Workspace.from_config('./config1.json')
+            #
+            new_run = ws.get_run('Explainer_Run_Identifier')
+            explanation_client = ExplanationClient.from_run(new_run)
+            #
+            download_explanations = explain_client.download_model_explanation()
+            download_feature_importance = downloaded_explanation.get_feature_importance_dict()
             # Generate feature importance data:
-                # Shapley Value: 
-                # Local and Global Interpretability:
-            # Global Feature Importance:
-                # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
-                # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
-                # 
-                global_mimic_explanation = mimic_explainer.explain_global(X_train)
-                global_mimic_feature_importance = global_mimic_explanation.get_feature_importance_dict()
-                #
-                global_tab_explainer = tab_explainer.explain_global(X_train)
-                global_tab_feature_importance = global_tab_explainer.get_feature_importance_dict()
-                # 
-                # Unlike mimic/ tabular explainer, PFI Explainer requires the actual label:
-                global_pfi_explanation = pfi_explainer.explain_global(X_train, y_train)
-                global_pfi_feature_importance = global_pfi_explainer.get_feature_importance_dict()
-            # Local Feature Importance:
-                # Local Feature Importance: based on certain observations only
-                # Local feature importance measures the influence of each feature value for a specific individual prediction.
-                # Unlike mimic/ tabular explainer, PFI Explainer does not support local feature importance explanations.
-                #
-                local_mimic_explanation = mimic_explainer.explain_local(X_test[0:5])
-                local_mimic_features = local_mimic_explanation.get_ranked_local_names()
-                local_mimic_importance = local_mimic_explanation.get_ranked_local_values()
-                #
-                local_tabular_explanation = tabular_explainer.explain_local(X_test[0:5])
-                local_tabular_features = local_tabular_explanation.get_ranked_local_names()
-                local_tabular_features = local_tabular_explanation.get_ranked_local_values()
+                # Shapley Value: (SHAP)
+                # Local and Global Interpretability: (azureml.interpret)
+                    # Global Feature Importance:
+                        # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
+                        # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
+                        # 
+                        global_mimic_explanation = mimic_explainer.explain_global(X_train)
+                        global_mimic_feature_importance = global_mimic_explanation.get_feature_importance_dict()
+                        #
+                        global_tab_explainer = tab_explainer.explain_global(X_train)
+                        global_tab_feature_importance = global_tab_explainer.get_feature_importance_dict()
+                        # 
+                        # Unlike mimic/ tabular explainer, PFI Explainer requires the actual label:
+                        global_pfi_explanation = pfi_explainer.explain_global(X_train, y_train)
+                        global_pfi_feature_importance = global_pfi_explainer.get_feature_importance_dict()
+                    # Local Feature Importance:
+                        # Local Feature Importance: based on certain observations only
+                        # Local feature importance measures the influence of each feature value for a specific individual prediction.
+                        # Unlike mimic/ tabular explainer, PFI Explainer does not support local feature importance explanations.
+                        #
+                        local_mimic_explanation = mimic_explainer.explain_local(X_test[0:5])
+                        local_mimic_features = local_mimic_explanation.get_ranked_local_names()
+                        local_mimic_importance = local_mimic_explanation.get_ranked_local_values()
+                        #
+                        local_tabular_explanation = tabular_explainer.explain_local(X_test[0:5])
+                        local_tabular_features = local_tabular_explanation.get_ranked_local_names()
+                        local_tabular_features = local_tabular_explanation.get_ranked_local_values()
         # Create Explaination Client:
+        pip install azureml-explain-model
+        pip install azureml-interpret
             # 
             from azureml.core.run import Run
             from azureml.contrib.interpret.explanation.explanation_client import ExplanationClient
@@ -141,21 +172,24 @@
             explainer = TabularExplainer(model = loan_model, initialization_examples = X_train, features = features, classes = labels)
             explanation = explainer.explain_global(X_test)
             #
+            # Upload the explanation to the client:
             explanation_client = ExplanationClient.from_run(run)
-            explanation_client.upload_model_explanation(explanation, comment = 'Tabular Explanation')
-            run.complete()
+            explanation_client.upload_model_explanation(explanation, comment = 'Tabular Explanation Upload 1')
+            run.complete() # 
             # View the explanation:
             from azureml.contrib.interpret.explanation.explanation_client import ExplanationClient
             explanation_client = ExplanationClient.from_run_id(workspace = ws, experiment_name = experiment.experiment_name, run_id = run.id)
             model_explanation = explanation_client.download_model_explanation()
             feature_importances = model_explanation.get_feature_importance_dict()
-        # Visualize Explanations:
+        # Visualize Explanations: (ML Studio --> Experiments --> Explainer --> Run 1 --> Explanations (preview) )
             # Visualization are only available for experiment runs that were configurated to generate and upload explanations.
                 # When using Automated ML, only the run producing the best model has explanations generated by default.
             # Visualizing Global Feature Importance:
+                # 
             # Visualizing Local Feature Importance:
+                # 
             # Visualizing Summary Importance:
-            
+                # 
     # Manage Models: 
         # Potential Cause of Disparity:
             # Cause 1: Data Imbalance:
@@ -1617,6 +1651,13 @@ Feature Selection:
     # Step 1: az extension add -n azure-cli-ml # register the ML extension to run Azure ML commands
     # Step 2: az group create --name<resource-group-name> --location<location> # create resource group where Azure ML Workspace could reside in
     # Step 3: az ml workspace create -w<workspace-name> -g<resource-group-name> # create workspace in the resource group
+        # command line argument:
+            # All user to directly put argument in the command line rather than having separate response and input such as int(input(''))
+                from argparse import ArgumentParser as AP
+                parser = AP()
+                #
+                parser.add_argument('--side', type = int)
+                #
 ######################################################################################################
 # Question: Azure CLI - update the storage keys in the workspace (after workspace is compromised and regenerated storage account keys)
     # az ml workspace sync-keys
