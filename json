@@ -11,3 +11,4 @@ dict1_json = json.dumps(dict1)
 print(dict1_json)
 #
 print(type(dict1_json)) # the file is actually converted into a string format in Python.
+dict2 = json.loads(dict1_json) # load the json string back to dictionary format
