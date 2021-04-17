@@ -7,9 +7,9 @@
         # Assets include: Environment, Experiment, Pipelines, Datasets, Models, Endpoints
         # Managed Resources: Compute Instances, Compute Clusters
         from azureml.core import Workspace
-        Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group, 
-                                                location = 'australiaeast', # minimum 4 parameters above
-                                                private_endpoint_config = private_endpoint_config, sku = 'enterprise')
+        new_workspace = Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group, 
+                                                                location = 'australiaeast', # minimum 4 parameters above
+                                                                private_endpoint_config = private_endpoint_config, sku = 'enterprise')
         # Note: The Azure ML designer is only availabel with the enterprise edition of the workspace.
     # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
         # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
@@ -44,7 +44,12 @@
 ######################################################################################################
     # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
     # 
-    # 
+    # Create Model with Azure ML Designer:
+        # Only available to enterprise edition.
+    # Automated ML:
+        # Only availabel to enterprise edition.
+    #
+    # Generate metrices:
     #
     # Run Automated ML Experiment:
         from azureml.core.experiment import Experiment
@@ -580,6 +585,7 @@
             # (distributed, can automatically increase/ decrease computer capacity based on demand)
                 # Supports AutoML, ML Pipeline, Azure ML Designer.
                 # Used for batch inferencing, not suitable for real-time inferencing.
+                    # Azure ML Compute Cluster is the only training target that is supported by Azure ML Designer for automted ML jobs running hyperparaneter tuning.
         # Inference Clusters: (deploy your model to Azure Kubernetes Service for large scale inferencing)
             # Azure Kubernetes Service (AKS) cluster, then deploy model as a REST Endpoint. (cannot adjust computing power automatically)
                 # In ML, inferencing refers to the use of trained model to predict labels for new data on which models has not been trained.
@@ -684,7 +690,8 @@
         # petabytes of data. With no infrastructure to manage, you can process data on demand, scale instantly, and only pay per job.
 # Azure HDInsight with Spark Mlib
 # Azure HDInsight:
-    # 
+    # Use Apache Spark to train your model.
+    # Azure HDInsight provides a pre-configured environment with Apache Spark.
 #
 # Differential Pricacy:
     # Differential Privacy seeks to protect individual data value by adding "noise" to the analysis process.
