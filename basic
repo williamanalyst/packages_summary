@@ -17,12 +17,31 @@ with open('file1.html', 'r') as file1_read:
     print(content)
 
 #######################################################################################
-# list
+# Python Datatypes:
+#######################################################################################
+# Numeric:
+    # int
+    # float
+# String:
+    #
+# Boolean: 
+    #
+# List:
+# Tuple:
+# Dictionary:
+    #
+#######################################################################################
+# List:
 list1 = ['a', 'b', 'c', 1, 2, 3]
 list2 = ['c', 'd', 'e', 2, 4, 6]
+# 
+list1.append(6) # add another element to the end of a list
+list1[1] = 'd' # assign value to an element of a list (replace exisitng value)
 list3 = list1 + list2
 list1.remove('a') # directly remove 1 element from the list, and does not create a new list
-
+list1.sort(reverse = True) # can only be either all numeric or all string elements
+# 
+del list1[2] # remove an element from a list based on the index of that element
 #
 if 'a' in list1: # check whether the element is in a list
     print('Element is in the list')
@@ -103,4 +122,74 @@ sklearn.__version__ # return the version of the package
 
 
 #
+#######################################################################################
+# Dictionary (key-value pair)
+dict1 = {'key1': [1, 2, 3], 'key2': 'name', 'key3': 155}
+del dict1['key2'] # remove both key-value pair (both) from the dictionary
+#
+len(dict1) == 3 # get the length of a dictionary
+str(dict1) # convert the dictionary into a string
+#
+print(dict1.keys()) # get all the key values from the dictionary as a list
+print(dict1.values()) # get all the vlaues from the dictionary as a list
+
+
+#######################################################################################
+# Functions:
+#######################################################################################
+# Functions:
+    # Built-in Functions:
+        # len()
+    # User-defined Functions:
+        #
+        def multiply(x, y):
+            result = x * y
+            return(result)    
+            #
+        x = int(input('Please insert the 1st number: ')) # directly return an error if the datatype is not as expected
+        y = int(input('Please insert the 2nd number: '))
+        #
+        print('The result of the function = ', multiply(x, y))
+            
+    # Recusion Functions:
+        # 
+# Function Arguments:
+    # Required Argument:
+        # Number of arguments passed must be the same as expected.
+        # The arguments must be in the same sequence.
+    # Default Argument:
+        # Similar to required arguments, whereas with default values.
+        # Takes from 0 to n arguments:
+        # Accept default arguments when value/input/variable not provided.
+            def udf(var1 = 0, var2 = 0):
+                result = var1 + var2
+                return result
+            udf(10, 20)
+    # Keyword Argument:
+        # Parameter names are used in the function call.
+        # The keys are mapped into the arguments.
+        # The position of the arguments does not matter.
+            def myudf(name, age):
+                print('Name = ', name)
+                print('Age = ', age)
+                return 
+            #
+            myudf(age = 10, name = 'John') # the variable names are used as keys here so that the order of the variable does not matter.
+#######################################################################################
+# Variables:
+#######################################################################################
+# Variables:
+    # Global Variable:
+    # Local Variable: 
+
+
+
+
+
+
+
+
+
+
+
 
