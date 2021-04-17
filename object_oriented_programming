@@ -31,6 +31,18 @@
                     # Specifies the functionality of the object
             # Object:
                 # 1 Object is just 1 instance of the class.
+     # Level 5: Modular Programming:
+        # Collaborative development:
+        # Develop Reusable Code base:
+        # Efficient and Lesser lines of code base to manage:
+        # Easy maintenance of the system:
+            # e.g. picking up bugs more easily
+        # Packages = Group of Modules = folders or directories that stores the python files/ modules, and these modules have specific funtions/ classes grouped together.
+            # Module = function/ processing of certain data
+        # Types of Modules and Packages:
+            # Built-in modules and packages:
+                # 
+            # User-defined modules and packages:
 #################################################################################################
 # everything in Python is an object 
 -- every object has a class (int, str, DataFrame, function, etc.)
