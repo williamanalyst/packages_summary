@@ -619,7 +619,8 @@
 ######################################################################################################
 #
 # AI (Artificial Intelligence) = computer performing tasks without being specifically programmed to.
-# CUDA (Compute Unified Device Architect) 
+# CUDA (Compute Unified Device Architect):
+    # related to GPU computing
 # 
 # Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
 # 
@@ -817,6 +818,7 @@
 ######################################################################################################
 # Missing Value in a large dataset
     # replace with MICE
+        # if there are many missing values in many columns, MICE might not be as good as Probablistic PCA
 # Unbalanced Dataset: presence of minority class in the dataset (e.g. 0.5% fraud, 99.5% without fraud data)
     (e.g. manufacturing defects, rare disease disgnosis, etc.)
     # might have biased predictions
@@ -1228,6 +1230,7 @@ Feature Selection:
             # e.g. 0.01 = 1%, 0.70 = 70%
         # Filter 3: Random Seed for Sampling
             # default to be 0
+                # random seed == 0 leads to a different sample in each run, specifying a particular seed keeps the sample consistent.
         # Filer 4: Stratified split for Sampling
             # True/ False
             # Sampling is an important module in ML as it lets you reduce the size of a dataset while maintaining the same ratio of values.
@@ -1248,7 +1251,7 @@ Feature Selection:
         # Filter 4: Random Seed: 
     # Select Columns Transform:
     # Select Columns in Dataset
-    # Split Data:
+    # Split Data: (only into 2 groups, if multiple groups, should use "Group data into bins")
         # Filter 1: Splitting Mode: 
             # split rows:
             # Regular Expression: 
@@ -1335,6 +1338,11 @@ Feature Selection:
         # Filter 7: Shuffle examples:
         # Filter 8: Random Number Seed:
     # Two-Class Support Vector Machine:
+        # Step 1: Add a 2-class SVM module to initialize the SVM classifier:
+        # Step 2: Add a dataset to experiment:
+        # Step 3: Add a Split Data Module to create training and test dataset
+        # Step 4: Add a Permutation Feature Importance Module and connect the trained and test dataset
+        # Step 5: Set the metric for measuring performance property to "Classification - Accuracy" and run the experiment.
 ######################################################################################################
 # Model Training Modules: (4)
 ######################################################################################################
@@ -1390,7 +1398,7 @@ Feature Selection:
     # Convert Word to Vector:
     # Extract N-grams Feature from Text:
         # Filter 1: Select Text Column
-        # Filter 2: Vocabulary Mode (Create, ReadOnly)
+        # Filter 2: Vocabulary Mode (Create, ReadOnly) # use create for creating a new list of n-gram features
         # Filter 3: N-gram Size:
         # Filter 4: Weighting Function (Binary Weight, TF Weight, IDF Weight, TF-IDF Weight)
         # Filter 5: Minimum / Maximum Word Length
@@ -1408,7 +1416,13 @@ Feature Selection:
     # Latent Dirichlet Allocation:
     # Preprocess Text
     # Train Vowpal Wabbit Model: (Deep neural network)
-        # 
+        # Filter 1: Vowpal Wabbit Argument (CLI argument)
+        # Filter 2: Name of the training data file
+        # Filter 3: Specify the file type:
+            # Option 1: Vowpal Wabbit
+            # Option 2: SVMLight
+        # Filter 4: Output readable model file = True/ False
+        # Filter 5: Output inverted hash file = True/ False
     # Score Vowpal Wabbit Model:
 ######################################################################################################
 # Computer Vision Modules: (6)
@@ -1696,6 +1710,9 @@ Feature Selection:
 # Question: Need to normalize values to produce an output column into bins to predict target column:
     # Entropy MDL Bining Mode:
 ######################################################################################################
+# Question: you need to normalize values to produce a feature column grouped into Bins:
+    # apply an Entropy Mimimum Description Length (MDL) binning mode which has a target column
+######################################################################################################
 # Question: When needed to tune hyperparameters, and we need to iterate all possible combinations while minimizing computing resources required.
     # Use Random Grid 
 
@@ -1705,9 +1722,7 @@ Feature Selection:
 ######################################################################################################
 # Question: need to register the new version of a model while keeping the current version of the model in the registry, how could we do that?
     # Register the model with the same name as the existing model.
-######################################################################################################
-# Question: you need to normalize values to produce a feature column grouped into Bins:
-    # apply an Entropy Mimimum Description Length (MDL) binning mode 
+
 ######################################################################################################
 # Question: how do you record unique label values as run metrics?
     # Script:
@@ -1846,9 +1861,18 @@ Feature Selection:
     # Specify the minimum number of cluster nodes, set the minimum number of cluster nodes to 0.
         # Specify an idle sceonds scale down will not reach the target, instead, it can save time by avioding constant provisioning ande deprovisioning of nodes.
         # ADF compute target should not be selected, they were designed to create ML pipelines.
- 
- 
- 
+######################################################################################################
+# Question:
+    # Data Scientist must build notebooks in a cloud environment = 
+    # Data Scientist must use Automatic Feature Engineering and model building in ML pipelines = MS ML for Apache Apark
+    # Notebooks must be deployed to retrain using Spark instances with dynamic worker allocation = 
+    # Notebooks must be exportable to be version controlled locally = export Zeppelin notebooks to a local environment
+######################################################################################################
+# Question: which Azure tool can enable the students to run pythin-based data visualization code?
+    # Student device are not configured for python development
+    # Student do not have administrator access to install software on their devices
+    # Azure subscriptions are not available for students:
+        # Azure ML Service: 
  
  
  
