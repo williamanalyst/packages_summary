@@ -1,17 +1,42 @@
-# Procedural Programming -- code as a sequence of steps, great for data analysis and scripts
-# Object-oriented programming (bundle data with code operating the data) (OOP is fundamentally about re-using code)
--- code as interactions of objects, great for building frameworks and tools, miantainable and reusable code
--- Object = State (= features/ attributes) + Behaviour ( = actions/ methods)
-    -- e.g. array1 = np.array([1, 2, 3, 4, 5])
-        -- array1.shape = attribute e.g. object.attribute
-        -- array1.reshape(5, 1) = method e.g. object.method()
-    -- e.g. dir(object) returns all the attributes and methods on an object
--- Class: blueprint for objects outlining possible states and behaviours
-
+#################################################################################################
+# Different Types of Programming Languages:
+#################################################################################################
+    # Level 1: Machine Code or Machine Level Language:
+        # Talks directly to the CPU using bits and bytes:
+            e.g. 000000, 0001, 1010, c7c8, 585f, etc.
+    # Level 2: Assembly Language:
+        # At register level:
+            # e.g. AND R7, RO #1
+                   AND R0, R0 #12
+                   ADD R7, R7, R14
+                   JMP OUTCH
+    # Level 3: Procedural or Structured Language:
+        # code as a sequence of steps, great for data analysis and scripts
+            # Promotes extensive use of control flow such as if-else, loops and functions for repeatable code.
+        # Can grow into thousands of lines of code.
+    # Level 4: Object Oriented Programming:
+        # Each object will be accompanied with various functions (methods) and variables (properties):
+            # 
+        # Object-oriented programming (bundle data with code operating the data) (OOP is fundamentally about re-using code)
+            # 
+            -- code as interactions of objects, great for building frameworks and tools, miantainable and reusable code
+            -- Object = State (= features/ attributes) + Behaviour ( = actions/ methods)
+                -- e.g. array1 = np.array([1, 2, 3, 4, 5])
+                    -- array1.shape = attribute e.g. object.attribute
+                    -- array1.reshape(5, 1) = method e.g. object.method()
+                -- e.g. dir(object) returns all the attributes and methods on an object
+            # Class: 
+                # Blueprint for objects outlining possible states (attribute/ specifications) and behaviours (functionality)
+                    # Specifies the attributes of the object
+                    # Specifies the functionality of the object
+            # Object:
+                # 1 Object is just 1 instance of the class.
+#################################################################################################
 # everything in Python is an object 
 -- every object has a class (int, str, DataFrame, function, etc.)
     -- e.g. type(object) = class name
-
+#
+#################################################################################################
 # define classes (it is preferred to include all the attributes in the constructor __init__)
 class ClassName:
     """ 
@@ -36,7 +61,8 @@ class ClassName:
             name = f.readline()
         return cls(name)
 #
-obj1 = ClassName()
+obj1 = ClassName(var00, var01) # createa an instance of the class, which is an object
+obj1.func1() # perform an action on the specific object
 obj2 = ClassName() # 
 #
 obj3 = ClassName()
@@ -47,7 +73,7 @@ obj4 = ClassName(var00, var01)
 obj4.attribute00
 obj4.attribute01 # 
 
-
+#################################################################################################
 # inheritance from class
 # new class functionality = old class funcationality + extra functions newly defined
 class ChildClass(ParentClass): # child class will contain all functions from parent class
