@@ -335,11 +335,20 @@
         print('\n', predicted_classes)
     # Option 2: Using End Point (REST API request)
         # Step 1: Get the scoring URL:
+            import requests
+            import json
+            scoring_uri = 'http://'
         # Step 2: Prepare the input data and create JSON file:
+            new_input = {'': [], '': [], '': [], '': [], '': []}
+            new_input_json = json.loads({'data': new_input})
         # Step 3: Prepare the header with authorization key:
-        
-        # Step 4: 
-        # Step 5: 
+            key = '' # authorization key on the endpoint page 
+            headers = {'Content-type': 'application/json', 'Authorization': f'Bearer {key}'}
+        # Step 4: Make a POST request to API using URI, header and data
+            response = requests.post(scoring_uri. new_input_json, headers = headers)
+        # Step 5: Collect the response and deserialize the JSON file:
+            predicted_classes = json.loads(response.json())
+            print('\n', predicted_classes)
 ######################################################################################################
     # Create Pipeline:
         # Step 1: Register a new Azure Storage file container datastore.
