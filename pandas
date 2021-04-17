@@ -102,7 +102,10 @@ df['col1_lead1'] = df.groupby(['group_col'])['col1'].shift(-1)
 # pivot_table
 df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
 values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
-
+# Melt Pivot Table
+df = pd.DataFrame({'': })
+pd.melt(df, id_vars = ['categoty'], value_vars = ['B', 'C'])
+############################################################################################
 #
 ############################################################################################
 # Calculation based on columns
