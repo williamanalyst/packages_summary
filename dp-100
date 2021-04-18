@@ -1994,8 +1994,17 @@ Feature Selection:
         # Differentiate between training and scoring runs == run_type
         # Focus on a specific issue == step_id
         # View logs for all steps over time == parent_run_id
-
-
+######################################################################################################
+# Question: you create a compute target for Azure ML training experiment.
+    # You need to ensure that each target supports GPU for training:
+        # You should register the model in a workspace, and deploy the model to Azure Kubernetes Service (AKS).
+######################################################################################################
+# Question: you manually defines the security rules to isolate your Azure ML training process within an Azure Virtual Network.
+    # You need to ensure that only required communications from the internet are allowed.
+        # Option 1: Define an inbound security rule.
+        # Option 2: Configure a source port range of 29876-29877.
+        # Option 3: Ensure the source service tag is set to BatchNodeManagement.
+            # allows you to define security rules without manually identifying IP addresses for Azure Resources that you want to allow to access your virtual network.
 
 
 
