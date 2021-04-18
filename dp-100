@@ -18,12 +18,16 @@
                     datastore = Datastore.get(ws, 'datastore_name')
             # Compute Target:
                 # Local Compute: the experiment is run on the same compute target that initiates the experiment.
+                    # if wanting to run/train a model in a workspace with your local machine, a ML VM should be created and attached as a compute target.
                 # Compute Clusters: 
+                    from azureml.core.compute import ComputeTarget, AmlCompute
+                    config = AmlCompute.provisioning_configuration(vm_size = 'STANDARD_D2', max_nodes = 3)
+                    cluster = ComputeTarget.create(ws, 'cluster_name', config)
                 # Inference Clusters: containerized machines for deployment
                 # Attached Compute: already existing azure-based compute environment for data science.
     # Assets include: Environment, Experiment, Pipelines, Datasets, Models, Endpoints
         # Environment: 
-            # Environment defines the python version, 
+            # Environment can include all the required packages, which helps the experiment to run successfully on local and/ or remote compute.
         # Experiment:
             #
         # Pipelines: (Azure ML pipelines can be published to get a REST endpoint.)
@@ -96,6 +100,8 @@
     # Use Automated ML to optimize Model:
     #
     # Use Azure Hyperdrive to turn Hyperparameters (also known as hyperparameter optimization)
+        # Note: parameters are internal to the model, and is estimated during the training process.
+        # Note: hyperparameters are external to the model, and is set before the training process (and further selected after training).
         # Performance Metric to Measure: Accuracy, Precision, Recall, AUC, F1 Score
             # Step 1: Select a Sampling Method (Random sampling, Grid sampling, Bayesian Sampling)
             # Step 2: Define the parameter Search Space
@@ -176,6 +182,9 @@
         #
         new_run = ws.get_run('Explainer_Run_Identifier')
         explanation_client = ExplanationClient.from_run(new_run)
+        # 
+        # explanation = client.list_model_explanations()
+        # feature_importance = explanation.from_run_id(workspace = ws, experiment_name = 'experiment name', run_id = 'run id')
         #
         download_explanations = explain_client.download_model_explanation()
         download_feature_importance = downloaded_explanation.get_feature_importance_dict()
@@ -593,6 +602,8 @@
                 parallel_run_configuration = ParallelRunConfig( source_directory = experiment_folder, entry_script = 'batch_inference.py', 
                                                                 mini_match_size = '5', error_threshold = 10, output_action = 'append_now', 
                                                                 environment = batch_env, compute_target = inference_cluster, node_count = 2)
+                # Note: if output_action = 'append_row', than all values output by run() method will be aggregated into 1 unique file named 'parallel_run_step.txt'
+                    # that is created in the output location.
                 from azureml.pipeline.steps import ParallelRunStep
                 from azureml.pipeline.core import Pipeline
                 from azureml.core.experiment import Experiment
@@ -1486,7 +1497,22 @@ Feature Selection:
             # linked list:
             # hashing:
     # Latent Dirichlet Allocation:
-    # Preprocess Text
+    # Preprocess Text:
+        # Filter 1: language (english)
+        # Filter 2: expand verb contractions (english only)
+        # Filter 3: text column to clean
+        # Filter 4: Remove stopwotds
+        # Filter 5: Use Lemmatization
+        # Filter 6: Detect Sentences
+        # Filter 7: Normalize case to lowercase
+        # Filter 8: Remove Numbers
+        # Filter 9: Remove Special Characters:
+        # Filter 10: Remove Duplicated Characters:
+        # Filter 11: Remove email addresses:
+        # Filter 12: Remove URLs:
+        # Filter 13: Normalize backslashes to slashes:
+        # Filter 14: Split tokens on special characters:
+        # Filter 15: Custom regular experssion/ replacement string:
     # Train Vowpal Wabbit Model: (Deep neural network)
         # Filter 1: Vowpal Wabbit Argument (CLI argument)
         # Filter 2: Name of the training data file
