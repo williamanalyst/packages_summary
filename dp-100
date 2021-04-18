@@ -39,6 +39,10 @@
                                     conda_packages = ['pandas', 'ipykernel', 'matplotlib', 'plotly'], 
                                     pip_packages = ['azureml-sdk', 'argparse', 'pyarrow'], 
                                     entry_script = 'process_action.py')
+                # Obtain/ View part of the dataset:
+                    january_dataset = timeseries_dataset.time_between(start_time = datatime(2020, 1, 1), end_time = datetime(2020, 1, 31), include_boundry = True)
+                    # january_dataset = timeseries_dataset.time_between(start_time = datatime(2019, 12, 31), end_time = datetime(2020, 2, 1), include_boundry = False)
+                    january_dataset.take(100).to_pandas_dataframe()
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
@@ -287,7 +291,7 @@
 # Step 5: Create a production environment:
     # 
 # Step 6: Create inference configuration: (create entry script, environment, inference configuration)
-    # Create the inference configuration
+    # Create the inference configuration (inference == model scoring)
         from azureml.core.model import InferenceConfig
         my_env = 
         inference_config = InferenceConfig(environment = my_env, 
@@ -436,6 +440,8 @@
                                                                       deployment_config = classifier_deploy_config, 
                                                                       deployment_target = production_cluster)
         service.wait_for_deployment(show_output = True) # for ACI or local service, you can omit show_output parameter or set 'show_output = None'
+        # if there is deployment failure, get_logs() helps to determine the cause:
+        service.get_logs() # 
         #
         from azureml.core.conda_dependencies import CondaDependencies
         from azureml.core.webservice import AciWebservice
@@ -988,8 +994,11 @@
 ######################################################################################################
 # Reinforcement Learning: 
     # 
-
     # 
+    # e.g. Training video game ML models uses a process known as reinforcement learning(RL).
+        # RL machine learning agents take action and then observe the results as a way of seeking rewards.
+        # Because RL is compute intensice, it is usually performed across multiple nodes, known as head and worker nodes.
+            # In Azure ML, RL requires that you specify a virtual network that does not block the ports that nodes need to communicate.
 
 #
 ######################################################################################################
@@ -1816,6 +1825,12 @@ Feature Selection:
 # Question: Azure CLI - update the storage keys in the workspace (after workspace is compromised and regenerated storage account keys)
     # az ml workspace sync-keys
 ######################################################################################################
+# Question: Azure CLI - ensure that your ML environment is reusable by specifying the additional Azure ML packages beyond the default that was installed:
+    # Step 1: Use the az ml folder attach command to create a run configuration.
+    # Step 2: create an environment.yml file, list all the packages.
+    # Step 3: Send the condaDependenciesFile parameter.
+
+######################################################################################################
 # Question: You use Azure ML to deploy ML models, and want to be notified when a model deployment fails:
     # You should: Stream Azure ML Logs to Azure Monitor.
         # Azure Event Hub: focused on data analysis to discover actionable insights/ BI.
@@ -1876,9 +1891,9 @@ Feature Selection:
     # Stage 4: logs for previously deployed web service: (.get_logs())
 ######################################################################################################
 # Question: how to ensure that the output files are uploaded in real time?
-    experiment_output = os.path.join(os.curdir, 'logs')
+    experiment_output = os.path.join(os.curdir, 'logs') # only 'logs' are for real-time upload
     # Files written to ./logs are uploaded in real time.
-        # files written to the output folder persist across experiments, but they are not uploaded in real time.
+        # files written to the 'outputs' folder persist across experiments, but they are not uploaded in real time.
 ######################################################################################################
 # Question: how to ensure that a use can submit a training run? (you created a custom role definition file)
     # Add workspace/ environment to the actions elements
@@ -1923,13 +1938,39 @@ Feature Selection:
 # Question: you need to prepare the pipeline for deployment as an endpoint that generates predictions asynchornously for a dataset of input data vlues:
     # create a real-time inference pipeline from the training pipeline
         # asynchronous != synchronous
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+######################################################################################################
+# Question: you need to test some changes without modifying existing pipeline:
+    # Step 1: Create a new pipeline that implements the changes. (in order to preserve existing pipeline)
+    # Step 2: Publish the pipeline to your scanned endpoint.
+    # Step 3: Include the test pipeline version in your REST API calls. (test the new pipeline)
+######################################################################################################
+# Question: 
+    # Multi-class == each element will be allocated with 1 class (e.g. a image is either cat or dog, cannot be both at the same time.)
+    # Multi-label == multiple labels could be applied to the same element (e.g. an image with both 1 cat and 1 dog in it, labeled as cat + dog)
+######################################################################################################
+# Question: export your auto ML generated models to Open Neural Network Exchange (ONNX) Model:
+    # ONNX == for optimizing ML models for inferencing (or model scoring)
+        # Models from many frameworks including: Tensorflow, PyTorch, Scikit-Learn, Keras, Chainer, MXNet, MATLAB, and SPARKML can be exported or converted to ONNX format.
+            # model such Auto-ARIMA cannot be exported to ONNX.
+            # Linear SVC can be exported to ONNX, whereas it's for classification problem only.
+        # ONNX models could be further deployed to:
+            # Option 1: Azure (Azure ML Service, Ubuntu VM, Windows Server 2019)/ or Windows Devices
+            # Option 2: Other Devices (iOS, etc.)
+        pip install onnxruntime # 
+        pip install onnxruntime-gpu # GPU build
+######################################################################################################
+# Question: you obtainer new data and would like to use the data to retrain an existing ML model, and you need to bookmark the state of your data prior to retraining:
+    # Use the register method from the dataset class to create a new dataset version
+        # Dataset.create_new_version()
+######################################################################################################
+# Question: 
+
+
+
+
+
+
+
+
+
+
