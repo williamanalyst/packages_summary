@@ -65,7 +65,7 @@
         RunDetails(automl_run).show() # 
         automl_run.wait_fot_completion(show_output = True)  # the "wait for completion" method waits for the current provisioning operation to finish on the cluster.
         #
-        best_run, fitted_model = automl_run.get_output()
+        best_run, fitted_model = automl_run.get_output() # 
         print(best_run)
         #
 ######################################################################################################
@@ -518,7 +518,7 @@
             automl_experiment = Experiment(ws, 'automl_experiment1')
             automl_run = automl_experiment.submit(automl_config)
         # Step 4: Retrieve the best run and the corresponding model. 
-            best_run, fitted_model = automl_run.get_outputs()
+            best_run, fitted_model = automl_run.get_outputs() # get_output() method returns the best pipeline based on the primary metris when no parameter is specified.
             best_run_metrics = best_run.get_metrics()
             for metric_name in best_run_metrics:
                 metric = best_run_metrics[metric_name]
@@ -555,10 +555,10 @@
             #
             # Forcing all steps in a pipeline to re-run
                 pipeline_rerun = experiment.submit(train_pipeline, regenerate_outputs = True) # regenerate_outputs means running all steps again
-            # Create a pipeline with a ParallelRunStep:
+            # Create a pipeline with a ParallelRunStep: (can be used to divide large dataset into batches and run simultaneously)
                 experiment_folder = ''
                 parallel_run_configuration = ParallelRunConfig( source_directory = experiment_folder, entry_script = 'batch_inference.py', 
-                                                                mini_match_suze = '5', error_threshold = 10, output_action = 'append_now', 
+                                                                mini_match_size = '5', error_threshold = 10, output_action = 'append_now', 
                                                                 environment = batch_env, compute_target = inference_cluster, node_count = 2)
                 from azureml.pipeline.steps import ParallelRunStep
                 from azureml.pipeline.core import Pipeline
@@ -1715,7 +1715,10 @@ Feature Selection:
     experiment = Experiment(workspace = ws, name = 'experiment script1')
     run = experiment.submit(config = script_config)
     run.wait_for_completion()
-    run.get_file_names()
+    run.get_status() # this command returns the the status of the last run
+    run.get_details() # returns the definition, status information, current log files, and other details of the run
+    run.get_details_with_logs() # get the status of the last run, along with the log file contents.
+    run.get_file_names() # retrieve the output file names == this function will list all the files that are associated with the experiment run objecgt
 ######################################################################################################
 # Question: deploy the model to a context that allows for real-time GPU-Based inferencing:
     # Should use compute type: Azure Kubernates Service
@@ -1828,7 +1831,7 @@ Feature Selection:
 # Question: Azure CLI - ensure that your ML environment is reusable by specifying the additional Azure ML packages beyond the default that was installed:
     # Step 1: Use the az ml folder attach command to create a run configuration.
     # Step 2: create an environment.yml file, list all the packages.
-    # Step 3: Send the condaDependenciesFile parameter.
+    # Step 3: Set the condaDependenciesFile parameter.
 
 ######################################################################################################
 # Question: You use Azure ML to deploy ML models, and want to be notified when a model deployment fails:
@@ -1875,7 +1878,7 @@ Feature Selection:
     #  the experiment.submit() method can be configured with the show_output parameter to enable local logging during the training process.
         from azureml.core import Experiment
         experiment = Experiment(workspace = ws, experiment_name = experiment_name)
-        run = experiment.submit(config = run_config_object, show_object = True)
+        run = experiment.submit(config = run_config_object, show_object = True) # show_output = True enables local logging during the training process
 ######################################################################################################
 # Question: different logging stage:
     # Stage 1: during a compute target creation: (compute.wait_for_completion(show_output = True))
@@ -1963,9 +1966,34 @@ Feature Selection:
     # Use the register method from the dataset class to create a new dataset version
         # Dataset.create_new_version()
 ######################################################################################################
-# Question: 
-
-
+# Question: you plan to deploy the model trained in Azure ML as a real-time web-service using your local machine:
+    # Step 1: install Docker on your local machine
+        # docker is a container creation and management platform that can be deployed on a variety of operating systems.
+    # Step 2: Specify the service's endpoint port where requests will be accepted
+        # models deployed locally as a web service will accept requests on an HTTP endpoint.
+            # Once your container has all the dependencies installed, you will need to define the port where the HTTP endpoint will listen for service request.
+            # A container is a virtualized app that include all the resources it need to run, including file resources, dependencies, and services.
+######################################################################################################
+# Question: you create a batch inference pipeline that leverages ParallelRunStep for multi-node processing:
+    # you need to add code to stream run logs and monitor the run status:
+        from azureml.core import Experiment
+        from azureml.pipeline.core import Pipeline
+        parallel_run_step = 
+        #
+        pipeline = Pipeline(workspace = ws, steps = [parallel_run_step])
+        experiment = Experiment(ws, 'experiment_name')
+        pipeline_run = experiment.submit(pipeline)
+        #
+        pipeline_run.wait_for_completion() # get run status
+            # pipeline.get_status() == retrieve the status of the run, however, it will not provide streaming logs while the pipeline is being executed.
+            # pipeline.get_graph() == renders the graph of the pipeline run, it will not provide the streaming logs while the pipeline is being executed.
+            # pipeline.get_steps() == list the run_steps, this method provides a list of all pipeline steps that have completed or started running.
+######################################################################################################
+# Question: you plan to monitor and debug pipelines by routing Azure ML logs to Azure Applicaiton Insights using the OpenCensus Python Library.
+    # You have several requirements and need to add fields to Custom Dictionary to meet each of them:
+        # Differentiate between training and scoring runs == run_type
+        # Focus on a specific issue == step_id
+        # View logs for all steps over time == parent_run_id
 
 
 
