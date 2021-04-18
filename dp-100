@@ -2,58 +2,80 @@
 ######################################################################################################
 # 1. Set-up Azure ML Workspace (create ML workspce, manage data objects)
 ######################################################################################################
-    # Create Workspace: (4 Dependencies: Azure Storage Account, Azure Container Registry, Azure Key Vault, Azure Application Insight)
+    # Create Workspace: (4 Dependencies: Azure Storage Account, Azure Container Registry, Azure Key Vault, Azure Application Insight mandatory when creating workspace.)
         # Linked to: Datastores, Compute Targets
-        # Assets include: Environment, Experiment, Pipelines, Datasets, Models, Endpoints
-        # Managed Resources: Compute Instances, Compute Clusters
-        from azureml.core import Workspace
-        new_workspace = Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group, 
-                                                                location = 'australiaeast', # minimum 4 parameters above
-                                                                private_endpoint_config = private_endpoint_config, sku = 'enterprise')
-        # Note: The Azure ML designer is only availabel with the enterprise edition of the workspace.
-    # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
-        # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
-        # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
-            # You can create datastores that connect to these Azure store solutions.
-        # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
-            # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
-        from azureml.core import Datastore
-        ws = Workspace.from_config(path = './config1.json')
-        az_datastore = Datastore.register_azure_blob_container(workspace = ws, datastore_name = 'azure_sdk_blob01', 
-                                            account_name = '', container_name = '', account_key = '')
-        # retrieve existing datastore
-            datastore = Datastore.get(ws, 'datastore_name')
-            
-    # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
-        # FileDataset:
-                # If your data is already cleansed, and ready to use in training experiments, 
-        # Tabular Dataset:
-            # create datasets based on a list of datastore file (demilited files) locations
-            datastore_paths = [(datastore, 'weather/2018/11.csv'), (datastore, 'weather/2018/12.csv'), (datastore, 'weather/2019?*.csv')]
-            weather_dataset = Dataset.Tabular.from_delimited_files(path = datastore_paths)
-            # access dataset in estimator:
-                dataset = ws.datasets.get('dataset_name')
-                estimator = SKLearn(source_directory = experiment_folder, 
-                                    inputs = [dataset.as_named_input('name')], # pass the dataset as input (registered in the past)
-                                    compute_target = compute_target, 
-                                    conda_packages = ['pandas', 'ipykernel', 'matplotlib', 'plotly'], 
-                                    pip_packages = ['azureml-sdk', 'argparse', 'pyarrow'], 
-                                    entry_script = 'process_action.py')
+            # Datastore: Datastore securely connect to your storage service on Azure without putting in your authentication credentials, 
+                # and the integrity of your original data source at risk. They store connection information, e.g., your subscription ID and token authorization
+                # in you Azure Key Vault that is associated with this workspace, so you can securely access your storage without having to hard code them in your script.
+                    # You can create datastores that connect to these Azure store solutions.
+                # Azure ML designer will automatically create a datastore named azureml_globaldatasets when you open a sample in the designer homepage.
+                    # This datastore only contains sample datasets. User should not use this datastore for any confidential data access.
+                from azureml.core import Datastore
+                ws = Workspace.from_config(path = './config1.json')
+                az_datastore = Datastore.register_azure_blob_container(workspace = ws, datastore_name = 'azure_sdk_blob01', 
+                                                    account_name = '', container_name = '', account_key = '')
+                # retrieve existing datastore
+                    datastore = Datastore.get(ws, 'datastore_name')
+            # Compute Target:
+                # Local Compute: the experiment is run on the same compute target that initiates the experiment.
+                # Compute Clusters: 
+                # Inference Clusters: containerized machines for deployment
+                # Attached Compute: already existing azure-based compute environment for data science.
+    # Assets include: Environment, Experiment, Pipelines, Datasets, Models, Endpoints
+        # Environment: 
+            # Environment defines the python version, 
+        # Experiment:
+            #
+        # Pipelines: (Azure ML pipelines can be published to get a REST endpoint.)
+            # Pipeline Runs:
+            # Pipeline Endpoints: published pipeline endpoint invokes the run of the pipeline from external system, such as non-python clients.
+                # 
+            # Pipeline Drafts: 
+        # Dataset (there are 2 dataset types, based on how users consume them in training; FileDataset and TabularDataset): 
+            # FileDataset:
+                    # If your data is already cleansed, and ready to use in training experiments, 
+            # Tabular Dataset:
+                # create datasets based on a list of datastore file (demilited files) locations
+                datastore_paths = [(datastore, 'weather/2018/11.csv'), (datastore, 'weather/2018/12.csv'), (datastore, 'weather/2019?*.csv')]
+                weather_dataset = Dataset.Tabular.from_delimited_files(path = datastore_paths)
+                # access dataset in estimator:
+                    dataset = ws.datasets.get('dataset_name')
+                    estimator = SKLearn(source_directory = experiment_folder, 
+                                        inputs = [dataset.as_named_input('name')], # pass the dataset as input (registered in the past)
+                                        compute_target = compute_target, 
+                                        conda_packages = ['pandas', 'ipykernel', 'matplotlib', 'plotly'], 
+                                        pip_packages = ['azureml-sdk', 'argparse', 'pyarrow'], 
+                                        entry_script = 'process_action.py')
                 # Obtain/ View part of the dataset:
                     january_dataset = timeseries_dataset.time_between(start_time = datatime(2020, 1, 1), end_time = datetime(2020, 1, 31), include_boundry = True)
                     # january_dataset = timeseries_dataset.time_between(start_time = datatime(2019, 12, 31), end_time = datetime(2020, 2, 1), include_boundry = False)
                     january_dataset.take(100).to_pandas_dataframe()
+        # Models:
+            # Note: each time you register a model with the same name as an existing one, the registry assures that it's a new version.
+                # Additionally, you can provide metadata tags and use the tags when you search for models.
+        # Endpoints: 
+            # 
+            # An endpoint provides remote access to the service running on virtual machine.
+                # When you deploy your model as a service, you are creating an endpoint + a REST API.
+        # Managed Resources: Compute Instances, Compute Clusters
+        from azureml.core import Workspace
+        new_workspace = Workspace.create(name = workspaceName1, subscription_id = subscription_id, resource_group = resource_group,  # create a new workspace
+                                                                location = 'australiaeast', # minimum 4 parameters above
+                                                                private_endpoint_config = private_endpoint_config, sku = 'enterprise')
 ######################################################################################################
 # 2. Run Experiment and Train Models (create model with Azure ML Designer, run script in ML Workspace, generate metrics, automate training process) 
 ######################################################################################################
-    # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
-    # 
     # Create Model with Azure ML Designer:
-        # Only available to enterprise edition.
+        # Note: when using the Azure ML designer, the compute = Azure ML Compute Cluster, when using Azure ML SDK, compute target = local computer. 
+        # Note: The Azure ML designer is only availabel with the enterprise edition of the workspace.
     # Automated ML:
         # Only availabel to enterprise edition.
     #
+    # Run Script in ML Workspace:
+    #
     # Generate metrices:
+    #
+    # Automate Training Process:
     #
     # Run Automated ML Experiment:
         from azureml.core.experiment import Experiment
@@ -71,6 +93,8 @@
 ######################################################################################################
 # 3. Optimize and Manage models (use automated ML to optimize model, use Hyperdrive to tune parameters, use model explainer to interpret model, manage model)
 ######################################################################################################
+    # Use Automated ML to optimize Model:
+    #
     # Use Azure Hyperdrive to turn Hyperparameters (also known as hyperparameter optimization)
         # Performance Metric to Measure: Accuracy, Precision, Recall, AUC, F1 Score
             # Step 1: Select a Sampling Method (Random sampling, Grid sampling, Bayesian Sampling)
@@ -94,94 +118,95 @@
                 # Early termination only applies to SGBClassifier, SGDRegressor, XGBoost, CNN/RNN (deep learning algorithm), etc.
             # Step 5: Find the model with optimal hyperparameter values (Bayesian Sampling uses Bayesian optimization for getting the best combination.)
                 # Note: 
-        # Use Model Explainer to Interpret Models:
-            # Select Model Interpreter: (without specifying the features and classes, the explainer could still work, just without labels.)
-                # Mimic Explainer: 
-                    # An explainer that creates a surrogate(replacement) model that approximates your trained model and can be used to generate explainations.
-                        # This explainable model must have the same kind of architecture as your trained model (e.g. linear, or tree-based). 
-                # Tabular Explainer: (SHAP based)
-                    # An explainer that acts as a wrapper around various SHAP explainer algorithms, automatically choosing the one that is most appropriate
-                        # for your model architecture.
-                    # SHAP Tree Explainer:
-                        # Model specific: focused on Tree and Ensemble Tree Algorithms such as Decision Tree, Random Forest, etc.
-                            # Cannot be used on linear/ deep learning algorithms.
-                    # SHAP Deep Explainer:
-                        # Model specific: supports the explanation for deep learning models such as Tensorflow or PyTorch.
-                    # SHAP Linear Explainer:
-                        # Model Specific: supports linear models such as linear regression, logistic regression, etc.
-                    # SHAP Kernel Explainer: 
-                        # Model Agnostic: supports any model
-                            # 
-                # Permutation Feature Importance (PFI) Explainer:
-                    # Analyzes the feature importance by shuffling feature values(e.g. remove 1 variable randomly) and measuring the impact on perdiction performance.
-                        # e.g. how much less accuracy is returned after removing a variable
-                # Note: azureml.interpret package can be installed locally to create explainers.
-                #
-                from interpret.ext.blackbox import MimicExplainer
-                from interpret.ext.glassbox import DecisionTreeExplainableModel
-                # class = ['less than threshold', 'above threshold'] # the classification result
-                # features = X_train.columns
-                mimic_explainer = MimicExplainer(model = loan_model, initilization_examples = X_test, 
-                                                 explainable_model = DecisionTreeExplainableModel, 
-                                                 features = ['loan_amount', 'income', 'age', 'marital_status'],
-                                                 classes = ['reject', 'approve'])
-                # a tabular dataset will be processed, an explainer will be loaded based on a model type.
-                from interpret.ext.blackbox import TabularExplainer
-                tab_explainer = TabularExplainer(model = loan_model, initilization_examples = X_test, 
-                                                 features = ['loan_amount', 'income', 'age', 'marital_status'], 
-                                                 classes = ['reject', 'approve'])
-                # Get the global explanations:
-                global_explanation = tab_explanier.explain_global(X_train) # the importance of each feature will be calculated, will take some time
-                # Get the feature importance data:
-                global_feature_importance = galbel_explanation.get_feature_importance_dict()
-                # Get the local feature importance:
-                X_explain = X_test[0: 5]
-                local_explanation = tab_explainer.explain_local(X_explain) # will generate the local feature importance for the 5 records
-                local_features = local_explanation.get_ranked_local_names()
-                local_importance = local_explanation.get_ranked_local_values()
-                #
-                from interpret.ext.blackbox import FPIExplainer
-                pfi_explainer = PFIExplainer(model = loan_model, features = ['loan_amount', 'income ', 'age', 'marital_status'],
-                                                                 classes = ['reject', 'approve'])
-        # Retrieve or download feature importance values:
-            from azureml.interpret import ExplanationClient
-            from azureml.core import WorkSpace
-            #
-            ws = Workspace.from_config('./config1.json')
-            #
-            new_run = ws.get_run('Explainer_Run_Identifier')
-            explanation_client = ExplanationClient.from_run(new_run)
-            #
-            download_explanations = explain_client.download_model_explanation()
-            download_feature_importance = downloaded_explanation.get_feature_importance_dict()
-            # Generate feature importance data:
-                # Shapley Value: (SHAP)
-                # Local and Global Interpretability: (azureml.interpret)
-                    # Global Feature Importance:
-                        # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
-                        # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
+######################################################################################################
+    # Use Model Explainer to Interpret Models:
+        # Select Model Interpreter: (without specifying the features and classes, the explainer could still work, just without labels.)
+            # Mimic Explainer: 
+                # An explainer that creates a surrogate(replacement) model that approximates your trained model and can be used to generate explainations.
+                    # This explainable model must have the same kind of architecture as your trained model (e.g. linear, or tree-based). 
+            # Tabular Explainer: (SHAP based)
+                # An explainer that acts as a wrapper around various SHAP explainer algorithms, automatically choosing the one that is most appropriate
+                    # for your model architecture.
+                # SHAP Tree Explainer:
+                    # Model specific: focused on Tree and Ensemble Tree Algorithms such as Decision Tree, Random Forest, etc.
+                        # Cannot be used on linear/ deep learning algorithms.
+                # SHAP Deep Explainer:
+                    # Model specific: supports the explanation for deep learning models such as Tensorflow or PyTorch.
+                # SHAP Linear Explainer:
+                    # Model Specific: supports linear models such as linear regression, logistic regression, etc.
+                # SHAP Kernel Explainer: 
+                    # Model Agnostic: supports any model
                         # 
-                        global_mimic_explanation = mimic_explainer.explain_global(X_train)
-                        global_mimic_feature_importance = global_mimic_explanation.get_feature_importance_dict()
-                        #
-                        global_tab_explainer = tab_explainer.explain_global(X_train)
-                        global_tab_feature_importance = global_tab_explainer.get_feature_importance_dict()
-                        # 
-                        # Unlike mimic/ tabular explainer, PFI Explainer requires the actual label:
-                        global_pfi_explanation = pfi_explainer.explain_global(X_train, y_train)
-                        global_pfi_feature_importance = global_pfi_explainer.get_feature_importance_dict()
-                    # Local Feature Importance:
-                        # Local Feature Importance: based on certain observations only
-                        # Local feature importance measures the influence of each feature value for a specific individual prediction.
-                        # Unlike mimic/ tabular explainer, PFI Explainer does not support local feature importance explanations.
-                        #
-                        local_mimic_explanation = mimic_explainer.explain_local(X_test[0:5])
-                        local_mimic_features = local_mimic_explanation.get_ranked_local_names()
-                        local_mimic_importance = local_mimic_explanation.get_ranked_local_values()
-                        #
-                        local_tabular_explanation = tabular_explainer.explain_local(X_test[0:5])
-                        local_tabular_features = local_tabular_explanation.get_ranked_local_names()
-                        local_tabular_features = local_tabular_explanation.get_ranked_local_values()
+            # Permutation Feature Importance (PFI) Explainer:
+                # Analyzes the feature importance by shuffling feature values(e.g. remove 1 variable randomly) and measuring the impact on perdiction performance.
+                    # e.g. how much less accuracy is returned after removing a variable
+            # Note: azureml.interpret package can be installed locally to create explainers.
+            #
+            from interpret.ext.blackbox import MimicExplainer
+            from interpret.ext.glassbox import DecisionTreeExplainableModel
+            # class = ['less than threshold', 'above threshold'] # the classification result
+            # features = X_train.columns
+            mimic_explainer = MimicExplainer(model = loan_model, initilization_examples = X_test, 
+                                             explainable_model = DecisionTreeExplainableModel, 
+                                             features = ['loan_amount', 'income', 'age', 'marital_status'],
+                                             classes = ['reject', 'approve'])
+            # a tabular dataset will be processed, an explainer will be loaded based on a model type.
+            from interpret.ext.blackbox import TabularExplainer
+            tab_explainer = TabularExplainer(model = loan_model, initilization_examples = X_test, 
+                                             features = ['loan_amount', 'income', 'age', 'marital_status'], 
+                                             classes = ['reject', 'approve'])
+            # Get the global explanations:
+            global_explanation = tab_explanier.explain_global(X_train) # the importance of each feature will be calculated, will take some time
+            # Get the feature importance data:
+            global_feature_importance = galbel_explanation.get_feature_importance_dict()
+            # Get the local feature importance:
+            X_explain = X_test[0: 5]
+            local_explanation = tab_explainer.explain_local(X_explain) # will generate the local feature importance for the 5 records
+            local_features = local_explanation.get_ranked_local_names()
+            local_importance = local_explanation.get_ranked_local_values()
+            #
+            from interpret.ext.blackbox import FPIExplainer
+            pfi_explainer = PFIExplainer(model = loan_model, features = ['loan_amount', 'income ', 'age', 'marital_status'],
+                                                             classes = ['reject', 'approve'])
+    # Retrieve or download feature importance values:
+        from azureml.interpret import ExplanationClient
+        from azureml.core import WorkSpace
+        #
+        ws = Workspace.from_config('./config1.json')
+        #
+        new_run = ws.get_run('Explainer_Run_Identifier')
+        explanation_client = ExplanationClient.from_run(new_run)
+        #
+        download_explanations = explain_client.download_model_explanation()
+        download_feature_importance = downloaded_explanation.get_feature_importance_dict()
+        # Generate feature importance data:
+            # Shapley Value: (SHAP)
+            # Local and Global Interpretability: (azureml.interpret)
+                # Global Feature Importance:
+                    # Global Feature Importance: based on either training data or test dataset (result from Global and Local Feature Importance may be different)
+                    # Global feature importance quantifies the relative importance of each feature in the test dataset as a whole.
+                    # 
+                    global_mimic_explanation = mimic_explainer.explain_global(X_train)
+                    global_mimic_feature_importance = global_mimic_explanation.get_feature_importance_dict()
+                    #
+                    global_tab_explainer = tab_explainer.explain_global(X_train)
+                    global_tab_feature_importance = global_tab_explainer.get_feature_importance_dict()
+                    # 
+                    # Unlike mimic/ tabular explainer, PFI Explainer requires the actual label:
+                    global_pfi_explanation = pfi_explainer.explain_global(X_train, y_train)
+                    global_pfi_feature_importance = global_pfi_explainer.get_feature_importance_dict()
+                # Local Feature Importance:
+                    # Local Feature Importance: based on certain observations only
+                    # Local feature importance measures the influence of each feature value for a specific individual prediction.
+                    # Unlike mimic/ tabular explainer, PFI Explainer does not support local feature importance explanations.
+                    #
+                    local_mimic_explanation = mimic_explainer.explain_local(X_test[0:5])
+                    local_mimic_features = local_mimic_explanation.get_ranked_local_names()
+                    local_mimic_importance = local_mimic_explanation.get_ranked_local_values()
+                    #
+                    local_tabular_explanation = tabular_explainer.explain_local(X_test[0:5])
+                    local_tabular_features = local_tabular_explanation.get_ranked_local_names()
+                    local_tabular_features = local_tabular_explanation.get_ranked_local_values()
         # Create Explaination Client:
         pip install azureml-explain-model
         pip install azureml-interpret
@@ -212,6 +237,7 @@
                 # 
             # Visualizing Summary Importance:
                 # 
+######################################################################################################
     # Manage Models: 
         # Potential Cause of Disparity:
             # Cause 1: Data Imbalance:
@@ -330,7 +356,9 @@
                 predicted_classes.append(classes[prediction]) # 
             #
             return json.dumps(predicted_classes) # 
-# Step 8: Deploy the model:
+# Step 8: Deploy the model: 
+    # Deploy an Azure ML Model as a web service creates an endpoint and a REST APIs.
+        # You can send data into this REST API and receive the prediction returned by the model.
     # using the Model.deploy() API:
         # the service will create a base docker image during deployment stage and mount the registered models all in one call.
         from azureml.core.model import Model
@@ -500,10 +528,15 @@
 # Azure ML Workspace (Architecture/ Structure)
 ######################################################################################################
 # Assets within ML Studio: (based on UI logic):
-# Azure ML Studio = web-based platform using which users could track details about the ML appplication
+# Azure ML Studio = web-based platform using which users could track details about the ML appplication.
 # Azure ML Workspace = boundary of related assets used in ML Studio.
     # Notebooks:
+        # Notebooks allow users to work with files, folders and Jupyter notebooks directly in the workspace.
+            # you can browse your files and share files with easy collaboration tools.
+            # you can start with a jupyter notebook in the workspace with easy access to all workspace assets including experiment details, datasets, models, etc.
     # Automated ML:
+        # Automated ML is the process of automating the time consuming, iterative tasks of ML model development.
+            # 
         from azureml.train.automl import AutoMLConfig
         automl_run_config = RunConfiguration(framework = 'python')
         automl_config = AutoMLConfig(name = 'Automated ML Experiment', task = 'classification/ regression', primary_metric = 'AUC_Weighted',
@@ -582,6 +615,8 @@
     # Models:
         # To deploy the model as a web service endpoint, you need to navigate to Model menu on ML Studio, select the model and deploy.
     # Endpoints:
+        # Real-time endpoints:
+        # Pipeline endpoints:
     # Compute: 
         # Compute Insatances:
             # (local) work station for data scientist (cannot adjust computing power automatically)
@@ -605,6 +640,7 @@
         # Azure SQL/ PostgreSQL/ MySQL Database:
         # Azure File Share: 
     # Data Labelling:
+        # 
     # Linked Services:
         # for connecting to other Azure Services, e.g. Synapse workspace, and managed linked assets in 1 place.
 ######################################################################################################
@@ -643,12 +679,12 @@
 ######################################################################################################
 # General Azure ML Concepts:
 ######################################################################################################
-#
 # AI (Artificial Intelligence) = computer performing tasks without being specifically programmed to.
 # CUDA (Compute Unified Device Architect):
     # related to GPU computing
 # 
-# Azure ML service stores metrics and metadata in Azure Cosmo DB instance where all data is encrypted at rest. 
+# Azure ML service stores metrics and metadata in Azure Cosmos DB instance where all data is encrypted at rest. 
+    # Azure Cosmos DB is a fully managed NoSQL database service for modern app development..
 # 
 # Azure Container Instance (ACI): 
     # Containers are becoming the preferred way to package, deploy, and manage cloud applications.
@@ -665,7 +701,6 @@
 # Secure Sockets Layer (SSL): 
 
 # Apache Ambari: 
-# Endpoint
 
 # Databricks File System (DBFS):
     # Databricks File System is a distributed file system mounted into a Databricks workspace and available on databricks clusters.
@@ -675,7 +710,6 @@
             # Persist files to object storage, so you won't lose data after you terminate a cluster.
                 # mount point paths (/mnt)
 #
-# Inference Cluster
 # Mutual Information:
 # Mood's Median Test:
 #
@@ -1517,7 +1551,6 @@ Feature Selection:
             # e.g. how many missing values are there in each column
             # e.g. how many unique values are there in each feature column
             # e.g. what is the mean and standard deviation of each numeric column
-
 ######################################################################################################
 # Deprecated Modules: (for reference only)
 ######################################################################################################
@@ -1536,8 +1569,6 @@ Feature Selection:
     # Maximum Number of Items to Recommend:
     # Minimum size of recommendation pool for a single user:
     # Whether to return predicted 
-######################################################################################################
-#
 #
 ######################################################################################################
 # Azure ML SDK: 
@@ -1587,10 +1618,7 @@ Feature Selection:
     compute_cluster = ''
     sklearn_model1 = SKLearn(source_directory = local_folder, script_paramms = script_params, compute_target = compute_cluster, entry_script = 'sample.py')
 ######################################################################################################
-
-######################################################################################################
-# Exam Structure:
-    # 
+#
 ######################################################################################################
 # Exam Questions:
 ######################################################################################################
@@ -1634,7 +1662,7 @@ Feature Selection:
     # ARFF
 ######################################################################################################
 # Question: Recommended K value for K-fold Validation: 
-    # 5-10
+    # recommended k value for k-fold validation is usually beteen: 5 to 10
     # 
         from sklearn.model_selection import KFold
         import numpy as np
@@ -1671,7 +1699,6 @@ Feature Selection:
 # Question: Classification task, dataset is inbalanced, how to improve classification accuracy?
     # SMOTE (Synthetic Minority Oversampling Technique)
         # 200 SMOTE percentage would increase 1% minority class to around 3% (2/101)
-#
 ######################################################################################################
 # Question: You can move data to and from Azure Blob using different technologies include:
     # Azure Storage Explorer
