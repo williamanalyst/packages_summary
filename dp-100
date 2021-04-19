@@ -412,7 +412,7 @@
 ######################################################################################################
     # Create Pipeline:
         # Step 1: Register a new Azure Storage file container datastore.
-        # Step 2: Create a PipelineData object, Specify a name and output datastore.
+        # Step 2: Create a PipelineData object, Specify a name and output datastore. (so that files input/output could be saved and passed)
         # Step 3: Specify a PipelineData object for data output.
             # General pipeline procedure include 2 major stages: (create_pipeline.py)
                 # Data Processing: reading data, select/drop columns, replace missing values, normalize data, upload the data and log metrics (data_prep.py)
@@ -2058,7 +2058,9 @@ Feature Selection:
         # Option 2: Configure a source port range of 29876-29877.
         # Option 3: Ensure the source service tag is set to BatchNodeManagement.
             # allows you to define security rules without manually identifying IP addresses for Azure Resources that you want to allow to access your virtual network.
-
+######################################################################################################
+# Question: you created a custom role definition file (in JSON format) and you need to ensure a user can submit a training run.
+    # you should add action section in the role definition file to enable role to submit training run.
 
 
 
