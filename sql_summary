@@ -515,3 +515,24 @@ SET STATISTICS IO OFF
 #
 -- OLTP
 -- TLAP
+
+
+
+#####################################################################################################
+# Common table expression (CTE)
+with cte1 AS (
+SELECT 
+  [customer_id]
+, SUM([total_price]) AS [amount_spent]
+FROM invoice AS i
+GROUP BY [customer_id])
+--
+SELECT 
+  c.[customer_name]
+, CAST([amount_spent] AS DECIMAL(10, 6))
+FROM cte1 
+LEFT JOIN customer AS c
+ON cte1.[customer_id] = c.[id]
+WHERE [amount_spent] < (SELECT AVG([total_price]) FROM [invoice]) * 0.25
+ORDER BY [amount_spent] DESC
+;
