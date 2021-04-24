@@ -239,7 +239,7 @@ TODATETIMEOFFSET(@datetime, '-07:00') AS new_col
 
 # DATENAME function
 SELECT 
-DATENAME(month, @datevar) AS month_name;
+DATENAME(month, @datevar) AS month_name; 
 -- month, weekday, etc.
 
 # ISDATE() function
