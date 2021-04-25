@@ -98,8 +98,10 @@ GROUP BY GROUPING SETS
 -- 
 
 #####################################################################################################
-# ABS() function
+# Transformation of Columns
 #####################################################################################################
+#
+# ABS() function
 ABS(column_name1 - column_name2) 
 -- return the absolute value of a variable or calculation
 
@@ -183,6 +185,10 @@ SELECT PATINDEX('%pattern%', expression, [location])
 
 # LEFT() and RIGHT() function
 SELECT LEFT(column1, 3) FROM table1 
+
+# LIKE '[]%' function
+	# 
+	WHERE [name] LIKE '[aeiou]%' -- the string start with a certain letter/ character
 
 # LTRIM() and RTRIM() function
 -- removes the leading blanks in the string
