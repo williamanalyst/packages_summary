@@ -542,3 +542,13 @@ ON cte1.[customer_id] = c.[id]
 WHERE [amount_spent] < (SELECT AVG([total_price]) FROM [invoice]) * 0.25
 ORDER BY [amount_spent] DESC
 ;
+#####################################################################################################
+# Conditional 
+#####################################################################################################
+SELECT
+  [col1]
+, (CASE WHEN () AND () AND () THEN ''
+	WHEN () AND () THEN ''
+	ELSE '' END) AS [Column_on_Condition]
+FROM [table1]
+
