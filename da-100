@@ -1,0 +1,112 @@
+# DA-100
+#
+##############################################################################################
+# Core Component of Data Analytics:
+##############################################################################################
+# 1. Descriptive Analytics:
+    # Descriptive analytics help answer questions about what happened based on historical data, summarize large datasets to describe outcomes to stakeholders.
+        # By developing KPIs, the metrics help track the success or failure of key objectives.
+            # e.g. generating reports to provide an overview of an organization's sales or financial data.
+# 2. Diagnostic Analytics:
+    # Step 1: Identify anomalies in the data, e.g. unexpected changes in a metric or particular market segment
+    # Step 2: Collect data that is relevant to these anomalies
+    # Step 3: Use statistical techniques to discover relationships and trends that explain the anomalies.
+    #
+    # Diagnostic analytics help answer questions about why events happened.
+    # Diagnostic analytics techniques suppliment basic descriptive analytics, and they use the findings from descriptive analytics to discover the cause of the events.
+        # Then KPIs are further investigated to discover why these events improved or become worse.
+# 3. Predictive Analytics:
+    # Predictive analytics help answer questions about what will happen in the future.
+    # Predictive analytics techniques use historical data to identify trends and determine if they are likely to recur.
+        # e.g. neural network, decision tree, regression
+# 4. Prescriptive Analytics:
+    # Prescriptive analytics help answer question about which actions should be taken to achieve a certain goal or target.
+    # This technique allows businesses to make informed decisions in the face of uncertainty.
+        # Prescriptive analytics technique rely on machine learning strategies to find patterns in large datasets.
+        # By analyzing past decisions and events, organizations can estimate the likelyhood of different outcomes.
+# 5. Cognitive Analytics:
+    # Cognitive analytics attempt to draw inferences from existing data and patterns, derive conclusions based on existing knowledge bases, and add these findings
+        back to the knowledge base for future inferences, a self-learning feedback loop.
+    # Cognitive analytics help you learn what might happen if circumstances change and determine how you might handle these situations.
+        # Inferences are not structured queries based on a rules database, rather, 
+            # they are unstructured hypotheses that are gathered from several sources and expressed with varying degrees of confidence.
+        # Effective cognitive analytics depend on machine learning algorithms, and will use several natural language processing concepts to make sense of
+            # previously untapped data sources, e.g. call center conversations, product review comments, etc.
+##############################################################################################
+# Roles in data analytics:
+##############################################################################################
+# 1. Business Analyst: 
+    # Closer to the business, with higher domain knowledge, and better interpretablity towards data in that domain.
+# 2. Data Analyst:
+    # Area 1: Prepare
+    # Area 2: Model
+    # Area 3: Visualize
+    # Area 4: Analyze
+    # Area 5: Manage
+    #
+    # Responsible for profiling, cleaning, and transforming data.
+        # e.g. designing and building scalable and effective data models.
+        # e.g. enabling and implementing the advanced analytics capabilities into reports for analysis.
+        # e.g. management of Power BI assets, including reports, dashboards, workspaces and underlying datasets that are used in the reports.
+        # e.g. implementing and configuring proper security procedure, in conjunction with stakeholder requirements, to ensure safekeeping of all Power BI assets and data.
+        # e.g. data analysts work with data engineers to determine and locate appropriate data sources that meet stakeholder requirements.
+# 3. Data Engineer: (ingesting, transforming, validating and cleaning data to meet business needs and requirements)
+    # Data engineers provision and set up data platform techniques that are on-premises and in the cloud.
+        # Manage and secure the flow of structured and unstructured data from multiple sources.
+            # The data platform that data engineers use include relational database, non-relational database, data stream, and file stores.
+            # Data engineers also ensure that the data services securely and seamlessly integrate across data services.
+# 4. Data Scientist: 
+    # Data scientists perform advances analytics to extract value from data.
+        # e.g. descriptive analytics that evaluate data through EDA
+        # e.g. predictive analytics such as machine learning models to detect anomalies or patterns.
+# 5. Database Administrator: (monitors and manages the overall health of a database and the hardware that the database relies on.)
+    # Database administrators implements and manages the operational aspects of cloud-native and hybrid data platform solutions that are built on 
+        Microsoft Azure data service and Microsoft SQL Server.
+    # A database administrator is responsible for the overall availability and consistent performance and optimization of the database solution.
+        # Database administors work with stakeholders to identify and implement the policies, tools and processes for data backip and recovery plans.
+        # Database administors are also responsible for managing the overall security of the data, granting and restricting user access and previleges to the data, etc.
+##############################################################################################
+# Power BI: (a collection of services, apps and connectors that lets you connect to your data)
+##############################################################################################
+# Basic Building Block 1: Visualizations
+    # a visual representation of data, also called visuals
+# Basic Building Block 2: Datasets
+    # A dataset is a collection of data that Power BI uses to create its visualizations.
+        # Datasets can also be a combination of many different sources, which you can filter and combine to provide a unique collection of dataset for Power BI usage.
+        # e.g. combining 3 databases, 1 website table, 1 excel table could still be considered as 1 single dataset.
+# Basic Building Block 3: Reports
+    # A report is a collection of visualizations that appear together on 1 or more pages.
+# Basic Building Block 4: Dashboards
+    # For the sharing of either a report or a collection of visualizations. (must fit on a single page, often called a canvas)
+# Basic Building Block 5: Tiles
+    # A tile is a single visualization on a dashboard. 
+
+
+
+
+# Segment 1: Power BI Desktop (Microsoft Windows desktop application)
+# Segment 2: Power BI Servier (online SaaS service)
+# Segment 3: Mobile Power BI Apps (available on any device, with native mobile BI apps for Windows, iOS, and Andriod)
+#
+
+
+
+
+
+
+##############################################################################################
+#
+##############################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
