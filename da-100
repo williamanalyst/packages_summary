@@ -1,5 +1,25 @@
 # DA-100
+##############################################################################################
+# Exam Structure:
+##############################################################################################
+# 1. Prepare the Data:
+    # Get data from different data sources:
+        # Identify and connect to a data source:
+        # Change data source settings:
+        # Select a shared dataset or create a local dataset
+        # select a storage model:
+        # 
+# 2. Model the Data:
+# 3. Visualize the Data:
+    # 
+# 4. Analyze the Data:
+    # 
+# 5. Deploy and Maintain Deliverables:
+    # 
 #
+# Power BI Workflow:
+    # Get Data (M Formula) --> Add Modelling (DAX Formula) --> Visualize Data --> Share Data
+
 ##############################################################################################
 # Core Component of Data Analytics:
 ##############################################################################################
@@ -95,10 +115,10 @@
 
 
 ##############################################################################################
-#
+# Data Concepts:
 ##############################################################################################
-
-
+# Data repository:
+# Data Processing:
 
 
 
