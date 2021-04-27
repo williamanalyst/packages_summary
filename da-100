@@ -5,6 +5,8 @@
 # 1. Prepare the Data:
     # Get data from different data sources:
         # Identify and connect to a data source:
+            # Flat file location: Local, OneDrive for Business, OneDrive Personal, SharePoint Team Sites.
+            # Data from Azure Analysis Services: 
         # Change data source settings:
         # Select a shared dataset or create a local dataset
         # select a storage model:
