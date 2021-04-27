@@ -1,4 +1,10 @@
-# Machine Learning Concepts
+###############################################################################################################
+# Machine Learning Concepts:
+###############################################################################################################
+# Machine learning is the subfield of computer science that gives computers the ability to learn without being "explicitly programmed".
+    # Machine learning algrithm depends heavily on the extraction of knowledge from the past data,
+        # And build a set of calculation based on the patterns found in that particular data.
+    # Reinforcement Learning rewards good behaviour and penalize bad bahaviour
 #
 # Linear, Logictic, Tree Model, NN, LSTM
 #
