@@ -79,6 +79,12 @@ IN (SELECT col1 FROM table2)
 # format selected columns
 #####################################################################################################
 SELECT FORMAT([numeric_col], 'P') FROM table1 -- convert numeric into percentage
+--
+SELECT 
+  FORMAT(ROUND(SUM([LAT_N]), 2), '#.00') -- format actually truncate the remaining digits without rounding
+, FORMAT(ROUND(SUM([LONG_W]), 2), '#.00') -- format the numeric value into a 2-decimal formatting
+FROM [STATION]
+
 
 # WITH ROLLUP (works with hierarchical data)
 -- comes after GROUP BY 
@@ -111,6 +117,9 @@ SIGN(column1 - column2)
 
 # AVG(), SUM(), COUNT(), STDEV(), STDEVP(), VAR(), POWER(@variable, 2), SQUARE(), SQRT() functions
 -- the input must be float 
+SELECT
+  FORMAT(SQRT(SQUARE(MAX([LAT_N]) - MIN([LAT_N])) + SQUARE(MIN([LONG_W]) - MAX([LONG_W]))), '#.0000')
+FROM STATION
 
 # CEILING(), FLOOR(), ROUND(@variable, 2) function
 SELECT CEILING(-50.49) -- returns -50
