@@ -1,7 +1,11 @@
+# Machine Learning
+# 
 ###############################################################################################################
 # Machine Learning Concepts:
 ###############################################################################################################
 # Machine learning is the subfield of computer science that gives computers the ability to learn without being "explicitly programmed".
+    # Supervised Learning == training model based on features and labels of known dataset to predict unknown labels/ values.
+    # Unsupervised Learning == 
     # Machine learning algrithm depends heavily on the extraction of knowledge from the past data,
         # And build a set of calculation based on the patterns found in that particular data.
     # Reinforcement Learning rewards good behaviour and penalize bad bahaviour
@@ -10,6 +14,7 @@
 #
 ########################################################################################
 # Linear Regression 
+########################################################################################
     # SST = "Sum of Squares Total" = sum(actual_y - actual_y_mean)^2
     # SSR = "Sum of Squares Regression" = sum(predicted_y - actual_y_mean)^2
     # SSE = "Sum of Squares Error" = RSS = "Residual/Remaining/Unexplained Sum of Squares"
@@ -40,6 +45,7 @@
 #
 ########################################################################################
 # Logistic Regression
+########################################################################################
     # Probablity(x) = e^(a0 + a1*x1 + a2*x2 + a3*x3 + ...) / (1 + e^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...) )
     # or Odds =  Probablity(x)/ (1 - Probablity(x)) = e ^ (a0 + a1*x1 + a2*x2 + a3*x3 + ...)
     # or Log (Odds) = a0 + a1*x1 + a2*x2 + a3*x3 + ... (Preferred Form)
@@ -93,6 +99,7 @@ Under-Fitting: the model has not captured the logic within the data
 
 ########################################################################################
 # Clustering (unsupervised learning)
+########################################################################################
     # application of clustering: recommender system, market segmentation, social network analysis, image segmentation, anomaly detection, etc.
 
 
@@ -110,6 +117,7 @@ Under-Fitting: the model has not captured the logic within the data
 #
 ########################################################################################
 # Recommender System
+########################################################################################
     # 1. User-Based Collaborative (combination of behaviour) Filtering
         # Similarity in user-perference/ user behaviour in the past towards different items.
             # 1. Build a matrix of things that each user had purchases/ viewed
@@ -150,14 +158,30 @@ Under-Fitting: the model has not captured the logic within the data
 
 ########################################################################################
 # Decision Tree
-    # 1.Find the root-node + internal-node + leaf with lowest impurity score (Gini Index)
-    # 2. For numeric variables, rank them and calculate the (weighted) impurity score for each mean
-    # 3. For categorical variables, calculate the impurity score for each combination and choose the node with minimum impurity
-#
+########################################################################################
+# Decision tree is actually dividing the observations by "different triangle areas" determined by features, and could be more accurate than simply using linear fitting.
+    # Decision Tree Calculation Process:
+    # Step 1. Find the root-node + internal-node + leaf with lowest impurity score (Gini Index)
+    # Step 2. For numeric variables, rank them and calculate the (weighted) impurity score for each mean
+    # Step 3. For categorical variables, calculate the impurity score for each combination and choose the node with minimum impurity
+# Regression Tree:
+    # Getting the average of each class as the predicted result.
+    #
+    from sklearn.tree import DecisionTreeRegressor
+    tree_regressor = DecisionTreeRegressor(random_state = 0, max_depth = 5, max_features = 4) # fix the random seed
+    tree_regressor.fit(X, y)
+    #
+    tree_regressor.predict([[250, 88, 3139, 14.5]])
+    #
+    
+########################################################################################
 # Random Forest
     # 1. Base logic is same as Decision Tree, whereas when determining each node, only part of fields/columns/measurements are selected (making it random)
     # 2. Every time a new tree is generated in a Random Forest, it generates a "Complete Tree".
-    #
+        # Step 1: Pick at random K data points from the training set.
+        # Step 2: Build the decision tree associated to thesr K data points.
+        # Step 3: Choose the number of trees (N) that you want to build and repeat Step 1 & 2.
+        # Step 4: For a new dat point, make each one of the N decision trees to predict the value of Y, and assign the new data point the average value across all trees.
 #
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
@@ -178,6 +202,7 @@ rf_error = mse(y_test, rf_pred)
     # Unlike Ada Boost, even though Gradient Boost also scale the trees, it scales all trees with the same %
     # The trees is added until the limit is reached or the prediction is not improving fit % anymore
 #
+########################################################################################
 # XGBoost
 #
 import pandas as pd
@@ -231,6 +256,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 ########################################################################################
 # ANN (Artificial Neural Network)
+########################################################################################
     # Key benefit of Neural Network is that they could fit "non-linear, non categorical scenario", e.g. a squiggle such as f(x) = 【sin(x) + 1】/2
         # e.g. by adding parameters to a Activition Function( Sigmoid, ReLU, softplus, etc.), the Neural Network could simulate non-linear curves
     # A Neural Network consists Nodes and 
