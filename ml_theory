@@ -136,7 +136,11 @@ Under-Fitting: the model has not captured the logic within the data
     # 3. Hybrid Filtering
         # Based on existing user preference, recommend items that are similar in features.
     # 4. Popularity Based Filtering
-#
+# 2 types of user ratings:
+    # Explicit Ratings:
+        # e.g. direct review/ rating/ comment, etc.
+    # Implicit Ratings:
+        # e.g. churn, relative view pattern, etc.
 ########################################################################################
 # Naive Bayes
     # Why "Naive"? = because it is based on the assumption that P(event|X) is independent from each other (which is often untrue)
