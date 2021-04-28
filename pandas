@@ -1,3 +1,7 @@
+# Pandas Package Common Usage:
+############################################################################################
+# Basic Settings of Pandas:
+############################################################################################
 import pandas as pd
 pd.set_option('display.max_columns', 100, 'display.max_rows', 200)
 from IPython.display import display # for better formatted tables to be displayed
@@ -6,6 +10,8 @@ df.describe(include = 'all',
 percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statistics for each column
 df.shape # 
 df.dtypes # 
+df['col1'].value_counts() # get the number of occurances of a variable 
+df.head().index # get the index of the head rows
 #
 ############################################################################################
 # Get the numeric columns
@@ -17,6 +23,7 @@ df_numeric_columns = df.select_dtypes(include = 'object')
 #
 ############################################################################################
 # Change Data Type
+############################################################################################
 df['col1'] = df['col1'].astype('category') # could also use 'int', 'float', 'str', etc.
 df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 #
@@ -28,7 +35,7 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
     df['col1'] = df['col1'].cat.codes
     for column in columns: # 
         df[column] = df[column].cat.codes
-# 
+############################################################################################
 # One-Hot Encoding/ Dummy Variables Creations:
     #
     df_dummy = pd.get_dummies(df)
@@ -38,12 +45,16 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
     
 ############################################################################################
 # loading data
+############################################################################################
+# Read .csv/ .tsv files
 df = pd.read_csv('sample_file.csv') # comma separated file
 df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
+# Read .xlsx files
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
     dtype = {'column_name1': 'str', 'column_name2': 'float'})
+#
 # rename column names
 df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
 #
@@ -64,7 +75,7 @@ max_values = df.max(axis = 1, skimna = False)
 print(max_values)
 
 # Get the max value in each column in each group
-#
+
 ############################################################################################
 # Process Outliers:
     # clip
@@ -86,6 +97,7 @@ df_concat = pd.concat([df1, df2], ignore_index = True) #
 #
 ############################################################################################
 # Drop Columns:
+############################################################################################
 # df = df.iloc[:, :-1]
 # df = df.drop(['col1', 'col2', 'col3'], axis = 1)
 #
@@ -100,6 +112,7 @@ df['col1_lead1'] = df.groupby(['group_col'])['col1'].shift(-1)
 
 ############################################################################################
 # pivot_table
+############################################################################################
 df_pivot = pd.pivot_table(df, index = ['index_row'], columns = ['index_column'], 
 values = ['col_agg1', 'col_agg2'], aggfunc = {'col_agg1': 'sum', 'col_agg2': 'mean'})
 # Melt Pivot Table
@@ -134,6 +147,7 @@ df['months_in_between'] = df['date_column'].dt.to_period('M') - certain_date.to_
 #
 ############################################################################################
 # create a date list (list of dates)
+############################################################################################
 date_list = pd.date_range(start = '2020-01-01', end = '2020-12-31')
 date_list2 = pd.date_range(start = '2020-01-01', end = '2020-12-31', freq = 'MS') # this creates a Pandas DatetimeIndex object
 #
@@ -151,6 +165,8 @@ df['max_column'] = np.maximum(df['col1'] * 2, df['col2'] + df['col3']) # array c
 pd.crosstab(df['col1'], df['col2'], values = df['col2'], aggfunc = 'mean').round()
 #
 #
+############################################################################################
+# Save files as output:
 ############################################################################################
 # Save file as .csv
 df.to_csv('filename.csv', header = True, 
