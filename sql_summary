@@ -12,7 +12,8 @@
 # Drop duplicates from table
 #
 #####################################################################################################
-# Join Tables (m rows on the lft table, n rows on the right table)
+# Join Tables (m rows on the lft table, n rows on the right table):
+#####################################################################################################
 # LEFT JOIN
 	# if 1 to 1 relationship, return m rows
 	# if 1 to many, return m * n rows
@@ -23,6 +24,17 @@
 	# if 1 to 1, return 
 	# if 1 to many, return 
 #
+#####################################################################################################
+# Join table when a value is between certain threshold to determine a class:
+SELECT
+  (CASE WHEN g.[Grade] >= 8 THEN s.[Name]
+   ELSE 'NULL' END) AS [Name]
+, g.[Grade]
+, s.[Marks]
+FROM Students AS s
+LEFT JOIN Grades AS g
+ON s.[Marks] BETWEEN g.[Min_Mark] AND g.[Max_Mark] -- BETWEEN AND
+ORDER BY [Grade] DESC, [Name] ASC
 #####################################################################################################
 # Pivot Table in SQL
 SELECT
@@ -534,13 +546,16 @@ SET STATISTICS IO OFF
 
 
 #####################################################################################################
-# Common table expression (CTE)
+# Common table expression (cte)
+#####################################################################################################
 with cte1 AS (
 SELECT 
   [customer_id]
 , SUM([total_price]) AS [amount_spent]
 FROM invoice AS i
 GROUP BY [customer_id])
+,
+cte2 AS ()
 --
 SELECT 
   c.[customer_name]
@@ -550,6 +565,9 @@ LEFT JOIN customer AS c
 ON cte1.[customer_id] = c.[id]
 WHERE [amount_spent] < (SELECT AVG([total_price]) FROM [invoice]) * 0.25
 ORDER BY [amount_spent] DESC
+--
+UNION 
+SELECT * FROM cte2
 ;
 #####################################################################################################
 # Conditional 
