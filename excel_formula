@@ -1,21 +1,28 @@
-#
+# Common Excel Formula
+############################################################################################
+# Match based on matched 1st column
 # = VLOOKUP(value, range, column_number/ index, FALSE)
 #
 ############################################################################################
+#
 # = COUNTIFS(data1, criteria1, data2, criteria2)) # get the number of rows that meet with multiple criteria
     
 
+#
+############################################################################################
+# Format numeric values to be string starting with zero:
+# = TEXT(cell, "00000000")
 
 
 
-
-
-
+############################################################################################
+# 
 
 # 
 
 
-
+############################################################################################
+# Conditional Formatting:
 
 
 
