@@ -164,7 +164,16 @@ df['max_column'] = np.maximum(df['col1'] * 2, df['col2'] + df['col3']) # array c
 # crosstab function (similar to pivot_table function) 
 pd.crosstab(df['col1'], df['col2'], values = df['col2'], aggfunc = 'mean').round()
 #
+############################################################################################
+# Join tables:
+############################################################################################
 #
+df_combined = pd.merge(left = df1, right = df2, left_on = ['col1'], right_on = ['col2'], how = 'left')
+df_combined = pd.merge(left = df1, right = df2, left_on = ['col1'], right_on = ['col2'], how = 'right')
+df_combined = pd.merge(left = df1, right = df2, left_on = ['col1'], right_on = ['col2'], how = 'inner')
+df_combined = pd.merge(left = df1, right = df2, left_on = ['col1'], right_on = ['col2'], how = 'outer')
+
+
 ############################################################################################
 # Save files as output:
 ############################################################################################
