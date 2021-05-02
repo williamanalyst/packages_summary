@@ -9,10 +9,16 @@
     # e.g. 
 ######################################################################################################
 # Product Flow & Data Elements: 
-    # 
+    # Product Flow: how the product is engaging with the customers in each step:
+        # e.g. VINPay
+    # Data Elements: 
         # e.g. number of offers submitted, % of listings with offers, samples requested, website visitors, app users, app users with valid actions, etc.
             # e.g. designed to capture the viewlog, with existing action log.
 # How do you go about finding a solution: 
+    # e.g. based on customer feedback, our system is too hard/ time-consuming to use: (maximum 200+ columns/ fields)
+        # 
+    # e.g.
+        # 
     # Step 1: Design the solution, and then compared to existing similar solutions from peers (if available online/ from teammates).
         # e.g. whether to increase or decrease price, with limited market data.
     # Step 2: Evaluate the resources needed, and impact of the the recommended solution.
@@ -25,8 +31,11 @@
     # 
 # Thoughts regarding product design & marketing initiatives: 
     # product design should fit into 
-        # Plan A: commission based sales/ promotion team + standard fee structure
-        # Plan B: 
+        # Plan A: low fee + low operations cost
+            # e.g. commission based sales/ promotion team + standard fee structure
+            # e.g. 
+        # Plan B: average fee + high service standard
+            # 
 # 
 ######################################################################################################
 # Marketing Analytics:
