@@ -54,33 +54,45 @@
     #
     # Search Engine Marketing (SEM): 
         # Google Adwords: Prowein 2019, Prowein 2020 
-    # Search Engline Optimization (SEO): make your website more visible. 
+    # Search Engline Optimization (SEO): make your website more visible, e.g. Keywords 
+        # Note: search engine considers your search query, past query history, preference, location, device, time, etc.
+        # Note: google search started to match searcher's intent and content since 2013 (e.g. root words, stemming, misspelling, context, etc.)
         # Relevance: 
         # Authority: evaluate how other websites are linked to you (e.g. when a site is referenced) 
-    # Paid Social (paid adversiting on social media): 
+    # Paid Social (paid adversiting on social media): --> know your demongraphic
+        # Note: ad creativity/ interest, relevance, right words.
+        # e.g. Facebook, Twitter, Pintrest, Youtube, instagram, etc.
+            # right word, right time, right question, right content.
         # know how that specific social network connect to your target audience, and align your advertisement with the audience. 
             # e.g. cost on linked adversisement is actually higher, whereas marketing based on job title appears to be relative efficienct. 
             # 
-        # Youtube: 
-    # CRM: 
+        # Youtube Ads: 
+        # Facebook Ads Manager: 
+    # Display Marketing: find platforms/ websites that has high correlation with your target audience, and add ads to be displayed on these locations.
+        # e.g. Google Adsense (banners, pop-up ads, etc.)
+    # CRM: analyze customer behaviours
         # Agile CRM: marketing automation that help gaining more sales opportunities and reduce customer churn
             # e.g. 
         # Basecamp: 
         # Flintfox TRM: 
-    # Promo: 
-        # e.g. Prowein
+    # Promotion: communicating the product's benefits to customers and them to acquire the products for 1 or multiple times.
+        # e.g. Prowein Participation + Google Ads + Public Speech + Webinars + Gifts, etc.
         # e.g. World Bulk Wine Show:
-    # Affiliate: 
+    # Affiliate: e.g. 3rd party promoters, Key Opinion Leaders, etc.
         # e.g. Tim Adams Wines, Broadland Wineries
-    # Partnership: 
-        # e.g. Pack & Send:
-        # e.g. Hillabrands:
-        # e.g. Treasury Wine Estate/ Pernod Ricard: 
+    # Partnership: cooperation that help both businesses
+        # e.g. Pack & Send: sample shipping, custom clearance --> 
+        # e.g. Hillabrands: freight quote --> economy of scale --> mutual benefits
+        # e.g. Treasury Wine Estate/ Pernod Ricard: data sharing 
         # e.g. International Bulk Wine and Spirits Show (IBWSS):
-    # Brand: 
+    # Brand: --> result/ reputation --> customers' opinion (e.g. is the products looking luxury, or cost-efficient, or easy to use, etc.)
+        # Degree 1: Awareness
+        # Degree 2: Preference (compared to competitors)
+        # Degree 3: Insistance (advocate/ value)
         # e.g. Aldi, Tesco, Sainsbury's, Globus, Constellation Brands, Bear Creek Winery, Woolworth, Coles, etc.
-    # Webinar: (product introduction, customer engagemnet, public image, etc.)
+    # Webinar: (product introduction, customer engagemnet, public image, etc.) (content marketing)
 # 
+######################################################################################################
 # Solve Marketing Problem: 
     # Approach: 
         # Step 1: identify and 
@@ -93,8 +105,12 @@
     # Thought-process: 
         # 
     # Data/ Metrics: 
-        # Customer Lifetime Value --> 
-        # 
+        # Customer Lifetime Value (CLV) --> 
+        # Funnel Conversion Rate --> 
+        # Customer Acquisition Cost (CAC):
+        # Customer Retention:
+        # Customer Engagement: RFM, comment, view, time spent, etc.
+        # Return of Investment (ROI): 
     # Reporting Best Practice: 
 #
 # Test design: 
@@ -127,8 +143,8 @@
     # Category (product selection, ):
     # 
 # Key metrics to understand marketing success across various channels:
-    # Customer Acquisition Cost (CAC):
-    # Customer Lifetime Value (CLV):
+    # Customer Acquisition Cost (CAC): for each customer that registered on the website through 1 of our marketing channel, how much cost did we spend.
+    # Customer Lifetime Value (CLV): for the customers that we have gained, what is the 
     # Churn Rate and Time:
     # Retention: 
 # Opportunities Afterpay has in increasing marketing efficiency and reach:
@@ -140,13 +156,18 @@
 # Project Management Tool: 
     # Jira (Atlassian) --> also used the tool to manage the invoicing process (e.g. agreement made --> 1st shipment --> 2nd shipment --> final invoice)
     # Highrise:
-    # Microsoft:
+    # Microsoft Teams :
 
 ######################################################################################################
 # William's Marketing Practice:
 ######################################################################################################
-# 
-
+# 1. EDM Email Title, Subject, Content:
+# 2. Website Homepage Design + App Content: CrazyEgg for user interests, NLP for article contents.
+# 3. Google Ads keywords, Linkedin post, Wechat Official Account content:
+# 4. Agile CRM marketing automation process: automatic emails, reduce customer churn, etc.
+# 5. Robot for auto reply and pop up message: 
+# 6. 
+#
 # iOS 14 update will require apps to ask users for permission to collect and share data (privacy and data sharing policies):
     # e.g. Safari now block Google Analytics on site.
     # e.g. Facebook can track user activity on the other websites and in other apps.
@@ -157,4 +178,10 @@
         # Note: users who opt out of the data sharing permission won't be tracked by pixels.
 # Identifier for Advertisers (IDFA): 
 
-
+#
+Question 1: based on what criteria are items selected by category?
+Question 2: based on what standard are items selected for promotion?
+Question 3: based on what reference is the promotion price set?
+#
+Question 1: What CRM system Blackwoods is using, and how did we utilize the CRM to generate better value?
+Question 2: 
