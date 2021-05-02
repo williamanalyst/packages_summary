@@ -3,21 +3,27 @@
 ######################################################################################################
 # Product: e.g. platform as a service/ product
 ######################################################################################################
-# Product: --> positioning 
-    # e.g. 
-# Marketing: --> exposure
+# Product: --> positioning + intrinsic value
+    # e.g. Afterpay:
+        # 1. What painpoint does the product solve?
+        # 2. Compared to existing similar products, what are the advantages and disadvantages of Afterpay? --> easy access, 
+        # 3. What value does the product bring? --> 
+    # e.g. VINPay:
+        # 
+# Marketing: --> exposure + additional value
     # e.g. 
 ######################################################################################################
 # Product Flow & Data Elements: 
     # Product Flow: how the product is engaging with the customers in each step:
-        # e.g. VINPay
+        # Step 1: 
+        # Step 2: 
     # Data Elements: 
         # e.g. number of offers submitted, % of listings with offers, samples requested, website visitors, app users, app users with valid actions, etc.
             # e.g. designed to capture the viewlog, with existing action log.
 # How do you go about finding a solution: 
     # e.g. based on customer feedback, our system is too hard/ time-consuming to use: (maximum 200+ columns/ fields)
         # 
-    # e.g.
+    # e.g. 
         # 
     # Step 1: Design the solution, and then compared to existing similar solutions from peers (if available online/ from teammates).
         # e.g. whether to increase or decrease price, with limited market data.
@@ -44,7 +50,7 @@
     # (based on your target, where is the audience, what message you wish to deliver, how soon the conversion could happen.) 
     # e.g. Brand Awareness --> mass media channel 
     # e.g. Targeted Audience --> direct approach 
-    # e.g. Quick Conversion --> youtube 
+    # e.g. Quick Conversion --> youtube, facebook, tic tok, etc.
     #
     # Search Engine Marketing (SEM): 
         # Google Adwords: Prowein 2019, Prowein 2020 
@@ -55,6 +61,7 @@
         # know how that specific social network connect to your target audience, and align your advertisement with the audience. 
             # e.g. cost on linked adversisement is actually higher, whereas marketing based on job title appears to be relative efficienct. 
             # 
+        # Youtube: 
     # CRM: 
         # Agile CRM: marketing automation that help gaining more sales opportunities and reduce customer churn
             # e.g. 
@@ -62,12 +69,17 @@
         # Flintfox TRM: 
     # Promo: 
         # e.g. Prowein
+        # e.g. World Bulk Wine Show:
     # Affiliate: 
-        # e.g. Tim Adams Wines, 
+        # e.g. Tim Adams Wines, Broadland Wineries
     # Partnership: 
-        # 
+        # e.g. Pack & Send:
+        # e.g. Hillabrands:
+        # e.g. Treasury Wine Estate/ Pernod Ricard: 
+        # e.g. International Bulk Wine and Spirits Show (IBWSS):
     # Brand: 
-        # 
+        # e.g. Aldi, Tesco, Sainsbury's, Globus, Constellation Brands, Bear Creek Winery, Woolworth, Coles, etc.
+    # Webinar: (product introduction, customer engagemnet, public image, etc.)
 # 
 # Solve Marketing Problem: 
     # Approach: 
@@ -101,7 +113,9 @@
     # Write Tags:
     # Connect CMS to automation system: 
 # Tracking: (pixel and app)
-#
+    # viewlog:
+    # at which step did the user stopped at:
+    # 
 # 
 ######################################################################################################
 # Marketing Domain Knowledge:
@@ -113,10 +127,13 @@
     # Category (product selection, ):
     # 
 # Key metrics to understand marketing success across various channels:
-    # 
+    # Customer Acquisition Cost (CAC):
+    # Customer Lifetime Value (CLV):
+    # Churn Rate and Time:
+    # Retention: 
 # Opportunities Afterpay has in increasing marketing efficiency and reach:
     # e.g. high fluctuation in likes/ comments on Instagram/ Facebook, which could be improved to higher average interactions with less fluctuations.
-    # 
+    # e.g. 
 
 
 
