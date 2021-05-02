@@ -123,15 +123,21 @@
 # Project Management Tool: 
     # Jira (Atlassian) --> also used the tool to manage the invoicing process (e.g. agreement made --> 1st shipment --> 2nd shipment --> final invoice)
     # Highrise:
-    # Microsoft :
+    # Microsoft:
 
 ######################################################################################################
 # William's Marketing Practice:
 ######################################################################################################
 # 
 
-# iOS 14 update will require apps to ask users for permission to collect and share data:
-    # 
+# iOS 14 update will require apps to ask users for permission to collect and share data (privacy and data sharing policies):
+    # e.g. Safari now block Google Analytics on site.
+    # e.g. Facebook can track user activity on the other websites and in other apps.
+        # Facebook pixels: which are pieces of code installed on a website or app. When a user visits your side and takes an action 
+            # (add to cart, purchase, landing page, etc.), the pixel notifies Facebook where that information is stored as data for your campaign.
+        # Note: with the iOS 14 update, you are only allowed to place eight pixel objectives on a single domain, 
+            # which will significantly reduce the amount of data you can collect, report on and leverage.
+        # Note: users who opt out of the data sharing permission won't be tracked by pixels.
 # Identifier for Advertisers (IDFA): 
 
 
