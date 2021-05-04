@@ -1,4 +1,4 @@
-# A/B Testing
+# A/B Testing (controlled experiment)
 ############################################################################################
 #
 ############################################################################################
@@ -7,11 +7,13 @@
         # whether different recommendation algorithm lead to better clicks, etc.
     # e.g. Netflix could test whether new algorithm is recommending more relevant videos, whether a website design is better, etc.
 ############################################################################################
-# Application of A/B testing:
+# Designing of A/B testing:
+    # sample_size >= 16 * sigma ^2 / delta ^ 2
+    # delta == minimum detectable effect (e.g. 0.1% increase in revenue)
+    # number_of_days >= 14 and or number_of_days = sample_size / number_of_users 
 
-
-
-
+# Multiple Testing Problem:
+    # 
 
 
 
