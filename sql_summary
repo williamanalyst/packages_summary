@@ -235,6 +235,7 @@ SELECT GETDATE()
 #####################################################################################################
 # Declare variables in SQL Server
 DECLARE @currentdatetime AS datetime
+DECLARE @partno AS VARCHAR
 DECLARE @var_int INT = 5 -- can either directly set the variable value or use SET @var = __ later
 -- set datatype (can be either single value or table) when declare variable
 SET @currentdatetime = GETDATE()
