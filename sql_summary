@@ -35,6 +35,8 @@ FROM Students AS s
 LEFT JOIN Grades AS g
 ON s.[Marks] BETWEEN g.[Min_Mark] AND g.[Max_Mark] -- BETWEEN AND
 ORDER BY [Grade] DESC, [Name] ASC
+--
+WITH (NOLOCK) -- could improve query speed
 #####################################################################################################
 # Pivot Table in SQL
 SELECT
