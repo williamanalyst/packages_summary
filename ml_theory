@@ -64,13 +64,15 @@
         # e.g. using PCA
     # Early Stopping/ Dropouts
         # 
-    # Data Augmentation
+    # Data Augmentation:
+        # 
     # Activity Regularrization (need investigation)
-    #
+        #
     # Reduce Over-fitting in CNN:
         # Random Flipping:
-        # Mirroring:
-        # Skewing:
+            # 
+        # Mirroring: 
+        # Skewing: 
 #
 from sklearn.model_selection import cross_val_score
 cross_val_score(DecisionTreeRegressor(), X, y)
@@ -165,7 +167,12 @@ Under-Fitting: the model has not captured the logic within the data
 ########################################################################################
 # Decision tree is actually dividing the observations by "different triangle areas" determined by features, and could be more accurate than simply using linear fitting.
     # Decision Tree Calculation Process:
-    # Step 1. Find the root-node + internal-node + leaf with lowest impurity score (Gini Index)
+    # Step 1. Find the root-node + internal-node + leaf with lowest impurity score (e.g. Gini Index)
+        # Entropy
+        # Gini Impurity:
+            # Gini Impurity = 1 - prob_yes ^ 2 - prob_no ^ 2
+                # Calculate weighted Gini Impurity 
+                # for numeric value, rank the value, get the average in each consecutive pair, and calcultate the weighted average for each scenario, pick the lowest.
     # Step 2. For numeric variables, rank them and calculate the (weighted) impurity score for each mean
     # Step 3. For categorical variables, calculate the impurity score for each combination and choose the node with minimum impurity
 # Regression Tree:
