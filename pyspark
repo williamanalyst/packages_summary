@@ -1,6 +1,7 @@
 # import pyspark.sql.functions to use SQL commands to manipulate datasets (e.g. parquet files)
 import pyspark.sql.functions as F # 
 #
+%md # change the whole cell into markdown
 ############################################################################################
 # Load data from mounted folder:
 dynamicparts=spark.read.parquet('/mnt/margin_management/daily/DynamicPrices_'+today+'.parquet') # read the .parquet file from Azure Blob
@@ -39,7 +40,8 @@ df_grouped.show()
 # from pyspark.sql.functions import col, unix_timestamp, to_date
 #
 df = df.withColumn('new_col', to_date(unix_timestamp(col('date_string'), 'yyyy-MM-dd' HH:MM),cast('timestamp'))) # must nominate the format of the original date_string
-
+df.withColumn('col2', df['col1'].cast('int'))\
+.withColumn('col3', df.col1.cast('integer'))
 
 ############################################################################################
 # combine/ concat 2 dataframes
