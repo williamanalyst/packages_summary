@@ -53,7 +53,7 @@ df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['
 #
 # Read .xlsx files
 df = pd.read_excel('sample_file2.xlsx', sheet_name = 'sheet2', na_value = 'Missing_Value', skiprows = 2,
-    dtype = {'column_name1': 'str', 'column_name2': 'float'})
+    dtype = {'column_name1': 'str', 'column_name2': 'float', 'column_name3': 'int'})
 #
 # rename column names
 df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
