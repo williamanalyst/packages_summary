@@ -392,8 +392,46 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
-
-
+########################################################################################
+# Feature Engineering:
+########################################################################################
+# Feature engineering is the process of using domain knowledge to extract features from raw data, that better represent the data.
+    # The features selected could be used to improve the performance of machine learning algorithms.
+    # Feature engineering can be considered as applied machine learning itself.
+        # A feature is a characteristic that might help when solving the problem.
+        # Features are important to predictive models and influence results.
+# Feature englineering process:
+    # Step 1: brain storming or testing features
+    # Step 2: deciding what feature to create
+    # Step 3: creating features
+    # Step 4: checking how the feature work for your model
+    # Step 5: improving your feature if needed
+    # Step 6: go back to brain storming/ create more feature until the work is done
+# 
+# Selecting Features:
+    # Adding or dropping features (feature selection):
+        # Choose the features that has the most signal/ impact
+        # e.g. Permutation Feature Importance
+    # Combining multiple features into 1 feature/ Splitting 1 feature into multiple features:
+        # represent the data in a more simple way
+    # Binning:
+        # Convert numeric value into categorical variables.
+    # One-hot Encoding:
+        # One way to represent categorical data as numbers
+    # Cleaning the existing features:
+        # impute missing values, remove outliers, scale the data, transform skewed data, etc.
+    # Learning New Features:
+        # learning word or document embeddings from raw text
+ 
+########################################################################################
+# Data Mining:
+########################################################################################
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
