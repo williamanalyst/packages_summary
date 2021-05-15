@@ -29,6 +29,20 @@ corr, _ = pearsonr(df['col1'], df['col2'])
 print(corr)
 
 
+################################################################################
+# Different data types:
+################################################################################
+# Continuous: could be integer (whole number) or float (decimals)
+    # e.g. 
+# Categorical: one of a limited set of values
+    # e.g. gender, country of birth, etc.
+# Ordinal: ranked value, often with no detail of the distance between the groups
+    # e.g. 
+# Boolean: True/ False values
+    # e.g.
+# Datetime: dates and times 
+    # 
+
 
 
 ################################################################################
