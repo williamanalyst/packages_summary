@@ -4,9 +4,12 @@ sns.set_style('whitegrid')
 #
 ###################################################################################################
 # line chart
+###################################################################################################
 plt.figure(figsize = (15, 6)
 #
-plt.plot(array1, array2, linewidth = 0.7, color = 'red', linestyle = '--', alpha = 0.5, label = 'This line chart is about...') 
+plt.plot(array1, array2, linewidth = 0.7, color = 'red', 
+    linestyle = '--', marker = 'o',
+    alpha = 0.5, label = 'This line chart is about...') 
 #
 # vertical line
 ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2, label = 'Median') # 
@@ -14,11 +17,19 @@ ax.axvline(x = df['col1'].median(), color = 'm', linestyle = '--', linewidth = 2
 #
 ###################################################################################################
 # scatterplot
+###################################################################################################
 #
 plt.scatter(df['col1'], df['col2'], s = 50, color = 'red', alpha = 0.5)
 #
-#
-
+def plot_scatter(data, hue = None, palette = None):
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize = (12, 6))
+    sns.scatterplot(data = data, x = 'col1', y = 'col2', hue = hue, palette = palette, ax = ax1)
+    sns.scatterplot(data = data, x = 'col2', y = 'col3', hue = hue, palette = palette, ax = ax2)
+    sns.scatterplot(data = data, x = 'col3', y = 'col4', hue = hue, palette = palette, ax = ax3)
+    #
+    plt.tight_layout()
+    plt.show()
+plot_scatter(df, 'col5', 'coolwarm')
 #
 plt.show()
 #
@@ -159,8 +170,11 @@ sns.distplot(df['col1'], ax = ax0)
 sns.distplot(df['col2'], ax = ax1)
 #
 plt.show()
-
-
+###################################################################################################
+# jointplot
+###################################################################################################
+sns.jointplot(x = 'col1', y = 'col2', data = df, kind = 'kde', space = 0, color = 'g', height = 8)
+sns.jointplot(x = 'col1', y = 'col2', data = df, kind = 'reg', height = 8)
 #
 ###################################################################################################
 # remove axis from the chart
