@@ -1,2 +1,49 @@
+# Data Prpcessing:
+#############################################################################################
+# Multiple Imputation by Chained Equation (MICE):
+#############################################################################################
+# MICE is a robust, informative method of dealing with missing data in a dataset.
+    # The process "fills in" (imputes) missing data in a dataset through iterative series of predictive models.
+    # In each iteration, each specified variable in the dataset is imputed using the other variables in the dataset.
+        # These iterations should be run until it appears that convegence has been met.
+# Common use cases of MICE:
+    # Data leakage:
+    # Funnel Analysis:
+    # Confidence Intervals:
 #
+#
+
+
+
+#############################################################################################
+# Synthetic Minority Oversampling Technique (SMOTE):
+#############################################################################################
+# 
     # 
+
+
+
+
+
+
+
+
+
+
+#############################################################################################
+#
+#############################################################################################
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
