@@ -37,14 +37,30 @@
     # PCA is inherently a dimensionality reduction algorithm.
     # PCA can be used to speed up Machine Learning Algorithms.
         # PCA could also help reduce over-fitting.
-    # 
+    # Number of PC is usually either the number of variables, or the number of samples, whichever is smaller.
 
 # PCA can be used for data visualization (in terms of reducing dimensionality, so that the data could be displayed in 2d or 3d visuals.)
-
-
-
-
-
+    # Step 1: Calculate the center point of all observations (x_bar, y_bar) (by taking only 2 variables for all obvervations)
+    # Step 2: Shift all the points by moving all the points relatively from (x_bar, y_bar) to (0, 0), which is the origin point
+        # Shifting the points does not change the relative relationship among all observations
+    # Step 3: Fit a random line that goes through the origin point.
+        # Rotate the line until it fit all the observations the best
+            # by projecting all points onto the line, and either minimize the distance between the line, 
+                # or maximize the distance between the origin the the projected position (sigma d^2 , sum of the squared distances).
+    # Step 4: After finding the best fitting line, the Principal Component 1 (PC1) is found.
+        # e.g. if the slope/ coefficient == 0.25, then var1 could be substituted by var2 * 4
+            # or PC1 == var1 + var2 == 
+            # or PC1 is a linear combination of var1 and var2
+    # Step 5: find a 2nd line that is perpendicular to the 1st line, 3rd line that is perpendicular to 1st and 2nd line, etc.
+    # Step 6：calculate the impact of each PC:
+        # Variation of PC1 == Eigenvalue of PC1 / ( n - 1) == SS1
+        # Variation of PC2 == Eigenvalue of PC2 / ( n - 1) == SS2
+        # Variation of PC3 == Eigenvalue of PC3 / ( n - 1) == SS3
+            # Impact of PC1 == SS1/ (SS1 + SS2 + SS3) 
+            # Impact of PC2 == SS2/ (SS1 + SS2 + SS3)
+            # Impact of PC3 == SS3/ (SS1 + SS2 + SS3) 
+# Eigenvalue for PC1 = sigma (d ^ 2)
+# Sigular value for PC1 = ( sigma (d ^ 2) ) ^ 0.5
 
 
 
