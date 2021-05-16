@@ -1,9 +1,14 @@
 # Basic functions in Python (default packages)
-#
+#######################################################################################
 import builtins
 dir(builtins) # return the built-in functions in Python
 #
 # pip install Scrapy --user admin
+#
+#######################################################################################
+# Check package version
+import sklearn
+print(sklearn.__version__)
 #
 #######################################################################################
 # os package
