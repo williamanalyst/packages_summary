@@ -24,6 +24,8 @@ df_numeric_columns = df.select_dtypes(include = 'number')
 df_object_columns_names = df.select_dtypes(include = 'object').columns
 df_numeric_columns = df.select_dtypes(include = 'object')
 #
+df_select_by_type = df_select_dtypes(include = ['int64', 'float64', 'object']) # 
+df_select_by_type = df_select_dtypes(exclude = ['int64', 'float64', 'object']) # 
 ############################################################################################
 # Change Data Type
 ############################################################################################
