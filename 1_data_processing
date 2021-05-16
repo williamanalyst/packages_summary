@@ -31,12 +31,15 @@
 
 
 #############################################################################################
-#
+# Principal Component Analysis (PCA):
 #############################################################################################
-#
+# PCA is one of the most commonly used unsupervised machine learning algorithms.
+    # PCA is inherently a dimensionality reduction algorithm.
+    # PCA can be used to speed up Machine Learning Algorithms.
+        # PCA could also help reduce over-fitting.
+    # 
 
-
-
+# PCA can be used for data visualization (in terms of reducing dimensionality, so that the data could be displayed in 2d or 3d visuals.)
 
 
 
