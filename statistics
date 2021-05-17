@@ -42,9 +42,24 @@ print(corr)
     # e.g.
 # Datetime: dates and times 
     # 
-
-
-
+#
+################################################################################
+# Hypothesis Testing:
+################################################################################
+# Hypothesis == people who took drug A would recover 15 hours faster compared to people who took drug B, for the same disease.
+    # repeat the experiment and compare the average time for the people to recover in the 2 groups.
+        # 
+# Null Hypothesis: the hypothesis that there is no difference between things/ groups is called the Null Hypothesis (H0).
+    # The null hypothesis requre no preliminary data, because it is only testing whether the 2 groups are the same, rather than the actual difference.
+# Alternative Hypothesis: 
+    # 
+# We only either reject the null hypothesis, or fail to reject the null hypothesis.
+    # When there are more than 3 possible scenarios, we could choose from more than 1 alternative hypothesis.
+################################################################################
+# p-value:
+    # how confident are we about the chance than drug A performs better than drug B.
+    # p-value threshold == 0.05 --> only 5$ chance that the experiment resulted in the wrong decision.
+        # getting a low p-value, whereas there is literally no difference, is called False Positive
 ################################################################################
 # t-test
 ################################################################################
