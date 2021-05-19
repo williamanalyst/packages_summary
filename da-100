@@ -121,10 +121,16 @@
 ##############################################################################################
 # Data repository:
 # Data Processing:
+# Data Dimension:
+    # Must be uniquely separated dimensions
+# Incremental Refresh:
+    # 
+# Query Folding:
+    # 
 
 
-
-
+##############################################################################################
+#
 
 
 
