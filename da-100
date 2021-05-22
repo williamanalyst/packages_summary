@@ -130,7 +130,64 @@
 
 
 ##############################################################################################
+# Questions:
+##############################################################################################
+# When you create a workspace:
+    # you need to add the name of the office 365 group.
 #
+# Security requirements for management of reports and dashboards:
+    # Create a workspace for development
+    # Create a depolyment pipeline and assign the development workspace to the development stage.
+    # Define data source rules, and deploy to test, and production.
+#
+# How to control access to data in a certain department?
+    # Option 1: Publish the app from the department's workspace and add the users in the department to the app.
+    # Option 2: Assign the viewer role in the department to the users in the department.
+# 
+# How should you provide access for board members (external users)?
+    # Add the Board members as guests in Azure Active Directory B2B, create an app, and invite them as guest users.
+        # Should not add user as Office 365 workspace, which also grant access in building/ modifying reports.
+        # Meanwhile, workpace is not user-friendly for end-users without prior knowledge.
+        # Should not share app with email address, because people with external email addresses cannot see Power BI contents unless they are Azure AD B2B guest users.
+# 
+# You use Common Data Service as a data source, and use Power Query to connect and get the data.
+    # Why is the "View Native Query" option disables whereas you want to investigate query performance issues.
+        # The Common Data Service does not support Query folding.
+#
+# How to distribute a report among executives without giving them direct access to the workspace?
+    # Step 1: Select the department workspace
+    # Step 2: Click the "Publish App" button.
+    # Step 3: In the "Setup" tab, provide the app name and description.
+    # Step 4: In the Permission tab, specify the users who can view the app.
+
+# Data Classification:
+    # Data classification apply to the entire organization and cannot be limited to a specific group.
+        # You cannot restrict a dashboard based on membership of an Azure AD security group.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
