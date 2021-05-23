@@ -80,7 +80,116 @@
                     # e.g. Total_Sales_2015 = CALCULATE(SUM('Sales'[value]), YEAR('Sales'['date']) = 2015)
         # Implement time intelligence by using DAX:
             # 
-    # Optimize a model for performance: 
+    # Optimize a model (through making changes to the current state of the data model) for performance: 
+        # Review the performance of measures, relationship, and visuals:
+            # 90% of poor performance come from a bad data model, or bad Data Analysis Expression (DAX)
+            # Option 1: Ensuring that the correct data types are used.
+            # Option 2: Deleting unnecessary columns and rows.
+            # Option 3: Avoiding repeated values.
+            # Option 4: Replacing numeric columns with measures.
+            # Option 5: Reducing Cardinalities.
+            # Option 6: Analyzing model metadata.
+            # Option 7: Summarizing data where possible.
+                # Analyze Performance: (performance analyzer)
+                    # Performance analyzer will help you identify elements that are contributing to your performance issues, which can be used during troubleshooting.
+                    # Before you run performance analyzer, to ensure you get the most accuract results in your analysis/ test, 
+                        # you should start with a clear visual cache and clear data engline cache:
+                            # Visual Cache:
+                                # When you load a visual, you can't clear this visual cache without closing the Power BI Desktop and opening it again.
+                                    # To aviod any caching in play, you need to start your analysis with a clean visual cache.
+                            # Data Engline Cache:
+                                # When a query is run, the resutls are cached, so the results of your analysis will be misleading.
+                                # You need to clear the data cache before running the visual.
+                                    # To clear the cache, you can either restart Power BI Desktop or connect DAX Studio to the data model and then call Clear Cache.
+        # Resolve issues and optimize performance:
+            # Visuals: 
+                # Option 1: reduce the number of visuals on the report page.
+                # Option 2: Reduce the number of fields in each visual.
+            # DAX Query:
+                # less than 120 milliseconds would be a good indicator.
+            # Correct Relationship:
+            # Matadata:
+                # Metadata is information about other data.
+                # Power BI metadata contains information on your data model, such as the name, data type and format of each column, schema of the database,
+                    # the report design, when the file was last modified, the data refresh rates, etc.
+                # When you load data into Power BI desktop, it is good practice to analyze the corresponding metadata so you can identify any inconsistencies.
+                    # Thtough analyzing the metadata, you could identify unnecessary columns, errors within your data, incorrect data types, volume of data loaded, etc.
+                # You could use the Power Query editor in Power BI Desktop to examine the columns, rows, and values of the raw data.
+                    # The Power Query Options include:
+                        # Unnecessary Columns:
+                        # Unnecessary Rows:
+                        # Data Type:
+                        # Query Names:
+                        # Column Details:
+                            # Column quality:
+                            # Column distribution:
+                                # Distinct Values Count: the total number of different values found in a given column.
+                                # Unieue Values Count: the total number of values that only appear once in a given column.
+                            # Column profile:
+                # Auto Date/time feature:
+                    # Power BI Desktop automatically creates a hidden calculated table for each data column, provided that cettain conditions are met.
+                        # The auto date/time option allows you to work with time intelligence when filtering, grouping, and drilling down through calendar time periods.
+                            # Users are recommended to keep auto date/time option enabled Only when working with calendar time periods and when having a simple model.
+                            # Turn off the auto date/time option: file --> options and settings --> options --> Global/ Current file --> data load --> time intelligence
+        # Use variables to improve performance and troubleshooting:
+            # Improved performance:
+                # Variables can make measures more efficient because they remove the need for Power BI to evaluate the same expression multiple times.
+            # Improved readability:
+                # variables have short, self-explaining names and are used in place of an ambiguous, multi-worded expression.
+                    # Users might find it easier to read and understand the formulas when variables are used.
+            # Simplified debugging:
+                # You could use variables ti debug a formula and test expressions, which can help during trouble-shooting.
+            # Reduced complexity:
+                # 
+            # e.g. Sales_YOY_Growth = 
+                    VAR SalesPriorYear = CALCULATE([Sales], PARALLELPERIOD( 'Date'[Date], -12, MONTH ) )
+                    VAR SalesVariance = DIVIDE ( ([Sales] - SalesPriorYear), SalesPriorYear)
+                    RETURN SalesVariance
+        # Improve preformance by reducing cardinality levels:
+            # Cardinality is the term that is used to describe the uniqueness of the value in a column.
+            # Cardinality is also used in the context of the relationships between 2 tables, where it describes the direction of the relationship.
+                # When distinct count is high --> low level of cardinality --> better performance
+                # When discount count is low --> high level of cardinality --> poorer performance
+            # e.g. Use a summary table from the data source:
+                # Where a detail table mighr contain every transaction, a summary table would contain 1 record per day/ week/ month, with average, etc.
+        # Optimize DirectQuery with table level storage:
+            # The performance of the model will not only be impacted by the performance of the underlying data source, but also:
+                # influenced by the network latency, the performance of the data source's server and how many other workloads are running, etc.
+            # Benefits of DirectQuery:
+                # Condition 1: It is suitable in case where the data changes frequently and near real-time reporting is required.
+                # Condition 2: It can handle large data without need to pre-aggregation.
+                # Condition 3: It applies data sovereignty restrictions to comply with legal requirements.
+                # Condition 4: It can be used with a multidomentionsl data source that contains measures such as SAP Business Warehouse (BW).
+            # If your organizations needs to use DirectQuery, you should clearly understand its behaviour within Power BI Desktop and be aware of its limitations.
+                # You will then be in a good position to take action to optimize the directquery model as much as possible.
+            # Limitations of DirectQuery connections:
+                # Limit 1: Performance, which is dependent on the data source.
+                # Limit 2: Security, to aviod situations that certain users should not have access to some data involved.
+                # Limit 3: Data Transformation (certain data source does not allow data transformation)
+                    # e.g. when you connect to OLAP source, you cannot make any transformation at all, the entire external model is taken from the data source.
+                # Limit 4: modelling
+                    # some modelling capabilities only exist for imported dataset, whereas not available or limited to DirectQuery
+                # Limit 5: reporting
+                    # Quick insighrs and Q&A features are not supported for DirectQuery mode.
+                    # Also, the use of the explore feature in Excel will likely to result in poorer performance.
+            # Optimize the underlying data source (connected database):
+                # Aviod the use of complex calculated columns because the calculalation expression will be embedded into the source queries.
+                    # It is more efficient to push the expression back to the source because it aviods the push down.
+                    # You could also consider adding surrogate key columns to dimension-type tables.
+                # Review the indexed and verify that the current indexing is correct.
+                    # If you need to create new indexes, ensure that they are appropriate.
+            # Customize the Query reduction options:
+                # Option 1: Reduce nnumber of queries sent by
+                    # By default, every visual interacts with every other visual.
+                        # You can optionally choose which visual interact with each other by using the "Edit Interactions" featu
+                # Option 2: Slicers
+                    # By default, the instantly apply slicer changes option is selected.
+                        # To force the report users to manually spply slicer changes, select the "Add an Button to each slicer to apply changes when you are ready" option.
+                # Option 3: Filters
+                    # By default, the instant apply basic filter changes option is selected.
+                        # Add an apply button to all basic filters to apply changes when you are ready.
+                        # Add a single apply button to the filter pane to aooly changes at once.
+        # Create and manage aggregations:
 # 3. Visualize the Data:
     # 
 # 4. Analyze the Data:
