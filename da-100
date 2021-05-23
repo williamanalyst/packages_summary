@@ -493,6 +493,88 @@
         # Troubleshoot service connectivity:
         # Boost performance with query caching (Premium):
             # 
+    # Configure incremental refresh settings:
+        # The incremental refresh feature in Power BI is a popular feature because it allows you to refresh large datasets quickly and as often as you need.
+            # without having to load historical data each time.
+            # Benefit 1: Quicker refreshes
+                # Only data that needs to be changed gets refreshed
+            # Benefit 2: More reliable refreshes
+                # you no longer need to kepp your long-running data connection open to schedule a refresh
+            # Benefit 3: Reduced resource consumption
+                # because you only need to refresh the smaller amount of data, the overall consumption of memory and other resources is reduced
+            # Step 1: define the filter parameter
+                # Open your dataset in Power Query Editor
+                # On the Home Tab, select Manage Parameters
+                # On the parameters window that displays, add 2 new parameters, RangeStart and RangeEnd
+                    # Ensure that for both parameters, the type is set to Date/Time, and the suggesgted value is set to Any value
+                # Regarding the current value, for the RangeStart parameter, enter the date on which you want to begin the import,
+                    # and for the RangeEnd parameter, enter the date on which you want the import to end.
+            # Step 2: use the parameter to apply a filter
+                # Go to the applicable date column and then right-click that colum and select "Custom Filter"
+                # In the filter rows window that displays, to avoid the double counting of rows, make sure that you keep rows where OrderDate is after or equal to
+                    # the RangeStart oarameter and before the RangeEnd parameter.
+                # Select "Close and Apply" from the power query editor.
+            # Step 3: define the incremental refresh policy
+                # When you have filtered the data, you can define the incremental refresh policy for the data table, which sets up the refresh process.
+                    # Right-click the applicable table and then select "Incremental Refresh".
+                # On the incremental refresh window that displays, turn on the incremental refresh option.
+                    # Then, configure the refresh as required.
+                        # e.g. you could define a refresh policy to store data for 5 full calendar years, plus data for the current year up to the current date
+                            # and incrementally refresh 10 days of data.
+            # Step 4: publish changes to Power BI service   
+    #
+    # Manage and Promote Datasets:
+        # Promote a dataset:
+            # You can only promote a dataset if you are a Power BI admin user or the owner of that dataset.
+        # Certify a dataset:
+            # You can only certify a dataset if you have been listed as a user in the tenant settings.
+                # To certify a dataset, 
+        # Note: promotion does not need specific permission, whereas certification requires permission from the dataset owner to access the dataset.
+            #
+    # Troubleshoot Service Connectivity:
+        # Cloud services, such as SharePoint, do not require gateway because the data is already in the cloud.
+            # You only need to provide your authorization credentials to set up a data source connection.
+                # e.g. if your data source credentials are not up to date, you will need to take further action to invesigate and resolve the issue.
+    # Boost performance with query caching (Premium):
+        # Query Caching:
+            # Query caching is a local caching feature that maintains results on a user and report basis.
+            # This service isonly available to users with the Power BI Premium or Power BI Embeded.
+                # When using query caching, the query results are only specific to a user, and you can only query caching on a specific page of a report.
+                # Benefit of using query caching:
+                    # Benefit 1: improvement of the performance of reports, dashboards, and dashboard tiles by reducing loading time and increasing query speed.
+                        # The notion is especially true for datasets that are not refreshed often and are accessed frequently
+                    # Benefit 2: it respects bookmarks and default filters, so even if you enable query caching, any bookmarks that you have created still exists.
+                    # Benefit 3: cached query results are specific to the user
+                    # Benefit 4: all security labels are followed
+                    # Benefit 5: it reduces the load on your dedicated capacity because query caching allows for usage of dedicated capacity and not on the dataset.
+                # Note: switing from on to Off will clear all previously saved query results.
+                    # If many datasets have query caching enabled, and a refresh occurs, 
+                        # a reduction in performance might occur because a large number of queries are being processed at once.
+    #
+    # Row-level Security (RLS) in Power BI:
+        # Static Method:
+            # Use a fixed value in the DAX filter:
+        # Dynamic Method:
+            # Uses a DAX function:
+                # e.g. based on login email address
+                # e.g. [email_address] = funcusername() # the function will compare the email address with the email that the user entered when signing.
+        # Configuration Steps for Row-Level Security (RLS):
+            # Step 1: Create a report in the Microsoft Power BI Desktop:
+            # Step 2: Create RLS roles in Power BI Desktop by using DAX
+                # Modelling --> Manage Roles --> Create
+                    # e.g. by department
+                    # e.g. DAX --> [department] = 'Clothing'
+            # Step 3: Test the roles in Power BI Desktop
+                # Modelling --> View as Roles --> Select Role to be testeds
+                    # 
+            # Step 4: Deploy the report to Microsoft Power BI Service
+                # Publish
+            # Step 5: Add members to the role in the Power BI Serivice
+                # In the RLS screen, you can add Microsoft Azure Active Directory (Azure AD) users and security groups to the security role.
+                    # If members are not added to the role, but they have access to the reports, RLS will not apply to them.
+            # Step 6: Test the roles in Power BI service
+                # You can test the roles inside Power BI service by selecting "Test as Role"
+                    # This selection will display the report as if you were a member of the role in the Power BI service.
 ##############################################################################################
 # Power BI Workflow:
     # Get Data (M Formula) --> Add Modelling (DAX Formula) --> Visualize Data --> Share Data
