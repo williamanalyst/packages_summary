@@ -13,7 +13,8 @@
         # 
             # M Language: q query formula lanaguage that can be used in Power Query Editor in order to prepare the data before it can be loded in the model.
             # DAX Language (Data Analysis Expression): an analytical data calculation language which can be used for in-depth data analysis during the data view phase.
-
+#
+##############################################################################################
 # 2. Model the Data:
     # Design a data model in Power BI:
         # e.g. Star Schema ( 1 fact table + multiple dimension tables )
@@ -190,10 +191,183 @@
                         # Add an apply button to all basic filters to apply changes when you are ready.
                         # Add a single apply button to the filter pane to aooly changes at once.
         # Create and manage aggregations:
+##############################################################################################
 # 3. Visualize the Data:
-    # 
+    # Work with Power BI Visuals:
+        # Add visualizations to reports:
+            # 
+        # Choose an effective visualization:
+            # Line and Area Chart:
+                # 
+            # Bar and Column Charts:
+                # Present specific data across different categories in a stacked or clustered format.
+            # Pie chart, donut charts, and treemaps.
+                # Show you the relationship of the parts to the whole by dividing the data into segments.
+                # Treemap is ideal to visualize:
+                    # Scenario 1: large amounts of hierarchical data when a bar chart cannot effectively handle the large number of values
+                    # Scenario 2: proportions between each part and the whole
+                    # Scenario 3: the distribution pattern of the measure across each level of categories in the hierarchy
+                    # Scenario 4: attributes, by using the size and color coding
+                    # Scenario 5: spot patterns, outliers, most-important contributors, and exceptions.
+            # Combo charts:
+                # Scenario 1: compare multiple measures with different value ranges
+                # Scenario 2: illustrate the correlation between 2 measures in 1 visual
+                # Scenario 3: identify whether 1 measure meets the target that is defined by another measure
+                # Scenario 4: conserve space on your report page
+            # Card visualization:
+                # multi-row card visualization: display 1 or more data points, with 1 data point for each row
+            # Funnel Visualization:
+                # displays a linear process that has sequential connected stages, where items flow sequentially from 1 stage to the next.
+                    # Scenario 1: when the data is sequential and moves through at least 4 stages
+                    # Scenario 2: when the number of items in the first stage is expected to be greater than the number of items in the final stage
+                    # Scenario 3: to calculate a potential outcome (revenue, sales, deals, and so on) by stages
+                    # Scenario 4: to calculate and track conversion and retention rates
+                    # Scenario 5: to reveal the bottlenecks in a linear process
+            # Gauge chart:
+                # 
+            # Waterfall Visualization:
+                # 
+            # Scatter chart:
+                # 
+            # Maps:
+                # 
+            # Sliver visualization:
+                # Scenario 1: visulize commonly used or important filters on the report canvas for easier access.
+                # Scenario 2: simplfy your ability to see the currrent filtered state without having to open a drop-down list
+                # Scenario 3: filter by columns that are unneeded and hidden in the data tables.
+                # Scenario 4: create more focused reports by putting slicers next to important visuals
+            # Q&A Visualization:
+                # The Q&A visualization allows you to ask natural language questions and get answers in the form of a visual.
+                    # This visualization type can help you create visuals in the report, and it can also be used as a tool for customers to get answers quickly.
+                # The Q&A visualization consists of 4 core components:
+                    # Component 1: the question box, where users enter their question and are shown suggestions to help them complete the question.
+                    # Component 2: a pre-populated list of suggested questions.
+                    # Component 3: an icon that users can select to convert the Q&A visual into a standard visual.
+                    # Component 4: an icon that users can select to open Q&A tooling, which allows designers to configure the underlying natural language engine.
+                        # When entering natural language queries with Power BI Q&A, you can specify the visual type in your query.
+        #
+        # Format and configure visualizations:
+            # Title:
+            # Background:
+            # Border:
+            # Tooltip:
+                # When you add a visual, the default tooltip displays the data point's value and category.
+                    # But you can customize this information to suit yout needs.
+                        # e.g. by adding additional context and information, or specify additional, relevant data points when user hover over the visual.
+        # Import a custom visual:
+            # Certified visual:
+                # Tested by Microsoft Power BI team code requirement: the visual is tested to verify that it does not access external services or resources.
+                # And it follow secure coding patterns and guidelines.
+            # If you want to create your own custom visual, you can use the custom visual software development kid (SDK), which is an open-source tool
+                # based on NodeJS that is available on GitHub.
+            # The custom visual is packaged as a single Power BI Visual Tools (.pbiviz) file that you can import into Power BI Desktop.
+        # Add an R or Python visual:
+        # Work with Key Performance Indicators:
+            # 
+    # Create a data-driven story with Power BI reports:
+        # Design a report layout:
+            # Present high-level information on a single page:
+            # With visuals that represent different findings and insights from that dataset.
+                # e.g. a broad picture + detail in each area/ perspective
+        # Add buttons, bookmarks, and selections:
+            # Bookmarks:
+                # Capture the currently configured view of a report page so you can quickly return to that view later.
+                    # When you add a bookmark, the current page, filter, slicers (including slicer type, e.g. drop-down or lisd) and slicer state,
+                    visual selection state (e.g. cross-highlight filters), sort order, drill location, visibility of an object (by using the selection pane), 
+                    focus or spotlight modes of any visible objects,
+                    are also saved alongside with the bookmark.
+            # Buttons:
+                # create a more interactive experience for the report users
+                    # e.g. left arrow, right arrow, reset, back, information Q&A, etc.
+                    # Back:
+                        # returns the user to the previous page of the report
+                    # Bookmark:
+                        # present the report page that's associated with a bookmark that is defined for the current report
+                    # Drill through:
+                        #
+                    # Page navigation:
+                        #
+                    # Q&A:
+                        #
+                    # Web URL:
+                        # 
+            # Selections:
+                # Allow you to determine what items in the report are visible and what items are hidden.
+                # Selection are used alongside bookmarks and buttons.
+        # Design report navigation:
+            # 
+        # Use basic interactions:
+            # 
+        # Use advanced interactions and drillthrough:
+            # You can use visual interaction control to customize how the visualizations on your report page impact each other, in short, filter and highlight each other.
+            # Cross-report Drillthrough:
+                # The cross-report drillthrough feature alows you to contextually jump from 1 report to another report in the same Power BI service workspace or app.
+        # Configure conditional formatting:
+        # Apply slicing, filtering and sorting:
+            # Slicer:
+                # Function 1: provide quicker access to commonly used or important filters.
+                # Function 2: simplyfy a user's ability to see the current filtered state without having to open a drop-down list
+                # Function 3: fitler by columns that are unneeded and hidden in the data tables
+                # Function 4: create more focused reports (by putting slicers next to important visuals)
+                # Function 5: defer queries to the data model by using a drop-down slicer, particularly when you are using DirectQuery.
+            # Filter:
+                # Filter on this visual:
+                # Filter on this page:
+                # Filter on all pages:
+                # Drillthrough: 
+                    # Filters that apply to a single entity in a report
+            # Sort Data:
+                # Sort ascending, Sort Descending, Sort by in a visual.
+        # Publish and export reports:
+        # Comment on reports:
+        # Use performance analyzer to tune reports:
+            # Performance Analyzer:
+            # Tune Performance:
+                # 
+        # Optimize reports for mobile use:
+            # Design a mobile report layout:
+            # Configure visuals and slicers for use in mibile reports:
+                # By default, many visuals in Power BI are responsive, which means that they change dynamically to display the maximum amount of data and insights.
+                # As a visual changes size, Power Bi gives priority to the data and makes small changes.
+    # Create a dashboard in Power BI:
+        # Feature 1: Dashboards can be created from multiple datasets or reports.
+        # Feature 2: Dashboards do not have Filter, Visualization, and Fields panes that are in Power BI desktop, meaning that you cannot add new filters/ edits.
+        # Feature 3: Dashboards can only be a single page, whereas reports can be multiple pages.
+        # Feature 4: You cannot see the underlying dataset directly in a dashboard, while you can see the dataset in a report under the data tab in Power BI desktop.
+        # Feature 5: Both dashboards and reports can be refreshed to show the latest dataset.
+        #
+        # Set a mobile view:
+        # Add a theme to the visuals in your dashboard.
+        # Configure data classification:
+        # Add real-time dataset visuals to your dashboard:
+        # Pin a live report page to a dashboard:
+            # 
+        # Configure a real-time dashboard:
+            # Stream in Power BI:
+                # Streaming data can come from various sources, including social media, factory sensors, service-usage metrics, etc.
+                    # e.g. IoT Hub --> Azure Stream Analytics --> Power BI
+                    # Data that comes from a streaming dataset is not stored in Power BI data model, isteat, it is stored in a temporary cache.
+                        # So you cannot model the data with this type of dataset.
+                        # The only way to visualize the data from a streaming data source is to create a tile directly on a dashboard and use a custom streaming data source.
+                            # These tiles are optimized for displaying the data quickly and, because no database exists to pull the data from,
+                                # thesr types of tiles have low latercy and are best suited for data that doesnot need other trensformation, such as temperature or humidity.
+                # Visualize real-time data in Power BIl
+                    # Open a dashboard --> Add Tile --> Real-time Data --> Custom Streaming Datasets --> Add Streaming Dataset
+                        # Streaming dataset tiles can be in the form of line charts, stacked bar charts, cards, gauges, etc.
+    # Create paginated reports:
+        # 
+    # Explore data by asking questions:
+        # The Q&A visual consists of 3 main elements:
+            # Element 1: Question Box
+                # 
+            # Element 2: Pre-populated suggestion tiles:
+                # 
+            # Element 3: Pin visual Icon
+                # allow user to pin the visual onto a new or existing dashboard
+##############################################################################################
 # 4. Analyze the Data:
     # 
+##############################################################################################
 # 5. Deploy and Maintain Deliverables:
     # 
 #
@@ -308,7 +482,27 @@
 # Data Granularity:
 # Directionality/ Cardinality to a relationship:
     # 
-
+##############################################################################################
+# Report design best practice:
+    # Step 1: The 1st step in designing an exceptional report layout is to choose the correct format
+        # e.g. the format requirement that is from your manager, or end user's preference.
+            # You will need to consider the audience and speculate about the kind of format that they will want.
+    # Step 2: Carefully consider each visual and element that you plan on using in the report.
+        # e.g. everything should have a purpose, and you should consider how each element will appear to your report users.
+    # Step 3: Draw a sketch of your report layout.
+        # e.g. plan how the key metrics are demonstrated in sequence, the color pattern, background, etc.
+            # This approach will help you get an idea of what it would look like before you spend considerable time physically designing it.
+    # Step 4: Focus on the most important information.
+        # e.g. highlight the key parts of your report with a bright color or summary icon so that it stands out and draw user's attention to most critical metrics.
+    # Step 5: Report accessibility
+        # Accessibility Standards:
+            # Power BI is committed to accessibility standards under the Web Content Accessibility Guidelines (WCAG)
+            # Web Content Accessibility Guidelines help make web content accessible to people with disabilities:
+                # Guideline 1: perceivable 
+                # Guideline 2: operable
+                    # user interface components and navigation must be operable
+                # Guideline 3: Understandable
+                    # Information and operations of the user interface must be understandable
 ##############################################################################################
 # Questions:
 ##############################################################################################
