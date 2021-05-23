@@ -745,7 +745,12 @@
     # Data classification for a dashboard is only displayed when the administrator has checked the "Show Tag" option for the classification.
         # 
 #
-# 
+# How to help Q&A feature to be implemented better?
+    # Option 1: add synonyms to the tables
+    # Option 2: set the row label on the table
+        # a row label will allow you to define which column best identifies a row in a table
+        # The label allows Q&A to generate a more helpful visualization in Q&A
+            # You should choose a column and then use Q&A to verify that the column assists in creating visalizations.
 
 
 
