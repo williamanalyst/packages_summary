@@ -11,7 +11,76 @@
         # Select a shared dataset or create a local dataset
         # select a storage model:
         # 
+            # M Language: q query formula lanaguage that can be used in Power Query Editor in order to prepare the data before it can be loded in the model.
+            # DAX Language (Data Analysis Expression): an analytical data calculation language which can be used for in-depth data analysis during the data view phase.
+
 # 2. Model the Data:
+    # Design a data model in Power BI:
+        # e.g. Star Schema ( 1 fact table + multiple dimension tables )
+            # Fact table: contains observational or event data values.
+                # e.g. sales order, price, product counts, transactional dates and times, etc.
+            # Dimension table: contains the detail about the data in the fact table.
+    #
+    # Table Properties:
+        # General:
+            # Field 1: Edit the name and description of the column.
+            # Field 2: Add synonyms that can be used to identify the column when you are using the Q&A feature.
+            # Field 3: Add a column into a folder to further organize the table structure.
+            # Field 4: Hide or Show the Column.
+        # FormattingL
+            # Field 1: change the data type
+            # Field 2: format the date
+    #
+    # Create a common date table:
+        # Can be built in 3 ways:
+            # Source Data:
+                # specifically identify company holidays, separate calendat and fiscal year, identify weekends versus weekdays, etc.
+            # DAX:
+                # Dates = CALENDAR(DATE(2011, 5, 31), DATE(2021, 5, 31))
+                # Year = YEAR(Dates[Date])
+                # Month = MONTH(Dates[Date])
+                # WeekNum = WEEKNUM(Dates[Date])
+                # DayofWeek = FORMAT(Dates[Date].[Day], "DDDD")
+            # Power Query: 
+                # New Query --> Blank Query
+                # = List.Dates(#date(2021, 05, 31), // start date
+                    365 * 10, // mumber of periods
+                    #duration(1, 0, 0, 0)) // period = 1 days, 0 hours, 0 minutes, 0 seconds
+    #
+    # Mark the the official date table.
+    #
+    # Flatten parent-child hierarchy:
+        # Path = PATH(Employee[Employee_ID]. Employee[Manager_ID]) # 
+        # Level1 = PATHITEM(Employee[Path], 1)
+        # Level2 = PATHITEM(Employee[Path], 2)
+    #
+    # Cross-filter Direction:
+        # Single Cross-filter direction:
+            # Only 1 table in a relationship can be used to filter the data.
+                # e.g. for a one-to-many or  many-to-one relationship, the cross-filter direction will be from the "one-side", meaning that the filter will
+                    # only occur in the table that has the unique values.
+        # Both Cross-filter directions or bi-directional cross-filtering:
+            # One table in a relationship can be used to filter the other.
+                # e.g. a dimension table can be filtered through the fact table, and the fact table can be filtered through the dimension table.
+            # You might have lower-performance when using bi-directionsl cross-filtering with many-to-many relationship.
+                # You should not enable bi-directional cross-filtering relationships unless you fully understand the ramifications of doing so.
+                    # Enabling bi-directional cross-filtering can lead to ambiguity, over-sampling, unexpected results, and potential performance degradation.
+    #
+    # Creating Measures using DAX:
+        # Build Quick Measures:
+            # 
+        # Create Calculated Columns:
+            # New_Columns = 'table1'[column1] * 'table1'[column2]
+        # Use DAX to build measures:
+        # Discover how content affects DAX measures.
+        # Use the CALCULATE function to manipulate filters:
+            # The CALCULATE function in DAX is one of the most important functions that a data analyst can learn.
+            # The function name "CALCULATE" does not adequately describe what the function is intended to do.
+                # The CALCULATE funcion is your method od creating a DAX measure that will override cerrain portions of the context that are being used to the correct result.
+                    # e.g. Total_Sales_2015 = CALCULATE(SUM('Sales'[value]), YEAR('Sales'['date']) = 2015)
+        # Implement time intelligence by using DAX:
+            # 
+    # Optimize a model for performance: 
 # 3. Visualize the Data:
     # 
 # 4. Analyze the Data:
@@ -127,7 +196,9 @@
     # 
 # Query Folding:
     # 
-
+# Data Granularity:
+# Directionality/ Cardinality to a relationship:
+    # 
 
 ##############################################################################################
 # Questions:
@@ -163,7 +234,10 @@
 # Data Classification:
     # Data classification apply to the entire organization and cannot be limited to a specific group.
         # You cannot restrict a dashboard based on membership of an Azure AD security group.
-
+    # Data classification for a dashboard is only displayed when the administrator has checked the "Show Tag" option for the classification.
+        # 
+#
+# 
 
 
 
