@@ -245,6 +245,7 @@
                     # Component 3: an icon that users can select to convert the Q&A visual into a standard visual.
                     # Component 4: an icon that users can select to open Q&A tooling, which allows designers to configure the underlying natural language engine.
                         # When entering natural language queries with Power BI Q&A, you can specify the visual type in your query.
+                # You can access the Q&A feature by selecting the Q&A button type.
         #
         # Format and configure visualizations:
             # Title:
@@ -337,8 +338,14 @@
         # Feature 5: Both dashboards and reports can be refreshed to show the latest dataset.
         #
         # Set a mobile view:
+            # 
         # Add a theme to the visuals in your dashboard.
         # Configure data classification:
+            # Option 1: Do not share
+                # e.g. for highly sensitive data
+            # Option 2: Ask for permission
+                # 
+            # Option 3: Ok to share
         # Add real-time dataset visuals to your dashboard:
         # Pin a live report page to a dashboard:
             # 
@@ -354,8 +361,9 @@
                 # Visualize real-time data in Power BIl
                     # Open a dashboard --> Add Tile --> Real-time Data --> Custom Streaming Datasets --> Add Streaming Dataset
                         # Streaming dataset tiles can be in the form of line charts, stacked bar charts, cards, gauges, etc.
-    # Create paginated reports:
-        # 
+    # Create paginated reports (multi-page report):
+        # Paginated reports are actually decendents of SSRS function. (e.g. create a long, multipage summary report/ list.)
+        # You can use paginated reports for operational reports with tables of details and optional headers and footers.
     # Explore data by asking questions:
         # The Q&A visual consists of 3 main elements:
             # Element 1: Question Box
@@ -366,11 +374,126 @@
                 # allow user to pin the visual onto a new or existing dashboard
 ##############################################################################################
 # 4. Analyze the Data:
-    # 
+    # Explore Statistical Summary:
+        # DAX:
+            # Average_Quantity = AVERAGE( Sales[Order_Qty])
+            # Top_10_Products = SUMX( TOPN(10, Product, Product[Product_Name], ASC), [Total_Sales] )
+        # Histogram:
+            # 
+        # Top N Analysis:
+            # e.g. use the Q&A visual to find the Top N.
+    # Identify outliers with Power BI Visuals:
+        # DAX:
+        # Scatter Plot:
+            # 
+    # Group and bin data for analysis:
+    # Apply Clustering Techniques:
+        # Automatically find clusters:
+            # 
+    # Conduct time series analysis:
+        # Play Axis:
+    # Use the Analyze feature:
+        # Note: the feature does not work if you have non-numeric filters applied to your visual and/or if you have measures filters applied.
+        # Analyze --> Explain the increase/ Find where the distribution is different
+    # Use Advanced Analytics custom visuals:
+        # Quick Insights result card:
+            # 
+    # Review Quicl Insights:
+    # Apply AI Insights:
+        # Option 1: Text Analytics
+        # Option 2: Vision
+        # Option 3: Azure Machine Learning
+    # Working with AI Visuals:
+        # AI Split:
+            # AI split works by considering all available fields and determining which one to drill into to get the highest/lowest value of the measure being analyzed.
 ##############################################################################################
 # 5. Deploy and Maintain Deliverables:
-    # 
+    # Manage workspaces and datasets in Power BI:
+        # A workspace is a centralized repository in which you can collaborate with colleagues and teams to create collections of reports and dashboards.
+            # Benefit 1: focused collaboration efforts.
+                # You can use worksoaces to house reports and dashboards for use by multiple teams.
+            # Benefit 2: ability to share and present reports and dashboards in a single environment
+                # 
+            # Benefit 3: assurance that the highest level of scrurity is maintained by controlling who can access the datasets, reports and dashboards.
+                #
+    # Create a workspace:
+        # Step 1: go to Power BI service
+        # Step 2: select the Workspace drop-down menu
+        # Step 3: select the "create a workspace" button at the bottom of the resulting panel
+        # Step 4: Enter information such as Workspace name, description fields, and then "upload a workspace image".
+        # Step 5: In the advanced drop-down menu, you can create a contact-list of users who will receive notifications if issues with the workspace occur.
+    # Workspace Roles:
+        # Admin:
+            # Add/ remove other users.
+            # Publish, update, and/ or share an app in a workspace.
+            # Create, edit, delete and publish reports and content in a workspace.
+            # View and interact with reports and dashboards in a workspace.
+            # Configure the data refreshes.
+        # Member:
+            # Can complete all tasks that are associated with Admin, but cannot remove users.
+            # Cannot delete workspace.
+            # Cannot update the metadata about the workspace.
+        # Contributor:
+            # Cannot add or remove users.
+            # Cannot publish, update, or edit an app in a workspace unless given this ability specifically by admin/ members.
+            # Can create, update, and publish content and reports within the workspace.
+            # Can schedule data refreshes.
+        # Viewer:
+            # Cannot add or remove users.
+            # Can only view a report or dashboard in a workspace.
+            # Can read data that is stored in workspace dataflows.
+        # Note: if thr workspace is backed bby a Premium capacity, a non-Pro user can view content within the workspace under the viewer role.
+            # In the resulting access window, you can add email addresses of individual user, mail-enabled security groups, distribution lists, Microsoft 365 groups,
+                # and regular security groups, and then assign them to their specific roles.
 #
+    # Monitor usage and Performance:
+        # Focus your efforts for improvement.
+            # If you know the areas that experience the least performance, you can concentrate your efforts for improvement in those areas.
+            # Quantify the impacr of your imports.
+                # e.g. usage metrics help you determine your reports's success such as reader engagement.
+        # Usage metrics report are available for Power BI Pro users and can only be accessed by users with the role type of Admin, Member or Contributor.
+            # Viewers per day, Unique Viewers per day (which does not include users who returned to the same reports multiple times), and Shares per day charts.
+            # Total Views, Total Viewers. and Total Shares KPI cards.
+            # Total views and shares ranking (compares how your report is doing in comparison to other reports in the app)
+            # Views by users (details about each specific user that viewed the dashboard)
+        # Report Performance:
+            # Typical Opening Time: how long it takes, at the 50 percentile, to open the report
+            # Opening Time Trend: how the typical opening time changes over time.
+                # This metric tells you how the report is perfora=ming as the number of users start to grow.
+            # Daily/ 7-day performance charts: highlight the performance for 10, 50, and 90 percent of the open-report actions every day and over a 7-day period.
+                # Filter for dates, so that you can see how the performance changes according to the date.
+    # Development Pipeline (premium):
+        # Benefit 1: increased productivity
+        # Benefit 2: faster delivery of contents
+        # Benefit 3: lower human intervention required
+            # 
+    # Development Environments:
+        # Development:
+        # Test:
+        # Production: 
+    # Configuration of deployment pipelines:
+        # 
+    # Configure Data Protection:
+        # Sensitivity Labels:
+            # e.g. general, confidential, etc.
+    # Manage datasets in Power BI:
+        # Create dynamic reports with parameters:
+            # Dynamic reports are reports in which the data can be changed by a developer according to user specifications.
+                # Dynamic reports are valuable because a single report can be used for multiple purposes.
+                # If you use dynamic reports, you will have fewer individual reports to create, which will save organizational time and resources.
+            # To create a dynamic report, you first need to write your SQL query:
+                # Then you will use the "Get Data" feature in Power BI Desktop to connect to the database.
+                    # Step 1: 
+                    # Step 2: 
+        # Create what-if parameters:
+        # Use a Power BI Gateway to connect to on-premise data sources:
+        # Configure a scheduled refresh dor a dataset:
+        # Configure incremental refresh settings:
+        # Manage and Promote Datasets:
+        # Troubleshoot service connectivity:
+        # Boost performance with query caching (Premium):
+            # 
+##############################################################################################
 # Power BI Workflow:
     # Get Data (M Formula) --> Add Modelling (DAX Formula) --> Visualize Data --> Share Data
 
@@ -541,22 +664,6 @@
         # 
 #
 # 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
