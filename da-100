@@ -8,7 +8,8 @@
             # Flat file location: Local, OneDrive for Business, OneDrive Personal, SharePoint Team Sites.
             # Data from Azure Analysis Services: 
         # Change data source settings:
-        # Select a shared dataset or create a local dataset
+        # Select a shared dataset or create a local dataset:
+            # Note: you cannot connect to a shared dataset if your .pbix file already contains a connection to another data source.
         # select a storage model:
         # 
             # M Language: q query formula lanaguage that can be used in Power Query Editor in order to prepare the data before it can be loded in the model.
@@ -28,7 +29,7 @@
             # Field 2: Add synonyms that can be used to identify the column when you are using the Q&A feature.
             # Field 3: Add a column into a folder to further organize the table structure.
             # Field 4: Hide or Show the Column.
-        # FormattingL
+        # Formatting:
             # Field 1: change the data type
             # Field 2: format the date
     #
@@ -48,12 +49,25 @@
                     365 * 10, // mumber of periods
                     #duration(1, 0, 0, 0)) // period = 1 days, 0 hours, 0 minutes, 0 seconds
     #
+    # Calculated Table:
+        # You should use the Import storage mode to be able to create a calculated table.
+            # Many DAX queries cannot be used with DirectQuery.
+                # Only DAX queries that can be translated into queries on the source data can be used.
+                # You are unable to create a calculated table using DirectQuery and must use the Import storage mode if you need a calculated table.
+    #
     # Mark the the official date table.
     #
     # Flatten parent-child hierarchy:
         # Path = PATH(Employee[Employee_ID]. Employee[Manager_ID]) # 
         # Level1 = PATHITEM(Employee[Path], 1)
         # Level2 = PATHITEM(Employee[Path], 2)
+        #
+        # Step 1: use the PATH DAX function to extract a text column containing all the hierarchy of employee ids
+            # PATH AND PATHIEM are functions that generate calculated columns to flattern a parent-child hierarchy.
+        # Step 2: use the PATHITEM DAX function to extract the management levels
+            # to extract each management level from the column created by the PATH function as a separate column
+        # Step 3: create a new hierarchy and add the management levels
+            # 
     #
     # Cross-filter Direction:
         # Single Cross-filter direction:
@@ -63,7 +77,7 @@
         # Both Cross-filter directions or bi-directional cross-filtering:
             # One table in a relationship can be used to filter the other.
                 # e.g. a dimension table can be filtered through the fact table, and the fact table can be filtered through the dimension table.
-            # You might have lower-performance when using bi-directionsl cross-filtering with many-to-many relationship.
+            # You might have lower-performance (esp. measurements/ calculated columns) when using bi-directionsl cross-filtering with many-to-many relationship.
                 # You should not enable bi-directional cross-filtering relationships unless you fully understand the ramifications of doing so.
                     # Enabling bi-directional cross-filtering can lead to ambiguity, over-sampling, unexpected results, and potential performance degradation.
     #
@@ -79,6 +93,9 @@
             # The function name "CALCULATE" does not adequately describe what the function is intended to do.
                 # The CALCULATE funcion is your method od creating a DAX measure that will override cerrain portions of the context that are being used to the correct result.
                     # e.g. Total_Sales_2015 = CALCULATE(SUM('Sales'[value]), YEAR('Sales'['date']) = 2015)
+                    # e.g. Sales_YoY_Growth = 
+                        # VAR SalesPrevYear = CALCULATE([Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+                        # RETURN DIVIDE(([Sales] - SalesPrevYear), SalesPrevYear)
         # Implement time intelligence by using DAX:
             # 
     # Optimize a model (through making changes to the current state of the data model) for performance: 
@@ -135,6 +152,11 @@
         # Use variables to improve performance and troubleshooting:
             # Improved performance:
                 # Variables can make measures more efficient because they remove the need for Power BI to evaluate the same expression multiple times.
+                # e.g. Sales_YoY_Change = 
+                    #  VAR Sales_Sum = SUM(Sales[Amount])
+                    #  VAR Sales_Last_Year = CALCULATE([Sales_Sum], SAMEPERIODLASTYEAR( Sales[Date] ))
+                    #  RETURN
+                    #  IF(Sales_Sum, DIVIDE( ([Sales_Sum] - Sales_Last_Year) , Sales_Last_Year )) # reducing the need of complex calculations for multiple times.
             # Improved readability:
                 # variables have short, self-explaining names and are used in place of an ambiguous, multi-worded expression.
                     # Users might find it easier to read and understand the formulas when variables are used.
@@ -143,9 +165,10 @@
             # Reduced complexity:
                 # 
             # e.g. Sales_YOY_Growth = 
-                    VAR SalesPriorYear = CALCULATE([Sales], PARALLELPERIOD( 'Date'[Date], -12, MONTH ) )
+                    VAR SalesPriorYear = CALCULATE([Sales], PARALLELPERIOD( 'Date'[Date], -12, MONTH ) ) 
                     VAR SalesVariance = DIVIDE ( ([Sales] - SalesPriorYear), SalesPriorYear)
                     RETURN SalesVariance
+                    # Note: the PARALLELPERIOD() function cannot work with a dynamic period
         # Improve preformance by reducing cardinality levels:
             # Cardinality is the term that is used to describe the uniqueness of the value in a column.
             # Cardinality is also used in the context of the relationships between 2 tables, where it describes the direction of the relationship.
@@ -171,7 +194,12 @@
                 # Limit 4: modelling
                     # some modelling capabilities only exist for imported dataset, whereas not available or limited to DirectQuery
                 # Limit 5: reporting
-                    # Quick insighrs and Q&A features are not supported for DirectQuery mode.
+                    # Quick insights and Q&A features are not supported for DirectQuery mode.
+                        # Note: quick insights feature is only available in the Power BI Web Service, it is not available in Power BI Desktop.
+                        # Note: the Quick Insights feature requires that the storage mode is set to be import.
+                            # The quick insights does not work with DirectQuery, it works only with data that is imported into Power BI.
+                        # Note: the quick insights feature can find several types of insights, one of the insights is overall trends in time series.
+                            # e.g. quick insights detect upward and downward trends in your time series data.
                     # Also, the use of the explore feature in Excel will likely to result in poorer performance.
             # Optimize the underlying data source (connected database):
                 # Aviod the use of complex calculated columns because the calculalation expression will be embedded into the source queries.
@@ -246,6 +274,8 @@
                     # Component 4: an icon that users can select to open Q&A tooling, which allows designers to configure the underlying natural language engine.
                         # When entering natural language queries with Power BI Q&A, you can specify the visual type in your query.
                 # You can access the Q&A feature by selecting the Q&A button type.
+                #
+                # Note: Q&A features are not available if the table has a storage mode of DirectQuery.
         #
         # Format and configure visualizations:
             # Title:
@@ -346,6 +376,10 @@
             # Option 2: Ask for permission
                 # 
             # Option 3: Ok to share
+            # Data Classification:
+                # Data classification apply to the entire organization and cannot be limited to a specific group.
+                    # e.g. You cannot restrict a dashboard based on membership of an Azure AD security group.
+                # Data classification for a dashboard is only displayed when the administrator has checked the "Show Tag" option for the classification.
         # Add real-time dataset visuals to your dashboard:
         # Pin a live report page to a dashboard:
             # 
@@ -552,6 +586,7 @@
                         # a reduction in performance might occur because a large number of queries are being processed at once.
     #
     # Row-level Security (RLS) in Power BI:
+        # Note: To meet with security requirements, you will need to use RLS. RLS requires that you configure the security filter in both directions.
         # Static Method:
             # Use a fixed value in the DAX filter:
         # Dynamic Method:
@@ -732,6 +767,7 @@
 # You use Common Data Service as a data source, and use Power Query to connect and get the data.
     # Why is the "View Native Query" option disables whereas you want to investigate query performance issues.
         # The Common Data Service does not support Query folding.
+            # The "View Native Query" option will always be disabled when using the Common Data Service connector.
 #
 # How to distribute a report among executives without giving them direct access to the workspace?
     # Step 1: Select the department workspace
@@ -739,10 +775,7 @@
     # Step 3: In the "Setup" tab, provide the app name and description.
     # Step 4: In the Permission tab, specify the users who can view the app.
 
-# Data Classification:
-    # Data classification apply to the entire organization and cannot be limited to a specific group.
-        # You cannot restrict a dashboard based on membership of an Azure AD security group.
-    # Data classification for a dashboard is only displayed when the administrator has checked the "Show Tag" option for the classification.
+
         # 
 #
 # How to help Q&A feature to be implemented better?
@@ -751,18 +784,106 @@
         # a row label will allow you to define which column best identifies a row in a table
         # The label allows Q&A to generate a more helpful visualization in Q&A
             # You should choose a column and then use Q&A to verify that the column assists in creating visalizations.
+#
+# Date table:
+    # To mark a table as a date table, the date field must be unique, and must not have any missing dates.
+        # There is no limit on the number of tables that you can mark as date tables.
+#
+# Allow user to export data from Power BI Visuals:
+    # Users require build permission to export the underlying data of the visual to work with it outside Power BI.
+        # e.g. If a user has Read permission on a workspace and dataset, they cannot export the data.
+        # The build permission allows you to control whether users can download the data from visuals without having to give them access to the workspace.
+#
+# Sensitivity Label:
+    # Sensitivity label do not affect access to content within Power BI.
+        # Sensitivity labels are not applied to data export to csv, but only to Excel, Power Point, and PDF file access.
+#
+# Reshare Permission:
+    # Reshare permission allows users to share a dashboard or a report.
+        # Reshare does not allow user to export data from Power BI.
+#
+# Cloud App Security:
+    # Cloud app security allows you to monitor Power BI for user access and activity.
+        # Cloud app security will prevent data from being exported to devices that do not meet your Azure Active Directory conditional access policies.
+            # Cloud app security will not enable or disable HR users from downloading data from a Power BI visual.
 
+# Dataflow:
+    # You create datasets from a dataflow.
+        # Dataflows are the data transformaion layer in Power BI.
+            # Note: you should store dataflows in Azure Data Lake Gen2 Storage.
+            # Azure Data Lake can either be managed by the Power BI Service or an Azure Data Lake that you create in Azure.
+        # Datasets are where modelling, calculations, and measures are created.
+            # 
+# Focus Mode:
+    # Focus mode displays a single visual on the report page.
+        # Focus mode expands out a visualization on the screen to take the full report canvas, hiding other visuals.
 
+# How to make the date/time that the data was last refreshed easily visible on the reports and dashboards?
+    # Step 1: Open Power Query Editor.
+    # Step 2: Add a new blank query.
+    # Step 3: Clink on Advanced Editor.
+    # Step 4: Add M code to create a table column using DateTime.Local
+    # e.g. let 
+        #  Source = #table(type table[Date Refreshed = datetime]m {{DateTime.LocalNow()}})
+        #  in
+        #  Source
 
+# Key Influencer:
+    # Key influencer does not require a Power Bi premium subscription and can be used without enabling AI insights.
 
+#  Machine Learning Models built outside Power BI:
+    # e.g. you can create machine learning models in Azure Machine Learning, and then use the model from Power BI service with Premium capacity.
+#
+# Live Connection:
+    # Live connection is used when connecting to multi-dimensional data sources, such as Analysis Services.
+#
+# You need to create a Power BI report using multiple data sources, and the reports are not up to date, and you need to discover which data source has stale data.
+    # Use the Lineage view feature.
+#
+# How to allow users to add new visuals to the Power BI dashboards with minimal configuration?
+    # Use the "View Insights" option from a visual on a dashboard.
+#
+# How to create aggregation table?
+    # Step 1: create a new table named "aggregated" containing the columns to hold aggregate data
+    # Step 2: select the table to be aggregated and selet "Manage Aggregations"
+    # Step 3: select the "aggregated" table as the aggregation table
+    # Step 4: select the summarization type
+    # Step 5: select the table and column from the table to be aggregated.
 
+# Promoted Datast:
+    # A user with write permission on a workspace can use the Promotion option without requiring permission from a Power BI Admin.
+        # The dataset will be listed with the Promoted icon next to its name
+# Certified Dataset:
+    # To endorse a dataset as Certified requires permission from a Power BI tenant admin.
 
+# Calculate the weighting by removing not considering subgroups:
+    # Percent_of_Sales = DIVIDE( SUM(Sales[Amount]), CALCULATE( SUM(Sales[Amount]), REMOVEFILTERS()))
+#
+# How to configure an interaction that when clicking drill through, the visual redirects to a detail page that shows drilldown info while preserving filters:
+    # Step 1: Create a new page named Detail
+    # Step 2: Create a table visual named Visual B to show total sales by city and product line.
+    # Step 3: On the detail page, under the drill through option, add the column that could be drilled through.
+    # Step 4: On the detail page, under the drll through option, set "Keep all filters" to On.
 
+# You need to protect condidential data in your Power BI reports within Power BI and when the data is exported from Power BI.
+    # Information protection has been enabled on your Power BI tenant:
+        # Step 1: Create and publish labels in Microsoft 365.
+            # Power BI uses the sensitivity labels created in Microsoft 365.
+                # You must create and publish the labels before they can be used in Powe BI.
+                # Information protection must also be enabled in the Power BI admin portal.
+        # Step 2: Open the settings pane on the Power BI report.
+            # You can set the sensitivity label on datasets, reports and dashboards.
+                # Data exported from the report to excel, PPT, or PDF will have the sensitivity label included in the file.
+        # Step 3: Select the sensitivity label.
+            # You need to choose the confidential label for the report.
 
-
-
-
-
-
+# DATE = CALENDARAUTO() function:
+    # The CALENDARAUTO() function creates the date table based on the minimum and maximum available dates in the data model.
+        # By default, it will take 12 as the end of the fiscal year if the argument is not provided.
+#
+# Dashboard Theme:
+    # Set the colors for data in visuals, set the background image, set the background color.
+# Report Theme:
+    # Set the colors for data in visuals, set the background image.
 
 
