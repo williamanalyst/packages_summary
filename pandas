@@ -187,7 +187,7 @@ df.to_csv('filename.csv', header = True,
     index = False) # not saving index column
 # Save file as .tsv
 df.to_csv('filename.txt', header = True, index = False, sep = '\t') # save as .tsv file 
-
+df.to_excel('filename.xlsx', sheet_name = 'Sheetname1', index = False) # save as .xlsx file
 
 
 
