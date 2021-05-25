@@ -91,7 +91,9 @@ df_test = df_test.withColumn('New_Line_Number', add_n(F.lit(1000), df_test.QTY_B
 display(df_test)
 
 
-
+############################################################################################
+# Add leading zeros in the beginning:
+df = df.withColumn('col1', F.lpad() )
 
 
 
