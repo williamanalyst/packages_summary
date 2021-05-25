@@ -12,3 +12,16 @@ print(dict1_json)
 #
 print(type(dict1_json)) # the file is actually converted into a string format in Python.
 dict2 = json.loads(dict1_json) # load the json string back to dictionary format
+
+
+################################################################################################################
+#
+import json
+with open('filenam1.json') as file:
+    data = json.load(file)
+#
+print(json)
+
+
+
+
