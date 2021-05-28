@@ -840,6 +840,12 @@
 #
 # Live Connection:
     # Live connection is used when connecting to multi-dimensional data sources, such as Analysis Services.
+    # Live connection is only supported for these datasets:
+        # SSAS Tabular
+        # SSAS Multi-Dimensional
+        # Power BI Service
+    # The biggest disadvantage of this method is that you will not even have Power Query simple transformation.
+        # e.g. with this method, you only have report tab
 #
 # You need to create a Power BI report using multiple data sources, and the reports are not up to date, and you need to discover which data source has stale data.
     # Use the Lineage view feature.
@@ -895,9 +901,14 @@
     # Step 2: click on the Child Group/ Column and select "Add to hierarchy"
     # Step 3: In the visualization, replace the child group/ column with the new hierarchy
     # Step 4: enable drill down on the visualization
-
-
-
-
-
-
+#
+# Remove Error function after choosing a column in Power Query Editor:
+    # Remove all rows with error records.
+#
+# Install MS Power BI from Microsoft Store rather than Standard MSI download:
+    # Benefit 1: installation does not requre administrative previlleges
+    # Benefit 2: monthly updates for Power BI desktop are automatically installed in the background when they are available
+    # Benefit 3: lower the cost of ownership (TCO) for an organization's IT department when distributing Power BI to a large audience
+#
+# Format value:
+    # FORMAT(0.2, "Percent") --> 20.00%
