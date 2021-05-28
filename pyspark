@@ -42,7 +42,8 @@ df_grouped.show()
 #
 df = df.withColumn('new_col', to_date(unix_timestamp(col('date_string'), 'yyyy-MM-dd' HH:MM),cast('timestamp'))) # must nominate the format of the original date_string
 df.withColumn('col2', df['col1'].cast('int'))\
-.withColumn('col3', df.col1.cast('integer'))
+.withColumn('col3', df.col1.cast('integer'))\
+.withColumn('col4', df.col1.cast('float')) # 'double', etc.
 
 ############################################################################################
 # combine/ concat 2 dataframes
@@ -96,7 +97,9 @@ display(df_test)
 df = df.withColumn('col1', F.lpad() )
 
 
-
+############################################################################################
+# Convert Pandas dataframe into Spark DataFrame
+df_spark = spark.createDataFrame(df_pandas)
 
 
 
