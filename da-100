@@ -32,6 +32,7 @@
         # Formatting:
             # Field 1: change the data type
             # Field 2: format the date
+                # e.g. 
     #
     # Create a common date table:
         # Can be built in 3 ways:
@@ -51,6 +52,7 @@
     #
     # Calculated Table:
         # You should use the Import storage mode to be able to create a calculated table.
+        # Note: by creating a calculated table, you are duplicating data or loading additional data.
             # Many DAX queries cannot be used with DirectQuery.
                 # Only DAX queries that can be translated into queries on the source data can be used.
                 # You are unable to create a calculated table using DirectQuery and must use the Import storage mode if you need a calculated table.
@@ -67,7 +69,8 @@
         # Step 2: use the PATHITEM DAX function to extract the management levels
             # to extract each management level from the column created by the PATH function as a separate column
         # Step 3: create a new hierarchy and add the management levels
-            # 
+            # Note: from Power Query, merge the tables and then create the hierarchy.
+                # Note: in order to create a hierarchy in Power BI, all the involved columns need to be in the same table
     #
     # Cross-filter Direction:
         # Single Cross-filter direction:
@@ -240,7 +243,6 @@
             # Combo charts:
                 # Scenario 1: compare multiple measures with different value ranges
                 # Scenario 2: illustrate the correlation between 2 measures in 1 visual
-                # Scenario 3: identify whether 1 measure meets the target that is defined by another measure
                 # Scenario 4: conserve space on your report page
             # Card visualization:
                 # multi-row card visualization: display 1 or more data points, with 1 data point for each row
@@ -252,7 +254,7 @@
                     # Scenario 4: to calculate and track conversion and retention rates
                     # Scenario 5: to reveal the bottlenecks in a linear process
             # Gauge chart:
-                # 
+                # Note: it is possible to manually set Minimum, Maximum and Target values from the "Format" pane of the gauge chart.
             # Waterfall Visualization:
                 # 
             # Scatter chart:
@@ -290,7 +292,8 @@
                 # Tested by Microsoft Power BI team code requirement: the visual is tested to verify that it does not access external services or resources.
                 # And it follow secure coding patterns and guidelines.
             # If you want to create your own custom visual, you can use the custom visual software development kid (SDK), which is an open-source tool
-                # based on NodeJS that is available on GitHub.
+                # based on Node.js that is available on GitHub
+                # you mist install Node.js on your machine in order to create a custom visualization for Power BI
             # The custom visual is packaged as a single Power BI Visual Tools (.pbiviz) file that you can import into Power BI Desktop.
         # Add an R or Python visual:
         # Work with Key Performance Indicators:
@@ -315,7 +318,7 @@
                     # Bookmark:
                         # present the report page that's associated with a bookmark that is defined for the current report
                     # Drill through:
-                        #
+                        # Note: drill down is not currently available for dashboards (but user could pin report as live page)
                     # Page navigation:
                         #
                     # Q&A:
@@ -350,6 +353,8 @@
             # Sort Data:
                 # Sort ascending, Sort Descending, Sort by in a visual.
         # Publish and export reports:
+            # Note: when you publish a Power BI desktop file with a live connection to a tabular model to your Power BI side,
+                # an on-premise data gateway must be installed and configured by an administrator.
         # Comment on reports:
         # Use performance analyzer to tune reports:
             # Performance Analyzer:
@@ -395,7 +400,7 @@
                         # So you cannot model the data with this type of dataset.
                         # The only way to visualize the data from a streaming data source is to create a tile directly on a dashboard and use a custom streaming data source.
                             # These tiles are optimized for displaying the data quickly and, because no database exists to pull the data from,
-                                # thesr types of tiles have low latercy and are best suited for data that doesnot need other trensformation, such as temperature or humidity.
+                                # thesr types of tiles have low latercy and are best suited for data that doesnot need other transformation, such as temperature or humidity.
                 # Visualize real-time data in Power BIl
                     # Open a dashboard --> Add Tile --> Real-time Data --> Custom Streaming Datasets --> Add Streaming Dataset
                         # Streaming dataset tiles can be in the form of line charts, stacked bar charts, cards, gauges, etc.
@@ -725,7 +730,7 @@
     # 
 # Data Granularity:
 # Directionality/ Cardinality to a relationship:
-    # 
+    # Note: for a many-to-one relationship, the one side cannot have any black values.
 ##############################################################################################
 # Report design best practice:
     # Step 1: The 1st step in designing an exceptional report layout is to choose the correct format
@@ -858,6 +863,7 @@
     # Step 2: select the table to be aggregated and selet "Manage Aggregations"
     # Step 3: select the "aggregated" table as the aggregation table
     # Step 4: select the summarization type
+        # Default options include: sum, average, min, max, count, and count(Distinct)
     # Step 5: select the table and column from the table to be aggregated.
 
 # Promoted Datast:
@@ -912,3 +918,120 @@
 #
 # Format value:
     # FORMAT(0.2, "Percent") --> 20.00%
+    # FORMAT(-5, "$#,##0.00;($#.##0.00)") --> ($5.00)
+#
+# You want to write a measure that calculates the ratio of a month of sales in a year, which of the following function do you need to use?
+    # ALL
+        # With the All function, you can remove filter on the month, allowing you to calculate the desired ratio.
+        # Neither "FILTER" nor "ENDOFYEAR" are required for the formula.
+            # There is no such a function as WHOLEYEAR in DAX.
+#
+# Data Refresh:
+    # Mode 1: Import (scheduled and on-demand)
+    # Mode 2: DirectQuery
+    # Mode 3: LiveConnect
+    # Mode 4: Push
+    # For Power BI users, refreshing data typiecally means importing data from the original data source into a dataset, either based on schedule or on-demand.
+        # Power BI limits datasets on shared capacity to 8 times a day.
+        # If the dataset resides on a Premium capacity, you can schedule up to 48 refreshes per day in the dataset settings.
+            # The shared-capacity limitation for daily refreshes applies to both scheduled refreshes and API refreshes combined.
+            # You can also trigger on-demand refresh by clicking on "refresh now" in the dataset menu.
+                # On demand refreshes are not included in the refresh limitation.
+                # Datasets on a Premium capacity do not impose limitations for API refreshes.
+#
+# Power Query emplasizes making changes using which method?
+    # Graphical user Interface (GUI)
+#
+# How does referencing a query differ from duplicating a query?
+    # Referencing uses the original query as the source and duplicating copies all the code.
+#
+# For SQL Server on the same PC, SQL Server name can be used as Localhost or IP Address.
+#
+# In Quert Editor, if you combine a text string with null value:
+    # The result will be a null value.
+#
+# It is not recommended/ required to use table name with measures.
+    # Because measures belong to the entire data model.
+#
+# Auto-filter:
+    # When user applies auto-filter, a step is created in Applied Steps pane and filters the data that does not get loaded into the data model.
+#
+# Build dataset form JSON file:
+    # Step 1: expand the records
+        # first open Power BI desktop and navigate to Power Query
+        # import the JSON file
+        # load the data
+        # expand the data to see the record and list
+    # Step 2: add columns that use data type conversions
+    # Step 3: convert the list to a table
+#
+# Referential Integrity:
+    # A requirement to assume referential integrity is that the data in the From column in the relationship is Never Null or Blank.
+#
+# By using USERELATIONSHIP function, you specify the relationship to be used in a measure.
+    # CALCULATE( COUNT( Enrollments[StartingDate]), USERELATIONSHIP( Enrollments[StartingDate], 'Date'[Date]))
+#
+# When you have a huge list of queries (Power Query) that make it difficult to organize the transformation steps:
+    # You should create "group of queries" to classify the data-transformation
+#
+# Replace certain part of a string:
+    # e.g. replace the first 7 digits in a string:
+        # Text.Replace([FullCode], Text.Start([FullCode, 7]), "xxxx-xx")
+    # e.g. only keep last digits after "x":
+        # Text.AFTERDELIMITER( [FullCode], "x", {0, RELATIVEPOSITION.FromEnd})
+    # M function:
+    # replace the "-" in the text column:
+        # let
+            source = Csv.Doeument( File.Contents('C:\Users\OneDrive - username\data\data.csv'), 
+                  # "Replace Value1" = Table.ReplaceValue (Source, "-", "N0_DISCOUNT", Replacer.ReplaceText {"DISCOUNT)CIDE"}
+            in
+            # "Replaced Value1"))
+#
+# When you print the reports, you niticed that some tables show less rows than they really have:
+    # When you print a report as pdf.file in Power BI, only the current view will be printed/
+        # Therefore, if you stop scrolling a table visual with multiple rows, the only rows that will be printed are the ones you saw on the paage.
+        # To solve this limitation you can use the Paginated Reports.
+#
+# To enable users to find data using natural language queries:
+    # You should first modify the Q&A settings from the properties of the datasets.
+#
+# Tab Order:
+    # Tab order is the order which users interact with the items on a page using the keyboard.
+        # In order to change the default order, from the "View" tab, it is possible to open the selection pane and select tab order.
+#
+# Your organization plan to use POWER BI service to get several visualization from the data stored in a custom application.
+    # The developers ask for pushing data into the Power BI service from the custom app.
+        # You need to go to dev.powerbi.com/apps and register an application
+#
+# Your company asks you for finding methods to standardize the creation and the sharing of Power BI content among the company units.
+    # Note: your company owns a Premium Capacity
+    # You should use deployment pipelines tool, which enables BI creaters in an enterprise with Premium capacity to manage the lifecycle of organizational content.
+#
+# You have created a dashboard, and you need to share it with 2 external users who already have a Power BI Pro license:
+    # You should enable external sharing in the tenant settings from the Power BI admin portal.
+# 
+# You have a table stored in Microsoft Excel Spreadsheet, and you want to add the table to a Power BI dashboard as a tile:
+    # You should pin the table from the Power BI tab in excel.
+#
+# You have several Power View sheets contained in a Microsoft Excel workbook, and you want to replicate the Power View sheets as reports in the Power BI service.
+    # You should:
+        # 1. Get the data from Microsoft OneDrive for Business, and then click Import.
+        # 2. From excel, click Publish to Power BI and then click Export.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
