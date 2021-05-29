@@ -10,6 +10,9 @@
         # Change data source settings:
         # Select a shared dataset or create a local dataset:
             # Note: you cannot connect to a shared dataset if your .pbix file already contains a connection to another data source.
+                # Shared Dataset:
+                    # Shared dataset is a data model which is reused, or shared, across many different reports.
+                    # The related reports can reside in various workspaces within the Power BI service.
         # select a storage model:
         # 
             # M Language: q query formula lanaguage that can be used in Power Query Editor in order to prepare the data before it can be loded in the model.
@@ -460,6 +463,7 @@
             # Benefit 3: assurance that the highest level of scrurity is maintained by controlling who can access the datasets, reports and dashboards.
                 #
     # Create a workspace:
+        # Note: if you need to manage members that have access to the app workspave, the easiest way is to use groups in Office 365 Admin center.
         # Step 1: go to Power BI service
         # Step 2: select the Workspace drop-down menu
         # Step 3: select the "create a workspace" button at the bottom of the resulting panel
@@ -727,8 +731,9 @@
 # Incremental Refresh:
     # 
 # Query Folding:
-    # 
+    # Power BI tried to translate transformations into the data source's native language where possible.
 # Data Granularity:
+    # 
 # Directionality/ Cardinality to a relationship:
     # Note: for a many-to-one relationship, the one side cannot have any black values.
 ##############################################################################################
@@ -944,8 +949,9 @@
 #
 # How does referencing a query differ from duplicating a query?
     # Referencing uses the original query as the source and duplicating copies all the code.
+    # Duplicating a query increases the size of a dataset, as it creates a new query with the same steps applied, whereas referencing a query does not increase data size.
 #
-# For SQL Server on the same PC, SQL Server name can be used as Localhost or IP Address.
+# For SQL Server held on the same PC, SQL Server name can be used as Localhost or IP Address.
 #
 # In Quert Editor, if you combine a text string with null value:
     # The result will be a null value.
@@ -1017,7 +1023,134 @@
     # You should:
         # 1. Get the data from Microsoft OneDrive for Business, and then click Import.
         # 2. From excel, click Publish to Power BI and then click Export.
-
+#
+# A Power BI user in your organization has published a report to the Web, the report contains sensitive data.
+    # To prevent the report from being published on the web:
+        # You should disable the "Publish to Web" setting from the Power BI Admin portal.
+#
+# Note: Azure SQL Database can work in DirectQuery mode without using on-premise data gateway.
+    # e.g. 
+#
+# You have a report that you plan to publish on a blog, but you need to be sure that the report will preserve its size as a set on the report page.
+    # You should choose "Actual Size" for the view mode.
+#
+# You have a Power BI workspace that contains 30 reports shared with 55 users of your organization.
+    # You plan to start a reports maintenance program, and you need to know which reports present a critical usage.
+        # You nned to request to the Power BI admin to enable usage metrics for content creaters.
+#
+# 
+# Dataset Limitation:
+    # Limit 1: Dataset Size Limit
+        # There is a 1 GB limit for datasets stored in Shared capacities in the Power BI service.
+        # If larger dataset is needed, a Power BI Premium could be used.
+    # Limit 2: Distinct values in a column
+        # When caching data in a Power BI dataset (aka. Import Mode), there is a 1,999,999,997 limit on the number of distinct values that can be stored in a column.
+    # Limit 3: Row limit
+        # When using DirectQuery, if the query sent to the data source returns more than 1 million rows, you will see an error and the query would fail.
+            # The underlying data can still contain more than 1 million rows.
+                # You are unlikely to run into this limit as most reports aggregate fata into smaller sets of results.
+    # Limit 4: Column Limit
+        # The maximum number of columns allowed in a dataset, across all tables in the dataset, is 16,000 columns.
+            # This limit applied to both the Power BI Service and Power BI desktop.
+#
+# Your organization plan to create a Power BI app which include Power BI dashboards and other custom contents.
+    # The app will be available to all organization users.
+        # You need to be sure that all the Power BI users will have access to the App.
+        # Lowest administrative effort:
+            # Ask the Power BI admin for enabling permission to install the app automatically to all users.
+#
+# Publish to Web:
+    # Publish to web is supported for the vast majority of data sources and reports in the Power BI service.
+        # However, certain kind of reports are not currently supported with Publish to Web:
+            # Limit 1: reports using row-level security
+            # Limit 2: reports using live-connection data source, including Analysis Services Tabular hosted on-premises, Analysis Services Multidimensional,
+                # and Azure Analysis Services
+            # Limit 3: Reports using a shared dataset
+            # Limit 4: shared and certified datasets
+            # Limit 5: reports shared to you directly or through an app
+            # Limit 6: reports in a workspace in which you are not an edit member
+            # Limit 7: R or Python visuals are not currently supported
+            # Limit 8: ArcGIS Maps for Power BI visual
+            # Limit 9: reports containing report-level DAX measures
+            # Limit 10: 
+#
+# Your company has subscribed to a Microsoft Office 365 license, however users who try to access Power BI service receives the error message.
+    # In order to ensure all users can have access to the Power BI service, you could:
+        # From Microsoft Azure PowerShell, run the "Set-MsolCompanySettings" cmdlet.
+        # Set-MsolCompanySettings cmdlet sets company-level configuration settings
+#
+# Your organization uses Power Bi premium for BI reporting services.
+    # Sometimes the BI team share Power BI contents with customers without Power BI Pro livense.
+        # The team could let users access published Power BI app with a Power BI free license.
+#
+# Your company follows a security protocal about data management for which information cannot be provided over the interner.
+    # You need to plan a solution to ensure that the company will be compliant with the security policy:
+        # You should use Microsoft Azure ExpressRoute:
+            # ExpressRoute is an Azure Service that lets you create private connection between Microsoft datacenters and infrastructure 
+                # that's on your premises or in a colocation facility.
+#
+# You have a Power Bi report in an app workspace, and you plan to embed a report from the app workspace into a line-of-business application
+    # using Power BI embeded and REST API.
+        # You should provide the application token the the report URL to the application developers.
+#
+# Your customer owns a custom Power Bi app based on Power BI embedded technology.
+    # The customer requests to Scale up the capacity available for the custom BI app:
+        # You should increase the Pricing tier from Azure Portal.
+#
+# You shared a Power BI app with your organization by the AppSource, and the privacy for the app is set to be Private.
+    # A user reports that the app does not appear in the organization's AppSource.
+        # You should update the app from the app workspace, configure the Access setting, and then click on update app.
+#
+# Your company asks you to create a Machine Learning Model in order to estimate the next season's sales performance.
+    # You plan to use Power BI as its straight-forward Auto ML tool.
+        # Step 1: Get Power BI Premium
+        # Step 2: Create a dataflow for the historical data
+        # Step 3: Add a Machine Learning Model
+#
+# Note: you need to manage dataset permissions in order to remove build and share permission for the app that you distributed to users.
+    # You could give build permission for a dataset in serveral ways:
+        # Method 1: member of a workspace with contributor role automatically have build permission for datasets in that workspace,
+            # And permission to copy a report.
+        # Method 2: member of the workspace where the dataset resides can assign the permission to specific users or security groups in the permission center.
+            # e.g. dataset --> more options --> manage permissions
+        # Method 3: an admin or member of the workspace where the dataset resides can decide durin gapp publishing that users with permission from the app also
+            # get build permission for the underlying dataset (which also means that they can export the data)
+        # Method 4: if you have reshare and build permission on a dataset, when you share a report or dashboard built on that dataset,
+            # you could specify that the recipients also get build permission for the underlying dataset
+#
+# Which feature of query editor splits a query into parts?
+    # Extract Previous:
+        # If you right click any applied steps to query and select "extract previous", Power Bi will create another query with all the steps before selected step
+            # and reference this query to new query
+#
+# Query parameters could be used to:
+    # Refine a dataset:
+    # Add dynamic values:
+    # Reduce size of a dataset:
+#
+# Note: you need Power BI pro to register an app and embed Power BI content with Power BI embeded.
+#
+# Which view can be used in Power BI desktop Data Model to create a new Dimensional Hierarchy?
+    # Report View:
+    # Data View:
+    # Relationship View:
+#
+# Row Context:
+    # Row Context:
+    # Query Context:
+        # Query context refers to the subset of data that is implicitly retrieved from a formula.
+    # Filter Context:
+        # Filter context applies on top of other contexts, such as row context or query context.
+#
+# Which of the following is not a valid type when programming in the M Language?
+    # Valid: List, Function, Record
+    # Invalid: dataframe
+#
+# Note: if you configure a workspace by using Premium capacity then you can configure multiple apps to run in the same workspace.
+    # You can also share it with users who have free licenses.
+#
+# Options that can be added as a group member:
+    # e.g. email addresses, security groups, distribution lists.
 
 
 
