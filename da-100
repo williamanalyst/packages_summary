@@ -7,6 +7,7 @@
         # Identify and connect to a data source:
             # Flat file location: Local, OneDrive for Business, OneDrive Personal, SharePoint Team Sites.
             # Data from Azure Analysis Services: 
+                # Live Data:
         # Change data source settings:
         # Select a shared dataset or create a local dataset:
             # Note: you cannot connect to a shared dataset if your .pbix file already contains a connection to another data source.
@@ -40,7 +41,7 @@
     # Create a common date table:
         # Can be built in 3 ways:
             # Source Data:
-                # specifically identify company holidays, separate calendat and fiscal year, identify weekends versus weekdays, etc.
+                # e.g. specifically identify company holidays, separate calendat and fiscal year, identify weekends versus weekdays, etc.
             # DAX:
                 # Dates = CALENDAR(DATE(2011, 5, 31), DATE(2021, 5, 31))
                 # Year = YEAR(Dates[Date])
@@ -54,7 +55,7 @@
                     #duration(1, 0, 0, 0)) // period = 1 days, 0 hours, 0 minutes, 0 seconds
     #
     # Calculated Table:
-        # You should use the Import storage mode to be able to create a calculated table.
+        # You should use the "Import" storage mode to be able to create a calculated table.
         # Note: by creating a calculated table, you are duplicating data or loading additional data.
             # Many DAX queries cannot be used with DirectQuery.
                 # Only DAX queries that can be translated into queries on the source data can be used.
@@ -89,10 +90,12 @@
     #
     # Creating Measures using DAX:
         # Build Quick Measures:
-            # 
+            # use user interface
+                # e.g. the sales in the year by current month
         # Create Calculated Columns:
             # New_Columns = 'table1'[column1] * 'table1'[column2]
         # Use DAX to build measures:
+            # 
         # Discover how content affects DAX measures.
         # Use the CALCULATE function to manipulate filters:
             # The CALCULATE function in DAX is one of the most important functions that a data analyst can learn.
@@ -107,24 +110,25 @@
     # Optimize a model (through making changes to the current state of the data model) for performance: 
         # Review the performance of measures, relationship, and visuals:
             # 90% of poor performance come from a bad data model, or bad Data Analysis Expression (DAX)
-            # Option 1: Ensuring that the correct data types are used.
-            # Option 2: Deleting unnecessary columns and rows.
-            # Option 3: Avoiding repeated values.
-            # Option 4: Replacing numeric columns with measures.
-            # Option 5: Reducing Cardinalities.
-            # Option 6: Analyzing model metadata.
-            # Option 7: Summarizing data where possible.
-                # Analyze Performance: (performance analyzer)
-                    # Performance analyzer will help you identify elements that are contributing to your performance issues, which can be used during troubleshooting.
-                    # Before you run performance analyzer, to ensure you get the most accuract results in your analysis/ test, 
-                        # you should start with a clear visual cache and clear data engline cache:
-                            # Visual Cache:
-                                # When you load a visual, you can't clear this visual cache without closing the Power BI Desktop and opening it again.
-                                    # To aviod any caching in play, you need to start your analysis with a clean visual cache.
-                            # Data Engline Cache:
-                                # When a query is run, the resutls are cached, so the results of your analysis will be misleading.
-                                # You need to clear the data cache before running the visual.
-                                    # To clear the cache, you can either restart Power BI Desktop or connect DAX Studio to the data model and then call Clear Cache.
+        # Option 1: Ensuring that the correct data types are used.
+        # Option 2: Deleting unnecessary columns and rows.
+        # Option 3: Avoiding repeated values.
+        # Option 4: Replacing numeric columns with measures.
+        # Option 5: Reducing Cardinalities.
+            # 
+        # Option 6: Analyzing model metadata.
+        # Option 7: Summarizing data where possible.
+            # Analyze Performance: (performance analyzer)
+                # Performance analyzer will help you identify elements that are contributing to your performance issues, which can be used during troubleshooting.
+                # Before you run performance analyzer, to ensure you get the most accuract results in your analysis/ test, 
+                    # you should start with a clear visual cache and clear data engline cache:
+                        # Visual Cache:
+                            # When you load a visual, you can't clear this visual cache without closing the Power BI Desktop and opening it again.
+                                # To aviod any caching in play, you need to start your analysis with a clean visual cache.
+                        # Data Engline Cache:
+                            # When a query is run, the resutls are cached, so the results of your analysis will be misleading.
+                            # You need to clear the data cache before running the visual.
+                                # To clear the cache, you can either restart Power BI Desktop or connect DAX Studio to the data model and then call Clear Cache.
         # Resolve issues and optimize performance:
             # Visuals: 
                 # Option 1: reduce the number of visuals on the report page.
@@ -132,6 +136,7 @@
             # DAX Query:
                 # less than 120 milliseconds would be a good indicator.
             # Correct Relationship:
+                # 
             # Matadata:
                 # Metadata is information about other data.
                 # Power BI metadata contains information on your data model, such as the name, data type and format of each column, schema of the database,
@@ -261,9 +266,9 @@
             # Waterfall Visualization:
                 # 
             # Scatter chart:
-                # 
+                # Note: good for identifying outliers
             # Maps:
-                # 
+                # Note: place category
             # Sliver visualization:
                 # Scenario 1: visulize commonly used or important filters on the report canvas for easier access.
                 # Scenario 2: simplfy your ability to see the currrent filtered state without having to open a drop-down list
@@ -393,23 +398,24 @@
                     # e.g. You cannot restrict a dashboard based on membership of an Azure AD security group.
                 # Data classification for a dashboard is only displayed when the administrator has checked the "Show Tag" option for the classification.
         # Add real-time dataset visuals to your dashboard:
+            # e.g. SSAS
         # Pin a live report page to a dashboard:
             # 
         # Configure a real-time dashboard:
             # Stream in Power BI:
                 # Streaming data can come from various sources, including social media, factory sensors, service-usage metrics, etc.
                     # e.g. IoT Hub --> Azure Stream Analytics --> Power BI
-                    # Data that comes from a streaming dataset is not stored in Power BI data model, isteat, it is stored in a temporary cache.
-                        # So you cannot model the data with this type of dataset.
+                    # Data that comes from a streaming dataset is not stored in Power BI data model, instead, it is stored in a temporary cache.
+                        # So you cannot model the data with streaming/ real-time dataset.
                         # The only way to visualize the data from a streaming data source is to create a tile directly on a dashboard and use a custom streaming data source.
                             # These tiles are optimized for displaying the data quickly and, because no database exists to pull the data from,
-                                # thesr types of tiles have low latercy and are best suited for data that doesnot need other transformation, such as temperature or humidity.
+                                # these types of tiles have low latercy and are best suited for data that does not need other transformation, e.g. temperature, humidity.
                 # Visualize real-time data in Power BIl
                     # Open a dashboard --> Add Tile --> Real-time Data --> Custom Streaming Datasets --> Add Streaming Dataset
                         # Streaming dataset tiles can be in the form of line charts, stacked bar charts, cards, gauges, etc.
     # Create paginated reports (multi-page report):
         # Paginated reports are actually decendents of SSRS function. (e.g. create a long, multipage summary report/ list.)
-        # You can use paginated reports for operational reports with tables of details and optional headers and footers.
+            # e.g. You can use paginated reports for operational reports with tables of details and optional headers and footers.
     # Explore data by asking questions:
         # The Q&A visual consists of 3 main elements:
             # Element 1: Question Box
@@ -433,6 +439,8 @@
         # Scatter Plot:
             # 
     # Group and bin data for analysis:
+        # List
+        # Bin
     # Apply Clustering Techniques:
         # Automatically find clusters:
             # 
@@ -444,7 +452,7 @@
     # Use Advanced Analytics custom visuals:
         # Quick Insights result card:
             # 
-    # Review Quicl Insights:
+    # Review Quick Insights:
     # Apply AI Insights:
         # Option 1: Text Analytics
         # Option 2: Vision
@@ -463,7 +471,8 @@
             # Benefit 3: assurance that the highest level of scrurity is maintained by controlling who can access the datasets, reports and dashboards.
                 #
     # Create a workspace:
-        # Note: if you need to manage members that have access to the app workspave, the easiest way is to use groups in Office 365 Admin center.
+        # Note: if you need to manage members that have access to the app workspave
+            # e.g. the easiest way is to use groups in Office 365 Admin center.
         # Step 1: go to Power BI service
         # Step 2: select the Workspace drop-down menu
         # Step 3: select the "create a workspace" button at the bottom of the resulting panel
@@ -489,7 +498,7 @@
             # Cannot add or remove users.
             # Can only view a report or dashboard in a workspace.
             # Can read data that is stored in workspace dataflows.
-        # Note: if thr workspace is backed bby a Premium capacity, a non-Pro user can view content within the workspace under the viewer role.
+        # Note: if the workspace is backed by a Premium capacity, a non-Pro user can view content within the workspace under the viewer role.
             # In the resulting access window, you can add email addresses of individual user, mail-enabled security groups, distribution lists, Microsoft 365 groups,
                 # and regular security groups, and then assign them to their specific roles.
 #
@@ -506,7 +515,7 @@
         # Report Performance:
             # Typical Opening Time: how long it takes, at the 50 percentile, to open the report
             # Opening Time Trend: how the typical opening time changes over time.
-                # This metric tells you how the report is perfora=ming as the number of users start to grow.
+                # This metric tells you how the report is perforaming as the number of users start to grow.
             # Daily/ 7-day performance charts: highlight the performance for 10, 50, and 90 percent of the open-report actions every day and over a 7-day period.
                 # Filter for dates, so that you can see how the performance changes according to the date.
     # Development Pipeline (premium):
@@ -585,7 +594,7 @@
     # Boost performance with query caching (Premium):
         # Query Caching:
             # Query caching is a local caching feature that maintains results on a user and report basis.
-            # This service isonly available to users with the Power BI Premium or Power BI Embeded.
+            # This service is only available to users with the Power BI Premium or Power BI Embeded.
                 # When using query caching, the query results are only specific to a user, and you can only query caching on a specific page of a report.
                 # Benefit of using query caching:
                     # Benefit 1: improvement of the performance of reports, dashboards, and dashboard tiles by reducing loading time and increasing query speed.
@@ -594,7 +603,7 @@
                     # Benefit 3: cached query results are specific to the user
                     # Benefit 4: all security labels are followed
                     # Benefit 5: it reduces the load on your dedicated capacity because query caching allows for usage of dedicated capacity and not on the dataset.
-                # Note: switing from on to Off will clear all previously saved query results.
+                # Note: switching from on to Off will clear all previously saved query results.
                     # If many datasets have query caching enabled, and a refresh occurs, 
                         # a reduction in performance might occur because a large number of queries are being processed at once.
     #
@@ -944,7 +953,7 @@
                 # On demand refreshes are not included in the refresh limitation.
                 # Datasets on a Premium capacity do not impose limitations for API refreshes.
 #
-# Power Query emplasizes making changes using which method?
+# Power Query emphasizes making changes using which method?
     # Graphical user Interface (GUI)
 #
 # How does referencing a query differ from duplicating a query?
