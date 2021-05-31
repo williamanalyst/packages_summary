@@ -1164,14 +1164,15 @@
 
 
 
-
-
-
-
-
-
-
-
+##############################################################################################
+# DAX Summary:
+##############################################################################################
+Is_Blank = IF(ISBLANK(table[col1]), 1, 0) # return 1 if the cell is blank
+#
+Weekday_Name = FORMAT(table[col1], "dddd") # Monday, Tuesday, etc.
+Weekday_Day = WEEKDAY(table[col1], 1) # weekday number starting with 
+#
+Week_Number = WEEKNUM(table[col1], 1) # get the week number, and specifying the starting day of the week
 
 
 
