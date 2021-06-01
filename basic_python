@@ -192,7 +192,23 @@ print(dict1.values()) # get all the vlaues from the dictionary as a list
 # Packages and Modules:
 #######################################################################################
 # 
+pip install tensorflow
+pip install keras
 
+pip install word2vec
+pip install tfidf
+pip install glove
+pip install collections
+
+pip install nltk
+pip install gensim
+
+pip install re
+pip install itertools
+pip install wordcloud
+
+pip install xgboost
+pip install tqdm # 
 
 
 
