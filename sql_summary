@@ -9,17 +9,15 @@ import pandas as pd
 import pyodbc
 import datetime
 #
-server = 'vinexsqlserver.database.windows.net'
-# database = 'Postgres_SQL_Bridge'
-database = 'vinexdatabase'
-username = 'vinexadmin'
-password = 'Stephen8852'
-driver= '{ODBC Driver 17 for SQL Server}'
+server = ''
+database = ''
+username = ''
+password = ''
 #
+driver= '{ODBC Driver 17 for SQL Server}'
 cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+'; PORT=1433; \
                       DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
-#
 # cursor.execute(sql1)
 # #
 sql0 = """ 
@@ -28,8 +26,6 @@ SELECT * FROM Production_Consumption
 #
 df0 = pd.read_sql_query(sql0, cnxn)
 display(df0)
-#
-
 #####################################################################################################
 # Combine query results
 # UNION (union has 1 more step, a sort, therefore could be cost-expsensive compared to union all) / UNION ALL
