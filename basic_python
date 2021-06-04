@@ -200,10 +200,10 @@ pip install tfidf
 pip install glove
 pip install collections
 
-pip install nltk
+pip install nltk # installed
 pip install gensim
 
-pip install re
+pip install re # installed
 pip install itertools
 pip install wordcloud
 
