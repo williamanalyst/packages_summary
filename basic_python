@@ -45,6 +45,7 @@ list1[1] = 'd' # assign value to an element of a list (replace exisitng value)
 list3 = list1 + list2
 list1.remove('a') # directly remove 1 element from the list, and does not create a new list
 list1.sort(reverse = True) # can only be either all numeric or all string elements
+list1.count('ceratin_string') # count the number of a certain string in a list
 # 
 del list1[2] # remove an element from a list based on the index of that element
 #
