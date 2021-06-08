@@ -1,7 +1,6 @@
 #
-#
 ##########################################################################################
-# 
+# Learning Curve/ Structure:
 ##########################################################################################
 #
 
@@ -16,6 +15,7 @@
 
 
 # Euclidean Distance:
+    # 
 # Cosine Distance:
     # cos(vec1, vec2) = (vec1 * vec3) / (||vec1|| * ||vec2||)
 
@@ -25,11 +25,9 @@
 
 
 ##########################################################################################
-
-
-
-
-
+# Feature Engineering:
+##########################################################################################
+# Feature engineering is the process of creating new features and/or transforming existing features to get the most out of your data.
 
 
 
@@ -42,3 +40,12 @@
 
 
 ##########################################################################################
+# Data Structure:
+##########################################################################################
+# Structured Data:
+# Semi-structured Data:
+    # e.g. .json file
+# Unstructured Data:
+    # e.g. Binary data, data with no delimiters, no indication of rows, etc.
+
+
