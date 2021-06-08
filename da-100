@@ -1173,8 +1173,9 @@ Weekday_Name = FORMAT(table[col1], "dddd") # Monday, Tuesday, etc.
 Weekday_Day = WEEKDAY(table[col1], 1) # weekday number starting with 
 #
 Week_Number = WEEKNUM(table[col1], 1) # get the week number, and specifying the starting day of the week
-
-
+#
+#
+Rank_Sequential = RANKX('table_name', [column_name], , DESC, Skip) # 2nd input = CALCULATION, 3rd input = Value, 5th input could be either Dense or Skip
 
 
 
