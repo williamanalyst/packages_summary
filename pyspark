@@ -94,7 +94,7 @@ display(df_test)
 
 ############################################################################################
 # Add leading zeros in the beginning:
-df = df.withColumn('col1', F.lpad() )
+df = df.withColumn('col1', F.lpad(F.col('column_name'), 4, '0') # add leading zeros and make the columns to be a string with certain length
 
 
 ############################################################################################
