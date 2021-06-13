@@ -26,7 +26,8 @@ df.printSchema() # print out the datatypes of a pyspark dataframe
 #
 ############################################################################################
 # Unique values
-df.select('col1').distinct().count()
+df.distinct().count() # get the number of unique rows
+df.select('col1').distinct().count() # get the number of unique value in a column
 
 ############################################################################################
 # groupBy function
