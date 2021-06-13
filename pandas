@@ -73,7 +73,7 @@ df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'
 
 # groupby by and aggregate by function
 df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', 'column12': 'sum', 'column13': 'nunique', 
-'column14': 'mean', 'column15': 'min', 'column16': 'max'})
+'column14': 'mean', 'column15': 'min', 'column16': 'max'}).sort_values(by = ['column1'], ascending = [False])
 #
 # Get the max value in each column
 max_values = df.max(axis = 1, skimna = False)
@@ -139,6 +139,8 @@ display(df3)
 
 # change integer to string with zero at the beginning (different length)
 df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
+print('Print the value in a percentage {:.2f} format: '.format(x)) # print the value as float, with 2 decimal points
+print('Print the value in a percentage {0:.2%} format: '.format(x)) # print the vlaue as percentage, with 2 decimal points
 
 # calculate the number of days between 2 timedelta objects
 df['year'] = df['col1'].dt.year
