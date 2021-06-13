@@ -69,7 +69,7 @@ df_count_null = df.isnull().sum()
 # filter dataframe with .loc
 df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
 #
-
+df_selected = df.loc[(df['text_column'].str.contains('certain string'))] # returns all the rows with a certain string contained in a given column
 
 # groupby by and aggregate by function
 df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', 'column12': 'sum', 'column13': 'nunique', 
@@ -139,8 +139,9 @@ display(df3)
 
 # change integer to string with zero at the beginning (different length)
 df1['filled'] = df1['col1'].apply(lambda x: '{0:0>8}'.format(x))
-print('Print the value in a percentage {:.2f} format: '.format(x)) # print the value as float, with 2 decimal points
+print('Print the value in a float {:.2f} format: '.format(x)) # print the value as float, with 2 decimal points
 print('Print the value in a percentage {0:.2%} format: '.format(x)) # print the vlaue as percentage, with 2 decimal points
+print('Print the value in a thousand {L,}'.format(x))
 
 # calculate the number of days between 2 timedelta objects
 df['year'] = df['col1'].dt.year
