@@ -53,7 +53,7 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 ############################################################################################
 # Read .csv/ .tsv files
 df = pd.read_csv('sample_file.csv') # comma separated file
-df = pd.read_csv('sample_file2.txt', sep = '\t') # tab separated file
+df = pd.read_csv('sample_file2.txt', sep = '\t', header = None) # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
 # Read .xlsx files
