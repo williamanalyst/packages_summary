@@ -24,6 +24,9 @@ sql0 = """
 SELECT * FROM Production_Consumption
 """
 #
+SELECT name, [modify_date] FROM sys.tables
+WHERE name = 'QB_Qty_Lookup' OR name = 'Pricing_Levelness'
+#
 df0 = pd.read_sql_query(sql0, cnxn)
 display(df0)
 #####################################################################################################
