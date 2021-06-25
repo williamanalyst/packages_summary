@@ -17,6 +17,13 @@ df.head().index # get the index of the head rows
 df_numeric = df.select_dtypes(include = ['int', 'float'])
 #
 ############################################################################################
+# Obtain or Remove Duplicated value:
+############################################################################################
+df.duplicated(subset = ['col1', 'col2'], keep = False) # evaluate whether a row is duplicated, return True/ False as an array
+df.duplicated(subset = ['col1', 'col2'], keep = last) # by using 'last', the last occurrence of each set of duplicated value is set on False, and all others on True
+
+#
+############################################################################################
 # Get the numeric columns
 df_numeric_columns_names = df.select_dtypes(include = 'number').columns
 df_numeric_columns = df.select_dtypes(include = 'number')
