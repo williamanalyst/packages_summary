@@ -19,6 +19,7 @@ df3 = df.filter(F.col['col2'].isNotNull())
 ############################################################################################
 # Print out the Shape of a Dataframe:
 print('Shape of the pyspark dataframe = ({}, {})'.format(p2s_daily.count(), len(p2s_daily.columns))) # returns the shape of the pyspark dataframe
+df.columns # would return the column names of the dataframe, similar to Pandas package
 #
 ############################################################################################
 df.schema # shown as a list
