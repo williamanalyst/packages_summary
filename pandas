@@ -16,6 +16,8 @@ df.head().index # get the index of the head rows
 # Select only numeric columns:
 df_numeric = df.select_dtypes(include = ['int', 'float'])
 #
+df_filled = df.fillna(subset = ['col1'], value = 0)
+#
 ############################################################################################
 # Obtain or Remove Duplicated value:
 ############################################################################################
