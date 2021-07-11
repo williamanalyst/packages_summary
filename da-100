@@ -1176,6 +1176,26 @@ Week_Number = WEEKNUM(table[col1], 1) # get the week number, and specifying the 
 #
 #
 Rank_Sequential = RANKX('table_name', [column_name], , DESC, Skip) # 2nd input = CALCULATION, 3rd input = Value, 5th input could be either Dense or Skip
+#
+# Add Leading Zero for numbers/ IDs:
+ID_8 = FORMAT('col1', "00000000") # can be used with Import, cannot be used in DirectQuery
+ID_8 = Table.AddColumn(dbo_users, "ID_8", each Text.PadStart(Number.ToText([id]), 7, "0")) # Power Query Step, does not work under DirectQuery 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
