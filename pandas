@@ -61,7 +61,7 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 # loading data
 ############################################################################################
 # Read .csv/ .tsv files
-df = pd.read_csv('sample_file.csv') # comma separated file
+df = pd.read_csv('sample_file.csv', dtype = {'col1': 'str'}, parse_dates = ['col2', 'col3']) # comma separated file
 df = pd.read_csv('sample_file2.txt', sep = '\t', header = None) # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
