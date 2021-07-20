@@ -103,9 +103,11 @@ df = df.withColumn('col1', F.lpad(F.col('column_name'), 4, '0') # add leading ze
 # Convert Pandas dataframe into Spark DataFrame
 df_spark = spark.createDataFrame(df_pandas)
 
-
-
-
+############################################################################################
+# Get the current user who is running the script/ Azure Databricks Notebook:
+############################################################################################
+# returns: 
+dbutils.notebook.entry_point.getDbutils().notebook().getContext().tags().apply('user')
 
 
 
