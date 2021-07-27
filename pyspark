@@ -97,7 +97,14 @@ display(df_test)
 ############################################################################################
 # Add leading zeros in the beginning:
 df = df.withColumn('col1', F.lpad(F.col('column_name'), 4, '0') # add leading zeros and make the columns to be a string with certain length
-
+#
+############################################################################################
+# Retrieve the values of a column:
+############################################################################################
+list1 = list(df.select('col1').collect())
+list_keep_part_only = []
+for i in list1:
+    list_keep_part_only.append(i[0])
 
 ############################################################################################
 # Convert Pandas dataframe into Spark DataFrame
