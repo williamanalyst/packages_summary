@@ -56,7 +56,11 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
     df_dummy = pd.get_dummies(df, prefix = '', prefix_sep = '', columns = ['col1', 'col2'], 
                                 drop_first = True) # get k-1 columns of dummy variables
     # 
-    
+############################################################################################
+# Group by and Partition By and Ranking:
+############################################################################################
+df['Rank'] = df.groupby(['col1'])['col2'].rank(method = 'min', ascending = True) # create a rank for column 2 in each group of column 1 in the table
+
 ############################################################################################
 # loading data
 ############################################################################################
