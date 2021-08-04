@@ -80,7 +80,9 @@ df.isnull()
 df_count_null = df.isnull().sum()
 ############################################################################################
 # filter dataframe with .loc
-df_t11 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
+df_t1 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
+df_t2 = df.loc[(df['col1'] == 'Yes'), 'col2'] # returns info in column 2, with the filter, as a Pandas Series.
+df_t3 = df.loc[(df['col2'] == 'No'), ['col3', 'col4']] # returns info in column3, column 4 as a Pandas DataFrame.
 #
 df_selected = df.loc[(df['text_column'].str.contains('certain string'))] # returns all the rows with a certain string contained in a given column
 
