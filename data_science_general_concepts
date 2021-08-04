@@ -55,10 +55,16 @@
 
 
 
-
-#
-#
-
+###############################################################################################################
+# Dataflow (Read Data --> Transform Data --> Write Data)
+###############################################################################################################
+# Step 1: Read Data (files, BigQuery, table, etc.)
+    # Parallel Collection: 
+# Step 2: 
+# Step 3: 
+    # 
+# Note: Power Query script is normally saved in the file, e.g., in excel, or Power BI files.
+    # 
 
 
 
