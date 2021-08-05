@@ -60,6 +60,7 @@ df['col1'] = pd.to_datetime(df['col1']) # change into datetime
 # Group by and Partition By and Ranking:
 ############################################################################################
 df['Rank'] = df.groupby(['col1'])['col2'].rank(method = 'min', ascending = True) # create a rank for column 2 in each group of column 1 in the table
+df['Rank'] = df.groupby(['col1'])['col2'].rank(method = 'dense', ascending = True) # create a rank for column 2 in each group of column 1 in the table
 
 ############################################################################################
 # loading data
