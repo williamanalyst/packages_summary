@@ -43,6 +43,7 @@ df_grouped.show()
 # Date manipulation
 # from pyspark.sql.functions import col, unix_timestamp, to_date
 #
+# Change the data type when creating or updating columns
 df = df.withColumn('new_col', to_date(unix_timestamp(col('date_string'), 'yyyy-MM-dd' HH:MM),cast('timestamp'))) # must nominate the format of the original date_string
 df.withColumn('col2', df['col1'].cast('int'))\
 .withColumn('col3', df.col1.cast('integer'))\
@@ -65,7 +66,9 @@ df.withColumn('col1', F.lit(None).astype('float'))
 df.withColumn('col2', F.when(df['col3'].isNull(), 0)
                        .when(df['col4'].isNotNull(), 1)
                        .otherwise() )
-
+#
+df.withColumn('PPV_Cost', F.col('PPV_Cost').cast('float'))
+#
 ############################################################################################
 # Fill in missing values:
 df.fillna(99999, subset = ['col1'])
