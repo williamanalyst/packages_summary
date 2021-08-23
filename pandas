@@ -127,6 +127,12 @@ df_clean2 = df.dropna(axis = 1)
 df_clean3 = df.
 #
 ############################################################################################
+# Drop Index when selecting cells from DataFrame
+############################################################################################
+cell_value = df.loc[(df['col1'] == 'certain value')]['col2'].reset_index(drop = True)[0] # 
+
+
+############################################################################################
 # .shift() to apply either lag or ahead
 df['col1_lag1'] = df.groupby(['group_col'])['col1'].shift(1)
 df['col1_lead1'] = df.groupby(['group_col'])['col1'].shift(-1)
