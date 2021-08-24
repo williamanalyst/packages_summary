@@ -91,7 +91,7 @@ plt.plot(tpr, fpr) # line chart
 #######################################################################################
 # k-means clustering
 #######################################################################################
-
+from sklearn.cluster import KMeans
 #
 ss = StandardScaler()
 df_scaled = ss.fit_transform(df_selected.astype(float)) # standardise the input variables
