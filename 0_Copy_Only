@@ -1,0 +1,194 @@
+#
+    #
+#
+
+
+
+
+
+
+
+df_base = pd.DataFrame()
+#
+list_web_pg_sg_brand = list(df['WEB_PG_SG_Brand'].unique())
+# print(list_web_pg_sg_brand)
+#
+for i in list_web_pg_sg_brand:
+    df_selected = df.loc[(df['WEB_PG_SG_Brand'] == i)]
+    #
+    matrix = vectorizer.fit_transform(df_selected['PDPT_Cleaned'])
+    df_vector = pd.DataFrame(matrix.toarray())
+    #
+    column_names = vectorizer.get_feature_names()
+    df_vector.columns = column_names
+    #
+    #
+    if df_vector.shape[0] >= 2:
+        dendro = sch.dendrogram(sch.linkage(df_vector, method = 'ward', metric = 'euclidean'))
+        n_cluster_selected = len(set(dendro['color_list'])) - 1
+#         print(i, df_vector.shape[0], n_cluster_selected)
+        #
+        if n_cluster_selected >= 1:
+            hac = AgglomerativeClustering(n_clusters = n_cluster_selected, affinity = 'euclidean', linkage = 'ward')
+            hac.fit(df_vector)
+            labels = hac.labels_
+#             print(labels)
+            #
+            df_selected['Label'] = labels
+            df_selected['Cluster'] = df['WEB_PG_SG_Brand'].astype('str') + '-Cluster' + df_selected['Label'].astype('str')
+            # display(df[['Style_Group', 'PDPT_Cleaned', 'Label']].sort_values(by = 'Label'))
+#             display(df_selected)
+            #
+            df_base = pd.concat([df_base, df_selected], axis = 0)
+    #
+display(df_base.sample(10))
+print(df_base.shape)
+
+
+df_base.groupby(['WEB_PG_SG_Brand']).agg({'Style_Group': 'nunique', 'Part_No': 'count'}).sort_values(by = ['Part_No'], ascending = [False])
+
+
+
+display(df_base[['WEB_PG_SG_Brand', 'Style_Group', 'Cluster', 'PDPT']]\
+        .loc[(df_base['WEB_PG_SG_Brand'] == '2024012-1031-700-FAG')]\
+        .sort_values(by = ['WEB_PG_SG_Brand', 'Style_Group', 'Cluster']))
+
+
+def set_lowercase(text):
+    return text.lower()
+#
+def remove_color(text):
+    result = re.sub('|'.join(list_color), ' ', text) # remove standard color in a given color list
+    result = re.sub(r'(\s)(blk|wht|grn|ong|bl|ylw|prsl|or|gr)(\s)', ' ', result) # remove more colors that are in a different format/ abbreviation
+    result = re.sub(r'(\s)(-|=)(\s)', ' ', result)
+    return result
+#
+def remove_size(text):
+    result = re.sub(r'(\s)(\d?)(\d?)(.?)(\d)(\s)', ' ', text) # any size such as 8, 9, 10, 8.5, 10.5, etc
+    result = re.sub(r'(\s)([1-9]?)(xl|xs|s|m|l)(\s)', ' ', result) # remove sizes such as XL, 2XL, etc.
+#   result = re.sub(r'(\s)(u)([ks])(\d?)(\d)', '', result) # 
+#   result = re.sub(r'(na)', '', result)
+    return result
+#
+df['PDPT_Cleaned'] = df['PDPT'].apply(set_lowercase)
+df['PDPT_Cleaned'] = df['PDPT_Cleaned'].apply(remove_color)
+df['PDPT_Cleaned'] = df['PDPT_Cleaned'].apply(remove_size)
+display(df[['PDPT', 'PDPT_Cleaned']].sample(5))
+
+
+from sklearn.feature_extraction.text import CountVectorizer
+vectorizer = CountVectorizer(stop_words = 'english', lowercase = True)
+#
+matrix = vectorizer.fit_transform(df['PDPT_Cleaned'])
+df_vector = pd.DataFrame(matrix.toarray())
+#
+column_names = vectorizer.get_feature_names()
+df_vector.columns = column_names
+# df_vector['Part_No'] = df['Part_No']
+# df_vector = df_vector[['Part_No'] + [i for i in list(df_vector.columns)]]
+#
+# display(df_vector)
+
+
+
+from sklearn.metrics.pairwise import cosine_similarity
+#
+similarity1 = pd.DataFrame(cosine_similarity(df_vector, df_vector))
+similarity1.columns = df['Part_No']
+#
+similarity1['Part_No'] = list(df['Part_No'])
+# similarity1 = similarity1.reindex(list(df_check2['Part_No']))
+# similarity1.set_index('Part_No', inplace = True)
+similarity1 = similarity1[['Part_No'] + [i for i in list(df['Part_No'])]]
+similarity1
+#
+"""
+If all the similarity are very high within a given group, and the cost are not too different, discard the cluster then.
+"""
+type(similarity1.min())
+print(list(similarity1.min())[1:])
+print(min(list(similarity1.min())[1:]) > 0.6)
+
+
+
+import numpy as np
+
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram
+from sklearn.datasets import load_iris
+from sklearn.cluster import AgglomerativeClustering
+
+
+def plot_dendrogram(model, **kwargs):
+    # Create linkage matrix and then plot the dendrogram
+
+    # create the counts of samples under each node
+    counts = np.zeros(model.children_.shape[0])
+    n_samples = len(model.labels_)
+    for i, merge in enumerate(model.children_):
+        current_count = 0
+        for child_idx in merge:
+            if child_idx < n_samples:
+                current_count += 1  # leaf node
+            else:
+                current_count += counts[child_idx - n_samples]
+        counts[i] = current_count
+
+    linkage_matrix = np.column_stack([model.children_, model.distances_,
+                                      counts]).astype(float)
+
+    # Plot the corresponding dendrogram
+    dendrogram(linkage_matrix, **kwargs)
+    #
+    check1 = dendrogram(linkage_matrix, **kwargs)
+    print(check1)
+    n_cluster_selected = len(set(check1['color_list'])) - 1
+    print(len(set(check1['color_list'])) - 1)
+
+# setting distance_threshold=0 ensures we compute the full tree.
+model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+
+model = model.fit(df_vector)
+print(model.labels_)
+plt.title('Hierarchical Clustering Dendrogram')
+# plot the top three levels of the dendrogram
+plot_dendrogram(model, truncate_mode='level', p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+
+
+
+import scipy.cluster.hierarchy as sch
+#
+dendro = sch.dendrogram(sch.linkage(df_vector, method = 'ward', metric = 'euclidean'))
+# print(len(set(dendro['color_list'])) - 1)
+n_cluster_selected = len(set(dendro['color_list'])) - 1
+print(n_cluster_selected)
+
+
+hac = AgglomerativeClustering(n_clusters = n_cluster_selected, affinity = 'euclidean', linkage = 'ward')
+hac.fit(df_vector)
+#
+labels = hac.labels_
+print(labels)
+
+
+df['Label'] = labels
+df['Cluster'] = df['WEB_PG_SG_Brand'].astype('str') + '-Cluster' + df['Label'].astype('str')
+# display(df[['Style_Group', 'PDPT_Cleaned', 'Label']].sort_values(by = 'Label'))
+pd.set_option('display.expand_frame_repr', False)
+df[['Style_Group', 'PDPT', 'PDPT_Cleaned', 'Label', 'Cluster', 'rd_PPV_Cost', 'TLP']].iloc[:50, :].sort_values(by = 'Style_Group')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
