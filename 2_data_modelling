@@ -25,7 +25,7 @@
 
 
 ################################################################################################
-# Hierarchical Clustering:
+# Hierarchical Clustering: (often visualized using heatmap)
 ################################################################################################
 # Step 1: Find the distance between each data point and its nearest neighbor (and rank them)
 # Step 2: Linking the most nearby neighbors (and form smaller subgroups)
@@ -36,9 +36,8 @@
 
 
 ################################################################################################
-
-
-
+# Heatmap:
+################################################################################################
 
 
 
