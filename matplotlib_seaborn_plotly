@@ -94,6 +94,9 @@ plt.title('')
 #
 ###################################################################################################
 # heatmap 
+###################################################################################################
+# In biology studies, When plotting a heatmap, the columns usually represent different samples, and the rows usually represent different measurements. 
+#
 p3 = sns.heatmap(df, annot = True, linewidth = 0.05, fmt = ',.0f', annot_kws = {'size': 8}, square = False, cmap = 'YlGnBu', cbar = False) # fmt = 'd' for integers
 #
 sns.heatmap(df.corr()) # the correlation matrix visualisation
