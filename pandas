@@ -11,7 +11,6 @@ percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statist
 df.shape # 
 df.dtypes # 
 df['col1'].value_counts() # get the number of occurances of a variable 
-df.head().index # get the index of the head rows
 #
 # Select only numeric columns:
 df_numeric = df.select_dtypes(include = ['int', 'float'])
@@ -176,6 +175,13 @@ df['month'] = df['col2'].dt.month #
 df['weekday'] = df['col3'].dt.dayofweek # obtain the weekday of the date column
 df['days_in_between'] = (df['end_date'] - df['start_date'])/ pd.Timedelta(1, unit = 'd')
 df['months_in_between'] = df['date_column'].dt.to_period('M') - certain_date.to_period('M') # returns the number of months from the starting month/ date
+#
+############################################################################################
+# create Timestamp based on string:
+############################################################################################
+#
+time_regognized1 = pd.to_datetime('2021-08-26 23:59:59', format = '%Y-%m-%d %H:%M:%S')
+time_regognized2 = pd.to_datetime('2021-08-26T23:59:59.000+0000', format = '%Y-%m-%dT%H:%M:%S.000+0000')
 #
 ############################################################################################
 # create a date list (list of dates)
