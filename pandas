@@ -149,7 +149,9 @@ pd.melt(df, id_vars = ['categoty'], value_vars = ['B', 'C'])
 #
 ############################################################################################
 # Calculation based on columns
-df['cal_col'] = df.apply(lambda x: x['col1'] if x['col1'] > x['col2'] else x['col2'], axis = 1)
+df['cal_col'] = df.apply(lambda x: x['col1'] if x['col1'] > x['col3'] 
+                              else x['col2'] if x['col2'] > x['col3']
+                              else x['col3'], axis = 1)
 
 
 # subtract 1 dataframe from another dataframe
