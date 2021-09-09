@@ -22,7 +22,8 @@ df_filled = df.fillna(subset = ['col1'], value = 0)
 ############################################################################################
 df.duplicated(subset = ['col1', 'col2'], keep = False) # evaluate whether a row is duplicated, return True/ False as an array
 df.duplicated(subset = ['col1', 'col2'], keep = last) # by using 'last', the last occurrence of each set of duplicated value is set on False, and all others on True
-
+#
+df = df.drop_duplicates(subset = ['col1'], keep = 'first') # drop duplicated rows and keep the 'first' or 'last' row
 #
 ############################################################################################
 # Get the numeric columns
