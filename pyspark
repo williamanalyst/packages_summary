@@ -7,6 +7,7 @@ import pyspark.sql.functions as F #
 dynamicparts=spark.read.parquet('/mnt/margin_management/daily/DynamicPrices_'+today+'.parquet') # read the .parquet file from Azure Blob
 df = spark.read.parquet('/folder/filename.parquet') # read .parquet files as dataframes in pyspark
 df1 = spark.read.format('csv').options(header = 'True', delimiters = ',', inferSchema = 'False').load('/mnt/folder/file.csv') # 
+df2 = spark.read.format('com.crealytics.spark.excel').option('header', True).load('.xlsx') # load 
 #
 display(dynamicparts.filter(F.col('IPD_Dynamically_Priced')=='Y')) # filter the data table with certain criteria
 df2 = df.filter(F.col('id').isin(['11111', '11112', '11113', '11114']))
