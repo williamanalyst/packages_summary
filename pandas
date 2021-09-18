@@ -10,7 +10,7 @@ df.describe(include = 'all',
 percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statistics for each column
 df.shape # 
 df.dtypes # 
-df['col1'].value_counts() # get the number of occurances of a variable 
+df['col1'].value_counts(normalize = True, ascending = True, bins = 5) # get the number of occurances of a variable 
 #
 # Select only numeric columns:
 df_numeric = df.select_dtypes(include = ['int', 'float'])
