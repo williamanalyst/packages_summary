@@ -1,9 +1,13 @@
 #
 #
 #################################################################################################
-#
+# Sequential Model: the data flows from layer to layer until we obtain the output
 #################################################################################################
-#
+# Step 1: feed data into the neural network
+# Step 2: data flows from layer to layer until we have the output
+# Step 3: once output is generated, calculate the error
+# Step 4: adjust the parameters by subtracting the derivative of the error with respect to the parameter itself
+# Step 5: iterate step 1-4 until the error reaches expectation
     # 
     #
 
