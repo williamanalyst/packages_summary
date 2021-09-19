@@ -5,6 +5,10 @@
 #################################################################################################
 # Step 1: feed data into the neural network
 # Step 2: data flows from layer to layer until we have the output
+    # e.g. fully connected layer:
+    # e.g. convolutional layer: 
+    # e.g. maxpooling layer: 
+    # e.g. dropout layer:
 # Step 3: once output is generated, calculate the error
 # Step 4: adjust the parameters by subtracting the derivative of the error with respect to the parameter itself
 # Step 5: iterate step 1-4 until the error reaches expectation
@@ -23,15 +27,34 @@
 
 #
 #################################################################################################
-#
+# Forward Propagation: the output of 1 layer is the input of the next layer
 #################################################################################################
+X = [x1, x2, x3, ... , xn]
+Y = [y1, y2, y3, ... , yn]
+
+Weight = [w11, w12, w13, ... , w1j
+          w21, w22, w23, ... , w2j
+          w31, w32, w33, ... , w3j
+          ... ...
+          wi1, wi2, wi3, ... , wij]
+
+Bias = [b1, b2, b3, ... , bj]
+
+Y = X * Weight * Bias
+
+#################################################################################################
+# Back Propagation: to adjust the parameters in order to minimize the error
+#################################################################################################
+deriv_Error/ deriv_Weight = [deriv_Error/ deriv_w11, deriv_Error/ deriv_w12, deriv_Error/ deriv_w13, ... , deriv_Error/ deriv_w1j
+                             deriv_Error/ deriv_w21, deriv_Error/ deriv_w22, deriv_Error/ deriv_w23, ... , deriv_Error/ deriv_w2j
+                             ... ...
+                             deriv_Error/ deriv_wi1, deriv_Error/ deriv_wi2, deriv_Error/ deriv_wi3, ... , deriv_Error/ deriv_wij]
 
 
-
-
-
-
-
+#################################################################################################
+# Gradient Descent: weight = weight - learning_rate * derivative_of_error_with_respect_to_error
+#################################################################################################
+# 
 
 
 
