@@ -1,0 +1,44 @@
+// 1. Clear commenting and documentation
+    // Avoid obvious or redundant comments
+
+// 2. Consistent Identation
+    // Also avoid too long script in 1 row (limit youe line length)
+
+// 3. Code Grouping
+    // Code that serve the same purpose or belonging to the same procedure should be arranged in the same block
+
+// 4. Consistent Naming Scheme
+    // Option 1: camelCase
+    // Option 2: under_score
+        // e.g. capital letter for SQL commands
+        // e.g. use meaningful names for variables and functions so that the purpose can be clearly understood
+    
+// 5. Do not write repetitive code (aka. stay DEY --> Don't Repeat Yourself)
+    // e.g. define functions for procedures that needs to be run multiple times
+    // e.g. 
+    
+// 6. Avoid deep nesting
+    //
+    
+// 7. File and folder organization
+
+// 8. Separate code and data
+
+// 9. avoid using specific numeric value or hard-coding (use defined variable instead and show why the value is selected) --> serve for portability
+    // e.g. other people may not understand why a certain value is selected, and why there is a certain value
+
+// 10. Test your code (on different scenario)
+    // e.g. write test cases, and test with 0, empty list or string, null, etc.
+
+// 11. Scalibility --> alow new methods to be added
+
+
+
+
+
+
+
+
+
+
+
