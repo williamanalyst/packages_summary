@@ -1,10 +1,24 @@
 # Data Modelling:
-################################################################################################
-#
-################################################################################################
-#
-    # 
 
+################################################################################################
+# Machine Learning
+################################################################################################
+# Machine Learning --> use algorithms to find patterns and generate models without human intenvision
+
+################################################################################################
+# Supervised Machine Learning
+################################################################################################
+# Supervised Machine Learning --> target variables and input variables are known --> algorithm generates a model that establish relationship between input and target
+    # e.g. decision tree
+    
+#
+################################################################################################
+# Unsupervised Machine Learning
+################################################################################################
+# Unsupervised Machine Learning --> identify 1 or mre homogeneous segments/ subsets of the data based on:
+    # 1. the degree of similarity among observations/ inputs
+    # 2. how many subsets there should be
+    # 3. how common or rare the subsets are --> 
 
 ################################################################################################
 # Clustering Analysis: (e.g. for customer segmentation)
@@ -32,7 +46,7 @@
     # The number of subgroups could be selected by using the demdrogram
         # Dendrogram is a tree-graph that is commonly used for visualizing taxonomies, lineage and relatedness.
 
-
+# 
 
 
 ################################################################################################
@@ -41,8 +55,11 @@
 
 
 
-
-
+################################################################################################
+# Reinforcement Machine Learning
+################################################################################################
+# Reinforcement Machine Learning --> reward for correct & punish for error --> improving with more and more tests/ trials
+    # 
 
 
 
@@ -50,15 +67,20 @@
 
 
 ################################################################################################
-#
+# Combine Cluster Analysis and Decision Trees together:
 ################################################################################################
+# 1. 
+# 2. 
+# 3. 
+# 4. categorical data/ variables are usually easier to obtain --> e.g. gender, zip code, education, number of dependents, etc.
+
+# 
 
 
-
-
-
-
-
+################################################################################################
+# BIRCH/ 2-step model:
+################################################################################################
+# e.g. recommend the best number of clusters (default is BIC criterion)
 
 
 
