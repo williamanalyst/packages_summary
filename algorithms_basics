@@ -43,6 +43,9 @@
                     # e.g. the maximum running time is a guarantee to the user, and protect user-experience (in terms of potential waiting time)
             # 2. worst case analysis
                 # --> Time(n) = maximum time needed for the input size of n
+                    # e.g. for an insertion sort, if the original input is reversely sorted, then the process has to be run in every iteration, and cost more time.
+                    # e.g. in a worst scenario, computer has to make (1 + 2 + 3 + ... + n) transactions/ operations
+                        # therefore, Time(n) = Sigma(theta(j)) with j in [2, n] = theta(n^2) --> because 1 + 2 + 3 + ... + n = n(n-1)/2
             # 3. average case analysis
                 # --> Time(n) = expected time over all inputs of size n 
                     # --> weighted average time needed for different scenario
@@ -54,13 +57,29 @@
             # --> depends on computer
                 # --> relative speed (on same machine)
                 # --> absolute apeed (on different machine)
-            # 
-            # 
-#
+        
+        # asymptotic analys --> ignore machine-dependent constants, and focus on the "growth of running time"
+            # e.g. 
+            # asymptotoc notation 
+                # --> theta notation --> drop low-order terms, ignore leading constants
+                    # e.g. 3n^3 - 90n^2 - 5n + 6000 --> theta(n^3)
+                        # when n --> infinity, a theta(n^2) algorithm always beat theta(n^3), regardless of other terms/ parameters, even if run on a slower computer
+            
+            # e.g. for insertion sorting algorithm
+                # when n is small, theta(n^2) is relative small, and the algorithm is ok (not perfect still).
+                # when n is large, theta(n^2) becomes much larger, and is therefore time consuming to run.
 
+# Example 2: Merge Sort 
+    # Step 1: if n = 1, done
+    # Step 2: recursively sort Array[1, 2, 3, ... n/2] and Array[n/2 + 1, n/2 + 2, n/2 + 3, ... n]
+    # Step 3: merge the 2 sorted array
 
+    # --> T(n) = theta(1) if n == 1, else 2 * theta(n/2) + theta(n) if n > 1
 
+# Recursion Tree":
+    # T(n) = 
 
+    # e.g. 
 
 ###############################################################################################################
 # Part 2: Design an algorithm:
