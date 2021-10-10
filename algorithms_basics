@@ -103,10 +103,28 @@
     # e.g. f(n) = n^3 + O(n^2)
     # 
 
+
+# The Master Method: 
+
+
+
 ###############################################################################################################
 # Part 2: Design an algorithm:
 ##############################################################################################################
 #
+# 4 major algorithm design techniques:
+    #  
+# Divide and Conquer --> divide a land/ power structure into separated/ conflicted segments, so that they would fight against each other,
+    # Step 1: divide a major problem into sub-problems, so that the smaller becomes easier to calculate, 
+        # instead of computing 1 million observation, calculate 1 thousand observation at a time instead
+            # e.g. merge sort --> divide --> solve --> merge
+    # Step 2: 
+    # Step 3: 
+
+
+# Binary Search:
+    # 
+
 
 
 ###############################################################################################################
