@@ -3,6 +3,8 @@
 # Prerequisite:
     # Math for Computer Science: 
     # Discrete Machematics:
+        # deals with discrete or finite sets of selements rather than continuous of infinite number of observations
+            # e.g. we simulate a circle with limited number of points rather than trying to print all points
     # Probablity Theory:
 # 
 ##############################################################################################################
@@ -21,6 +23,7 @@
     # Resource --> communication (e.g. 4G, 5G, Cable, radio transmission, etc), memory (RAM, disk memory, etc.)
 
 # 
+##############################################################################################################
 # Example 1: Sorting of numbers
     # e.g. input --> {a1, a2, a3, ... an}
         # output --> permutation/ rearrangement of {a1', a2', a3', ... an'}
@@ -69,6 +72,7 @@
                 # when n is small, theta(n^2) is relative small, and the algorithm is ok (not perfect still).
                 # when n is large, theta(n^2) becomes much larger, and is therefore time consuming to run.
 
+##############################################################################################################
 # Example 2: Merge Sort 
     # Step 1: if n = 1, done
     # Step 2: recursively sort Array[1, 2, 3, ... n/2] and Array[n/2 + 1, n/2 + 2, n/2 + 3, ... n]
@@ -78,10 +82,26 @@
 
     # --> T(n) = theta(1) if n == 1, else 2 * theta(n/2) + compare(n) if n > 1
 
-# Recursion Tree":
+# Recursion Tree:
     # T(n) = 
+        # 
+        # 
 
     # e.g. 
+
+##############################################################################################################
+# Big O Notation
+    # f(n) = O(g(n)) --> there are some suitable constants (constant > 0, n0 > 0) such that --> 0 <= f(n) <= constant * g(n)
+        # f(n) is bounded up by g(n)
+        # for all n >= n0 (for all n that are large enough)
+            # e.g. 2n^2 = O(n^3) -->   
+            # More precisely --> 2n^2 belongs to O(n^3), which is a set of functions
+        # 
+
+
+# Macro Convention --> a set in a formula represents an anonymous function in that set.
+    # e.g. f(n) = n^3 + O(n^2)
+    # 
 
 ###############################################################################################################
 # Part 2: Design an algorithm:
