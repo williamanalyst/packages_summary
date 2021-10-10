@@ -72,9 +72,11 @@
 # Example 2: Merge Sort 
     # Step 1: if n = 1, done
     # Step 2: recursively sort Array[1, 2, 3, ... n/2] and Array[n/2 + 1, n/2 + 2, n/2 + 3, ... n]
+        # 
     # Step 3: merge the 2 sorted array
+        # 
 
-    # --> T(n) = theta(1) if n == 1, else 2 * theta(n/2) + theta(n) if n > 1
+    # --> T(n) = theta(1) if n == 1, else 2 * theta(n/2) + compare(n) if n > 1
 
 # Recursion Tree":
     # T(n) = 
