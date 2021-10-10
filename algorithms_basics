@@ -1,17 +1,129 @@
-# Introduction to Algorithms:
+# Introduction to Algorithms: (算法导论 Singaport-MIT Course)
+
+# Prerequisite:
     # Math for Computer Science: 
     # Discrete Machematics:
     # Probablity Theory:
-#
-##############################################################################################################
 # 
 ##############################################################################################################
-#  
-    #
-    #
+# Part 1: Analysis of Algormthms
+##############################################################################################################
+# Analysis of Algormthms --> theoretical studies of computer program performances and resources usage
+    # Particularly --> performance --> efficiency
+        # Performence measures the line between feasible and infeasible
+            # e.g. if a requirement has to be real-time, then high computing time would mean it's infeasible
+        # Algorithm give people a language for talking about program behaviour
+            # e.g. algorithms provide people a clean way to think about things, and is generally adopted.
+        # Performance is like currency, even though it's not the fundation, but it's a necessity for user-friendliness, functionality to be possible.
+            # e.g. even if water is more important than currency, but you need currency to exchange for water
+            # e.g. even if Jave is generally run 60% slower than C, but because there are some functionality that cannot be achieved by C,
+                # people have to sacrifice the performance for functionality, and performance is like the currency here, and you have to save enough to pay for the cost.
+    # Resource --> communication (e.g. 4G, 5G, Cable, radio transmission, etc), memory (RAM, disk memory, etc.)
+
+# 
+# Example 1: Sorting of numbers
+    # e.g. input --> {a1, a2, a3, ... an}
+        # output --> permutation/ rearrangement of {a1', a2', a3', ... an'}
+    
+    # Option 1: insertion sort
+        # e.g. array1 = {8, 2, 4, 9, 1, 6} 
+            #       --> {2, 8, 4, 9, 1, 6}
+            #       --> {2, 4, 8, 9, 1, 6}
+            #       --> {2, 4, 8, 9, 1, 6}
+            #       --> {1, 2, 4, 8, 9, 6}
+            #       --> {1, 2, 4, 6 ,8, 9}
+        
+        # Analysis:
+            # 1. running time 
+                # --> depending on the input
+                    # e.g. if the input is already in a good sequence, 
+                # --> depending on input size (we could parameter input size for evaluating time needed)
+                    # e.g. only 6 elements, on 6 * 10^6 elements
+                # --> we need to evaluate the maximum runtime for the calculation/ algorithm
+                    # e.g. the maximum running time is a guarantee to the user, and protect user-experience (in terms of potential waiting time)
+            # 2. worst case analysis
+                # --> Time(n) = maximum time needed for the input size of n
+            # 3. average case analysis
+                # --> Time(n) = expected time over all inputs of size n 
+                    # --> weighted average time needed for different scenario
+                    # --> basic assumption is a uniform disctibution would be observed
+            # 4. best case analysis
+                # --> it might be misleading/ cheating
+
+        # What is insertion sort's worse time?
+            # --> depends on computer
+                # --> relative speed (on same machine)
+                # --> absolute apeed (on different machine)
+            # 
+            # 
 #
+
+
+
+
+
+###############################################################################################################
+# Part 2: Design an algorithm:
+##############################################################################################################
+#
+
+
+###############################################################################################################
+# Part 3: Technique to analyze Algorithms:
+##############################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+###############################################################################################################
+#
+##############################################################################################################
+#
+
+
+
+
+
+# 
+###############################################################################################################
+# Questions:
+##############################################################################################################
+# Q1: In programming, what is more important than performance?
+    # Answer: correctness, simplicity, maintainability, cost(development time), 
+        # stability, features (functionality), 
+        # modularity(only change part of the code, rather than the whole code)，
+        # security, scability, 
+        # user-friendliness, etc.
+    
+# Q2: 
     # 
 
+# Q3: 
 
 
 
@@ -19,38 +131,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-#
-###############################################################################################################
-#
-##############################################################################################################
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-###############################################################################################################
-#
-##############################################################################################################
-#
 
 
 
