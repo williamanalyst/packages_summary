@@ -17,8 +17,18 @@
 
 
 
-
-
+# Z distribution --> X_bar ~ Normal_Distribution(miu, sigma^2/ n)
+    # or Z = (x_bar - miu)/ (sigma/ n^0.5) ~ Normal_Distribution(0, 1) 
+    # Based on the central limit theorem, when the number of observations in the sample is big enough (n > 30), the distribution of the sample average would 
+        # follow a normal distribution
+    
+    # In the real world, it's very hard to get the sigma of the population, therefore, we normally use the sample standard deviation to represent population sigma.
+    
+    # t distribution --> t = (x_bar - miu)/ (standard_deviasion/ n^0.5) ~ t(n-1)
+        # degree of freedom = n - 1
+        
+        # e.g. x1 = 1, x2 = 2, x3 = 3, if you know x_bar, you would know x3, so that degree of freedom = n - 1
+            # 
 
 
 
