@@ -9,6 +9,17 @@
     # Machine learning algrithm depends heavily on the extraction of knowledge from the past data,
         # And build a set of calculation based on the patterns found in that particular data.
     # Reinforcement Learning rewards good behaviour and penalize bad bahaviour
+        # Agent --> the learner 
+            # e.g. the robot that is learning to drive
+        # State --> 
+            # 
+        # Environment --> 
+            # 
+        # Action --> agent's choice of action in a state
+        # Reward --> positive reward for correct action, negative reward for wrong action
+            # e.g. 
+        # Policy -->
+        # Goal --> the mission/ target 
 #
 # Linear, Logictic, Tree Model, NN, LSTM
 #
