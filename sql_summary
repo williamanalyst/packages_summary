@@ -537,6 +537,13 @@ WHERE table_name = ''
 
 # SQL Processing Order
 -- FROM > ( ON > JOIN ) > WHERE > ( GROUP BY > HAVING ) > SELECT > ( DISTINCT ) > ORDER > ( TOP )
+# 1. from
+# 2. where
+# 3. group by
+# 4. having
+# 5. select
+# 6. order by
+# 7. limit
 -- 
 -- HAVING (use for already grouped results)
 --
@@ -545,6 +552,8 @@ WHERE table_name = ''
 -- Ctrl + K & Ctrl + C (make a line to be a comment)
 -- Ctrl + K & Ctrl + U (make a line to be a command)
 -- Ctrl + E (execute only sections selected)
+-- Ctrl + Shift + Home (select upwards)
+-- Ctrl + Shift + End (select downwards)
 
 # schema
 .[dbo].[table_name] -- [dbo] = 'Database Owner', which is the defaule schema created in every database
