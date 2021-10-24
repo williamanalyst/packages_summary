@@ -1,4 +1,9 @@
 # Pandas Package Common Usage:
+    
+    # Pandas is like a 2-dimension container of data, for easier saving and loading of data.
+        # when dimension = 1 --> array
+        # when dimension = 2 --> dataframe
+        
 ############################################################################################
 # Basic Settings of Pandas:
 ############################################################################################
@@ -79,6 +84,15 @@ df.rename(columns = {'col1': 'renamed1', 'col2': 'renamed2'}, inplace = True)
 #
 df.isnull() 
 df_count_null = df.isnull().sum()
+
+#
+df.sum(axis = 1)
+
+
+############################################################################################
+df.insert(row_index, column_index, value) # 
+
+
 ############################################################################################
 # filter dataframe with .loc
 df_t1 = df.loc[(df['column1'] >= 1) & (df['column2'] == 'text') | (df['column3'] < 5)]
@@ -123,7 +137,7 @@ df_concat = pd.concat([df1, df2], ignore_index = True) #
 # df = df.drop(['col1', 'col2', 'col3'], axis = 1)
 #
 df_clean1 = df.dropna()
-df_clean2 = df.dropna(axis = 1)
+df_clean2 = df.dropna(axis = 1, how = 'any')
 df_clean3 = df.
 #
 ############################################################################################
