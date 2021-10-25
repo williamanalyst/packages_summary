@@ -1,9 +1,13 @@
 #
 #
 ####################################################################################################################
-#
+# Monte Carlo Method
 ####################################################################################################################
-#
+# Type 1: the problem is intrincially randomized, and we are able to simulate the random process with the computer.
+    # e.g. in physics, certain particles would travel randomly, and it's nearly impossible to estimate the route of the particle, 
+        # in which case a monte carlo simulation would be a good option. 
+# Type 2: the problem could be converted to a measurement for a certain random distribution.
+    # e.g. the probablity of a random incident, the expected value of a random variable, etc.
     #
 #
     #
