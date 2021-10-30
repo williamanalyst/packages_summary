@@ -48,9 +48,10 @@ git diff -r HEAD data/northern.csv
 
 #
 #########################################################################################################
-#
+# Git
 #########################################################################################################
-
+# Git is a software that keeps track of changes that you have made to files and directories.
+	# And it's especially good in keep track of text changes
 
 
 
