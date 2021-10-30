@@ -1,5 +1,5 @@
 # Version control system: a tool that manages changes made to the files and directories in a project.
-	# Nothing that is saved to Git is ever lost, so use can always go back to see which results were generated
+# Nothing that is saved to Git is ever lost, so use can always go back to see which results were generated
 # Git automatically notifies you when your work conflicts with someone else's, so it's harder (but not impossible) to accidentally overweite work
 # Git can synchronize work done by different people on different machines, so it scales as your team does
 # Version control isn't just for softwares: books, papers, parameter sets, 
@@ -64,7 +64,7 @@ git diff -r HEAD data/northern.csv
 
 
 #
-	#
+#
 
 
 
@@ -81,7 +81,7 @@ git diff -r HEAD data/northern.csv
 
 
 #
-    #
+#
 
 
 
