@@ -446,8 +446,16 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 ########################################################################################
 # Deep Q Learning: (Reinforcement Learning)
 ########################################################################################
-
-#
+# Q function
+    # takes any given state of the environment --> deep Q learning neural network --> Q-value for the possiblity of each action that the agent can take
+# Q value --> expected reward from all future stats from that environment, given that we take that action
     # 
+
+
+
+
+
+
+
 
 
