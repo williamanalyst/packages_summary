@@ -476,7 +476,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
         # e.g. Azure ML Studio + Azure Kubernetes (on top of the clusters)
         # need to track model results and compare between the different models
     # --> Model Validation 
-    # --> Model Deployment 
+    # --> Model Deployment (e.g. Kubernetes + Istio)
         # deploy the new version of the model 
         # run tests during the updating of your production models
         # use Canary deployment techniques
@@ -484,6 +484,13 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
             # rolling updates solowly using validation in each step
     # --> Predictions 
     # --> Monitoring 
+        # e.g. use Prometheus, Kubernetes and alert manager
+        # monitor the data input
+            # e.g. search for unexpected data
+            # e.g. measure the correlation of production data to train data
+        # monitor the prediction
+            # e.g. model confidence, model bias, etc.
+        # Add validation on the fly
     # --> Cleaning and Labelling 
     # --> Back to feed data
 
@@ -493,7 +500,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 # 4. incremental development of knowledge and skills
 
 # Why do we need continual learning? --> data is changing (e.g. data drifting)
-#
+
 ########################################################################################
 # Catastrophic Forgetting: loss of old knowledge (e.g. from the 1st task of a series of tasks) is sudden, rather than gradual
     # e.g. when the model is trying to learn the 2nd step and try to update the model, learning/ parameter tuning from the 1st step is suddenly lost
