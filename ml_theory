@@ -452,6 +452,43 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
     # 
 
 
+########################################################################################
+# Deep Learning:
+########################################################################################
+#
+    # 
+
+
+########################################################################################
+# Continual Learning: (aka. lifelong learning, incremental learning, etc.)
+########################################################################################
+# Continual Learning --> algorithm that allows to keep learning new tasks online
+    # by adding new knowledge to the model without sacrificing the previously acquired ones
+    # helps to learn continually from a stream of data
+    # helps to update the model in production to maintain performance and relevancy
+        # e.g. retrain the model with the new data
+    # helps to learn multiple tasks sequentially --> and keep learning on each tasks in the sequence --> 
+    
+# Structure/ Pipeline for Continual Learning:
+    # Data --> Data Validation --> AutoML --> Model Validation --> Model Deployment --> Predictions --> Monitoring --> Cleaning and Labelling --> Back to feed data
+
+# 1. data become available only during time
+# 2. no access to previously encountered data --> 
+# 3. constant computaiton and memory resources --> 
+# 4. incremental development of knowledge and skills
+
+########################################################################################
+# Catastrophic Forgetting: loss of old knowledge (e.g. from the 1st task of a series of tasks) is sudden, rather than gradual
+    # e.g. when the model is trying to learn the 2nd step and try to update the model, learning/ parameter tuning from the 1st step is suddenly lost
+    # This is a "fundamental problem" (which can hardly be eliminated) that is coming from the local nature of the gradient=based optimization
+        # e.g. 
+
+
+
+
+
+
+
 
 
 
