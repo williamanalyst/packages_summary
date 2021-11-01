@@ -462,8 +462,9 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 ########################################################################################
 # Continual Learning: (aka. lifelong learning, incremental learning, etc.) 
 ########################################################################################
-# Continual Learning --> algorithm that allows to keep learning new tasks online
+# Continual Learning --> algorithm that allows to keep learning "new tasks" online
     # by adding new knowledge to the model without sacrificing the previously acquired ones
+        # e.g. currently the neural network is trained to recognize design A of an item, and now it's needed to recognise design B of the same item (which looks differently)
     # helps to learn continually from a stream of data
     # helps to update the model in production to maintain performance and relevancy
         # e.g. retrain the model with the new data
@@ -505,7 +506,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 # 4. incremental development of knowledge and skills
 
 # Why do we need continual learning? --> data is changing (e.g. data drifting)
-# 
+# How do we e
 
 ########################################################################################
 # Catastrophic Forgetting: loss of old knowledge (e.g. from the 1st task of a series of tasks) is sudden, rather than gradual
