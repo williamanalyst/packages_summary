@@ -490,8 +490,13 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
             # e.g. measure the correlation of production data to train data
         # monitor the prediction
             # e.g. model confidence, model bias, etc.
-        # Add validation on the fly
+        # Add validation on the fly 
     # --> Cleaning and Labelling 
+    # --> Trigger Retraining of the model
+        # Periodically
+        # With new data coming in
+        # model decay/ model bias/ alerts in production
+            # make sure that alrets are tracked and monitored
     # --> Back to feed data
 
 # 1. data become available only during time
@@ -500,6 +505,7 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 # 4. incremental development of knowledge and skills
 
 # Why do we need continual learning? --> data is changing (e.g. data drifting)
+# 
 
 ########################################################################################
 # Catastrophic Forgetting: loss of old knowledge (e.g. from the 1st task of a series of tasks) is sudden, rather than gradual
