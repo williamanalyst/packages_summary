@@ -3,9 +3,11 @@
 #
 #############################################################################
 \w --> any word, such as "a", "a", etc.
+\w? --> 0 or 1 character
 \W --> any non words, such as space, punctuation(@, !, #, etc.)
     #
-
+\s --> 1 space
+\s? --> 0 or 1 space
 
 #############################################################################
 # Get lowercase() result for string
@@ -17,7 +19,7 @@ print(string_lower)
 import re
 march1 = bool( re.match('.*[Mm]anual'.*.txt, string1.lower()) )
 #
-
+result = re.sub(r'(\s)(abc|bcs|certain_string)(\s), ' ', text) # replace 
 
 #############################################################################
 # 
