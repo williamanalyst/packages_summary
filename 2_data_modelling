@@ -38,6 +38,7 @@
         # Group observations based on how closely (high density) they are related to each other.
             # Step 1: select a random point
             # Step 2: get a number of observations into a group if the 
+        # DBSCAN: (Density Based Spatial Clustering of Application with Noise)
     # Distribution Clustering: (often suffers from overfitting)
         # Possibility that each observation would belong to the different clusters.
     # Connectivity Clustering: (e.g. hierarchical clustering)
