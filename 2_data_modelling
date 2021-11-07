@@ -23,20 +23,27 @@
 ################################################################################################
 # Clustering Analysis: (e.g. for customer segmentation)
 ################################################################################################
-# Centroid Clustering:
-    # Choose the number of clusters we are expecting. (e.g. K-Means)
-        # e.g. cat/ dog --> 2 centroids
-        # calculate how far away each observation is from the centroids selected.
-        # recalculate the centroids until the classification is stable
-# Density Clustering:
-    # Group observations based on how closely (high density) they are related to each other.
-        # Step 1: select a random point
-        # Step 2: get a number of observations into a group if the 
-# Distribution Clustering:
-    # Possibility that each observation would belong to the different clusters.
-# Connectivity Clustering: 
+# There are 2 broad types of clustering: hard clustering & soft clustering
+    # Hard Clustering: each point must be assigned to 1 of the clusters
+    # Soft Clustering: instead of putting each point into a separate cluster, a probablity of that data to be assigined to a cluster is assigned
 
+# Types of Clustering Algorithms:
 
+    # Centroid Clustering:
+        # Choose the number of clusters we are expecting. (e.g. K-Means)
+            # e.g. cat/ dog --> 2 centroids
+            # calculate how far away each observation is from the centroids selected.
+            # recalculate the centroids until the classification is stable
+    # Density Clustering: (e.g. DBSCAN, OPTICS)
+        # Group observations based on how closely (high density) they are related to each other.
+            # Step 1: select a random point
+            # Step 2: get a number of observations into a group if the 
+    # Distribution Clustering: (often suffers from overfitting)
+        # Possibility that each observation would belong to the different clusters.
+    # Connectivity Clustering: (e.g. hierarchical clustering)
+        # Based on the notion that data points closer in data space exhibit more similirity to each other.
+        # Method 1: start with clustering all data points into separate clusters and then aggregate them with distance decreases
+        # Method 2: each data point is treated as a group, and partitioned as the distance/ threshold increases
 
 ################################################################################################
 # Hierarchical Clustering: (often visualized using heatmap)
