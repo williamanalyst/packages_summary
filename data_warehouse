@@ -1,18 +1,32 @@
 # Data Warehouse
-# 
+    # Why Cloud Data Warehouse?
+        # 1. Big data requires ever-growing infrastructure.
+        # 2. Independent storage and compute (so that potentially you do not need to pay for both cloud storage and on-premise costs twice)
+        # 3. Scale up and down when needed (as well as performance level)
+        # 4. Easy deployment
+        # 5. Continuous Backups
+        # 6. Fault tolerance
+        # 7. Seamless disaster recovery
+        # 8. Security
+        # 9. No infrastructure
+        # 10. automated patching and upgrades 
 ##########################################################################################################################
 # Azure Synapse
 ##########################################################################################################################
-#
+# Azure Synapse Analytics is a massive parallel-processing data warehouse which is built on the foundation of SQL Server.
+    # 
     #
-#
     #
 
 
 
 
 
-
+Azure SQL Data Warehouse Architecture:
+    # 1. Control Nodes
+    # 2. Compute Nodes
+    # 3. Storage
+    # 4. Data movement service
 
 
 
