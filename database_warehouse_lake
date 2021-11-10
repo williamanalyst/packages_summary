@@ -1,0 +1,101 @@
+# Data Warehouse (e.g. SQL Server could also be used as a data warehouse)
+    # A data warehouse is a "special type of database" that is primarily designed so that you could do analysis and reporting easier.
+        # e.g. you could get a monthly sales table in a datawarehouse rather than keeping all the sales records, as what is saved in the database.
+            # Question: why do we not directly get the tables (such as monthly sales table) in the database, rather than using a data warehouse?
+            # Answer: e.g. you may change the structure of the database, such as deleting a customer, by doing so, it might impact the sales relevant to that customer,
+                # and further impact the monthly sales records.
+                # A data warehouse, on the other hand, could be used to keep all the historical records, (e.g. take all the data from the database daily/ monthly),
+                # so that it will have a more reliable record, and the historical records could be checked as well.
+
+Database (e.g. SQL Server, Oracle, PostgreSQL, MS Access, etc.)
+
+Data Lake (semi-structured) (e.g. Amazon Web Service, Azure, Google Cloud BigQuery)
+    # A data lake is a place that you could keep different types of data, not limited to tables, but videos, audio, image, etc.
+##########################################################################################################################
+# Azure Synapse
+##########################################################################################################################
+#
+# Why Cloud Data Warehouse?
+    # 1. Big data requires ever-growing infrastructure.
+    # 2. Independent storage and compute (so that potentially you do not need to pay for both cloud storage and on-premise costs twice)
+    # 3. Scale up and down when needed (as well as performance level)
+    # 4. Easy deployment
+    # 5. Continuous Backups
+    # 6. Fault tolerance
+    # 7. Seamless disaster recovery
+    # 8. Security
+    # 9. No infrastructure
+    # 10. automated patching and upgrades 
+##########################################################################################################################
+# Azure Synapse
+##########################################################################################################################
+# Azure Synapse Analytics is a massive parallel-processing data warehouse which is built on the foundation of SQL Server.
+    # 
+    #
+    #
+
+
+
+
+
+Azure SQL Data Warehouse Architecture:
+    # 1. Control Nodes
+    # 2. Compute Nodes
+    # 3. Storage
+    # 4. Data movement service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################################################################################
+#
+##########################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################################################################################
+#
+##########################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
