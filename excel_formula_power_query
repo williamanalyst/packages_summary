@@ -32,9 +32,13 @@
 
 
 
-
-
-
+#
+############################################################################################
+# Power Query
+############################################################################################
+# Power query is a data connection technology that lets you import and clean data.
+    # e.g. having a clean data means further calculation/ formula would be more accurate and look better
+        # e.g. wrong location of data may yield wrong chart, wrong calculation for metrics, etc.
 
 
 
