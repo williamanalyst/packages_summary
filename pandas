@@ -92,6 +92,13 @@ df.sum(axis = 1)
 ############################################################################################
 df.insert(row_index, column_index, value) # 
 
+# 
+############################################################################################
+# Createa a Pandas Series:
+series1 = pd.Series(['New_York', 'Lisbon', 'Paris', 'California'])
+
+# check whether elements in a series contains certain value:
+check1 = series1.str.contains(pat = 'is') # if the element in the pandas series contains 'is' as a part of the string, returns True, otherwise retuens False
 
 ############################################################################################
 # filter dataframe with .loc
