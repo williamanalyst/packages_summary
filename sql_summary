@@ -633,9 +633,14 @@ from google.cloud import bigquery
 
 
 
-
-
-
+#####################################################################################################
+# Incremental Data Load
+#####################################################################################################
+# incremental data load can be preformed in 1 of the 3 ways:
+	# 1. insert only --> destination will be appended with incoming records even if they are pre-existing
+	# 2. Upsert records --> new records will be inserted and modified records will be updated in the destination
+	# 3. upsert and delete records --> deleting records is a very rare scenario, whereas a valid need
+		# in this case, new records will be inserted, modified records will be updated and missing data will be deleted in the destination.
 
 
 
