@@ -588,6 +588,32 @@ CREATE TABLE table_name(
 col1 int,
 col2 varchar(255)
 )
+
+--
+USE db_william
+CREATE TABLE wine_region(
+id INT PRIMARY KEY,
+country INT,
+style VARCHAR(50),
+color VARCHAR(50),
+price float
+)
+;
+--
+
+INSERT INTO wine_region -- if not inserting into all the columns, need to specify each column names
+VALUES
+(1, 2, 'red', 'red1', 1.10),
+(2, 2, 'red', 'red1', 1.25),
+(3, 2, 'white', 'white1', 1.05),
+(4, 2, 'white', 'white2', 0.95),
+(5, 2, 'red', 'red2', 1.55),
+(6, 1, 'red', 'red2', 1.45),
+(7, 1, 'red', 'red3', 1.35),
+(8, 1, 'rose', 'rose1', 1.20),
+(9, 3, 'rose', 'rose1', 1.25),
+(10, 3, 'rose', 'rose2', 1.10)
+
 #####################################################################################################
 # Common table expression (cte)
 #####################################################################################################
