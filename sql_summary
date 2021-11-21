@@ -372,6 +372,9 @@ DROP FUNCTION dbo.FunctionName
 
 #####################################################################################################
 # stored procedures (reduce execution time, network traffic, allow modular programming, improve security)
+	# a stored procedure is a group of SQL statements that has been created and stored in that database
+	# a stored procedure will be looking at input parameters/ variables
+		# the stored procedure could be used by different users with different input  
 -- input --> actions (EXECUTE/ SELECT/ INSERT/ UPDATE/ DELETE) --> return (success/ failure) --> return output
 -- 
 CREATE PROCEDURE dbo.UniqueProcedureName(
