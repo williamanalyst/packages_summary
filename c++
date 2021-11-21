@@ -1,20 +1,22 @@
-# c++
-    # c++11 --> classical c++ --> 
-    # c++11 and later --> modern c++ --> 
+# C++
+    # C++11 --> classical C++ --> 
+    # C++11 and later --> modern C++ --> 
 
 # fast
 # flexible
 # scalable 
 # portable 
 
-# .cpp files
+# .cpp files --> 
 # .h files
 
 # compiler --> translate from high-level (source code file.cpp) to low-level (object code file.obj)
 # linker --> links code to libraries (c++ standard libraries and other libraries) --> create executable program main.exe
 # testing and debugging --> finding and fixing program errors
+    # debugger
 
-#
+# IDE (CodeLite, Code::Blocks, NetBeans, Eclipse, CLion, Dev-C++, Visual Studio, etc.)
+
 #######################################################################################################
 # Common commands:
 #######################################################################################################
@@ -26,8 +28,26 @@
 # cout --> character output stream --> standard output stream
 
 
+# Structure of a C++ program
+# Variables and Constants
+# Array and Vectors
+# Strings in C++
 
+# Expressions, Statements and Operators
+# Statements and Operators
+# Determining Control Flow
+# Functions
 
+# Pointers and References
+# OOP - Classes and Objects
+# Operators Overloading
+# Inheritance
+# Polymorphism -->
+
+# Smart Pointers --> memory management
+# The Standard Template Library (STL)  
+# I/O Streams --> input and output 
+# Exception Handling
 
 
 #######################################################################################################
