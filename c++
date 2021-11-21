@@ -1,4 +1,19 @@
-#
+# c++
+    # c++11 --> classical c++ --> 
+    # c++11 and later --> modern c++ --> 
+
+# fast
+# flexible
+# scalable 
+# portable 
+
+# .cpp files
+# .h files
+
+# compiler --> translate from high-level (source code file.cpp) to low-level (object code file.obj)
+# linker --> links code to libraries (c++ standard libraries and other libraries) --> create executable program main.exe
+# testing and debugging --> finding and fixing program errors
+
 #
 #######################################################################################################
 # Common commands:
@@ -15,8 +30,9 @@
 
 
 
-
-
+#######################################################################################################
+# 
+#######################################################################################################
 
 
 
