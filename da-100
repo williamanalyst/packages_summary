@@ -1161,8 +1161,14 @@
 # Options that can be added as a group member:
     # e.g. email addresses, security groups, distribution lists.
 
-
-
+##############################################################################################
+# Connect to Power BI Dataset using SSMS:
+##############################################################################################
+# 
+# Step 1: choose Analysis
+# Step 2: put the connection string into the "Server name" field
+# Step 3: Choose Azure Active Directory - Universal with MFA
+# Step 4: connect
 
 ##############################################################################################
 # DAX Summary:
