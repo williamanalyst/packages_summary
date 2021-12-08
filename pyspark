@@ -115,6 +115,9 @@ for i in list1:
 # Convert Pandas dataframe into Spark DataFrame
 df_spark = spark.createDataFrame(df_pandas)
 
+# Save the file as .xlsx file
+df_spark.write.format('com.crealytics.spark.excel').option('header': 'true').save('/mnt/mounted_folder_name/filename.xlsx', mode = 'overwrite')
+
 ############################################################################################
 # Get the current user who is running the script/ Azure Databricks Notebook:
 ############################################################################################
