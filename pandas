@@ -112,6 +112,8 @@ df_selected = df.loc[(df['text_column'].str.contains('certain string'))] # retur
 df.groupby(['column1', 'column2'], as_index = False).agg({'column11': 'count', 'column12': 'sum', 'column13': 'nunique', 
 'column14': 'mean', 'column15': 'min', 'column16': 'max'}).sort_values(by = ['column1'], ascending = [False])
 #
+df['col1'].value_counts().sort_index(ascending = False)
+
 # Get the max value in each column
 max_values = df.max(axis = 1, skimna = False)
 print(max_values)
