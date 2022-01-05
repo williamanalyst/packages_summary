@@ -349,6 +349,25 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 # Boosting
 
 ########################################################################################
+# CatBoost:
+########################################################################################
+# CatBoost has the flexibility of giving indices of categorical columns so that it can be encoded as one-hot encoding using one_hot_max_size.
+    # If you do not pass anything in cat_features argument for CatBoost, CatBoost will treat all the columns as numerical variables.
+    
+########################################################################################
+# LightGBM:
+########################################################################################
+# Similar to CatBoost, LightGBM can also handle categorical features by taking the input of feature names.
+    # LightGBM does not convert categorical variables to one-hot eocoding, and is much faster than one-hot encoding.
+    # LightGBM uses a special algorithm to find the split value of categorical features.
+    
+########################################################################################
+# XGBoost:
+########################################################################################
+# Unlike CatBoost or LightGBM, XGBoost cannot handle categorical features by itself, it only accept numerical values similar to Random Forest.
+    # Therefore, use has to perform various encodings like label encoding, mean encoding or one-hot encoding before supplying data to XGBoost.
+
+########################################################################################
 # Data Normalization
     # Z-Score
         # Z = (X - mean(x))/ stdev(x)
