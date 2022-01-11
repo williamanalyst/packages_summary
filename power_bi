@@ -1173,6 +1173,19 @@
 ##############################################################################################
 # DAX Summary: (Data Analysis Expressions)
 ##############################################################################################
+# Calculated Measures:
+    # 1. Create dynamic aggregations
+    # 2. Calculate ratios/ percentages
+    # 3. create time intelligence calculations
+    # 4. Process complex relationships
+# Calculated Columns:
+    # create new columns on a table
+    # method for connecting disparate data sources with multiple key columns
+# Calculated Tables
+    # create a new table derived from another table
+        # e.g. an aggregation of exisitng table for query efficiency considerations
+    # can be used to create a date table when one does not exist
+    
 Is_Blank = IF(ISBLANK(table[col1]), 1, 0) # return 1 if the cell is blank
 #
 Weekday_Name = FORMAT(table[col1], "dddd") # Monday, Tuesday, etc.
@@ -1194,6 +1207,14 @@ ID_8 = Table.AddColumn(dbo_users, "ID_8", each Text.PadStart(Number.ToText([id])
     # 
 #
 
+##############################################################################################
+# Navigation Functions (requirement: relationship must already exist between the tables)
+    # RELATED: returns a value from a connected table
+        # 
+    # RELATEDTABLE: returns a table from a connected table
+        # 
+
+# 
 
 
 
