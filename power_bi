@@ -1171,7 +1171,7 @@
 # Step 4: connect
 
 ##############################################################################################
-# DAX Summary:
+# DAX Summary: (Data Analysis Expressions)
 ##############################################################################################
 Is_Blank = IF(ISBLANK(table[col1]), 1, 0) # return 1 if the cell is blank
 #
@@ -1188,6 +1188,11 @@ ID_8 = FORMAT('col1', "00000000") # can be used with Import, cannot be used in D
 ID_8 = Table.AddColumn(dbo_users, "ID_8", each Text.PadStart(Number.ToText([id]), 7, "0")) # Power Query Step, does not work under DirectQuery 
 
 
+
+##############################################################################################
+# Evaluation Context:
+    # 
+#
 
 
 
