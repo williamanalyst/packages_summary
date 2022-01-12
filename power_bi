@@ -1215,13 +1215,18 @@ ID_8 = Table.AddColumn(dbo_users, "ID_8", each Text.PadStart(Number.ToText([id])
         # 
 
 # 
+##############################################################################################
+# Divide 2 columns/ calculated measures:
+measure_divide = CALCULATE(DIVIDE([measure1], [measure2], 0))
+ 
+##############################################################################################
+# Filter by Multiple Tables and Conditions:
+measure_filtered = CALCULATE(SUM(table1[columns1]), FILTER(table2, table2[column2] IN {"value1", "value2"}), FILTER(table3, table3[column3] > certain_value))
 
 
 
-
-
-
-
+#
+measure_condition = 
 
 
 
