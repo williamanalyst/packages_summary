@@ -631,7 +631,7 @@ cte2 AS ()
 --
 SELECT 
   c.[customer_name]
-, CAST([amount_spent] AS DECIMAL(10, 6))
+, CAST([amount_spent] AS DECIMAL(10, 6)) -- DECIMAL(precision, number_of_digits)
 FROM cte1 
 LEFT JOIN customer AS c
 ON cte1.[customer_id] = c.[id]
