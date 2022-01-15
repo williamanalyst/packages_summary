@@ -673,8 +673,16 @@ from google.cloud import bigquery
 
 
 
-
-
+# 
+#####################################################################################################
+# SQL Syntax Best Practice: how to structure your SQL Query/ Code
+#####################################################################################################
+# 1. Multiple Nested Queries
+# 2. Ensuring Consistent Aliases
+# 3. Remove unnecessary clauses e.g. order by
+# 4. Remove unnecessry subqueries
+# 5. Consider Where and Having
+# 6. Good formatting logic
 
 
 
