@@ -255,6 +255,18 @@ SELECT STRING_AGG(column_name, ',') WITHIN GROUP (ORDER BY column_name) AS new_c
 # STRING_SPLIT(@variable, ',') function
 SELECT value FROM STRING_SPLIT(@variable, ' ')
 
+# CONCAT('', [col_name1], LOWER([col_name2]))
+SELECT 
+  CONCAT([col_name1], ' ', LEFT([col_name2], 1), 'any string') AS [concatenated_column]
+FROM [table1]
+;
+--
+SELECT 
+  CONCAT('There are a total number of ', COUNT([col_name1]), ' ', LOWER([col_name2]), 's.') AS [concatenated_column2]
+FROM [table]
+GROUP BY [col_name1]
+ORDER BY COUNT([col_name1]) ASC
+
 # Get the current datetime from SQL Server
 SELECT GETDATE() -- note, this include time as well, so that cannot be used to get every record on a certain date
 SELECT CAST( GETDATE() AS DATE) -- returns the date, without actual time, so that can be used to filter for a certain date
