@@ -160,7 +160,7 @@ SELECT
   FORMAT(SQRT(SQUARE(MAX([LAT_N]) - MIN([LAT_N])) + SQUARE(MIN([LONG_W]) - MAX([LONG_W]))), '#.0000')
 FROM STATION
 
-# CEILING(), FLOOR(), ROUND(@variable, 2) function
+# CEILING(), FLOOR(), ROUND(@variable, 2) funct@ion
 SELECT CEILING(-50.49) -- returns -50
 SELECT FLOOR(15.47) -- returns 15 (integer)
 
@@ -285,6 +285,16 @@ DECLARE @var_int INT = 5 -- can either directly set the variable value or use SE
 SET @currentdatetime = GETDATE()
 -- assign value to variable
 SELECT @currentdatetime
+
+#
+DECLARE @count_value INT
+SET @count_value = 20
+--
+WHILE (@count_value > 0)
+BEGIN
+	PRINT REPLICATE("* ", @counter)
+	SET @counter = @counter - 1
+END -- 
 
 #####################################################################################################
 # DATEADD function
