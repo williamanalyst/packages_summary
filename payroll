@@ -107,7 +107,8 @@
         # future leave should be scheduled properly
     # the leave is accrual over time
         # e.g. sick, annual, long service leave
-        #
+            # Audit: check that the sick leave requests have been approved by someone with the correct level of authority
+            # Audit: select a sample of leave bookings and trace through to approvals and journals, ensure that journals isn't recorded before the actual date of the leave
 
 # Termination
     # Payout --> generally need a proper review process of final payment (e.g. the final pay may need adjustments)
@@ -115,7 +116,29 @@
         # leave paid out
         # additional termination payments
             # e.g. based on the years served, based on the tax implications, etc.
-        
+    # Audit: select a sample of terminations and review the documentation for the final payout calculations
+        # e.g. was it reviewed and approved by someone appropriate?
+        # e.g. 
+
+
+##################################################################################################################
+# Substantive testing of payroll --> always start with the assertion
+##################################################################################################################
+# 1. Payroll Expense
+    # Occurrence
+        # e.g. was the pay to real people
+            # e.g. vouch a sample of wages/ salaries paid to employee and check whether each person matches a real HR file
+                # and check that employee actually worked or was on approved/ paid leave during that period
+                # vouch ti approved timesheets
+    # Accuracy
+        # e.g. recalculate a sample of employee employments and ensure that correct salary or wage rate is applied and total pay is correct
+            # consider tax rates, superannuation, etc. and check whether the re-calculated values match existing records
+    # Completeness
+    # Classification
+    # Cutoff
+
+2. 
+
 ##################################################################################################################
 # Test of Internal Control:
 ##################################################################################################################
