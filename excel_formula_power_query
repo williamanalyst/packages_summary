@@ -13,7 +13,10 @@
 # Format numeric values to be string starting with zero:
 # = TEXT(cell, "00000000")
 
-
+############################################################################################
+# Keep Double Quote in the concated string:
+# = "text1" & CHAR(34) & "text2" & CHAR(34) & "text3"
+# = """" & "text1" & """"
 
 ############################################################################################
 # Check whether a cell has unique value in that column:
