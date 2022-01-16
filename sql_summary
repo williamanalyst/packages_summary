@@ -266,6 +266,10 @@ SELECT
 FROM [table]
 GROUP BY [col_name1]
 ORDER BY COUNT([col_name1]) ASC
+;
+--
+SELECT
+  CONCAT_WS()
 
 # Get the current datetime from SQL Server
 SELECT GETDATE() -- note, this include time as well, so that cannot be used to get every record on a certain date
