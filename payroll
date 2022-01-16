@@ -55,8 +55,10 @@
         # Leave needs to be placed on the balance sheet, as they are liabilities
     # 3. 
 
-
-# AASB 119 -->
+# Notes disclosure:
+    # AASB 119/ IAS 19 -->
+        # e.g. sometimes sometimes understate the leave to improve their balance sheet (e.g. for borrowing funds, as less leave means less liability)
+            # e.g. less annual leave accrued means less liability for the company, and better borrowing capacity for the company.
 # Employee
 # Contractors 
 
@@ -134,10 +136,34 @@
         # e.g. recalculate a sample of employee employments and ensure that correct salary or wage rate is applied and total pay is correct
             # consider tax rates, superannuation, etc. and check whether the re-calculated values match existing records
     # Completeness
+        # e.g. trace of a sample of either employee contracts or timesheets to the pay run, payslips, EFT and journal entries.
     # Classification
+        # e.g. review journals to ensure that transaction is recorded using the correct account codes from the COA
     # Cutoff
+        # e.g. block select a sample of timesheets or salaries paid around the end of the financial year to ensure that they are recoeded in the correct period
+            # e.g. this could lead to wages payable that are not paid yet/ not recorded properly (accrual)
 
-2. 
+2. Wages Payable:
+    # Existence
+    # Accuracy valuation and allocation
+        # e.g. recalculate salary/ contracts
+    # completeness
+        # e.g. trace timesheets close to the EOFY and ensure that wages not paid are accrued using journal entries.
+    # rights + 
+
+3. Leave Liabilities:
+    # Existance
+        # e.g. vouch leave liabilities to individual employees and check whether they worked during the period to accrued leave
+            # e.g. 
+    # Accuracy, valuation and allocation
+        # recalculate and potentially reprocess leave transactions
+            # e.g. whether accrued leave - taken leaves = current balance
+    # completeness
+        # make sure that the accruals are being correctly recorded
+    # rights and obligations
+        # e.g. look at sample employee contracts/ agreements to make sure that the leave obligations are provided properly
+
+
 
 ##################################################################################################################
 # Test of Internal Control:
