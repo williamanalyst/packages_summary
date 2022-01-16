@@ -34,8 +34,95 @@
 
 
 ##################################################################################################################
-#
+# Ways to Process Payroll:
 ##################################################################################################################
+# Method 1: Manual Calculation
+# Method 2: Outsource Payroll
+# Method 3: Payroll Software (main)
+
+##################################################################################################################
+# Auditing Payroll and Employee Entitlements:
+##################################################################################################################
+# Employee Entitlements:
+    # 1. Pay --> Salary/ Wages
+        # Salary and Wages expenses
+        # Deductions:
+            # Tax
+            # Superannuation
+        # Pay Frequency:
+            # e.g. weekly, fortnightly, monthly, etc.
+    # 2. Leave --> Sick/ Annual/ Long Service Leave
+        # Leave needs to be placed on the balance sheet, as they are liabilities
+    # 3. 
+
+
+# AASB 119 -->
+# Employee
+# Contractors 
+
+# New Staff:
+    # Add to pay system
+    # Set up employees' profile --> need to check and approve new employee conditions (e.g. if salary is wrong, all future payments would be wrong)
+        # Auditing of this process --> 
+            # select a sample of new employees
+            # Inspect of the approval to add new employees (should not be the same person as the person who added the employee)
+            
+        # Salaries --> conditions
+        # Wages --> paid on a specific rate based on the job that were completed
+            # e.g. hours cap
+            # e.g. hourly pay adjustments (such as weekend, holiday, etc.)
+
+# Pay Run: 
+    # Salaries 
+        # based on the contracted value
+    # Wages 
+        # based on the timesheet and approval of the timesheet --> must have segregation of duties
+        # Auditing of this process:
+            # Control around timesheets:
+                # 1. max hours worked
+                # 2. work availbility
+                    # e.g. test whether an "unexpected data entry such as public holiday is actually allowed" 
+                # 3. Entering/ registering hours worked
+                    # e.g. fingerprint, swipe card, ID code, etc.
+                        # e.g. can a card be swiped twice, is there a 2FA, etc,
+                # 4. Approving the itme sheet
+                    # approvers have the authority (e.g. only allowed person should be having the control)
+                    
+    # Prepare the payroll run --> need to make sure that there is someone preparing the payroll run
+    # Run the electronic funds transfer --> someone other than the preparer of the payroll run should check the accuracy and approved (need segregation of duties)
+        # generate the payslips
+        # send the government any info that they require
+
+# Managing Leave --> should be automatically updated after the pay run is prepared and approved
+    # reduce liability when the leave is taken
+        # future leave should be scheduled properly
+    # the leave is accrual over time
+        # e.g. sick, annual, long service leave
+        #
+
+# Termination
+    # Payout --> generally need a proper review process of final payment (e.g. the final pay may need adjustments)
+        # general pay owed
+        # leave paid out
+        # additional termination payments
+            # e.g. based on the years served, based on the tax implications, etc.
+        
+##################################################################################################################
+# Test of Internal Control:
+##################################################################################################################
+# 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
