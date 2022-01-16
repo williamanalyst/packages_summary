@@ -198,12 +198,12 @@ SELECT LEN(column1) AS len_of_string_in_a_column
 -- returns the length of the string
 #
 # STR() function:
-	# 
-		SELECT CAST(col1 AS VARCHAR) FROM table1
-		# 
-	# 
-		SELECT STR(123.456, 6, 2) FROM table1
-		# result == 123.45 (2 character string with 2 characters after the decimal point)
+# 
+SELECT CAST(col1 AS VARCHAR) FROM table1
+# 
+# 
+	SELECT STR(123.456, 6, 2) FROM table1
+	# result == 123.45 (2 character string with 2 characters after the decimal point)
 #
 #####################################################################################################
 # indexes (typically done by a DBA)
