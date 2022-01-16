@@ -89,9 +89,18 @@
                     # approvers have the authority (e.g. only allowed person should be having the control)
                     
     # Prepare the payroll run --> need to make sure that there is someone preparing the payroll run
+        # recondiling pay run entries with employees
+            # e.g. you should not have only 4k payslips when there are 5k employees
+        # review and approve process of pay run and electronic fund transfers
+            # e.g. you want to search for evidence that the process was reviewed and approved, with signature, electronic records, etc.
+                # to make sure that the actual process have occurred
+            
     # Run the electronic funds transfer --> someone other than the preparer of the payroll run should check the accuracy and approved (need segregation of duties)
         # generate the payslips
         # send the government any info that they require
+        
+    # Journal Entries:
+        # need to check the system whether its actually executing journal entries after the pay is run
 
 # Managing Leave --> should be automatically updated after the pay run is prepared and approved
     # reduce liability when the leave is taken
