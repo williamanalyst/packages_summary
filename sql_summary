@@ -273,6 +273,7 @@ SELECT
 
 # Get the current datetime from SQL Server
 SELECT GETDATE() -- note, this include time as well, so that cannot be used to get every record on a certain date
+SELECT SYSDATETIME() AS [SystemDatetime] -- 
 SELECT CAST( GETDATE() AS DATE) -- returns the date, without actual time, so that can be used to filter for a certain date
 -- return current datetime
 
