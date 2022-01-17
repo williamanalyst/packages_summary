@@ -119,6 +119,10 @@ df_spark = spark.createDataFrame(df_pandas)
 df_spark.write.format('com.crealytics.spark.excel').option('header', 'true').save('/mnt/mounted_folder_name/filename.xlsx', mode = 'overwrite')
 
 ############################################################################################
+# Drop duplicated rows
+df_spark = df_spark.dropDuplicates(['col1', 'col2'])
+
+############################################################################################
 # Get the current user who is running the script/ Azure Databricks Notebook:
 ############################################################################################
 # returns: 
