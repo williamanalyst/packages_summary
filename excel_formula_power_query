@@ -44,16 +44,24 @@
         # e.g. wrong location of data may yield wrong chart, wrong calculation for metrics, etc.
 
 
+############################################################################################
+# Date Formula
+# Last Date of the month, given the difference from current date and month
+# = EOMONTH("2022-01-10", 1) --> "2022-02-28" (the next month)
+# = EOMONTH("2022-01-10", -1) --> "2021-12-31" (the next month)
+# = EOMONTH("2022-01-10", 5) --> "2022-06-30" (the next month)
 
+# = ROUND(float, 0) --> closest integer
 
+############################################################################################
+# Keyboard Shortcuts
+# Autosum --> "Alt" + "=" --> for selected cells
+# Insert New Row --> "Alt" + "H" (home) --> "I" (Insert) --> "R" (row)
 
+# Paste Special --> "Alt" + "H" (home) --> "V" (paste) --> "S" (special)
 
+# Insert a new table --> "Alt" + "N" (Insert) + "T" (table)
 
+# Add more decimal place --? "Alt" + "H" (home) + "0" (decimal point)
 
-
-
-
-
-
-
-
+# Find and Replace --> "Alt" + "H" (home) + "FD" (find) + "R" (replace)
