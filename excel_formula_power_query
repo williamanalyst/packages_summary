@@ -1,3 +1,9 @@
+# What is excel?
+############################################################################################
+# Microsoft Excel is an electronic spreadsheet application that enables uers to store, organize, calculate and manipulate the data,
+    # with formulas using a spreadsheet system broken up by rows and columns.
+    # It also provides the flexibility to use external databases to do analysis, generate reports, etc.
+
 # Common Excel Formula
 ############################################################################################
 # Match based on matched 1st column
@@ -32,8 +38,15 @@
 ############################################################################################
 # Conditional Formatting:
 
-
-
+#
+############################################################################################
+# Macros:
+############################################################################################
+# Macros are used for iterating over a group of tasks.
+    # e.g. users can create macros for customized repetitive functions and instructions
+    # e.g. Macros can be either written or recorded depending on the user
+# Note: XLM and VBA (Visual Basic Applications) are the 2 macro languages in excel.
+    # e.g. earlier versions of Excel used XLM, VBA was introduced in Excel 5 and mostly used now.
 
 #
 ############################################################################################
@@ -43,6 +56,14 @@
     # e.g. having a clean data means further calculation/ formula would be more accurate and look better
         # e.g. wrong location of data may yield wrong chart, wrong calculation for metrics, etc.
 
+############################################################################################
+# Calculation Sequence in Excel: (PEMDAS)
+# 1. Parentheses or Brackets
+# 2. Exponent
+# 3. Multiplication
+# 4. Division
+# 5. Addition
+# 6. Subtraction
 
 ############################################################################################
 # Date Formula
@@ -52,6 +73,23 @@
 # = EOMONTH("2022-01-10", 5) --> "2022-06-30" (the next month)
 
 # = ROUND(float, 0) --> closest integer
+
+# = NOW() --> returns the current date and time
+# = DATE(YYYY, MM, DD)
+# = DATEVALUE("YYYY-MM-DD") --> start from "1900-01-01" --> convert to number
+    # e.g. DATEVALUE("1900-01-01") = 1
+    
+# 
+
+############################################################################################
+# Aggregation Formula
+# = SQRT(16) --> 4
+# = DEGREE(pi) --> 180
+# = RAND() --> random number between 0 and 1
+# = RANDBWTWEEN(1, 10) --> random integer between 1 and 10
+# = GCD(15, 25) --> 5 --> greatest common divisor
+
+# 
 
 ############################################################################################
 # Keyboard Shortcuts
