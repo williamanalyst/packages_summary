@@ -13,12 +13,13 @@
 #
 # = COUNTIFS(data1, criteria1, data2, criteria2)) # get the number of rows that meet with multiple criteria
     
-
+# = FORMULATEXT(cell) --> returns the formula as a string
 #
 ############################################################################################
 # 
 # = SUBSTITUTE(cell, "string1", "string2", 2) # only change the 2nd instance
 
+# = TRIM(cell) --> remove the start and end " " (space)
 #
 ############################################################################################
 # Format numeric values to be string starting with zero:
@@ -29,11 +30,17 @@
 # = "text1" & CHAR(34) & "text2" & CHAR(34) & "text3"
 # = """" & "text1" & """"
 
+# = CONCANENATE(array1, array2, array3)
+
 ############################################################################################
 # Check whether a cell has unique value in that column:
 # = COUNTIF(A2:A10. A2:A10)<>1 # COUNTIF(range, criteria)
 # = COUNTIF(B2:B10, FALSE) # 
 # 
+
+# = COUNT(range) --> only count numbers
+# = COUNTA(range) --> count everything, e.g. number, text, formula
+
 ############################################################################################
 # Get the number of unique values in a column/ row/ range:
 # = SUMPRODUCT(1/ COUNTIF(A1:A5, A1:A5)) # returns the number of unique values in the range A1:A5
@@ -42,6 +49,9 @@
 
 ############################################################################################
 # Conditional Formatting:
+
+# = CONVERT(2, "day", "hr") --> 48 
+
 
 #
 ############################################################################################
@@ -94,7 +104,15 @@
 # = RANDBWTWEEN(1, 10) --> random integer between 1 and 10
 # = GCD(15, 25) --> 5 --> greatest common divisor
 
-# 
+# = PRODUCT(range1, range2) --> 
+
+# = MOD(number, divisor)
+
+# = LARGE(range, rank) --> return the nth largest number from a range
+
+# = REPT(cell, times) --> 
+
+# = NPV(rate, range)
 
 ############################################################################################
 # Keyboard Shortcuts
