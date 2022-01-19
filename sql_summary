@@ -36,6 +36,14 @@ display(df0)
 #####################################################################################################
 # Drop duplicates from table
 #
+DELETE T
+FROM (
+	SELECT
+	  *
+	, DupRank = ROW_NUMBER() OVER (PARTITION BY [column1], [column2] ORDER BY (SELECT NULL))
+	FROM [table1]) AS T
+WHERE [DupRank] > 1
+
 #####################################################################################################
 # Join Tables (m rows on the lft table, n rows on the right table):
 #####################################################################################################
@@ -237,6 +245,9 @@ SELECT LEFT(column1, 3) FROM table1
 # LIKE '[]%' function
 	# 
 	WHERE [name] LIKE '[aeiou]%' -- the string start with a certain letter/ character
+	
+	WHERE [name] LIKE "_text%" -- the second character must be a certain word
+	
 
 # LTRIM() and RTRIM() function
 -- removes the leading blanks in the string
@@ -622,7 +633,7 @@ col2 varchar(255)
 --
 USE db_william
 CREATE TABLE wine_region(
-id INT PRIMARY KEY,
+id INT PRIMARY KEY, -- primary key must be unique and not null
 country INT,
 style VARCHAR(50),
 color VARCHAR(50),
@@ -679,7 +690,11 @@ SELECT
 FROM [table1]
 
 
+DELETE FROM [table1]
+WHERE [column1] = 'certain value'
 
+ALTER TABLE [table1] ADD [column1] INT
+;
 #####################################################################################################
 # Big Query:
 #####################################################################################################
@@ -714,4 +729,20 @@ from google.cloud import bigquery
 
 
 
+#####################################################################################################
+# Sample Query:
+#####################################################################################################
+1. Get the nth highest salary:
+DECLARE @n INT
+;
+SET @n = 10;
+;
+WITH cte1 AS (
+	SELECT 
+		[]
+	  , RANK() OVER (ORDER BY [column2]) AS [Rank_No]
+	FROM [table1] WITH (NOLOCK))
+--
+SELECT * FROM cte1 WHERE [Rank_No] <= @n
 
+#
