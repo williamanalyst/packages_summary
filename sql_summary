@@ -256,6 +256,7 @@ SELECT LEFT(column1, 3) FROM table1
 SELECT REPLACE('This is a sample stirng to replace', 'replace', 'be replaced.') AS replace_example
 
 # SUBSTRING() function
+SELECT SUBSTRING('1234567', 1, 3) -- returns '123'
 SELECT SUBSTRING('1234567', 5, 3) -- returns '567'
 
 # STRING_AGG() function
@@ -600,7 +601,7 @@ WHERE table_name = ''
 .[dbo].[table_name] -- [dbo] = 'Database Owner', which is the defaule schema created in every database
 -- .dbo is the default schema, and each user in a database could have a different schema
 	
-# view --> a view is a virtual table, 
+# view --> a view is a virtual table, since the table does not exist pyhcically, it saves much space.
 CREATE OR REPLACE VIEW [view_name1] AS 
 SELECT col1, col2
 FROM table1
@@ -633,7 +634,7 @@ col2 varchar(255)
 --
 USE db_william
 CREATE TABLE wine_region(
-id INT PRIMARY KEY, -- primary key must be unique and not null
+id INT PRIMARY KEY, -- primary key must be unique and not null 
 country INT,
 style VARCHAR(50),
 color VARCHAR(50),
@@ -726,11 +727,15 @@ from google.cloud import bigquery
 # 5. Consider Where and Having
 # 6. Good formatting logic
 
-# DDL: DROP, RENAME, CREATE, ALTER, TRUCATE
-# DML: DELETE, INSERT, UPDATE
-# DCL: GRANT, REVOKE
-# DQL: SELECT
-# TCL: COMMIT, ROLLBACK, SAVEPOINT
+# DDL: DROP, RENAME, CREATE, ALTER, TRUCATE (data definition language)
+	# used to define the database schema
+# DML: DELETE, INSERT, UPDATE (data manipulation language)
+	# manipulate the data present in the database 
+# DCL: GRANT, REVOKE (data control language)
+	# deal with the rights, permission and other controls of the database system
+# DQL: SELECT (data query language)
+# TCL: COMMIT, ROLLBACK, SAVEPOINT (transaction control language)
+	# mainly deals with transactions of the database
 
 
 #####################################################################################################
@@ -774,8 +779,18 @@ SELECT * FROM [table2]
 # Common Questions and Concepts:
 #####################################################################################################
 # Difference between CHAR() and VARCHAR()
+	# CHAR() is used for sting with fixed length.
+		# e.g. CHAR(10) can be used only to store string with 10 character length
+	# VARCHAR() is used to store character strings of variable length
+	
 # Difference between UNION and JOIN
 # Difference between IN and EXISTS
+
+# What is the difference between DELETE and TRUNCATE?
+	# delete commands is used to delete rows in a table, whereas TRUNCATE delete all rows in the table.
+	# TRUNCATE is faster
+	# DELETE is a DML command, whereas TRUNCATE is a DDL language
+	# You can rollback after DELETE whereas you cannot rollback after TRUNCATE.
 
 # How to create a table with the same structure with another table
 	SELECT * INTO [target_table]
@@ -789,6 +804,165 @@ SELECT * FROM [table2]
 
 # Normalization Form (1-6)
 	#
+
+# What are the different types of DMBS?
+	# 1. Hierarchical
+	# 2. Relational
+	# 3. Object Oriented
+	# 4. Network
+
+# What is a table and field in SQL?
+	# A table refers to a collection of data in an organized manner in the form of rows and columns.
+	# A field refers to the columns in a table.
+
+# What are joins in SQL:
+	# INNER JOIN
+	# FULL JOIN
+	# LEFT JOIN
+	# RIGHT JOIN
+	
+# What are the KEYs?
+	# PRIMARY KEY: a primary key is a set of attributes that can be used to uniquely identify every tuple
+	# UNIQUE KEY: 
+		# 1. uniquely identifies a single row in the table
+		# 2. multiple values allowed per table
+		# 3. null values are allowed
+		# 4. deplicate values are not allowed
+	# FOREIGN KEY:
+		# 1. Foreign key maintains referential integrity by enforcing a link between the data in 2 tables.
+		# 2. The foreign key in the child table references the primary key in the parent table.
+		# 3. The foreign key constrains prevents actions that would destroy links between the child and parent tables.
+
+# What are constraints?
+	# 1. NOT NULL
+	# 2. UNIQUE --> all the values in a column must be different
+	# 3. CHECK --> all the values in a column must satisfy a specific condition
+	# 4. DEFAULT --> when no value is specified, use the default value for the cell
+	# 5. INDEX --> create and retrieve data from the database more quickly
+
+
+# 
+	# MySQL --> database management system
+	# SQL --> structured query language
+
+# What is data integrity?
+	# 1. Accuracy of the data
+	# 2. Consistency of the data
+	# 3. Integrity Constraints to enforce business rules on data.
+
+# What is the difference between clustered index and non-clustered index?
+# 
+	# clustered index is used for easy retrieval of data from the database and it's faster.
+	# clustered index alters the way records are stored in a database as it sorts out rows by the column which is set to be the clustered index
+		# non-clustered index does not alter the way that data is stored
+		# but it creates a separate object within a table which points back to the original table rows after searching
+	# one table can only have 1 clustered index
+		# one table can have many non-clustered index.
+# Unique Index:
+	# unique index does not allow the field to have duplicate values if the column is unique indexed
+		# if a primary key is defined, a unique index can be applied automatically
+		
+		
+# What is Demornalization?
+	# It is a technique to access fata from higher to lower form of the databas
+		# which increase the performance of the entire infrastructure as ot introducrs redundancy into a table
+		# it adds the redundant data into a table by incorporating database queries that combine data from various tables into a single table
+		
+# What are entities and relationships?
+	# tables store data, which generally represent 1 type of entity (e.g. customer, location, etc.)
+	# relatiobship are links between entities
+
+# What is a index?
+	# 1. it is a performance tuning method
+	# 2. it allows faster retrieval of data
+	# 3. it creates an entry for each value
+
+
+# What is ACID property in a database?
+	# Atomacity
+	# Consistency
+	# Isolation
+	# Durability
+
+# What are triggers in SQL?
+	# Triggers in SQL are a special type of stored procedures that are defined to execute automatically in place or after certain data modifications.
+		# it allows you to execute a batch of code when an insert, update or any other query is executed against a specific table.
+	# BEFORE INSERT
+	# AFTER INSERT
+	# BEFORE UPDATE
+	# AFTER UPDATE
+	# BEFORE DELETE
+	# AFTER DELETE --> activated after data is removed from the table
+
+# What are the different types of operators in SQL?
+	# 1. Arithmetic Operators
+	# 2. Bitwise Operators
+	# 3. Comparison Operators
+	# 4. Compound Operators
+	# 5. Logical Operators
+	
+# What is the difference between Null values and Zero valus ot Blank space?
+	# null value represent a vlaue which is unavailable, unknown, assigned or not applicable.
+		# whereas zero is a number
+		# and blank is a character
+		
+# What is the difference between cross join and natural join?
+	# 
+	
+# Subquery
+	# Correlated Subquery
+		# the subquery is refering to certain data from the outer query
+	# Non-correlated Subquery
+		# the subquery is independent from the outer query
+
+
+# What are the types of relationships?
+	# 1. one to one relationship
+	# 2. one to many relationship
+	# 3. many to one relatiobship
+	# 4. self-referencing relationship
+
+# What are the different levels of constraints?
+	# 1. columns level constrains
+	# 2. table level constrains
+
+# Stored Procedures:
+	# Advantage: a stored procedure can be used as a modular programming which means it only needs to be created once, and can be used repeatedly.
+		# which supports faster execution, reduce network traffic and provides better security
+	# Disadvantages: it can be executed only in the database and utilize more memory in the database server
+	
+	
+# User defined functions
+
+
+# What is collation?
+	# collation is a set of rules that determine how data can be stored as well as compared 
+	# Collation sensitivity:
+		# 1. Case sensitivity
+		# 2. Kana sensitivity
+		# 3. Width sensitivity
+		# 4. Accent sensitivity
+		
+# Variables:
+	# Local variables
+	# Global variables
+
+# Auto increment in SQL?
+	# allow user to create a unique number whenever a new record is inserted into the table
+	# this keyword is usually required whenever 
+
+# What is a datawarehouse?
+	# datawarehouse refers to a central repository of data where the data is assembled from multiple sources of informaiton.
+	# the data are consolidated, transformed and made available for the data mining as well as online processing
+	# warehouse data also have a subset of data called "data marts"
+
+# Different authentication modes in SQL Server:
+	# 
+	# 
+
+# What is the difference between the STUFF() function and REPLACE() function?
+
+
 
 
 
