@@ -963,12 +963,20 @@ SELECT * FROM [table2]
 # What is the difference between the STUFF() function and REPLACE() function?
 
 
+# PERCENTILE_CONT() --> cakcykates a percentile based continuous distribution of the column value
+	# the result is interpolated and might not be equal to any specific value in the column
 
-
-
-
-
-
+SELECT
+  [col1]
+, [col2]
+, RANK() OVER (PARTITION BY [col3] ORDER BY [col4] DESC) AS [rank1]
+, DENSE_RANK() OVER (PARTITION BY [col3] ORDER BY [col4] DESC) AS [rank2]
+, PERCENT_RANK() OVER (PARTITION BY [col3] ORDER BY [col4] ASC) AS [percent_rank1]
+, CUME_RANK() OVER (PARTITION BY [col3] ORDER BY [col4] ASC) AS [percent_rank1]
+--
+, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY [opened_email]) OVER () AS [percentile25_cont]
+, PERCENTILE_DISC(0.25) WITHIN GROUP (ORDER BY [opened_email]) OVER () AS [percentile25_disc]
+FROM [table1]
 
 
 
