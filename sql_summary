@@ -508,7 +508,7 @@ WITH cte1 AS (
   SELECT 
     1 AS column_count,
     1 AS column_factorial
-  UNION ALL
+  UNION ALL -- so that duplicated rows would be kept
   SELECT
     column_count + 1
     , column_factorial * (column_count + 1)
@@ -600,7 +600,7 @@ WHERE table_name = ''
 .[dbo].[table_name] -- [dbo] = 'Database Owner', which is the defaule schema created in every database
 -- .dbo is the default schema, and each user in a database could have a different schema
 	
-# view
+# view --> a view is a virtual table, 
 CREATE OR REPLACE VIEW [view_name1] AS 
 SELECT col1, col2
 FROM table1
@@ -726,13 +726,17 @@ from google.cloud import bigquery
 # 5. Consider Where and Having
 # 6. Good formatting logic
 
-
+# DDL: DROP, RENAME, CREATE, ALTER, TRUCATE
+# DML: DELETE, INSERT, UPDATE
+# DCL: GRANT, REVOKE
+# DQL: SELECT
+# TCL: COMMIT, ROLLBACK, SAVEPOINT
 
 
 #####################################################################################################
 # Sample Query:
 #####################################################################################################
-1. Get the nth highest salary:
+# 1. Get the nth highest salary:
 DECLARE @n INT
 ;
 SET @n = 10;
@@ -745,4 +749,53 @@ WITH cte1 AS (
 --
 SELECT * FROM cte1 WHERE [Rank_No] <= @n
 
-#
+# 2. Increase the value of a column by 5%
+UPDATE TABLE [table1]
+SET [column1] = [column1] * 1.05
+
+# 3. Select the employees whose first name ends with "A" and contains 6 alphabets
+SELECT 
+  [first_name]
+FROM [table1]
+WHERE [first_name] LIKE '_____a'
+
+
+# 3. 
+SELECT
+  SUBSTRING([full_name], 0, CHARINDEX(' ', [full_name]))
+FROM [table]
+
+# Fetch the common records between 2 tables:
+SELECT * FROM [table1]
+INTERSECT
+SELECT * FROM [table2]
+
+#####################################################################################################
+# Common Questions and Concepts:
+#####################################################################################################
+# Difference between CHAR() and VARCHAR()
+# Difference between UNION and JOIN
+# Difference between IN and EXISTS
+
+# How to create a table with the same structure with another table
+	SELECT * INTO [target_table]
+	FROM [source_table] WHERE 1 = 2 -- with false criteria so that no row is actually selected
+
+# What is UNION, MINUS, INTERESCT
+
+# Character manipulation functions
+	# UPPER(), LOWER(), LENGTH(), CONCAT()
+
+
+# Normalization Form (1-6)
+	#
+
+
+
+
+
+
+
+
+
+
