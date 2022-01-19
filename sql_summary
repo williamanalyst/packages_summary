@@ -44,6 +44,16 @@ FROM (
 	FROM [table1]) AS T
 WHERE [DupRank] > 1
 
+
+WITH cte1 AS (
+	SELECT 
+		[product_id]
+	  , [product_name]
+	  , ROW_NUMBER() OVER(PARTITION BY [product_id], [product_name] ORDER BY [product_id], [product_name]) AS [dup_row_number]
+	FROM [test])
+
+SELECT * FROM cte1 WHERE [dup_row_number] <= 1
+;
 #####################################################################################################
 # Join Tables (m rows on the lft table, n rows on the right table):
 #####################################################################################################
@@ -977,7 +987,5 @@ SELECT
 , PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY [opened_email]) OVER () AS [percentile25_cont]
 , PERCENTILE_DISC(0.25) WITHIN GROUP (ORDER BY [opened_email]) OVER () AS [percentile25_disc]
 FROM [table1]
-
-
 
 
