@@ -226,6 +226,12 @@ rf_error = mse(y_test, rf_pred)
 #
 ########################################################################################
 # XGBoost
+########################################################################################
+# XGBoost is a ML model that you don't want to sacrifice the ability to classify observations (accuracy) 
+    # whereas you want to keep the model easy to understand and interpret (e.g. a tree with low depth).
+        # e.g. estimate customer churn
+
+#
 #
 import pandas as pd
 data = pd.read_csv('D:/Collection_Dataset/data/Data.csv')
