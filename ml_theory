@@ -231,7 +231,14 @@ rf_error = mse(y_test, rf_pred)
     # whereas you want to keep the model easy to understand and interpret (e.g. a tree with low depth).
         # e.g. estimate customer churn
 
-#
+# Note: XGBoost is designed to be used with large, complicated datasets.
+
+# 1. The very first step in fitting XGBoost to the training data is to make an initial prediction.
+    # This prediction can be anything, regardless of whether you are using XGBoost for classification or regression, and default value = 0.5
+# 2. Calculate the similarity score:
+    # 
+
+# XGBoost 
 #
 import pandas as pd
 data = pd.read_csv('D:/Collection_Dataset/data/Data.csv')
