@@ -549,9 +549,11 @@ print('Standard Deviation of the 10 accuracies = {:.2%}'.format(accuracies.std()
 
 
 
-
-
-
+########################################################################################
+# Tensor
+########################################################################################
+# Vectors represent magnitute (size or extent of something) and direction.
+    # e.g. a vector can also represent an area.
 
 
 
