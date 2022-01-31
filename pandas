@@ -15,6 +15,13 @@ df.describe(include = 'all',
 percentiles = [0.01, 0.05, 0.1, 0.9, 0.95, 0.99, 0.995]) # provide basic statistics for each column
 df.shape # 
 df.dtypes # 
+for i, j in df2.dtypes.iteritems():
+#   print(i, j)
+  if j == 'object':
+#     print(i, j)
+    print(df2[i].str.len().max())
+
+
 df['col1'].value_counts(normalize = True, ascending = True, bins = 5) # get the number of occurances of a variable 
 #
 # Select only numeric columns:
