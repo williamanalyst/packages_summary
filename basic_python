@@ -217,8 +217,8 @@ pip install tqdm #
 
 
 
-
-
+#
+pip list # check all installed packages
 
 
 
