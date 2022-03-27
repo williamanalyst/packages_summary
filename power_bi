@@ -430,6 +430,8 @@
         # DAX:
             # Average_Quantity = AVERAGE( Sales[Order_Qty])
             # Top_10_Products = SUMX( TOPN(10, Product, Product[Product_Name], ASC), [Total_Sales] )
+                # e.g. total_in_the_year = SUMX(CALCULATETABLE(table_name, related_table[related_column] = 2022), 
+                                                               table_name[column_name1] * table_name[column_name2])
         # Histogram:
             # 
         # Top N Analysis:
@@ -1229,8 +1231,12 @@ measure_filtered = CALCULATE(SUM(table1[columns1]), FILTER(table2, table2[column
 measure_condition = 
 
 
+##############################################################################################
+# CALCULATETABLE(<expression>
+                 [filters]) # returns a table
+# CALCULATETABLE() works by modifying the filter context
 
-# 
+# CALCULATE() # returns a single value like an integer or a string
 
 
 
