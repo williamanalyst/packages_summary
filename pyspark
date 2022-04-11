@@ -131,6 +131,30 @@ dbutils.notebook.entry_point.getDbutils().notebook().getContext().tags().apply('
 
 
 
+############################################################################################
+# Convert to Pandas DataFrame:
+############################################################################################
+df_pandas = df_pyspark.toPandas()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
