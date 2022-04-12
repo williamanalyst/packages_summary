@@ -110,6 +110,8 @@ list1 = list(df.select('col1').collect())
 list_keep_part_only = []
 for i in list1:
     list_keep_part_only.append(i[0])
+    
+df1 = df.select('column1', 'column2') # select multiple columns
 
 ############################################################################################
 # Convert Pandas dataframe into Spark DataFrame
