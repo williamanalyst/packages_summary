@@ -1,5 +1,6 @@
 # import pyspark.sql.functions to use SQL commands to manipulate datasets (e.g. parquet files)
 import pyspark.sql.functions as F # 
+from pyspark.sql.types import StructField, StructType, StringType, DateType, FloatType, FloatType, DecimalType
 #
 %md # change the whole cell into markdown
 ############################################################################################
