@@ -126,3 +126,16 @@
 # Add more decimal place --? "Alt" + "H" (home) + "0" (decimal point)
 
 # Find and Replace --> "Alt" + "H" (home) + "FD" (find) + "R" (replace)
+
+#
+############################################################################################
+# VBA --> add apostrophe in order to convert numeric value into text
+Sub Addapostrophe()
+'updateby Extendoffice 20151207
+For Each cell In Selection
+cell.Value = "'" & cell.Value
+Next cell
+End Sub
+
+
+
