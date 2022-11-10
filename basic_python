@@ -223,4 +223,4 @@ pip list # check all installed packages
 
 # 
 conda update anaconda
-conda update sypder=5.3.3
+conda install sypder=5.3.3
