@@ -16,13 +16,14 @@
 html = """
 <html>
     <head>
-        <title> This is the website title. </title>
+        <title> This is the website title. </title> # 
         <link rel = "stylesheet" type = "text/css" href = "style.css">
     </head>
     <body>
         <div id = "div1" class = "class1">
             <p class = "class2"> Visit <a href="http://datacamp.com" > DataCamp </a> </p>
             <p> Enjoy this note </p>
+            <strong> This sentence is made bold with the strong mark. <strong>
         </div>
         <div class = "class1 class3" id = 'div2'>
             <p id = "p3"> Test - another paragrah </p>
