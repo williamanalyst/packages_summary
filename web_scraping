@@ -71,8 +71,26 @@ march1 = bool( re.match('.*[Mm]anual'.*.txt, string1.lower()) )
 
 
 
+##################################################################################
+# Error 429
+A 429 error occurs when a server receives too many requests from a particular IP address in a short period of time. 
+This error is often encountered during web scraping when a scraper sends too many requests to a website too quickly. 
+To avoid a 429 error, here are some strategies you can employ:
 
+Slow down your requests: If you are sending too many requests too quickly, the website may mistake you for a bot and block your IP address. 
+You can avoid this by slowing down your requests, limiting the number of requests per second or minute, and introducing some delay between requests.
 
+Use proxy servers: A proxy server is an intermediary server that sits between your computer and the website you are scraping. 
+By using proxy servers, you can distribute your requests across multiple IP addresses, making it harder for the website to identify and block you.
+
+Rotate User Agents: Some websites use user agent strings to identify bots and scrapers. 
+By rotating your user agents and mimicking different browsers, you can avoid detection and reduce the likelihood of a 429 error.
+
+Respect robots.txt: Many websites have a robots.txt file that instructs bots and scrapers which pages can be accessed and which cannot. 
+You should respect the instructions in this file to avoid getting blocked.
+
+Use a scraping framework: Many web scraping frameworks like Scrapy or Beautiful Soup are designed to handle common web scraping challenges 
+like rate limiting and proxy rotation. These frameworks can help you avoid 429 errors and other common issues.
 
 
 
