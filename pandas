@@ -79,7 +79,7 @@ df['Rank'] = df.groupby(['col1'])['col2'].rank(method = 'dense', ascending = Tru
 ############################################################################################
 # Read .csv/ .tsv files
 df = pd.read_csv('sample_file.csv', dtype = {'col1': 'str'}, parse_dates = ['col2', 'col3']) # comma separated file
-df = pd.read_csv('sample_file2.txt', sep = '\t', header = None) # tab separated file
+df = pd.read_csv('sample_file2.txt', sep = '\t', header = None, on_bad_lines = 'skip') # tab separated file
 df = pd.read_csv('https://www.test.com/datafile.data', header = None, names = ['co11', 'col2', 'col3']) # if the table does not have a header
 #
 # Read .xlsx files
