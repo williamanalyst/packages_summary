@@ -114,6 +114,9 @@ for i in list1:
     
 df1 = df.select('column1', 'column2') # select multiple columns
 
+# return a list of values
+list2 = df.select("col1").distinct().rdd..flatMap(lambda x: x).collect()
+
 ############################################################################################
 # Convert Pandas dataframe into Spark DataFrame
 df_spark = spark.createDataFrame(df_pandas)
