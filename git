@@ -1,4 +1,5 @@
-# Git is a Version control system: 
+# Git is a Version control system 
+    # (also software that runs on your local machine to track any changes made to files on your projects.) 
 # which is a tool that manages changes made to the files and directories in a project.
 # With Git, you can see the history of your files and recover an old version if needed.
     # Centralized Version Control:
@@ -22,12 +23,18 @@
 #
 # Repository: Each of your Git projects has 2 parts (files + directories) that you create and edit directly,
 # and the extra information that Git records about the project's history. The combination of these 2 things is called a repository.
-# Git stores all of its extra information in a directory called .git located in the root directory of the repository.
-# Git expects this information to be laid out in a very precise way, so you never edit or delete anything in .git.
+# Git stores all of its extra information in a directory called .git located in the repository's root directory.
+# Git expects this information to be laid out precisely, so you never edit or delete anything in .git.
 #
 #########################################################################################################
-#
-git status # check the status of the repository
+# Command Line 
+    # Windows Terminal
+    # 
+
+git --status # check the status of the repository
+
+git --version # git version 2.45.2.windows.1
+
 # 
 git add sample_file.txt # add the sample file to the staging area
 #
