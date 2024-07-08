@@ -1,6 +1,19 @@
-# Version control system: a tool that manages changes made to the files and directories in a project.
+# Git is a Version control system: 
+# which is a tool that manages changes made to the files and directories in a project.
+# With Git, you can see the history of your files and recover an old version if needed.
     # Centralized Version Control:
+        # Storage 
+        # Tracking
     # Distributed Version Control: 
+        # Cloning
+        # Working Copy
+        # Push/ Pull 
+# Branch
+# A branch is a copy of your source code where you can work without changing the original file.
+
+# Merge
+# 
+
 # Nothing that is saved to Git is ever lost, so users can always go back to see which results were generated
 # Git automatically notifies you when your work conflicts with someone else's, so it's harder (but not impossible) to accidentally overwrite work
 # Git can synchronize work done by different people on different machines, so it scales as your team does
@@ -22,10 +35,27 @@ git diff folder/sample_file.csv # check the change history of certain file withi
 git diff -r HEAD data/northern.csv
 #
 
+# git fetch
 
+# git push --
+# git 
+#########################################################################################################
+# GitHub
+#########################################################################################################
+# GitHub is an online service/ platform that allows developers to work together.
+    # GitHub is essentially a storage service in the cloud where developers can work with each other.
 
+# Why GitHub
+    # Cloud Repository
+    # Collaborative Development 
+    # Project Management Tools 
+        # 
 
-#
+# Code:
+# Issues:
+# Pull Requests: 
+# Actions:
+    # could help automation when certain trigger condition is met
 #########################################################################################################
 # " The Perfect Commit "
 #########################################################################################################
