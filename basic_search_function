@@ -1,0 +1,21 @@
+# Add "Double Quote" so that only exact-matched keywords are shown
+e.g., Change Migration Stats by age --> "Migration Stats by Age"
+
+# 
+intitle:"iPhone 15 camera that attract dust"
+
+#
+allintitle:
+
+# Combining multiple search constraints 
+e.g., 
+intitle:"ELON MASK" intext: "SpaceX Starship Update"
+e.g., 
+intext:"Name" "University"
+intext:"Name" "Company"
+
+# constraint the site name
+e.g.,
+"Name" site:cctv.com 
+little cat site:pixabay.com imgsize:2560x1440
+big language model filetype:pdf
