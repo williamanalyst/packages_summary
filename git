@@ -1,4 +1,4 @@
-# Git is a Version control system 
+# Git is a Version control system (free and open source)
     # (also software that runs on your local machine to track any changes made to files on your projects.) 
 # which is a tool that manages changes made to the files and directories in a project.
 # With Git, you can see the history of your files and recover an old version if needed.
@@ -13,6 +13,10 @@
 # A branch is a copy of your source code where you can work without changing the original file.
 
 # Merge
+
+# Directory --> Folder on your computer
+# Terminal or Command Line --> application on your machine that enables Interface for Text Commands
+# CLI --> command line interface
 # 
 
 # Nothing that is saved to Git is ever lost, so users can always go back to see which results were generated
