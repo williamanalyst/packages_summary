@@ -53,6 +53,20 @@
                 # = List.Dates(#date(2021, 05, 31), // start date
                     365 * 10, // mumber of periods
                     #duration(1, 0, 0, 0)) // period = 1 days, 0 hours, 0 minutes, 0 seconds
+                # As below:
+                FirstDayOfMonthTable = 
+                ADDCOLUMNS(
+                    CALENDAR(DATE(2023, 1, 1), DATE(2023, 12, 31)),
+                    "Year", YEAR([Date]), 
+                    "Month", FORMAT([Date], "mmmm"),
+                    "Day", DAY([Date]),
+                    "WeekOfYear", WEEKNUM([Date], 2),
+                    "YEAR_WEEK", YEAR([Date]) & "-" & FORMAT(WEEKNUM([Date], 2), "00"),
+                    "YEAR_WEEK_SORT", YEAR([Date]) * 100 + WEEKNUM([Date], 2),
+                    "FirstDayOfMonth", DATE(YEAR([Date]), MONTH([Date]), 1)
+                )
+                # Or a calculated column could be created:
+                First_Day_of_Month = STARTOFMONTH(Dates[Date])
     #
     # Calculated Table:
         # You should use the "Import" storage mode to be able to create a calculated table.
