@@ -17,7 +17,15 @@
 # Directory --> Folder on your computer
 # Terminal or Command Line --> application on your machine that enables Interface for Text Commands
 # CLI --> command line interface
-# 
+# cd --> change directory
+# code editor --> word processor for writing code
+# Repository --> project or the folder/ place where the project is saved --> a repository is basically a project 
+# GitHub --> 
+# Clone --> 
+# add --> track your files and changes in Git
+# commit --> save your changes 
+# push --> upload git commits to a remote repository, such as GitHub
+# pull --> download changes from a remote repository to your local machines, which is opposite to push 
 
 # Nothing that is saved to Git is ever lost, so users can always go back to see which results were generated
 # Git automatically notifies you when your work conflicts with someone else's, so it's harder (but not impossible) to accidentally overwrite work
@@ -77,7 +85,7 @@ git diff -r HEAD data/northern.csv
 
 
 
-
+readme.md --> markdown file
 
 
 
@@ -98,15 +106,29 @@ git diff -r HEAD data/northern.csv
 # And it's especially good in keep track of text changes
 
 
+# command prompt
+git --version
+--> returns the version that is currently installed
+
+#
+git config
+
+#
+git config --global user.name "William Xie"
+git config --global user.email william.cheers@gmail.com
+
+git config --global --list
+
+mkdir learn-git
+cd learn-git
+git --init
 
 
+git status
 
-
-
-
-
-
-
+echo --> 
+git add --> save to temporary storage
+git commit --> submit 
 #
 #
 
