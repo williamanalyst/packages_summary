@@ -1253,6 +1253,15 @@ measure_condition =
 # CALCULATE() # returns a single value like an integer or a string
 
 
+##############################################################################################
+# What is a Power BI dataset?
+
+# Power BI dataset includes the "imported data" and "DAX Calculations"
+    # That is the reason why a PBIX file is usually split into 2 portions: a Power BI dataset + a report
 
 
+# Benefit of using Power BI dataset
+    # reduce loading activities on server/ source
+    # re-usable DAX logic
+    # 
 
