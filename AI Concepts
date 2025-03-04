@@ -1,11 +1,15 @@
 # How does a search engine works?
 --> 1. Crawling --> discover new or updated pages
                 --> systemarically, continuously browses the internet
---> 2. Indexing --> store and organizes conent in a index that could be located easily
+--> 2. Indexing --> store and organizes conent in an index that could be located easily
                 --> analyzes factors for relevance and context
+--> 3. Ranking --> provide the best, most relevant results for your query (e.g., you could enhance your Google Searches through the query rules)
 
 
+# How does a reasoning engine work?
+e.g., Chat GPT --> pre-trained model predicts the next words in response to a prompt
 
+--> 
 
 
 
